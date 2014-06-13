@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>AutoC4</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>AutoC4</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/raphael-min.js"></script>
-  <script type="text/javascript" src="js/colorwheel.js"></script>
-  <script type="text/javascript" src="js/autoc4.js"></script>
+    <script type="text/javascript" src="js/compat.js"></script>
+    <script type="text/javascript" src="js/mqttws31.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/raphael-min.js"></script>
+    <script type="text/javascript" src="js/colorwheel.js"></script>
+    <script type="text/javascript" src="js/autoc4_light.js"></script>
+    <script type="text/javascript" src="js/autoc4.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/bootswatch.min.css">
-  <link rel="stylesheet" type="text/css" href="css/autoc4.css">
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootswatch.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/autoc4.css" />
+  </head>
+  <body>
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -37,7 +40,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-off"></span> Shutdown <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-off"></span> Shutdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Shutdown</a></li>
                 <li><a href="#">Force Shutdown</a></li>
@@ -63,9 +66,9 @@
             </ul>
             <div class="tab-content">
               <div class="tab-pane fade active in lightswitch-pane" id="wohnzimmernormal">
-                <button type="button" class="btn btn-light">Tür</button>
-                <button type="button" class="btn btn-light">Mitte</button>
-                <button type="button" class="btn btn-light">Küche</button>
+                <button type="button" class="btn btn-light" data-topic="licht/wohnzimmer/tuer">Tür</button>
+                <button type="button" class="btn btn-light" data-topic="licht/wohnzimmer/mitte">Mitte</button>
+                <button type="button" class="btn btn-light" data-topic="licht/wohnzimmer/kueche">Küche</button>
               </div>
               <div class="tab-pane fade" id="wohnzimmerdmx">
                 <div id="dmxcolorwohnzimmer" class="colorwheel" style="float:left; margin-right:20px; width:300px; text-align:left;"></div>
@@ -83,10 +86,10 @@
             </ul>
             <div class="tab-content">
               <div class="tab-pane fade active in lightswitch-pane" id="plenarnormal">
-                <button type="button" class="btn btn-light">Vorne Wand</button>
-                <button type="button" class="btn btn-light">Vorne Fenster</button>
-                <button type="button" class="btn btn-light">Hinten Wand</button>
-                <button type="button" class="btn btn-light">Hinten Fenster</button>
+                <button type="button" class="btn btn-light" data-topic="licht/plenar/vornewand">Vorne Wand</button>
+                <button type="button" class="btn btn-light" data-topic="licht/plenar/vornefenster">Vorne Fenster</button>
+                <button type="button" class="btn btn-light" data-topic="licht/plenar/hintenwand">Hinten Wand</button>
+                <button type="button" class="btn btn-light" data-topic="licht/plenar/hintenfenster">Hinten Fenster</button>
               </div>
               <div class="tab-pane fade" id="plenardmx">
                 <div id="dmxcolorplenar" class="colorwheel" style="float:left; margin-right:20px; width:300px; text-align:left;"></div>
@@ -104,8 +107,8 @@
             </ul>
             <div class="tab-content">
               <div class="tab-pane fade active in lightswitch-pane" id="fnordnormal">
-                <button type="button" class="btn btn-light">Links</button>
-                <button type="button" class="btn btn-light">Rechts</button>
+                <button type="button" class="btn btn-light" data-topic="licht/fnord/links">Links</button>
+                <button type="button" class="btn btn-light" data-topic="licht/fnord/rechts">Rechts</button>
               </div>
               <div class="tab-pane fade" id="fnorddmx">
                 <div id="dmxcolorfnordcenter" class="colorwheel" style="float:left; margin-right:20px; width:300px; text-align:left;"></div>
@@ -122,8 +125,8 @@
             </ul>
             <div class="tab-content">
               <div class="tab-pane fade active in lightswitch-pane" id="kellernormal">
-                <button type="button" class="btn btn-light">Aussen</button>
-                <button type="button" class="btn btn-light">Innen</button>
+                <button type="button" class="btn btn-light" data-topic="licht/keller/aussen">Außen</button>
+                <button type="button" class="btn btn-light" data-topic="licht/keller/innen">Innen</button>
               </div>
             </div>
           </div>
@@ -131,6 +134,5 @@
 
       </div>
     </div>
-
-</body>
+  </body>
 </html>
