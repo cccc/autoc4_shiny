@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AutoC4</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/raphael-min.js"></script>
+  <script type="text/javascript" src="js/colorwheel.js"></script>
+  <script type="text/javascript" src="js/autoc4.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootswatch.min.css">
+  <link rel="stylesheet" type="text/css" href="css/autoc4.css">
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">AutoC4</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-eye-open"></span> Light</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-floppy-disk"></span> Presets</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Stats</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-music"></span> Music</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-off"></span> Shutdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Shutdown</a></li>
+                <li><a href="#">Force Shutdown</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Open Gate</a></li>
+              </ul>
+            </li>
+            <li><a href="#"><span class="glyphicon glyphicon-time"></span> 23.03.2014 23:23</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3">
+          <h2>Wohnzimmer</h2>
+          <div class="bs-component">
+            <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+              <li class="active"><a href="#wohnzimmernormal" data-toggle="tab">Normal</a></li>
+              <li><a href="#wohnzimmerdmx" data-toggle="tab">DMX</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade active in lightswitch-pane" id="wohnzimmernormal">
+                <button type="button" class="btn btn-light on">Tür</button>
+                <button type="button" class="btn btn-light">Mitte</button>
+                <button type="button" class="btn btn-light">Küche</button>
+              </div>
+              <div class="tab-pane fade" id="wohnzimmerdmx">
+                <div id="dmxcolorwohnzimmer" class="colorwheel" style="float:left; margin-right:20px; width:300px; text-align:left;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <h2>Plenarsaal</h2>
+          <div class="bs-component">
+            <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+              <li class="active"><a href="#plenarnormal" data-toggle="tab">Normal</a></li>
+              <li><a href="#plenardmx" data-toggle="tab">DMX</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade active in lightswitch-pane" id="plenarnormal">
+                <button type="button" class="btn btn-light">Vorne Wand</button>
+                <button type="button" class="btn btn-light">Vorne Fenster</button>
+                <button type="button" class="btn btn-light">Hinten Wand</button>
+                <button type="button" class="btn btn-light">Hinten Fenster</button>
+              </div>
+              <div class="tab-pane fade" id="plenardmx">
+                <div id="dmxcolorplenar" class="colorwheel" style="float:left; margin-right:20px; width:300px; text-align:left;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <h2>Fnordcenter</h2>
+          <div class="bs-component">
+            <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+              <li class="active"><a href="#fnordnormal" data-toggle="tab">Normal</a></li>
+              <li><a href="#fnorddmx" data-toggle="tab">DMX</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade active in lightswitch-pane" id="fnordnormal">
+                <button type="button" class="btn btn-light">Links</button>
+                <button type="button" class="btn btn-light">Rechts</button>
+              </div>
+              <div class="tab-pane fade" id="fnorddmx">
+                <div id="dmxcolorfnordcenter" class="colorwheel" style="float:left; margin-right:20px; width:300px; text-align:left;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <h2>Keller</h2>
+          <div class="bs-component">
+            <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+              <li class="active"><a href="#kellernormal" data-toggle="tab">Normal</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade active in lightswitch-pane" id="kellernormal">
+                <button type="button" class="btn btn-light">Aussen</button>
+                <button type="button" class="btn btn-light">Innen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+</body>
+</html>
