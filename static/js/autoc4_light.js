@@ -3,13 +3,12 @@ function mqtt_subscribe_light() {
 }
 
 function mqtt_on_light_message(message) {
-    // update licht-button state
+    // update .btn-light state
     var button = $('.btn-light').filter('[data-topic="' + message.destinationName + '"]');
     if (button && message.payloadBytes[0] != 0)
         button.addClass('on');
     else
         button.removeClass('on');
-    return;
 }
 
 // publish (on ? 0x01 : 0x00) message to a topic
