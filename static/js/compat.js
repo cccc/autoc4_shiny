@@ -4,6 +4,10 @@ if (typeof String.prototype.startsWith != 'function') {
     };
 }
 
+function two_digits(i) {
+    return ("0" + i).slice(-2);
+}
+
 function dec2hex(i) {
     if (i <= 15) {
         return "0" + i.toString(16);
