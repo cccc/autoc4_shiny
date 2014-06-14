@@ -1,3 +1,10 @@
+function init_light() {
+    $(".btn-light").click(function (e) {
+        var light = $(this);
+        switch_light(light.data("topic"), !light.hasClass("on"));
+    });
+}
+
 function mqtt_subscribe_light() {
     mqtt_client.subscribe('licht/+/+');
 }

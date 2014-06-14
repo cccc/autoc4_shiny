@@ -20,6 +20,7 @@ function mqtt_on_connect() {
     console.log('onConnect');
     // Once a connection has been made, make subscriptions.
     mqtt_subscribe_light();
+    mqtt_subscribe_dmx();
 }
 
 function mqtt_on_connect_failure() {
@@ -30,18 +31,13 @@ function mqtt_on_connect_failure() {
 function mqtt_on_message(message) {
     if (message.destinationName.startsWith('licht/')) {
         mqtt_on_light_message(message);
+    } else if (message.destinationName.startsWith('dmx/')) {
+        mqtt_on_dmx_message(message);
     }
 }
 
 $(function() {
-    Raphael.colorwheel($("#dmxcolorplenar") ,250).color("#F00");
-    Raphael.colorwheel($("#dmxcolorwohnzimmer") ,250).color("#F00");
-    Raphael.colorwheel($("#dmxcolorfnordcenter") ,250).color("#F00");
-
-    $(".btn-light").click(function (e) {
-        var light = $(this);
-        switch_light(light.data("topic"), !light.hasClass("on"));
-    });
-
+    init_light();
+    init_dmx();
     init_mqtt();
 });
