@@ -40,7 +40,7 @@ function update_time() {
     var now = new Date();
     var text = two_digits(now.getDate()) + "." + two_digits(now.getMonth() + 1) + "." + now.getFullYear() + " " + two_digits(now.getHours()) + ":" + two_digits(now.getMinutes());
     $('#datetime').text(text);
-    setTimeout(update_time, 60000);
+    setTimeout(update_time, 60000 - now.getSeconds() * 1000 - now.getMilliseconds());
 }
 
 $(function() {
