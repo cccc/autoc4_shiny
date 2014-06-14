@@ -66,6 +66,11 @@ $(function() {
         mqtt_send_data('club/gate');
     });
 
+    $('#help').click(function(ev) {
+        ev.preventDefault();
+        $('#help-display').toggle();
+    });
+
     update_time();
     init_light();
     init_dmx();
