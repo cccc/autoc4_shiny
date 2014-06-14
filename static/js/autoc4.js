@@ -38,7 +38,7 @@ function mqtt_on_message(message) {
 
 function update_time() {
     var now = new Date();
-    var text = two_digits(now.getDate()) + "." + two_digits(now.getMonth()) + "." + now.getFullYear() + " " + two_digits(now.getHours()) + ":" + two_digits(now.getMinutes());
+    var text = two_digits(now.getDate()) + "." + two_digits(now.getMonth() + 1) + "." + now.getFullYear() + " " + two_digits(now.getHours()) + ":" + two_digits(now.getMinutes());
     $('#datetime').text(text);
     setTimeout(update_time, 60000);
 }
