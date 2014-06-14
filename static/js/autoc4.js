@@ -44,6 +44,24 @@ function update_time() {
 }
 
 $(function() {
+    $('#shutdown').click(function(ev) {
+	ev.preventDefault();
+
+	var buf = new Uint8Array(0);
+	var message = new Messaging.Message(buf);
+	message.destinationName = 'club/shutdown';
+	mqtt_client.send(message);
+    });
+
+    $('#shutdown-force').click(function(ev) {
+	ev.preventDefault();
+
+	var buf = new Uint8Array([0x44]);
+	var message = new Messaging.Message(buf);
+	message.destinationName = 'club/shutdown';
+	mqtt_client.send(message);
+    });
+
     update_time();
     init_light();
     init_dmx();
