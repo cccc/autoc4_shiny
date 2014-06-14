@@ -36,6 +36,13 @@ function mqtt_on_message(message) {
     }
 }
 
+function mqtt_send_data(topic, data) {
+    var buf = new Uint8Array(data || 0);
+    var message = new Messaging.Message(buf);
+    message.destinationName = topic;
+    mqtt_client.send(message);
+}
+
 function update_time() {
     var now = new Date();
     var text = two_digits(now.getDate()) + "." + two_digits(now.getMonth() + 1) + "." + now.getFullYear() + " " + two_digits(now.getHours()) + ":" + two_digits(now.getMinutes());
@@ -45,21 +52,18 @@ function update_time() {
 
 $(function() {
     $('#shutdown').click(function(ev) {
-	ev.preventDefault();
-
-	var buf = new Uint8Array(0);
-	var message = new Messaging.Message(buf);
-	message.destinationName = 'club/shutdown';
-	mqtt_client.send(message);
+        ev.preventDefault();
+        mqtt_send_data('club/shutdown');
     });
 
     $('#shutdown-force').click(function(ev) {
-	ev.preventDefault();
+        ev.preventDefault();
+        mqtt_send_data('club/shutdown', [0x44]);
+    });
 
-	var buf = new Uint8Array([0x44]);
-	var message = new Messaging.Message(buf);
-	message.destinationName = 'club/shutdown';
-	mqtt_client.send(message);
+    $('#gate').click(function(ev) {
+        ev.preventDefault();
+        mqtt_send_data('club/gate');
     });
 
     update_time();
