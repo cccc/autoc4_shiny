@@ -50,14 +50,13 @@ function dmx_change(e) {
 }
 
 // publish dmx rgb color + enable byte for a dmx room container
-// actually publishes the value off the room slider for all sub dmx-containers
 function send_dmx_data(topic, value) {
     var r = parseInt(value.substr(1, 2), 16);
     var g = parseInt(value.substr(3, 2), 16);
     var b = parseInt(value.substr(5, 2), 16);
     var buf = new Uint8Array([r, g, b, 255]);
     var message = new Messaging.Message(buf);
-    message.retained = false;
+    message.retained = true;
     message.destinationName = topic;
     mqtt_client.send(message);
 };
