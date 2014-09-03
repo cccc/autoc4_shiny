@@ -4,6 +4,12 @@ if (typeof String.prototype.startsWith != 'function') {
     };
 }
 
+if (typeof String.prototype.contains != 'function') {
+    String.prototype.contains = function() {
+        return String.prototype.indexOf.apply(this, arguments) !== -1;
+    };
+}
+
 function two_digits(i) {
     return ("0" + i).slice(-2);
 }
