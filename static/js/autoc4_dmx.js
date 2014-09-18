@@ -16,6 +16,7 @@ function init_dmx() {
 
     $('input[type="color"]').change(dmx_change);
     $('.btn-fade').click(dmx_fade);
+    $('.btn-sound').click(dmx_sound);
 }
 
 function mqtt_subscribe_dmx() {
@@ -80,6 +81,15 @@ function dmx_fade(e) {
     }
 }
 
+function dmx_sound(e) {
+    var dmx = $(this);
+    var topic = dmx.data("topic");
+    for (light in pickers[topic]) {
+        if (light == "master") { continue; }
+        send_dmx_sound_7ch("dmx/" + topic + "/" + light);
+    }
+}
+
 // publish dmx rgb color + enable byte for a dmx room container
 function send_dmx_data_3ch(topic, value) {
     var r = parseInt(value.substr(1, 2), 16);
@@ -102,6 +112,14 @@ function send_dmx_data_7ch(topic, value) {
     message.destinationName = topic;
     mqtt_client.send(message);
 };
+
+function send_dmx_sound_7ch(topic) {
+    var buf = new Uint8Array([0, 0, 0, 0, 255, 246, 255]);
+    var message = new Messaging.Message(buf);
+    message.retained = true;
+    message.destinationName = topic;
+    mqtt_client.send(message);
+}
 
 function send_dmx_fade_7ch(topic, speed) {
     if (speed > 255) { speed = 255; }
