@@ -1,4 +1,4 @@
-var pickers = { plenar: {}, fnord: {} };
+var pickers = { plenar: {}, fnord: {}, wohnzimmer: {} };
 function init_dmx() {
     pickers["plenar"]["master"] = $("#dmxcolorplenar-master")
     pickers["plenar"]["vorne1"] = $("#dmxcolorplenar-vorne1")
@@ -13,6 +13,10 @@ function init_dmx() {
     pickers["fnord"]["schranklinks"] = $("#dmxcolorfnordcenter-ss");
     pickers["fnord"]["fairyfenster"] = $("#dmxcolorfnordcenter-ff");
     pickers["fnord"]["schrankrechts"] = $("#dmxcolorfnordcenter-fs");
+    pickers["wohnzimmer"]["master"] = $("#dmxcolorwohnzimmer-master");
+    pickers["wohnzimmer"]["mitte1"] = $("#dmxcolorwohnzimmer-mitte1");
+    pickers["wohnzimmer"]["mitte2"] = $("#dmxcolorwohnzimmer-mitte2");
+    pickers["wohnzimmer"]["mitte3"] = $("#dmxcolorwohnzimmer-mitte3");
 
     $('input[type="color"]').change(dmx_change);
     $('.btn-fade').click(dmx_fade);
@@ -56,10 +60,10 @@ function dmx_change(e) {
     var topic = dmx.data("topic");
     var color = dmx.val();
     var send_dmx_data;
-    if (!topic.contains("plenar")) {
-	send_dmx_data = send_dmx_data_3ch;
-    } else {
+    if (!topic.contains("fnord")) {
 	send_dmx_data = send_dmx_data_7ch;
+    } else {
+	send_dmx_data = send_dmx_data_3ch;
     }
     if (topic.startsWith("dmx/")) {
         send_dmx_data(topic, color);

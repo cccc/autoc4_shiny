@@ -70,7 +70,19 @@
               </div>
               <div class="tab-pane fade" id="wohnzimmerdmx">
                 <label for="dmxcolorwohnzimmer-master">Master:</label>
-                <input type="color" id="dmxcolorwohnzimmer-master" class="colorinput" data-topic="wohnzimmer" />
+                <input type="color" id="dmxcolorwohnzimmer-master" class="colorinput" data-topic="wohnzimmer" /><br />
+                <label for="dmxcolorwohnzimmer-mitte1">Mitte 1:</label>
+                <input type="color" id="dmxcolorwohnzimmer-mitte1" class="colorinput" data-topic="dmx/wohnzimmer/mitte1" /><br />
+                <label for="dmxcolorwohnzimmer-mitte2">Mitte 2:</label>
+                <input type="color" id="dmxcolorwohnzimmer-mitte2" class="colorinput" data-topic="dmx/wohnzimmer/mitte2" /><br />
+                <label for="dmxcolorwohnzimmer-mitte3">Mitte 3:</label>
+                <input type="color" id="dmxcolorwohnzimmer-mitte3" class="colorinput" data-topic="dmx/wohnzimmer/mitte3" />
+                <hr />
+                <div id="dmxfadewohnzimmer">
+                  <label for="dmxspeedwohnzimmer">Fade Speed:</label>
+                  <input type="range" min="17" max="255" id="dmxspeedwohnzimmer" class="dmxspeed" /><br />
+                  <button type="button" class="btn btn-primary btn-fade" data-topic="wohnzimmer">Fade</button>
+                </div>
               </div>
             </div>
           </div>
