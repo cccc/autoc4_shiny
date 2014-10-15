@@ -61,3 +61,8 @@
     background-size: contain;
     background-position: 50%;
 }
+
+.colorpicker {
+  display: flex;
+  justify-content: space-between
+}
