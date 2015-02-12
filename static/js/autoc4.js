@@ -29,7 +29,7 @@ function mqtt_on_connect_failure() {
 }
 
 function mqtt_on_message(message) {
-    if (message.destinationName.startsWith('licht/')) {
+    if (message.destinationName.startsWith('licht/') || message.destinationName.startsWith('power/')) {
         mqtt_on_light_message(message);
     } else if (message.destinationName.startsWith('dmx/')) {
         mqtt_on_dmx_message(message);
