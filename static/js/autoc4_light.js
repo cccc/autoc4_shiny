@@ -13,7 +13,7 @@ function mqtt_subscribe_light() {
 function mqtt_on_light_message(message) {
     // update .btn-light state
     var button = $('.btn-light').filter('[data-topic="' + message.destinationName + '"]');
-    if (button && message.payloadBytes[0] != 0)
+    if (button && message.payloadBytes[0] !== 0)
         button.addClass('on');
     else
         button.removeClass('on');

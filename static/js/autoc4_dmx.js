@@ -1,27 +1,27 @@
 var pickers = { plenar: {}, fnord: {}, wohnzimmer: {} };
 function init_dmx() {
-    pickers["plenar"]["master"] = $("#dmxcolorplenar-master");
-    pickers["plenar"]["vorne1"] = $("#dmxcolorplenar-vorne1");
-    pickers["plenar"]["vorne2"] = $("#dmxcolorplenar-vorne2");
-    pickers["plenar"]["vorne3"] = $("#dmxcolorplenar-vorne3");
-    pickers["plenar"]["hinten1"] = $("#dmxcolorplenar-hinten1");
-    pickers["plenar"]["hinten2"] = $("#dmxcolorplenar-hinten2");
-    pickers["plenar"]["hinten3"] = $("#dmxcolorplenar-hinten3");
-    pickers["plenar"]["hinten4"] = $("#dmxcolorplenar-hinten4");
-    pickers["fnord"]["master"] = $("#dmxcolorfnordcenter-master");
-    pickers["fnord"]["scummfenster"] = $("#dmxcolorfnordcenter-sf");
-    pickers["fnord"]["schranklinks"] = $("#dmxcolorfnordcenter-ss");
-    pickers["fnord"]["fairyfenster"] = $("#dmxcolorfnordcenter-ff");
-    pickers["fnord"]["schrankrechts"] = $("#dmxcolorfnordcenter-fs");
-    pickers["wohnzimmer"]["master"] = $("#dmxcolorwohnzimmer-master");
-    pickers["wohnzimmer"]["mitte1"] = $("#dmxcolorwohnzimmer-mitte1");
-    pickers["wohnzimmer"]["mitte2"] = $("#dmxcolorwohnzimmer-mitte2");
-    pickers["wohnzimmer"]["mitte3"] = $("#dmxcolorwohnzimmer-mitte3");
-    pickers["wohnzimmer"]["tuer1"] = $("#dmxcolorwohnzimmer-tuer1");
-    pickers["wohnzimmer"]["tuer2"] = $("#dmxcolorwohnzimmer-tuer2");
-    pickers["wohnzimmer"]["tuer3"] = $("#dmxcolorwohnzimmer-tuer3");
-    pickers["wohnzimmer"]["gang"] = $("#dmxcolorwohnzimmer-gang");
-    pickers["wohnzimmer"]["baellebad"] = $("#dmxcolorwohnzimmer-baellebad");
+    pickers.plenar.master = $("#dmxcolorplenar-master");
+    pickers.plenar.vorne1 = $("#dmxcolorplenar-vorne1");
+    pickers.plenar.vorne2 = $("#dmxcolorplenar-vorne2");
+    pickers.plenar.vorne3 = $("#dmxcolorplenar-vorne3");
+    pickers.plenar.hinten1 = $("#dmxcolorplenar-hinten1");
+    pickers.plenar.hinten2 = $("#dmxcolorplenar-hinten2");
+    pickers.plenar.hinten3 = $("#dmxcolorplenar-hinten3");
+    pickers.plenar.hinten4 = $("#dmxcolorplenar-hinten4");
+    pickers.fnord.master = $("#dmxcolorfnordcenter-master");
+    pickers.fnord.scummfenster = $("#dmxcolorfnordcenter-sf");
+    pickers.fnord.schranklinks = $("#dmxcolorfnordcenter-ss");
+    pickers.fnord.fairyfenster = $("#dmxcolorfnordcenter-ff");
+    pickers.fnord.schrankrechts = $("#dmxcolorfnordcenter-fs");
+    pickers.wohnzimmer.master = $("#dmxcolorwohnzimmer-master");
+    pickers.wohnzimmer.mitte1 = $("#dmxcolorwohnzimmer-mitte1");
+    pickers.wohnzimmer.mitte2 = $("#dmxcolorwohnzimmer-mitte2");
+    pickers.wohnzimmer.mitte3 = $("#dmxcolorwohnzimmer-mitte3");
+    pickers.wohnzimmer.tuer1 = $("#dmxcolorwohnzimmer-tuer1");
+    pickers.wohnzimmer.tuer2 = $("#dmxcolorwohnzimmer-tuer2");
+    pickers.wohnzimmer.tuer3 = $("#dmxcolorwohnzimmer-tuer3");
+    pickers.wohnzimmer.gang = $("#dmxcolorwohnzimmer-gang");
+    pickers.wohnzimmer.baellebad = $("#dmxcolorwohnzimmer-baellebad");
 
     $('input[type="color"]').change(dmx_change);
     $('.btn-fade').click(dmx_fade);
@@ -44,18 +44,18 @@ function mqtt_on_dmx_message(message) {
         picker.val(color);
 
         var same = true;
-        for (light in pickers[room]) {
+        for (var light in pickers[room]) {
             if (light == "master") { continue; }
             same = same && (pickers[room][light].val() == color);
         }
         if (same) {
-            pickers[room]["master"].val(color);
+            pickers[room].master.val(color);
         }
     }
 
     if (payloadBytes.length == 7) {
         var speed = payloadBytes[4];
-        if (speed == 0) { speed = 100; }
+        if (speed === 0) { speed = 100; }
         $("#dmxfade" + room + " > .dmxspeed").val(speed);
     }
 }
@@ -74,7 +74,7 @@ function dmx_change(e) {
         send_dmx_data(topic, color);
         return;
     }
-    for (light in pickers[topic]) {
+    for (var light in pickers[topic]) {
         if (light == "master") { continue; }
         send_dmx_data("dmx/" + topic + "/" + light, color);
     }
@@ -84,7 +84,7 @@ function dmx_fade(e) {
     var dmx = $(this);
     var topic = dmx.data("topic");
     var speed = parseInt(dmx.siblings(".dmxspeed").val());
-    for (light in pickers[topic]) {
+    for (var light in pickers[topic]) {
         if (light == "master") { continue; }
         send_dmx_fade_7ch("dmx/" + topic + "/" + light, speed);
     }
@@ -93,7 +93,7 @@ function dmx_fade(e) {
 function dmx_sound(e) {
     var dmx = $(this);
     var topic = dmx.data("topic");
-    for (light in pickers[topic]) {
+    for (var light in pickers[topic]) {
         if (light == "master") { continue; }
         send_dmx_sound_7ch("dmx/" + topic + "/" + light);
     }
@@ -109,7 +109,7 @@ function send_dmx_data_3ch(topic, value) {
     message.retained = true;
     message.destinationName = topic;
     mqtt_client.send(message);
-};
+}
 
 function send_dmx_data_7ch(topic, value) {
     var r = parseInt(value.substr(1, 2), 16);
@@ -120,7 +120,7 @@ function send_dmx_data_7ch(topic, value) {
     message.retained = true;
     message.destinationName = topic;
     mqtt_client.send(message);
-};
+}
 
 function send_dmx_sound_7ch(topic) {
     var buf = new Uint8Array([0, 0, 0, 0, 255, 246, 255]);
@@ -137,4 +137,4 @@ function send_dmx_fade_7ch(topic, speed) {
     message.retained = true;
     message.destinationName = topic;
     mqtt_client.send(message);
-};
+}
