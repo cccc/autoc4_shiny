@@ -1,14 +1,14 @@
 var pickers = { plenar: {}, fnord: {}, wohnzimmer: {} };
 function init_dmx() {
-    pickers["plenar"]["master"] = $("#dmxcolorplenar-master")
-    pickers["plenar"]["vorne1"] = $("#dmxcolorplenar-vorne1")
-    pickers["plenar"]["vorne2"] = $("#dmxcolorplenar-vorne2")
-    pickers["plenar"]["vorne3"] = $("#dmxcolorplenar-vorne3")
-    pickers["plenar"]["hinten1"] = $("#dmxcolorplenar-hinten1")
-    pickers["plenar"]["hinten2"] = $("#dmxcolorplenar-hinten2")
-    pickers["plenar"]["hinten3"] = $("#dmxcolorplenar-hinten3")
-    pickers["plenar"]["hinten4"] = $("#dmxcolorplenar-hinten4")
-    pickers["fnord"]["master"] = $("#dmxcolorfnordcenter-master")
+    pickers["plenar"]["master"] = $("#dmxcolorplenar-master");
+    pickers["plenar"]["vorne1"] = $("#dmxcolorplenar-vorne1");
+    pickers["plenar"]["vorne2"] = $("#dmxcolorplenar-vorne2");
+    pickers["plenar"]["vorne3"] = $("#dmxcolorplenar-vorne3");
+    pickers["plenar"]["hinten1"] = $("#dmxcolorplenar-hinten1");
+    pickers["plenar"]["hinten2"] = $("#dmxcolorplenar-hinten2");
+    pickers["plenar"]["hinten3"] = $("#dmxcolorplenar-hinten3");
+    pickers["plenar"]["hinten4"] = $("#dmxcolorplenar-hinten4");
+    pickers["fnord"]["master"] = $("#dmxcolorfnordcenter-master");
     pickers["fnord"]["scummfenster"] = $("#dmxcolorfnordcenter-sf");
     pickers["fnord"]["schranklinks"] = $("#dmxcolorfnordcenter-ss");
     pickers["fnord"]["fairyfenster"] = $("#dmxcolorfnordcenter-ff");
@@ -17,6 +17,11 @@ function init_dmx() {
     pickers["wohnzimmer"]["mitte1"] = $("#dmxcolorwohnzimmer-mitte1");
     pickers["wohnzimmer"]["mitte2"] = $("#dmxcolorwohnzimmer-mitte2");
     pickers["wohnzimmer"]["mitte3"] = $("#dmxcolorwohnzimmer-mitte3");
+    pickers["wohnzimmer"]["tuer1"] = $("#dmxcolorwohnzimmer-tuer1");
+    pickers["wohnzimmer"]["tuer2"] = $("#dmxcolorwohnzimmer-tuer2");
+    pickers["wohnzimmer"]["tuer3"] = $("#dmxcolorwohnzimmer-tuer3");
+    pickers["wohnzimmer"]["gang"] = $("#dmxcolorwohnzimmer-gang");
+    pickers["wohnzimmer"]["baellebad"] = $("#dmxcolorwohnzimmer-baellebad");
 
     $('input[type="color"]').change(dmx_change);
     $('.btn-fade').click(dmx_fade);
