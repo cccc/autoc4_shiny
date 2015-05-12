@@ -25,6 +25,7 @@ function init_dmx() {
 
     $('input[type="color"]').change(dmx_change);
     $('.btn-fade').click(dmx_fade);
+    $('.btn-rand').click(dmx_rand);
     $('.btn-sound').click(dmx_sound);
 }
 
@@ -87,6 +88,21 @@ function dmx_fade(e) {
     for (var light in pickers[topic]) {
         if (light == "master") { continue; }
         send_dmx_fade_7ch("dmx/" + topic + "/" + light, speed);
+    }
+}
+
+function dmx_rand(e) {
+    var dmx = $(this);
+    var topic = dmx.data("topic");
+    var send_dmx_data;
+    if (!topic.contains("fnord")) {
+	send_dmx_data = send_dmx_data_7ch;
+    } else {
+	send_dmx_data = send_dmx_data_3ch;
+    }
+    for (var light in pickers[topic]) {
+        if (light == "master") { continue; }
+        send_dmx_data("dmx/" + topic + "/" + light, "#" + Math.floor(Math.random() * 0xffffff));
     }
 }
 
