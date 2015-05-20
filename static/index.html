@@ -113,9 +113,13 @@
                   <input type="range" min="17" max="255" id="dmxspeedwohnzimmer" class="dmxspeed" /><br />
                   <button type="button" class="btn btn-primary btn-fade" data-topic="wohnzimmer">Fade</button>
                 </div>
-		<hr />
-                <button type="button" class="btn btn-primary btn-rand" data-topic="wohnzimmer">Random</button>
-                <button type="button" class="btn btn-primary btn-sound" data-topic="wohnzimmer">Sound Active</button>
+                <hr />
+                <div id="dmxbrightwohnzimmer">
+                  <label for="dmxbrightwohnzimmer">Brightness:</label>
+                  <input type="range" min="0" max="1" step="0.05" id="dmxbrightwohnzimmer" class="dmxbright" /><br />
+                  <button type="button" class="btn btn-primary btn-rand" data-topic="wohnzimmer">Random</button>
+                  <button type="button" class="btn btn-primary btn-sound" data-topic="wohnzimmer">Sound Active</button>
+                </div>
               </div>
             </div>
           </div>
@@ -175,8 +179,12 @@
                   <button type="button" class="btn btn-primary btn-fade" data-topic="plenar">Fade</button>
                 </div>
                 <hr />
-                <button type="button" class="btn btn-primary btn-rand" data-topic="plenar">Random</button>
-                <button type="button" class="btn btn-primary btn-sound" data-topic="plenar">Sound Active</button>
+                <div id="dmxbrightplenar">
+                  <label for="dmxbrightplenar">Brightness:</label>
+                  <input type="range" min="0" max="1" step="0.05" id="dmxbrightplenar" class="dmxbright" /><br />
+                  <button type="button" class="btn btn-primary btn-rand" data-topic="plenar">Random</button>
+                  <button type="button" class="btn btn-primary btn-sound" data-topic="plenar">Sound Active</button>
+                </div>
               </div>
             </div>
           </div>
@@ -215,8 +223,13 @@
                   <label for="dmxcolorfnordcenter-fs">Fairy Schrank:</label>
                   <input type="color" id="dmxcolorfnordcenter-fs" class="colorinput" data-topic="dmx/fnord/schrankrechts" />
                 </div>
-		<hr />
-                <button type="button" class="btn btn-primary btn-rand" data-topic="fnord">Random</button>
+                <hr />
+                <div id="dmxbrightfnord">
+                  <label for="dmxbrightfnord">Brightness:</label>
+                  <input type="range" min="0" max="1" step="0.05" id="dmxbrightfnord" class="dmxbright" /><br />
+                  <button type="button" class="btn btn-primary btn-rand" data-topic="fnord">Random</button>
+                  <button type="button" class="btn btn-primary btn-sound" data-topic="fnord">Sound Active</button>
+                </div>
               </div>
             </div>
           </div>

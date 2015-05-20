@@ -67,9 +67,9 @@ function dmx_change(e) {
     var color = dmx.val();
     var send_dmx_data;
     if (!topic.contains("fnord")) {
-	send_dmx_data = send_dmx_data_7ch;
+        send_dmx_data = send_dmx_data_7ch;
     } else {
-	send_dmx_data = send_dmx_data_3ch;
+        send_dmx_data = send_dmx_data_3ch;
     }
     if (topic.startsWith("dmx/")) {
         send_dmx_data(topic, color);
@@ -91,18 +91,63 @@ function dmx_fade(e) {
     }
 }
 
+function hsv_to_rgb(h, s, v) {
+    var h_i = Math.floor(h*6);
+    var f = h*6 - h_i;
+    var p = v * (1 - s);
+    var q = v * (1 - f*s);
+    var t = v * (1 - (1 - f) * s);
+    switch (h_i) {
+        case 0:
+            r = v;
+            g = t;
+            b = p;
+            break;
+        case 1:
+            r = q;
+            g = v;
+            b = p;
+            break;
+        case 2:
+            r = p;
+            g = v;
+            b = t;
+            break;
+        case 3:
+            r = p;
+            g = q;
+            b = v;
+            break;
+        case 4:
+            r = t;
+            g = p;
+            b = v;
+            break;
+        case 5:
+            r = v;
+            g = p;
+            b = q;
+            break;
+    }
+    return [Math.floor(r*255), Math.floor(g*255), Math.floor(b*255)];
+}
+
 function dmx_rand(e) {
     var dmx = $(this);
     var topic = dmx.data("topic");
     var send_dmx_data;
     if (!topic.contains("fnord")) {
-	send_dmx_data = send_dmx_data_7ch;
+        send_dmx_data = send_dmx_data_7ch;
     } else {
-	send_dmx_data = send_dmx_data_3ch;
+        send_dmx_data = send_dmx_data_3ch;
     }
+
+    var v = parseFloat(dmx.siblings(".dmxbright").val());
     for (var light in pickers[topic]) {
         if (light == "master") { continue; }
-        send_dmx_data("dmx/" + topic + "/" + light, "#" + Math.floor(Math.random() * 0xffffff));
+        var rgb = hsv_to_rgb(Math.random(), 0.8, v);
+        var rgb_s = "#" + dec2hex(rgb[0]) + dec2hex(rgb[1]) + dec2hex(rgb[2]);
+        send_dmx_data("dmx/" + topic + "/" + light, rgb_s);
     }
 }
 
