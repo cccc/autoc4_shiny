@@ -27,4 +27,3 @@ function switch_light(topic, on) {
     message.destinationName = topic;
     mqtt_client.send(message);
 }
-

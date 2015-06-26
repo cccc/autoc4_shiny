@@ -75,4 +75,5 @@ $(function() {
     init_light();
     init_dmx();
     init_mqtt();
+    init_kitchenlight();
 });

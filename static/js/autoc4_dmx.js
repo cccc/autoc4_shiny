@@ -23,7 +23,7 @@ function init_dmx() {
     pickers.wohnzimmer.gang = $("#dmxcolorwohnzimmer-gang");
     pickers.wohnzimmer.baellebad = $("#dmxcolorwohnzimmer-baellebad");
 
-    $('input[type="color"]').change(dmx_change);
+    $('.dmxinput').change(dmx_change);
     $('.btn-fade').click(dmx_fade);
     $('.btn-rand').click(dmx_rand);
     $('.btn-sound').click(dmx_sound);

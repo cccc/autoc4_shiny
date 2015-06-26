@@ -66,3 +66,20 @@
   display: flex;
   justify-content: space-between
 }
+
+.klPane {
+  margin: 1ex;
+  display: none
+}
+
+.klPane.active {
+  display: block
+}
+
+.klPane output {
+  display: inline
+}
+
+.klPane label {
+  margin-right: 1ex
+}
