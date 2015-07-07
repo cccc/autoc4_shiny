@@ -35,10 +35,20 @@ function init_kitchenlight() {
             case "klStrobe":
                 kl_strobe();
                 break;
+            case "klFlood":
+                kl_flood();
+                break;
         }
     });
     $(".klPane.active").removeClass("active");
     $("#" + $("#klSelect").val()).addClass("active");
+    $(".btn-floodit").click(function(ev) {
+        var i = parseInt(this.textContent) - 1;
+        var message = new Messaging.Message(new Uint8Array([i]));
+        message.retained = true;
+        message.destinationName = "kitchenlight/FloodIt/flood";
+        return mqtt_client.send(message);
+    });
 }
 
 function kl_change_screen(data) {
@@ -171,9 +181,16 @@ function kl_text(delay, text) {
     v.setUint32(4, delay, true);
     // Text
     for (var i = 0; i < text.length; i += 1) {
-	v.setUint8(8 + i, text.charCodeAt(i) & 0xff);
+        v.setUint8(8 + i, text.charCodeAt(i) & 0xff);
     }
     v.setUint8(8 + text.length, 0);
     kl_change_screen(data);
 }
 
+function kl_flood() {
+    var data = new ArrayBuffer(4);
+    var v = new DataView(data);
+    // FloodIt is screen 9
+    v.setUint32(0, 9, true);
+    kl_change_screen(data);
+}

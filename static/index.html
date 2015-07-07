@@ -134,6 +134,7 @@
                   <option value="klSine">Sinus</option>
                   <option value="klMood">Moodlight</option> <!-- Mode (8-bit, 0=onecolor, 1=colorwheel, 2=random) + step + delay + (color, pause + hue_step (int16_t), pause)  -->
                   <option value="klMatrix">Matrix</option> <!-- Maximaler Pixel Count (< 32) -->
+                  <option value="klFlood">FloodIt!</option> <!-- Farbzahl (8-bit) -->
                 </select><br />
                 <div id="klEmpty" class="klPane active"></div>
                 <div id="klChecker" class="klPane">
@@ -165,6 +166,17 @@
                 <div id="klMatrix" class="klPane">
                   <label for="klMatrixLines">Linien (<output for="klMatrixLines" id="klMatrixLinesOut">XX</output>):</label>
                   <input type="range" min="1" max="32" id="klMatrixLines" /><br />
+                </div>
+                <div id="klFlood" class="klPane">
+                  <button type="button" class="btn btn-floodit" id="klFlood1">1</button>
+                  <button type="button" class="btn btn-floodit" id="klFlood2">2</button>
+                  <button type="button" class="btn btn-floodit" id="klFlood3">3</button>
+                  <button type="button" class="btn btn-floodit" id="klFlood4">4</button>
+                  <br />
+                  <button type="button" class="btn btn-floodit" id="klFlood5">5</button>
+                  <button type="button" class="btn btn-floodit" id="klFlood6">6</button>
+                  <button type="button" class="btn btn-floodit" id="klFlood7">7</button>
+                  <button type="button" class="btn btn-floodit" id="klFlood8">8</button>
                 </div>
                 <button type="button" class="btn btn-primary" id="klSet">Set</button>
               </div>
