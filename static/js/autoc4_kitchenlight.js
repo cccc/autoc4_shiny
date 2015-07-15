@@ -49,6 +49,12 @@ function init_kitchenlight() {
         message.destinationName = "kitchenlight/FloodIt/flood";
         return mqtt_client.send(message);
     });
+    $("#klFlood").keypress(function(ev) {
+        if (ev.which < 49 || ev.which > 56)
+            return;
+        $("#klFlood" + (ev.which - 48)).click();
+        ev.preventDefault();
+    });
 }
 
 function kl_change_screen(data) {
