@@ -21,6 +21,7 @@ function mqtt_on_connect() {
     // Once a connection has been made, make subscriptions.
     mqtt_subscribe_light();
     mqtt_subscribe_dmx();
+    mqtt_subscribe_status();
 }
 
 function mqtt_on_connect_failure() {
@@ -33,6 +34,8 @@ function mqtt_on_message(message) {
         mqtt_on_light_message(message);
     } else if (message.destinationName.startsWith('dmx/')) {
         mqtt_on_dmx_message(message);
+    } else if (message.destinationName == "club/status") {
+        mqtt_on_status_message(message);
     }
 }
 
