@@ -1,3 +1,8 @@
+// Copyright (c) 2014-2016 Chaos Computer Club Cologne
+//
+// This file is MIT licensed. Please see the
+// LICENSE-MIT file in the source package for more information.
+//
 function mqtt_subscribe_status() {
     mqtt_client.subscribe('club/status');
 }
