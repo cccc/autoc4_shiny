@@ -166,7 +166,7 @@ function send_dmx_data_3ch(topic, value) {
     var g = parseInt(value.substr(3, 2), 16);
     var b = parseInt(value.substr(5, 2), 16);
     var buf = new Uint8Array([r, g, b, 255]);
-    var message = new Messaging.Message(buf);
+    var message = new Paho.MQTT.Message(buf);
     message.retained = true;
     message.destinationName = topic;
     mqtt_client.send(message);
@@ -177,7 +177,7 @@ function send_dmx_data_7ch(topic, value) {
     var g = parseInt(value.substr(3, 2), 16);
     var b = parseInt(value.substr(5, 2), 16);
     var buf = new Uint8Array([r, g, b, 0, 0, 0, 255]);
-    var message = new Messaging.Message(buf);
+    var message = new Paho.MQTT.Message(buf);
     message.retained = true;
     message.destinationName = topic;
     mqtt_client.send(message);
@@ -185,7 +185,7 @@ function send_dmx_data_7ch(topic, value) {
 
 function send_dmx_sound_7ch(topic) {
     var buf = new Uint8Array([0, 0, 0, 0, 255, 246, 255]);
-    var message = new Messaging.Message(buf);
+    var message = new Paho.MQTT.Message(buf);
     message.retained = true;
     message.destinationName = topic;
     mqtt_client.send(message);
@@ -194,7 +194,7 @@ function send_dmx_sound_7ch(topic) {
 function send_dmx_fade_7ch(topic, speed) {
     if (speed > 255) { speed = 255; }
     var buf = new Uint8Array([0, 0, 0, 0, speed, 140, 255]);
-    var message = new Messaging.Message(buf);
+    var message = new Paho.MQTT.Message(buf);
     message.retained = true;
     message.destinationName = topic;
     mqtt_client.send(message);

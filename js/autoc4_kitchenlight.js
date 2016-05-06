@@ -44,7 +44,7 @@ function init_kitchenlight() {
     $("#" + $("#klSelect").val()).addClass("active");
     $(".btn-floodit").click(function(ev) {
         var i = parseInt(this.textContent) - 1;
-        var message = new Messaging.Message(new Uint8Array([i]));
+        var message = new Paho.MQTT.Message(new Uint8Array([i]));
         message.retained = true;
         message.destinationName = "kitchenlight/FloodIt/flood";
         return mqtt_client.send(message);
@@ -58,7 +58,7 @@ function init_kitchenlight() {
 }
 
 function kl_change_screen(data) {
-    var message = new Messaging.Message(data);
+    var message = new Paho.MQTT.Message(data);
     message.retained = true;
     message.destinationName = "kitchenlight/change_screen";
     return mqtt_client.send(message);

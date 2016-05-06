@@ -1,10 +1,10 @@
 var mqtt_client;
 
 function init_mqtt() {
-    mqtt_client = new Messaging.Client(location.hostname, 9000, mqtt_generate_clientid());
+    mqtt_client = new Paho.MQTT.Client(location.hostname, 9000, mqtt_generate_clientid());
     mqtt_client.onMessageArrived = mqtt_on_message;
     mqtt_client.onConnectionLost = mqtt_on_connect_failure;
-    mqtt_client.connect({onSuccess: mqtt_on_connect, onFailure: mqtt_on_connect_failure});
+    mqtt_client.connect({onSuccess: mqtt_on_connect, onFailure: mqtt_on_connect_failure, mqttVersion: 3});
 }
 
 // generate a random mqtt clientid
@@ -41,7 +41,7 @@ function mqtt_on_message(message) {
 
 function mqtt_send_data(topic, data) {
     var buf = new Uint8Array(data || 0);
-    var message = new Messaging.Message(buf);
+    var message = new Paho.MQTT.Message(buf);
     message.destinationName = topic;
     mqtt_client.send(message);
 }

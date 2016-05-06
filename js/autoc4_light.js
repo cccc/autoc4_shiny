@@ -22,7 +22,7 @@ function mqtt_on_light_message(message) {
 // publish (on ? 0x01 : 0x00) message to a topic
 function switch_light(topic, on) {
     var buf = new Uint8Array([on ? 1 : 0]);
-    var message = new Messaging.Message(buf);
+    var message = new Paho.MQTT.Message(buf);
     message.retained = true;
     message.destinationName = topic;
     mqtt_client.send(message);
