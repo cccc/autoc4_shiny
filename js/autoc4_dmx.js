@@ -3,7 +3,7 @@
 // This file is MIT licensed. Please see the
 // LICENSE-MIT file in the source package for more information.
 //
-var pickers = { plenar: {}, fnord: {}, wohnzimmer: {} };
+var pickers = { plenar: {}, fnord: {}, wohnzimmer: {}, kitchen: {} };
 function init_dmx() {
     pickers.plenar.master = $("#dmxcolorplenar-master");
     pickers.plenar.vorne1 = $("#dmxcolorplenar-vorne1");
@@ -27,6 +27,8 @@ function init_dmx() {
     pickers.wohnzimmer.tuer3 = $("#dmxcolorwohnzimmer-tuer3");
     pickers.wohnzimmer.gang = $("#dmxcolorwohnzimmer-gang");
     pickers.wohnzimmer.baellebad = $("#dmxcolorwohnzimmer-baellebad");
+    pickers.kitchen.master = $("#dmxcolorwohnzimmer-sink");
+    pickers.kitchen.sink = $("#dmxcolorwohnzimmer-sink");
 
     $('.dmxinput').change(dmx_change);
     $('.btn-fade').click(dmx_fade);
@@ -36,6 +38,7 @@ function init_dmx() {
 
 function mqtt_subscribe_dmx() {
     mqtt_client.subscribe('dmx/+/+');
+    mqtt_client.subscribe('led/+/+');
 }
 
 function mqtt_on_dmx_message(message) {
@@ -76,10 +79,11 @@ function dmx_change(e) {
     } else {
         send_dmx_data = send_dmx_data_3ch;
     }
-    if (topic.startsWith("dmx/")) {
+    if (!topic.startsWith("master/")) {
         send_dmx_data(topic, color);
         return;
     }
+    topic = topic.split('/', 2)[1];
     for (var light in pickers[topic]) {
         if (light == "master") { continue; }
         send_dmx_data("dmx/" + topic + "/" + light, color);

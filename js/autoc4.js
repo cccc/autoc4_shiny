@@ -37,7 +37,7 @@ function mqtt_on_connect_failure() {
 function mqtt_on_message(message) {
     if (message.destinationName.startsWith('licht/') || message.destinationName.startsWith('power/')) {
         mqtt_on_light_message(message);
-    } else if (message.destinationName.startsWith('dmx/')) {
+    } else if (message.destinationName.startsWith('dmx/') || message.destinationName.startsWith('led/')) {
         mqtt_on_dmx_message(message);
     } else if (message.destinationName == "club/status") {
         mqtt_on_status_message(message);
