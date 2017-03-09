@@ -94,6 +94,10 @@
   color: inherit
 }
 
+#presets select {
+  min-width: 10em
+}
+
 #klFlood1 {
   background-color: red
 }

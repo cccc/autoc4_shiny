@@ -27,6 +27,7 @@ function mqtt_on_connect() {
     mqtt_subscribe_light();
     mqtt_subscribe_dmx();
     mqtt_subscribe_status();
+    mqtt_subscribe_presets();
 }
 
 function mqtt_on_connect_failure() {
@@ -41,12 +42,20 @@ function mqtt_on_message(message) {
         mqtt_on_dmx_message(message);
     } else if (message.destinationName == "club/status") {
         mqtt_on_status_message(message);
+    } else if (message.destinationName.startsWith('preset/')) {
+	mqtt_on_presets_message(message);
     }
 }
 
 function mqtt_send_data(topic, data) {
     var buf = new Uint8Array(data || 0);
     var message = new Paho.MQTT.Message(buf);
+    message.destinationName = topic;
+    mqtt_client.send(message);
+}
+
+function mqtt_send_string(topic, data) {
+    var message = new Paho.MQTT.Message(data);
     message.destinationName = topic;
     mqtt_client.send(message);
 }
@@ -84,4 +93,5 @@ $(function() {
     init_dmx();
     init_mqtt();
     init_kitchenlight();
+    init_presets();
 });
