@@ -3,6 +3,20 @@
 // This file is MIT licensed. Please see the
 // LICENSE-MIT file in the source package for more information.
 //
+
+/* jshint strict: global */
+
+/* globals
+    console, setTimeout, Uint8Array,
+    $, Paho,
+    two_digits,
+    mqtt_subscribe_light, mqtt_subscribe_dmx, mqtt_subscribe_status, mqtt_subscribe_presets,
+    mqtt_on_light_message, mqtt_on_dmx_message, mqtt_on_status_message, mqtt_on_presets_message,
+    init_light, init_dmx, init_mqtt, init_kitchenlight, init_presets
+*/
+
+"use strict";
+
 var mqtt_client;
 
 function init_mqtt() {
@@ -43,19 +57,13 @@ function mqtt_on_message(message) {
     } else if (message.destinationName == "club/status") {
         mqtt_on_status_message(message);
     } else if (message.destinationName.startsWith('preset/')) {
-	mqtt_on_presets_message(message);
+        mqtt_on_presets_message(message);
     }
 }
 
 function mqtt_send_data(topic, data) {
     var buf = new Uint8Array(data || 0);
     var message = new Paho.MQTT.Message(buf);
-    message.destinationName = topic;
-    mqtt_client.send(message);
-}
-
-function mqtt_send_string(topic, data) {
-    var message = new Paho.MQTT.Message(data);
     message.destinationName = topic;
     mqtt_client.send(message);
 }

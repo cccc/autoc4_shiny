@@ -3,6 +3,17 @@
 // This file is MIT licensed. Please see the
 // LICENSE-MIT file in the source package for more information.
 //
+
+/* jshint strict: global */
+
+/* globals
+    console, ArrayBuffer, DataView, Uint8Array,
+    $, Paho,
+    mqtt_client
+*/
+
+"use strict";
+
 function init_kitchenlight() {
     $("#klMatrixLines").on('input', function(ev) {
         $("#klMatrixLinesOut").val(parseInt(this.value));
@@ -99,9 +110,6 @@ function kl_checker(delay, colA, colB) {
     // Color B Blue
     v.setUint16(18, parseInt(colB.substr(5, 2), 16) * 0x3ff / 0xff, true);
 
-    var debug = new Uint8Array(data);
-    console.log(debug);
-
     kl_change_screen(data);
 }
 
@@ -116,9 +124,10 @@ function kl_matrix(lines) {
 }
 
 function kl_moodlight(mode) {
+    var data, v;
     if (mode === 1) { // colorwheel
-        var data = new ArrayBuffer(19);
-        var v = new DataView(data);
+        data = new ArrayBuffer(19);
+        v = new DataView(data);
         // Moodlight is screen 3
         v.setUint32(0, 3, true);
         // Mode
@@ -133,8 +142,8 @@ function kl_moodlight(mode) {
         v.setUint16(17, 30, true);
         kl_change_screen(data);
     } else {
-        var data = new ArrayBuffer(17);
-        var v = new DataView(data);
+        data = new ArrayBuffer(17);
+        v = new DataView(data);
         // Moodlight is screen 3
         v.setUint32(0, 3, true);
         // Mode

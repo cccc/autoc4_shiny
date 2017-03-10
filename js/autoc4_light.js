@@ -3,6 +3,17 @@
 // This file is MIT licensed. Please see the
 // LICENSE-MIT file in the source package for more information.
 //
+
+/* jshint strict: global */
+
+/* globals
+    Uint8Array,
+    $, Paho,
+    mqtt_client
+*/
+
+"use strict";
+
 function init_light() {
     $(".btn-light").click(function (e) {
         var light = $(this);

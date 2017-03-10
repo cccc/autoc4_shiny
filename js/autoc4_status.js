@@ -3,6 +3,16 @@
 // This file is MIT licensed. Please see the
 // LICENSE-MIT file in the source package for more information.
 //
+
+/* jshint strict: global */
+
+/* globals
+    $,
+    mqtt_client
+*/
+
+"use strict";
+
 function mqtt_subscribe_status() {
     mqtt_client.subscribe('club/status');
 }

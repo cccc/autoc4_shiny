@@ -3,6 +3,18 @@
 // This file is MIT licensed. Please see the
 // LICENSE-MIT file in the source package for more information.
 //
+
+/* jshint strict: global */
+
+/* globals
+    Uint8Array,
+    $, Paho,
+    mqtt_client,
+    dec2hex
+*/
+
+"use strict";
+
 var pickers = { plenar: {}, fnord: {}, wohnzimmer: {}, kitchen: {} };
 function init_dmx() {
     pickers.plenar.master = $("#dmxcolorplenar-master");
@@ -70,6 +82,7 @@ function mqtt_on_dmx_message(message) {
 }
 
 function dmx_change(e) {
+    /* jshint validthis: true */
     var dmx = $(this);
     var topic = dmx.data("topic");
     var color = dmx.val();
@@ -91,6 +104,7 @@ function dmx_change(e) {
 }
 
 function dmx_fade(e) {
+    /* jshint validthis: true */
     var dmx = $(this);
     var topic = dmx.data("topic");
     var speed = parseInt(dmx.siblings(".dmxspeed").val());
@@ -106,6 +120,7 @@ function hsv_to_rgb(h, s, v) {
     var p = v * (1 - s);
     var q = v * (1 - f*s);
     var t = v * (1 - (1 - f) * s);
+    var r, g, b;
     switch (h_i) {
         case 0:
             r = v;
@@ -142,6 +157,7 @@ function hsv_to_rgb(h, s, v) {
 }
 
 function dmx_rand(e) {
+    /* jshint validthis: true */
     var dmx = $(this);
     var topic = dmx.data("topic");
     var send_dmx_data;
@@ -161,6 +177,7 @@ function dmx_rand(e) {
 }
 
 function dmx_sound(e) {
+    /* jshint validthis: true */
     var dmx = $(this);
     var topic = dmx.data("topic");
     for (var light in pickers[topic]) {
