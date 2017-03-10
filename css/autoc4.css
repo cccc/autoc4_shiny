@@ -1,4 +1,9 @@
-.btn-light{
+input[type=color] {
+    border: 0;
+    padding: 0
+}
+
+.btn-light {
     width: 120px !important;
     height: 120px;
     margin: 0 auto;
@@ -95,7 +100,9 @@
 }
 
 #presets select {
-  min-width: 10em
+  display: block;
+  width: 100%;
+  margin-bottom: 5px
 }
 
 #klFlood1 {

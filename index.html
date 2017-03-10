@@ -58,7 +58,7 @@
     </div>
 
     <div class="tab-content">
-      <div id="light" class="tab-pane active container">
+      <div id="light" class="tab-pane fade in active container">
         <div class="row">
 
           <div class="col-lg-3">
@@ -149,10 +149,14 @@
                   <div id="klChecker" class="klPane">
                     <label for="klCheckerDelay">Delay:</label>
                     <input type="range" min="0" max="5000" id="klCheckerDelay" /><br />
-                    <label for="klCheckerColorA">Farbe A:</label>
-                    <input type="color" id="klCheckerColorA" /><br />
-                    <label for="klCheckerColorB">Farbe B:</label>
-                    <input type="color" id="klCheckerColorB" />
+		    <div class="colorpicker">
+                      <label for="klCheckerColorA">Farbe A:</label>
+                      <input type="color" id="klCheckerColorA" />
+                    </div>
+		    <div class="colorpicker">
+                      <label for="klCheckerColorB">Farbe B:</label>
+                      <input type="color" id="klCheckerColorB" />
+                    </div>
                   </div>
                   <div id="klOpenChaos" class="klPane">
                     <label for="klOCDelay">Delay:</label>
@@ -322,11 +326,11 @@
 
       </div>
 
-      <div id="presets" class="tab-pane container">
+      <div id="presets" class="tab-pane fade container">
         <div class="col-lg-12" data-room="global">
           <h2>Global</h2>
           <label for="globPresets">Preset:</label>
-          <select id="globPresets"><option>I wanna vanish</option></select>
+          <select id="globPresets"></select>
           <button type="button" class="set btn btn-primary" id="globSet">Set</button><br/>
         </div>
         <div class="col-lg-3" data-room="wohnzimmer">
