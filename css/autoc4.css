@@ -105,6 +105,10 @@ input[type=color] {
   margin-bottom: 5px
 }
 
+#klSelect {
+  margin-bottom: 5px
+}
+
 #klFlood1 {
   background-color: red
 }

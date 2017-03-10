@@ -144,16 +144,17 @@
                     <option value="klMood">Moodlight</option> <!-- Mode (8-bit, 0=onecolor, 1=colorwheel, 2=random) + step + delay + (color, pause + hue_step (int16_t), pause)  -->
                     <option value="klMatrix">Matrix</option> <!-- Maximaler Pixel Count (< 32) -->
                     <option value="klFlood">FloodIt!</option> <!-- Farbzahl (8-bit) -->
+                    <option value="klClock">Uhr</option>
                   </select><br />
                   <div id="klEmpty" class="klPane active"></div>
                   <div id="klChecker" class="klPane">
                     <label for="klCheckerDelay">Delay:</label>
                     <input type="range" min="0" max="5000" id="klCheckerDelay" /><br />
-		    <div class="colorpicker">
+                    <div class="colorpicker">
                       <label for="klCheckerColorA">Farbe A:</label>
                       <input type="color" id="klCheckerColorA" />
                     </div>
-		    <div class="colorpicker">
+                    <div class="colorpicker">
                       <label for="klCheckerColorB">Farbe B:</label>
                       <input type="color" id="klCheckerColorB" />
                     </div>

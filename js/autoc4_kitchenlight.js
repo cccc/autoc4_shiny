@@ -54,6 +54,9 @@ function init_kitchenlight() {
             case "klFlood":
                 kl_flood();
                 break;
+            case "klClock":
+                kl_clock();
+                break;
         }
     });
     $(".klPane.active").removeClass("active");
@@ -92,7 +95,7 @@ function kl_checker(delay, colA, colB) {
     var data = new ArrayBuffer(20);
     var v = new DataView(data);
     // Checker is screen 1
-    v.setUint32(0, 0, true);
+    v.setUint32(0, 1, true);
     // Delay
     v.setUint32(4, delay, true);
 
@@ -212,5 +215,13 @@ function kl_flood() {
     var v = new DataView(data);
     // FloodIt is screen 9
     v.setUint32(0, 9, true);
+    kl_change_screen(data);
+}
+
+function kl_clock() {
+    var data = new ArrayBuffer(4);
+    var v = new DataView(data);
+    // Clock is screen 11
+    v.setUint32(0, 11, true);
     kl_change_screen(data);
 }
