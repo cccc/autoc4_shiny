@@ -9,7 +9,7 @@ input[type=color] {
     margin: 0 auto;
     padding: 0;
     padding-top: 10px;
-    background-image: url(../img/bulb_off.png);
+    background-image: url(../img/preset.png);
     background-position: center top;
     background-size: 50% auto;
     background-repeat: no-repeat;
@@ -29,7 +29,7 @@ input[type=color] {
 }
 
 .btn-preset:hover, .btn-preset:focus, .btn-preset:active, .btn-preset.active, .open .dropdown-toggle.btn-preset {
-    background-image: url(../img/bulb_off.png);
+    background-image: url(../img/preset_hover.png);
     color: #ffffff;
     background-color: #604EFE;
     border-color: #604EFE;
