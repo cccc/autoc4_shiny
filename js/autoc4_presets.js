@@ -29,16 +29,6 @@ function mqtt_send_string(topic, data) {
 }
 
 function init_presets() {
-    $('#presets .set').each(function (idx, setter) {
-        $(setter).click(function(e) {
-            var room = $(this).parent().attr('data-room');
-            if (room === 'global') {
-                mqtt_send_string('preset/set', $(this).siblings("select").val());
-            } else {
-                mqtt_send_string('preset/' + room + '/set', $(this).siblings("select").val());
-            }
-        });
-    });
 }
 
 function mqtt_subscribe_presets() {
@@ -61,19 +51,30 @@ function mqtt_on_presets_message(message) {
         preset_list[room] = presets;
     }
     for (var r in preset_list) {
-        var select = $('div[data-room=' + r + '] select');
-        select.empty();
+        var prebtn = $('div[data-room=' + r + '] div');
+        prebtn.empty();
         var room_presets = preset_list[r];
         for (var p = 0; p < room_presets.length; p += 1) {
             var pre = room_presets[p];
-            select.append('<option value="' + pre + '">' + pre + '</option>');
+            prebtn.append('<button type="button" class="btn btn-preset" data-preset="' + pre + '">' + pre + '</button>');
         }
         var global_presets = preset_list.global;
         for (var g = 0; g < global_presets.length; g += 1) {
             if (room_presets.indexOf(global_presets[g]) === -1) {
                 var gpre = global_presets[g];
-                select.append('<option value="' + gpre + '">' + gpre + '</option>');
+                prebtn.append('<button type="button" class="btn btn-preset" data-preset="' + gpre + '">' + gpre + '</button>');
             }
         }
     }
+    $('.btn-preset').each(function (idx, setter) {
+        $(setter).click(function(e) {
+            var room = $(this).parent().parent().attr('data-room');
+            if (room === 'global') {
+                mqtt_send_string('preset/set', $(this).attr("data-preset"));
+            } else {
+                mqtt_send_string('preset/' + room + '/set', $(this).attr("data-preset"));
+            }
+        });
+    });
+
 }
