@@ -12,7 +12,7 @@
     two_digits,
     mqtt_subscribe_light, mqtt_subscribe_dmx, mqtt_subscribe_status, mqtt_subscribe_presets,
     mqtt_on_light_message, mqtt_on_dmx_message, mqtt_on_status_message, mqtt_on_presets_message,
-    init_light, init_dmx, init_mqtt, init_kitchenlight, init_presets
+    init_light, init_dmx, init_mqtt, init_kitchenlight
 */
 
 "use strict";
@@ -101,5 +101,4 @@ $(function() {
     init_dmx();
     init_mqtt();
     init_kitchenlight();
-    init_presets();
 });

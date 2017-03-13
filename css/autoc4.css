@@ -80,7 +80,7 @@ input[type=color] {
     border-color: #2c8011;
 }
 
-.lightswitch-pane {
+.lightswitch-pane, .preset-pane {
     text-align: center;
 }
 
