@@ -145,6 +145,7 @@
                     <option value="klMatrix">Matrix</option> <!-- Maximaler Pixel Count (< 32) -->
                     <option value="klFlood">FloodIt!</option> <!-- Farbzahl (8-bit) -->
                     <option value="klClock">Uhr</option>
+		    <option value="klConway">Conway</option><!-- Anzahl Generationen pro Sekunde + Maximale Anzahl von Generationen -->
                   </select><br />
                   <div id="klEmpty" class="klPane active"></div>
                   <div id="klChecker" class="klPane">
@@ -192,6 +193,12 @@
                     <button type="button" class="btn btn-floodit" id="klFlood7">7</button>
                     <button type="button" class="btn btn-floodit" id="klFlood8">8</button>
                   </div>
+		  <div id="klConway" class="klPane">
+			<label for="klConwaySpeed">Generationen/s (<output for="klConwaySpeed" id="klConwaySpeedOut">XX</output>):</label>
+			<input type="range" min="1" max="19" id="klConwaySpeed" /><br />
+			<label for="klConwayGenerations">Wechseln nach  (<output for="klConwayGenerations" id="klConwayGenerationsOut">XX</output>):</label>
+			<input type="range" min="1" max="500" id="klConwayGenerations" /><br />
+		  </div>
                   <button type="button" class="btn btn-primary" id="klSet">Set</button>
                 </div>
              </div>
