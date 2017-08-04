@@ -64,7 +64,7 @@ function init_kitchenlight() {
                 kl_clock();
                 break;
 	    case "klConway":
-		kl_conway(parseInt($("#klConwaySpeed").val()), parseInt($("#klConwayGenerations").val()));
+		kl_conway(parseInt($("#klConwaySpeed").val()), parseInt($("#klConwayGenerations").val()), $("#klConwayFill")[0].checked);
 		break;
         }
     });
@@ -234,8 +234,9 @@ function kl_clock() {
     v.setUint32(0, 11, true);
     kl_change_screen(data);
 }
-function kl_conway(speed, generations) {
-    var data = new ArrayBuffer(12);
+
+function kl_conway(speed, generations, fill) {
+    var data = new ArrayBuffer(16);
     var v = new DataView(data);
     // Conway is screen 12
     v.setUint32(0, 12, true);
@@ -243,6 +244,10 @@ function kl_conway(speed, generations) {
     v.setUint32(4, speed, true);
     // Generations Count
     v.setUint32(8, generations, true);
+    if (fill)
+    	v.setUint32(12, 1, true); 
+    else
+	v.setUint32(12, 0, true);
     kl_change_screen(data);
 }
 
