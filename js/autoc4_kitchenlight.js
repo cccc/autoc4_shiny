@@ -18,6 +18,12 @@ function init_kitchenlight() {
     $("#klMatrixLines").on('input', function(ev) {
         $("#klMatrixLinesOut").val(parseInt(this.value));
     });
+    $("#klConwaySpeed").on('input', function(ev) {
+        $("#klConwaySpeedOut").val(parseInt(this.value));
+    });
+    $("#klConwayGenerations").on('input', function(ev) {
+        $("#klConwayGenerationsOut").val(parseInt(this.value));
+    });
     $("#klSelect").change(function(ev) {
         $(".klPane.active").removeClass("active");
         $("#" + this.value).addClass("active");
@@ -57,6 +63,9 @@ function init_kitchenlight() {
             case "klClock":
                 kl_clock();
                 break;
+	    case "klConway":
+		kl_conway(parseInt($("#klConwaySpeed").val()), parseInt($("#klConwayGenerations").val()));
+		break;
         }
     });
     $(".klPane.active").removeClass("active");
@@ -225,3 +234,16 @@ function kl_clock() {
     v.setUint32(0, 11, true);
     kl_change_screen(data);
 }
+function kl_conway(speed, generations) {
+    var data = new ArrayBuffer(12);
+    var v = new DataView(data);
+    // Conway is screen 12
+    v.setUint32(0, 12, true);
+    // Speed
+    v.setUint32(4, speed, true);
+    // Generations Count
+    v.setUint32(8, generations, true);
+    kl_change_screen(data);
+}
+
+
