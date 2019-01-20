@@ -23,6 +23,7 @@ function init_light() {
 
 function mqtt_subscribe_light() {
     mqtt_client.subscribe('licht/+/+');
+    mqtt_client.subscribe('led/+/+');
     mqtt_client.subscribe('power/+/+');
     mqtt_client.subscribe('socket/+/+/+');
 }
