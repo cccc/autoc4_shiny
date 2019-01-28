@@ -20,7 +20,8 @@
 var mqtt_client;
 
 function init_mqtt() {
-    mqtt_client = new Paho.MQTT.Client(location.hostname, 9000, mqtt_generate_clientid());
+    //mqtt_client = new Paho.MQTT.Client(location.hostname, 9000, mqtt_generate_clientid());
+    mqtt_client = new Paho.MQTT.Client('172.23.23.110', 9000, mqtt_generate_clientid());
     mqtt_client.onMessageArrived = mqtt_on_message;
     mqtt_client.onConnectionLost = mqtt_on_connect_failure;
     mqtt_client.connect({onSuccess: mqtt_on_connect, onFailure: mqtt_on_connect_failure, mqttVersion: 3});
