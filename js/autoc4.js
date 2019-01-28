@@ -51,7 +51,7 @@ function mqtt_on_connect_failure() {
 }
 
 function mqtt_on_message(message) {
-    if (message.destinationName.startsWith('licht/') || message.destinationName.startsWith('power/') || message.destinationName.startsWith('socket/') || message.destinationName.startsWith('led/')) {
+    if (message.destinationName.startsWith('licht/') || message.destinationName.startsWith('power/') || message.destinationName.startsWith('socket/') || message.destinationName.startsWith('led/') || message.destinationName.startsWith('screen/')) {
         mqtt_on_light_message(message);
     } else if (message.destinationName.startsWith('dmx/') || message.destinationName.startsWith('led/')) {
         mqtt_on_dmx_message(message);
