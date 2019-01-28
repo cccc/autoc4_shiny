@@ -14,14 +14,6 @@
 
 "use strict";
 
-var preset_list = {
-    global: [],
-    wohnzimmer: [],
-    plenar: [],
-    fnord: [],
-    keller: []
-};
-
 function mqtt_send_string(topic, data) {
     var message = new Paho.MQTT.Message(data);
     message.destinationName = topic;
@@ -31,20 +23,17 @@ function mqtt_send_string(topic, data) {
 function mqtt_subscribe_presets() {
     mqtt_client.subscribe('preset/list');
     mqtt_client.subscribe('preset/+/list');
+    $("div.preset-pane[data-room] > [data-preset]").remove();
 }
 
-function create_button(preset) {
-    var button = $('<button></button>', { type: 'button', "class": 'btn btn-preset', 'data-preset': preset });
-    button.text(preset);
-    button.click(function(e) {
-        var room = $(this).parent().data('room');
-        if (room === 'global') {
-            mqtt_send_string('preset/set', $(this).data("preset"));
-        } else {
-            mqtt_send_string('preset/' + room + '/set', $(this).data("preset"));
-        }
-    });
-    return button;
+function create_button(room, preset) {
+    return $('<button>',{
+        "type": 'button',
+        "class": 'btn btn-preset',
+        'data-mqtt-topic': room === 'global' ? 'preset/set' : 'preset/' + room + '/set',
+        'data-mqtt-message' : preset,
+        'data-preset' : preset
+    }).text(preset);
 }
 
 function mqtt_on_presets_message(message) {
@@ -54,26 +43,27 @@ function mqtt_on_presets_message(message) {
     } catch (e) {
         console.log('Invalid JSON received');
     }
+    
     var room = message.destinationName.split('/')[1];
-    if (room === 'list') {
-        preset_list.global = presets;
-    } else {
-        preset_list[room] = presets;
+    if (room === 'list'){
+        room="global";
+        $('div.preset-pane[data-room]').each(function(){
+          var $this = $(this);
+          var marker = $(".preset-pane-global-marker",$this);
+          var r = $this.attr("data-room");
+          for (var pre of presets) {
+            create_button(r, pre).insertBefore(marker);
+          }
+        });
     }
-    for (var r in preset_list) {
-        var prebtn = $('div[data-room=' + r + ']');
-        prebtn.empty();
-        var room_presets = preset_list[r];
-        for (var p = 0; p < room_presets.length; p += 1) {
-            var pre = room_presets[p];
-            create_button(pre).appendTo(prebtn);
-        }
-        var global_presets = preset_list.global;
-        for (var g = 0; g < global_presets.length; g += 1) {
-            var gpre = global_presets[g];
-            if (room_presets.indexOf(gpre) === -1) {
-                create_button(gpre).appendTo(prebtn);
-            }
-        }
+    var prebtn = $('div.preset-pane[data-room='+room+']');
+    var marker = $(".preset-pane-room-marker", prebtn);
+    for (var pre of presets) {
+        create_button(room, pre).insertBefore(marker);
     }
+    
+    prebtn.on("click","button",function(e) {
+          var $this = $(this);
+          mqtt_send_string($this.attr('data-mqtt-topic'), $this.attr('data-mqtt-message'));
+      });
 }
