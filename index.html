@@ -14,12 +14,14 @@
     <script type="text/javascript" src="js/autoc4_dmx.js"></script>
     <script type="text/javascript" src="js/autoc4_status.js"></script>
     <script type="text/javascript" src="js/autoc4_presets.js"></script>
+    <script type="text/javascript" src="js/autoc4_windows.js"></script>
     <script type="text/javascript" src="js/autoc4.js"></script>
 
     <link rel="icon" href="favicon.png" sizes="16x16" type="image/png" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/bootswatch.min.css" />
     <link rel="stylesheet" type="text/css" href="css/autoc4.css" />
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/all.min.css" />
   </head>
   <body>
     <div class="navbar navbar-default navbar-fixed-top">
@@ -34,24 +36,28 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a data-toggle="tab" href="#light"><span class="glyphicon glyphicon-eye-open"></span> Light</a></li>
-            <li><a data-toggle="tab" href="#presets"><span class="glyphicon glyphicon-floppy-disk"></span> Presets</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Stats</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-music"></span> Music</a></li>
+            <li class="active"><a data-toggle="tab" href="#light"><i class="far fa-lightbulb"></i> Light</a></li>
+            <li><a data-toggle="tab" href="#presets"><i class="fa fa-save"></i> Presets</a></li>
+            <li><a data-toggle="tab" href="#status"><i class="fa fa-info-circle"></i> Status</a></li>
+            <!--<li><a href="#"><i class="fa fa-music"></i> Music</a></li>-->
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" id="help"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
-            <li><a href="#" id="gate"><span class="glyphicon glyphicon-log-in"></span> Open Gate</a></li>
+            <li><a href="#" id="help"><i class="fa fa-question-circle"></i> Help</a></li>
+            <li><a href="#" id="gate"><i class="fa fa-door-open"></i> Open Gate</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-off"></span> Shutdown <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-power-off"></i> Shutdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
+<<<<<<< HEAD
+                <li><a href="#" id="shutdown"> Shutdown</a></li>
+                <li><a href="#" id="shutdown-force"> Force Shutdown</a></li>
+=======
                 <li><a href="#" id="shutdown">Shutdown</a></li>
-                <li><a href="#" id="shutdown-force">Force Shutdown</a></li>
+>>>>>>> refs/remotes/origin/master
               </ul>
             </li>
-            <li><a id="status" href="#"><span class="glyphicon glyphicon-hand-right"></span> <span>State</span></a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-time"></span> <span id="datetime">c4.2a.dead 21:42</span></a></li>
+            <li><a id="club-status" href="#"><i class="fa fa-hand-point-right"></i> <span>State</span></a></li>
+            <li><a href="#"><i class="fa fa-clock"></i> <span id="datetime">c4.2a.dead 21:42</span></a></li>
           </ul>
         </div>
       </div>
@@ -333,6 +339,8 @@
                   <button type="button" class="btn btn-light" data-topic="licht/keller/vorne">Vorne</button>
                   <button type="button" class="btn btn-light" data-topic="led/keller/werkbankkalt">Werkbank(kalt)</button>
                   <button type="button" class="btn btn-light" data-topic="led/keller/werkbankwarm">Werkbank(warm)</button>
+                  <button type="button" class="btn btn-light" data-topic="led/keller/hintenkalt">Hinten(kalt)</button>
+                  <button type="button" class="btn btn-light" data-topic="led/keller/hintenwarm">Hinten(warm)</button>
                 </div>
              </div>
             </div>
@@ -389,6 +397,32 @@
           </div>
         </div>
       </div>
+      
+      <div id="status" class="tab-pane fade container">
+          <div class="col-lg-12">
+            <h3>Fenster</h3>
+            <div class="container">
+              <div class="col-lg-4">
+                <h3>Wohnzimmer</h3>
+                <div class="box-window" data-topic="fenster/wohnzimmer/links">Links</div>
+                <div class="box-window" data-topic="fenster/wohnzimmer/rechts">Rechts</div>
+              </div>
+              <div class="col-lg-4">
+                <h3>Plenarsaal</h3>
+                <div class="box-window" data-topic="fenster/plenar/vornelinks">Vorne Links</div>
+                <div class="box-window" data-topic="fenster/plenar/vornerechts">Vorne Rechts</div>
+                <div class="box-window" data-topic="fenster/plenar/hintenlinks">Hinten Links</div>
+                <div class="box-window" data-topic="fenster/plenar/hintenrechts">Hinten Rechts</div>
+              </div>
+              <div class="col-lg-4">
+                <h3>Fnordcenter</h3>
+                <div class="box-window" data-topic="fenster/fnord/links">Links</div>
+                <div class="box-window" data-topic="fenster/fnord/links">Rechts</div>
+              </div>
+            </div>
+          </div>
+      </div>
+        
     </div>
     <div id="help-display"></div>
   </body>
