@@ -80,6 +80,42 @@ input[type=color] {
     border-color: #2c8011;
 }
 
+.box-window {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    border: 3px solid transparent;
+    width: 80px !important;
+    height: 80px;
+    margin: 0 auto;
+    padding: 0;
+    padding-top: 5px;
+    background-image: url(../img/window_closed.png);
+    background-position: center top;
+    background-size: 50% auto;
+    background-repeat: no-repeat;
+    -moz-background-origin: content;          /* Firefox 1.0-3.6 */
+    -webkit-background-origin: content-box;   /* Safari, Chrome */
+    background-origin: content-box;           /* Firefox 4.0+ */
+    line-height: 120px;
+
+    color: #ffffff;
+    background-color: #ff0039;
+    border-color: #ff0039;
+
+    margin: 2px;
+    margin-top: 0px;
+    /*margin-left: 10px;
+    padding-left: 11px;*/
+}
+
+.box-window.open {
+    background-image: url(../img/window_open.png);
+    color: #ffffff;
+    background-color: #3fb618;
+    border-color: #3fb618;
+}
+
 .lightswitch-pane, .preset-pane {
     text-align: center;
 }
