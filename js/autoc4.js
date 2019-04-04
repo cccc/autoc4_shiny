@@ -17,7 +17,7 @@
 
 "use strict";
 
-var __AUTOC4_SERVER='172.23.23.110';
+var __AUTOC4_SERVER=location.hostname||'172.23.23.110';
 
 var mqtt_client;
 
@@ -25,19 +25,20 @@ var AutoC4=function(server,modules){
     this.server=server;
     this.modules=modules;
     
+    var self=this;
     $('#shutdown').click(function(ev) {
         ev.preventDefault();
-        this.mqtt_send_data('club/shutdown');
+        self.mqtt_send_data('club/shutdown');
     });
 
     $('#shutdown-force').click(function(ev) {
         ev.preventDefault();
-        this.mqtt_send_data('club/shutdown', [0x44]);
+        self.mqtt_send_data('club/shutdown', [0x44]);
     });
 
     $('#gate').click(function(ev) {
         ev.preventDefault();
-        this.mqtt_send_data('club/gate');
+        self.mqtt_send_data('club/gate');
     });
 
     $('#help').click(function(ev) {
