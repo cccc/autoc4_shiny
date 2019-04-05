@@ -112,15 +112,17 @@ var update_time = function () {
     setTimeout(update_time, 60000 - now.getSeconds() * 1000 - now.getMilliseconds());
 };
 
+var autoc4
 $(function(){
-    new AutoC4(
+    autoc4=new AutoC4(
         __AUTOC4_SERVER,
         [
             autoc4_windows(),
             autoc4_presets(),
             autoc4_status(),
             autoc4_light(),
-            autoc4_dmx()
+            autoc4_dmx(),
+            autoc4_heartbeat()
         ]
     );
     update_time();
