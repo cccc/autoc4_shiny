@@ -87,7 +87,6 @@ input[type=color] {
     border: 3px solid transparent;
     width: 80px !important;
     height: 80px;
-    margin: 0 auto;
     padding: 0;
     padding-top: 5px;
     background-image: url(../img/window_closed.png);
@@ -97,7 +96,9 @@ input[type=color] {
     -moz-background-origin: content;          /* Firefox 1.0-3.6 */
     -webkit-background-origin: content-box;   /* Safari, Chrome */
     background-origin: content-box;           /* Firefox 4.0+ */
-    line-height: 120px;
+    
+    line-height: 115px;
+    font-size: .75em;
 
     color: #ffffff;
     background-color: #ff0039;
@@ -105,8 +106,6 @@ input[type=color] {
 
     margin: 2px;
     margin-top: 0px;
-    /*margin-left: 10px;
-    padding-left: 11px;*/
 }
 
 .box-window.open {

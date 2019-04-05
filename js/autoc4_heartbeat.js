@@ -13,24 +13,55 @@
 
 "use strict";
 
-function mqtt_subscribe_status() {
-    mqtt_client.subscribe('club/status');
-}
+var autoc4_heartbeat = function(){
+    var heartbeats={};
 
-function mqtt_on_status_message(message) {
-    var icon = $('#status .glyphicon');
-    var text = $('#status :last-child');
-    if (message.payloadBytes[0]) {
-        icon.removeClass('glyphicon-hand-right')
-            .removeClass('glyphicon-thumbs-down')
-            .addClass('glyphicon-thumbs-up');
-        icon.css('color', '#0c0');
-        text.text('Open');
-    } else {
-        icon.removeClass('glyphicon-hand-right')
-            .removeClass('glyphicon-thumbs-up')
-            .addClass('glyphicon-thumbs-down');
-        icon.css('color', '#c00');
-        text.text('Closed');
+    var subscribe = function (mqtt_client) {
+        mqtt_client.subscribe('heartbeat/#');
+    };
+
+    var on_message=function (message) {
+        if (!message.destinationName.startsWith('heartbeat/'))
+            return;
+        // update .box-window state
+        var name=message.destinationName.substring('heartbeat/'.length);
+        if(!(name in heartbeats)){
+            heartbeats[name]=createElement(name);
+            $("#infrastructure-table").append(heartbeats[name].element)
+        }
+        if (!message.payloadBytes.length){
+            heartbeats[name].element.remove();
+            delete heartbeats[name]
+        }
+        
+        if (message.payloadBytes[0])
+            heartbeats[name].state_icon.addClass('fa-thumbs-up').removeClass('fa-thumbs-down');
+        else
+            heartbeats[name].state_icon.addClass('fa-thumbs-down').removeClass('fa-thumbs-up');
+    };
+    
+    var createElement=function(name){
+        var ret={};
+        ret.element = $("<tr>")
+            .append(
+                ret.name=$("<td>")
+                    .addClass("heartbeat-name")
+                    .text(name)
+            )
+            .append(
+                ret.state=$("<td>")
+                    .addClass("heartbeat-state")
+                    .append(
+                        ret.state_icon=$("<i>")
+                            .addClass("heartbeat-state-icon fa")
+                            .attr("data-heartbeat-name",name)
+                    )
+            );
+        return ret;
     }
+    
+    return {
+        subscribe:subscribe,
+        on_message:on_message
+    };
 }
