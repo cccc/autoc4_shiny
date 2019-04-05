@@ -15,6 +15,7 @@
     <script type="text/javascript" src="js/autoc4_status.js"></script>
     <script type="text/javascript" src="js/autoc4_presets.js"></script>
     <script type="text/javascript" src="js/autoc4_windows.js"></script>
+    <script type="text/javascript" src="js/autoc4_heartbeat.js"></script>
     <script type="text/javascript" src="js/autoc4.js"></script>
 
     <link rel="icon" href="favicon.png" sizes="16x16" type="image/png" />
@@ -394,9 +395,10 @@
       </div>
       
       <div id="status" class="tab-pane fade container">
-          <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-9">
             <h3>Fenster</h3>
-            <div class="container">
+            <div class="row">
               <div class="col-lg-4">
                 <h3>Wohnzimmer</h3>
                 <div class="box-window" data-topic="fenster/wohnzimmer/links">Links</div>
@@ -416,6 +418,12 @@
               </div>
             </div>
           </div>
+          <div class="col-lg-3">
+            <h3>Infrastructure</h3>
+            <table id="infrastructure-table" class="table">
+            </table>
+          </div>
+        </div>
       </div>
         
     </div>
