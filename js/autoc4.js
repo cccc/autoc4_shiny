@@ -18,6 +18,7 @@
 "use strict";
 
 var __AUTOC4_SERVER=location.hostname||'172.23.23.110';
+var __AUTOC4_DEBUG=false;
 
 var mqtt_client;
 
@@ -55,6 +56,8 @@ var AutoC4=function(server,modules){
 }
 
 AutoC4.prototype.mqtt_on_message = function (message) {
+    if(__AUTOC4_DEBUG)
+        console.log ("MQTT message received:", message);
     for(var module of this.modules){
         if(module.on_message)
             module.on_message(message, mqtt_client, this);
@@ -62,17 +65,24 @@ AutoC4.prototype.mqtt_on_message = function (message) {
 };
 
 AutoC4.prototype.mqtt_on_connect = function () {
-    console.log('onConnect');
+    if(__AUTOC4_DEBUG)
+        console.log ('Connected to server.');
     // Once a connection has been made, make subscriptions.
     for(var module of this.modules){
         if(module.subscribe)
-            module.subscribe(mqtt_client, this);
+            module.subscribe(this.mqtt_client, this);
     }
 }
 
 AutoC4.prototype.mqtt_on_connect_failure = function () {
-    console.log('mqtt connect failed, retrying in 5 sec');
+    if(__AUTOC4_DEBUG)
+        console.log ('MQTT connection failure, retrying in 5 seconds..');
     setTimeout(function(self){self.init_mqtt()}, 5000, this);
+    
+    for(var module of this.modules){
+        if(module.on_connect_failure)
+            module.on_connect_failure(this.mqtt_client, this);
+    }
 }
 
 AutoC4.prototype.mqtt_send_data = function (topic, data) {
@@ -119,7 +129,7 @@ $(function(){
         [
             autoc4_windows(),
             autoc4_presets(),
-            autoc4_status(),
+            autoc4_state(),
             autoc4_light(),
             autoc4_dmx(),
             autoc4_heartbeat()
