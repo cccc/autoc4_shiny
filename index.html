@@ -27,18 +27,18 @@
   <body style="padding-top:50px">
     <nav class="navbar navbar-dark bg-darker navbar-expand-lg fixed-top pt-0 pb-0">
       <div class="container p-0">
-        <a class="navbar-brand" href="#">AutoC4</a>
+        <a class="navbar-brand d-none d-sm-block" href="#">AutoC4</a>
+        <ul class="nav navbar-nav mr-auto flex-row">
+          <li class="nav-item"><a class="pl-2 pr-2 nav-link active" data-toggle="tab" href="#light"><i class="far fa-lightbulb"></i> Light</a></li>
+          <li class="nav-item"><a class="pl-2 pr-2 nav-link" data-toggle="tab" href="#presets"><i class="fa fa-save"></i> Presets</a></li>
+          <li class="nav-item"><a class="pl-2 pr-2 nav-link" data-toggle="tab" href="#status"><i class="fa fa-info-circle"></i> Status</a></li>
+          <!--<li class="nav-item"><a href="#"><i class="fa fa-music"></i> Music</a></li>-->
+        </ul>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="nav navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#light"><i class="far fa-lightbulb"></i> Light</a></li>
-            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#presets"><i class="fa fa-save"></i> Presets</a></li>
-            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#status"><i class="fa fa-info-circle"></i> Status</a></li>
-            <!--<li class="nav-item"><a href="#"><i class="fa fa-music"></i> Music</a></li>-->
-          </ul>
+        <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
           <ul class="navbar-nav nav-right">
             <li class="nav-item"><a class="nav-link" href="#" id="help"><i class="fa fa-question-circle"></i> Help</a></li>
             <li class="nav-item"><a class="nav-link" href="#" id="gate"><i class="fa fa-door-open"></i> Open Gate</a></li>
