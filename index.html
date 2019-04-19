@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>AutoC4</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link rel="icon" href="favicon.png" sizes="16x16" type="image/png" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -24,11 +24,11 @@
     <script type="text/javascript" src="js/autoc4_heartbeat.js"></script>
     <script type="text/javascript" src="js/autoc4.js"></script>
   </head>
-  <body style="padding-top:50px">
+  <body>
     <script type="text/javascript" src="js/dark_theme.js"></script>
-    <nav class="navbar navbar-dark bg-darker navbar-expand-lg fixed-top pt-0 pb-0">
+    <nav class="navbar navbar-dark bg-darker navbar-expand-lg fixed-top">
       <div class="container p-0">
-        <a class="navbar-brand d-none d-sm-block" href="#">AutoC4</a>
+        <a class="navbar-brand d-none d-md-block" href="#">AutoC4</a>
         <ul class="nav navbar-nav mr-auto flex-row">
           <li class="nav-item"><a class="pl-2 pr-2 nav-link active" data-toggle="tab" href="#light"><i class="far fa-lightbulb"></i> Light</a></li>
           <li class="nav-item"><a class="pl-2 pr-2 nav-link" data-toggle="tab" href="#presets"><i class="fa fa-save"></i> Presets</a></li>
@@ -52,14 +52,14 @@
                 <a class="dropdown-item" href="#" id="shutdown">Shutdown</a>
               </div>
             </li>
-            <li class="nav-item"><a class="nav-link" id="club-status" href="#"><i class="fa fa-hand-point-right"></i> <span>State</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-clock"></i> <span id="datetime">c4.2a.dead 21:42</span></a></li>
+            <li class="nav-item"><a class="nav-link" id="club-status"><i class="fa fa-hand-point-right"></i> <span>State</span></a></li>
+            <li class="nav-item"><a class="nav-link"><i class="fa fa-clock"></i> <span id="datetime">c4.2a.dead 21:42</span></a></li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <div class="tab-content">
+    <div class="tab-content" style="margin-top:50px">
       <div id="light" class="tab-pane fade in container active show">
         <div class="row">
 
