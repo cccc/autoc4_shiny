@@ -26,40 +26,35 @@
   </head>
   <body>
     <script type="text/javascript" src="js/dark_theme.js"></script>
-    
-    
-
-    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
-    </div>
-    
-    
     <nav class="navbar navbar-dark bg-darker navbar-expand-lg fixed-top">
-      <a class="navbar-brand d-none d-md-block" href="#">AutoC4</a>
-      <ul class="nav navbar-nav mr-auto flex-row">
-        <li class="nav-item"><a class="pl-2 pr-2 nav-link active" data-toggle="tab" href="#light"><i class="far fa-lightbulb"></i> Light</a></li>
-        <li class="nav-item"><a class="pl-2 pr-2 nav-link" data-toggle="tab" href="#presets"><i class="fa fa-save"></i> Presets</a></li>
-        <li class="nav-item"><a class="pl-2 pr-2 nav-link" data-toggle="tab" href="#status"><i class="fa fa-info-circle"></i> Status</a></li>
-        <!--<li class="nav-item"><a href="#"><i class="fa fa-music"></i> Music</a></li>-->
-      </ul>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="#" id="help"><i class="fa fa-question-circle"></i> Help</a></li>
-          <li class="nav-item"><a class="nav-link" href="#" id="gate"><i class="fa fa-door-open"></i> Open Gate</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-power-off"></i> Shutdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#" id="shutdown">Shutdown</a>
-            </div>
-          </li>
-          <li class="nav-item"><a class="nav-link" id="club-status" href="#"><i class="fa fa-hand-point-right"></i> <span>State</span></a></li>
-          <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-clock"></i> <span id="datetime">c4.2a.dead 21:42</span></a></li>
+      <div class="container">
+        <a class="navbar-brand d-none d-md-block" data-toggle="theme" href="#">AutoC4</a>
+        <ul class="nav navbar-nav mr-auto flex-row">
+          <li class="nav-item d-block"><a class="pl-2 pr-2 nav-link active" data-toggle="tab" href="#light"><i class="far fa-lightbulb"></i> Light</a></li>
+          <li class="nav-item d-block"><a class="pl-2 pr-2 nav-link" data-toggle="tab" href="#presets"><i class="fa fa-save"></i> Presets</a></li>
+          <li class="nav-item d-block"><a class="pl-2 pr-2 nav-link" data-toggle="tab" href="#status"><i class="fa fa-tachometer-alt"></i> Status</a></li>
+          <!--<li class="nav-item"><a href="#"><i class="fa fa-music"></i> Music</a></li>-->
         </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="#" id="help"><i class="fa fa-question-circle"></i> Help</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" id="gate"><i class="fa fa-door-open"></i> Open Gate</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-power-off"></i> Shutdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#" id="shutdown">Shutdown</a>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" id="club-status" href="#"><i class="fa fa-exclamation-circle" style="color:#a00"></i> <span>Disconnected</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-clock"></i> <span id="datetime">c4.2a.dead 21:42</span></a></li>
+          </ul>
+        </div>
       </div>
     </nav>
     
@@ -70,7 +65,6 @@
 
           <div class="col-lg-3">
             <h2>Wohnzimmer</h2>
-            <div class="bs-component">
               <ul class="nav nav-tabs mb-2">
                 <li class="nav-item"><a class="nav-link active" href="#wohnzimmernormal" data-toggle="tab">Normal</a></li>
                 <li class="nav-item"><a class="nav-link" href="#wohnzimmerdmx" data-toggle="tab">DMX</a></li>
@@ -204,22 +198,20 @@
                     <button type="button" class="btn btn-floodit" id="klFlood8">8</button>
                   </div>
                   <div id="klConway" class="klPane">
-                  <label for="klConwaySpeed">Generationen/s (<output for="klConwaySpeed" id="klConwaySpeedOut">XX</output>):</label>
-                  <input type="range" min="1" max="19" id="klConwaySpeed" /><br />
-                  <label for="klConwayGenerations">Wechseln nach  (<output for="klConwayGenerations" id="klConwayGenerationsOut">XX</output>):</label>
-                  <input type="range" min="1" max="500" id="klConwayGenerations" /><br />
-                  <label for="klConwayFill">Füllen </label>
-                  <input type="checkbox" id="klConwayFill" /><br />
+                    <label for="klConwaySpeed">Generationen/s (<output for="klConwaySpeed" id="klConwaySpeedOut">XX</output>):</label>
+                    <input type="range" min="1" max="19" id="klConwaySpeed" /><br />
+                    <label for="klConwayGenerations">Wechseln nach  (<output for="klConwayGenerations" id="klConwayGenerationsOut">XX</output>):</label>
+                    <input type="range" min="1" max="500" id="klConwayGenerations" /><br />
+                    <label for="klConwayFill">Füllen </label>
+                    <input type="checkbox" id="klConwayFill" /><br />
                   </div>
                   <button type="button" class="btn btn-primary" id="klSet">Set</button>
                 </div>
              </div>
-            </div>
           </div>
 
           <div class="col-lg-3">
             <h2>Plenarsaal</h2>
-            <div class="bs-component">
               <ul class="nav nav-tabs mb-2">
                 <li class="nav-item"><a class="nav-link active" href="#plenarnormal" data-toggle="tab">Normal</a></li>
                 <li class="nav-item"><a class="nav-link" href="#plenardmx" data-toggle="tab">DMX</a></li>
@@ -279,57 +271,54 @@
                   </div>
                 </div>
              </div>
-            </div>
           </div>
 
           <div class="col-lg-3">
             <h2>Fnordcenter</h2>
-            <div class="bs-component">
-              <ul class="nav nav-tabs mb-2">
-                <li class="nav-item"><a class="nav-link active" href="#fnordnormal" data-toggle="tab">Normal</a></li>
-                <li class="nav-item"><a class="nav-link" href="#fnorddmx" data-toggle="tab">DMX</a></li>
-              </ul>
-              <div class="tab-content">
-                <div class="tab-pane fade in lightswitch-pane show active" id="fnordnormal">
-                  <button type="button" class="btn btn-light" data-topic="licht/fnord/links">Links</button>
-                  <button type="button" class="btn btn-light" data-topic="licht/fnord/rechts">Rechts</button>
+            <ul class="nav nav-tabs mb-2">
+              <li class="nav-item"><a class="nav-link active" href="#fnordnormal" data-toggle="tab">Normal</a></li>
+              <li class="nav-item"><a class="nav-link" href="#fnorddmx" data-toggle="tab">DMX</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade in lightswitch-pane show active" id="fnordnormal">
+                <button type="button" class="btn btn-light" data-topic="licht/fnord/links">Links</button>
+                <button type="button" class="btn btn-light" data-topic="licht/fnord/rechts">Rechts</button>
+              </div>
+              <div class="tab-pane fade" id="fnorddmx">
+                <div class="colorpicker">
+                  <label for="dmxcolorfnordcenter-master">Master:</label>
+                  <input type="color" id="dmxcolorfnordcenter-master" class="dmxinput" data-topic="master/fnord" />
                 </div>
-                <div class="tab-pane fade" id="fnorddmx">
-                  <div class="colorpicker">
-                    <label for="dmxcolorfnordcenter-master">Master:</label>
-                    <input type="color" id="dmxcolorfnordcenter-master" class="dmxinput" data-topic="master/fnord" />
-                  </div>
-                  <div class="colorpicker">
-                    <label for="dmxcolorfnordcenter-sf">SCUMM Fenster:</label>
-                    <input type="color" id="dmxcolorfnordcenter-sf" class="dmxinput" data-topic="dmx/fnord/scummfenster" />
-                  </div>
-                  <div class="colorpicker">
-                    <label for="dmxcolorfnordcenter-ss">SCUMM Schrank:</label>
-                    <input type="color" id="dmxcolorfnordcenter-ss" class="dmxinput" data-topic="dmx/fnord/schranklinks" />
-                  </div>
-                  <div class="colorpicker">
-                    <label for="dmxcolorfnordcenter-ff">Fairy Fenster:</label>
-                    <input type="color" id="dmxcolorfnordcenter-ff" class="dmxinput" data-topic="dmx/fnord/fairyfenster" />
-                  </div>
-                  <div class="colorpicker">
-                    <label for="dmxcolorfnordcenter-fs">Fairy Schrank:</label>
-                    <input type="color" id="dmxcolorfnordcenter-fs" class="dmxinput" data-topic="dmx/fnord/schrankrechts" />
-                  </div>
-                  <hr />
-                  <div id="dmxbrightnessfnord">
-                    <label for="dmxbrightfnord">Brightness:</label>
-                    <input type="range" min="0" max="1" step="0.05" id="dmxbrightfnord" class="dmxbright" /><br />
-                    <button type="button" class="btn btn-primary btn-rand" data-topic="fnord">Random</button>
-                    <button type="button" class="btn btn-primary btn-sound" data-topic="fnord">Sound Active</button>
-                  </div>
+                <div class="colorpicker">
+                  <label for="dmxcolorfnordcenter-sf">SCUMM Fenster:</label>
+                  <input type="color" id="dmxcolorfnordcenter-sf" class="dmxinput" data-topic="dmx/fnord/scummfenster" />
                 </div>
-             </div>
+                <div class="colorpicker">
+                  <label for="dmxcolorfnordcenter-ss">SCUMM Schrank:</label>
+                  <input type="color" id="dmxcolorfnordcenter-ss" class="dmxinput" data-topic="dmx/fnord/schranklinks" />
+                </div>
+                <div class="colorpicker">
+                  <label for="dmxcolorfnordcenter-ff">Fairy Fenster:</label>
+                  <input type="color" id="dmxcolorfnordcenter-ff" class="dmxinput" data-topic="dmx/fnord/fairyfenster" />
+                </div>
+                <div class="colorpicker">
+                  <label for="dmxcolorfnordcenter-fs">Fairy Schrank:</label>
+                  <input type="color" id="dmxcolorfnordcenter-fs" class="dmxinput" data-topic="dmx/fnord/schrankrechts" />
+                </div>
+                <hr />
+                <div id="dmxbrightnessfnord">
+                  <label for="dmxbrightfnord">Brightness:</label>
+                  <input type="range" min="0" max="1" step="0.05" id="dmxbrightfnord" class="dmxbright" /><br />
+                  <button type="button" class="btn btn-primary btn-rand" data-topic="fnord">Random</button>
+                  <button type="button" class="btn btn-primary btn-sound" data-topic="fnord">Sound Active</button>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="col-lg-3">
             <h2>Keller</h2>
-            <div class="bs-component">
+            
               <ul class="nav nav-tabs mb-2">
                 <li class="nav-item"><a class="nav-link active" href="#kellernormal" data-toggle="tab">Normal</a></li>
               </ul>
@@ -344,7 +333,6 @@
                   <button type="button" class="btn btn-light" data-topic="led/keller/hintenwarm">Hinten(warm)</button>
                 </div>
              </div>
-            </div>
           </div>
         </div>
 
