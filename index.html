@@ -60,7 +60,7 @@
     
     
     <div class="tab-content" style="margin-top:50px">
-      <div id="light" class="tab-pane fade in container active show">
+      <div id="light" class="tab-pane container active show">
         <div class="row">
 
           <div class="col-lg-3">
@@ -71,7 +71,7 @@
                 <li class="nav-item"><a class="nav-link" href="#kitchenlight" data-toggle="tab">KL</a></li>
               </ul>
               <div class="tab-content">
-                <div class="tab-pane fade active in lightswitch-pane show" id="wohnzimmernormal">
+                <div class="tab-pane active lightswitch-pane show" id="wohnzimmernormal">
                   <button type="button" class="btn btn-light" data-topic="licht/wohnzimmer/tuer">Tür</button>
                   <button type="button" class="btn btn-light" data-topic="licht/wohnzimmer/mitte">Mitte</button>
                   <button type="button" class="btn btn-light" data-topic="licht/wohnzimmer/kueche">Küche</button>
@@ -81,7 +81,7 @@
                   <button type="button" class="btn btn-light" data-topic="socket/wohnzimmer/screen/b">Verstärker</button>
                   <button type="button" class="btn btn-light" data-topic="power/wohnzimmer/kitchenlight">LED-Wand</button>
                 </div>
-                <div class="tab-pane fade" id="wohnzimmerdmx">
+                <div class="tab-pane" id="wohnzimmerdmx">
                   <div class="colorpicker">
                     <label for="dmxcolorwohnzimmer-master">Master:</label>
                     <input type="color" id="dmxcolorwohnzimmer-master" class="dmxinput" data-topic="master/wohnzimmer" />
@@ -136,7 +136,7 @@
                     <button type="button" class="btn btn-primary btn-sound" data-topic="wohnzimmer">Sound Active</button>
                   </div>
                 </div>
-                <div class="tab-pane fade" id="kitchenlight">
+                <div class="tab-pane" id="kitchenlight">
                   <select id="klSelect">
                     <option value="klEmpty">Leer</option>
                     <option value="klChecker">Schachbrett</option> <!-- Delay (500) + FarbeA (#ffffff) + FarbeB (#000000) -->
@@ -217,13 +217,13 @@
                 <li class="nav-item"><a class="nav-link" href="#plenardmx" data-toggle="tab">DMX</a></li>
               </ul>
               <div class="tab-content">
-                <div class="tab-pane fade in lightswitch-pane show active" id="plenarnormal">
+                <div class="tab-pane in lightswitch-pane show active" id="plenarnormal">
                   <button type="button" class="btn btn-light" data-topic="licht/plenar/vornewand">Vorne Wand</button>
                   <button type="button" class="btn btn-light" data-topic="licht/plenar/vornefenster">Vorne Fenster</button>
                   <button type="button" class="btn btn-light" data-topic="licht/plenar/hintenwand">Hinten Wand</button>
                   <button type="button" class="btn btn-light" data-topic="licht/plenar/hintenfenster">Hinten Fenster</button>
                 </div>
-                <div class="tab-pane fade" id="plenardmx">
+                <div class="tab-pane" id="plenardmx">
                   <div class="colorpicker">
                     <label for="dmxcolorplenar-master">Master:</label>
                     <input type="color" id="dmxcolorplenar-master" class="dmxinput" data-topic="master/plenar" />
@@ -280,11 +280,11 @@
               <li class="nav-item"><a class="nav-link" href="#fnorddmx" data-toggle="tab">DMX</a></li>
             </ul>
             <div class="tab-content">
-              <div class="tab-pane fade in lightswitch-pane show active" id="fnordnormal">
+              <div class="tab-pane lightswitch-pane show active" id="fnordnormal">
                 <button type="button" class="btn btn-light" data-topic="licht/fnord/links">Links</button>
                 <button type="button" class="btn btn-light" data-topic="licht/fnord/rechts">Rechts</button>
               </div>
-              <div class="tab-pane fade" id="fnorddmx">
+              <div class="tab-pane" id="fnorddmx">
                 <div class="colorpicker">
                   <label for="dmxcolorfnordcenter-master">Master:</label>
                   <input type="color" id="dmxcolorfnordcenter-master" class="dmxinput" data-topic="master/fnord" />
@@ -323,7 +323,7 @@
                 <li class="nav-item"><a class="nav-link active" href="#kellernormal" data-toggle="tab">Normal</a></li>
               </ul>
               <div class="tab-content">
-                <div class="tab-pane fade in lightswitch-pane show active" id="kellernormal">
+                <div class="tab-pane lightswitch-pane show active" id="kellernormal">
                   <button type="button" class="btn btn-light" data-topic="licht/keller/loet">Lötplatz</button>
                   <button type="button" class="btn btn-light" data-topic="licht/keller/mitte">Mitte</button>
                   <button type="button" class="btn btn-light" data-topic="licht/keller/vorne">Vorne</button>
@@ -338,7 +338,7 @@
 
       </div>
 
-      <div id="presets" class="tab-pane fade container">
+      <div id="presets" class="tab-pane container">
         <div class="row">
           <div class="col-lg-12">
             <h2>Global</h2>
@@ -373,7 +373,7 @@
         </div>
       </div>
       
-      <div id="status" class="tab-pane fade container">
+      <div id="status" class="tab-pane container">
         <div class="row">
           <div class="col-sm-6 col-md-8 col-lg-9">
             <h3>Fenster</h3>
