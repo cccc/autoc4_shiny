@@ -15,19 +15,26 @@
 "use strict";
 
 var autoc4_presets=function(){
-    var subscribe= function(mqtt_client){
+    var init = function(){
+        $("body").on("click","[data-preset-topic]",function(e) {
+            var $this = $(this);
+            console.log("trigger preset: "+$this.attr('data-preset-topic')+"/"+$this.attr('data-preset-message'))
+            //autoc4.mqtt_send_string($this.attr('data-preset-topic'), $this.attr('data-preset-message'));
+        });
+    }
+
+    var subscribe = function(mqtt_client){
         mqtt_client.subscribe('preset/list');
         mqtt_client.subscribe('preset/+/list');
-        $("div.preset-pane[data-room] > [data-preset]").remove();
+        $("div.preset-pane[data-room] > [data-preset-topic]").remove();
     };
     
     var create_button = function(room, preset) {
         return $('<button>',{
             "type": 'button',
             "class": 'btn btn-preset',
-            'data-mqtt-topic': room === 'global' ? 'preset/set' : 'preset/' + room + '/set',
-            'data-mqtt-message' : preset,
-            'data-preset' : preset
+            'data-preset-topic': room === 'global' ? 'preset/set' : 'preset/' + room + '/set',
+            'data-preset-message' : preset
         }).text(preset);
     };
     
@@ -54,20 +61,17 @@ var autoc4_presets=function(){
             }
             });
         }
-        var prebtn = $('div.preset-pane[data-room='+room+']');
-        var marker = $(".preset-pane-room-marker", prebtn);
+        
+        var marker = $("div.preset-pane[data-room=\""+room+"\"] > .preset-pane-room-marker");
+        console.log(marker);
         for (var pre of presets) {
             create_button(room, pre).insertBefore(marker);
         }
-        
-        prebtn.on("click","button",function(e) {
-            var $this = $(this);
-            autoc4.mqtt_send_string($this.attr('data-mqtt-topic'), $this.attr('data-mqtt-message'));
-        });
     };
     
     return {
-        subscribe:subscribe,
-        on_message:on_message
+        init: init,
+        subscribe: subscribe,
+        on_message: on_message
     };
-}
+};
