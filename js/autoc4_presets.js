@@ -18,8 +18,7 @@ var autoc4_presets=function(){
     var init = function(){
         $("body").on("click","[data-preset-topic]",function(e) {
             var $this = $(this);
-            console.log("trigger preset: "+$this.attr('data-preset-topic')+"/"+$this.attr('data-preset-message'))
-            //autoc4.mqtt_send_string($this.attr('data-preset-topic'), $this.attr('data-preset-message'));
+            autoc4.mqtt_send_string($this.attr('data-preset-topic'), $this.attr('data-preset-message'));
         });
     }
 
