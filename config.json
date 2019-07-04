@@ -1,0 +1,38 @@
+{
+    "server": "autoc4",
+    "port": 9000,
+    "debug": {
+        "message": false,
+        "connect": true,
+        "disconnect": true,
+        "configLoaded": true
+    },
+    "modules": [
+        {
+            "type": "shutdown",
+            "options": {
+                "forceShutdownButtonSelector": "#force-shutdown",
+                "shutdownButtonSelector": "#shutdown"
+            }
+        },
+        {
+            "type": "dmx",
+            "options": {
+                "colorInputSelector": "[data-dmx-role=\"dmx-input\"]",
+                "fadeInputSelector": "[data-dmx-role=\"dmx-fade\"]",
+                "soundInputSelector": "[data-dmx-role=\"dmx-sound\"]",
+                "randomizeButtonSelector": "[data-dmx-randomize]",
+                "roomDataAttribute": "data-dmx-room",
+                "lightDataAttribute": "data-dmx-light",
+                "speedSliderDataAttribute": "data-dmx-speed-slider",
+                "roleDataAttribute": "data-dmx-role"
+            },
+            "subscribe":["dmx/+/+"]
+        }
+    ],
+    "module_locations":{
+        "dmx": "js/autoc4_dmx.js",
+        "shutdown": "js/autoc4_shutdown.js",
+        "heartbeat": "js/autoc4_heartbeat.js"
+    }
+}

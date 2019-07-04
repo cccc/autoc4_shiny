@@ -135,7 +135,13 @@ input[type=color] {
 
 .colorpicker {
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
+}
+.colorpicker label {
+  width: 100%;
+}
+.colorpicker label input {
+  float: right;
 }
 
 .klPane {

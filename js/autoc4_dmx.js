@@ -1,155 +1,134 @@
 // Copyright (c) 2014-2016 Chaos Computer Club Cologne
 //
 // This file is MIT licensed. Please see the
-// LICENSE-MIT file in the source package for more information.
+// LICENSE file in the source package for more information.
 //
-
-/* jshint strict: global */
-
-/* globals
-    Uint8Array,
-    $, Paho,
-    mqtt_client,
-    dec2hex
-*/
 
 "use strict";
 
-var autoc4_dmx = function (){
-    var pickers = { plenar: {}, fnord: {}, wohnzimmer: {}, kitchen: {} };
+var autoc4_dmx = function (options){
     var autoc4;
 
     var init = function(_autoc4) {
-        pickers.plenar.master = $("#dmxcolorplenar-master");
-        pickers.plenar.vorne1 = $("#dmxcolorplenar-vorne1");
-        pickers.plenar.vorne2 = $("#dmxcolorplenar-vorne2");
-        pickers.plenar.vorne3 = $("#dmxcolorplenar-vorne3");
-        pickers.plenar.hinten1 = $("#dmxcolorplenar-hinten1");
-        pickers.plenar.hinten2 = $("#dmxcolorplenar-hinten2");
-        pickers.plenar.hinten3 = $("#dmxcolorplenar-hinten3");
-        pickers.plenar.hinten4 = $("#dmxcolorplenar-hinten4");
-        pickers.fnord.master = $("#dmxcolorfnordcenter-master");
-        pickers.fnord.scummfenster = $("#dmxcolorfnordcenter-sf");
-        pickers.fnord.schranklinks = $("#dmxcolorfnordcenter-ss");
-        pickers.fnord.fairyfenster = $("#dmxcolorfnordcenter-ff");
-        pickers.fnord.schrankrechts = $("#dmxcolorfnordcenter-fs");
-        pickers.wohnzimmer.master = $("#dmxcolorwohnzimmer-master");
-        pickers.wohnzimmer.mitte1 = $("#dmxcolorwohnzimmer-mitte1");
-        pickers.wohnzimmer.mitte2 = $("#dmxcolorwohnzimmer-mitte2");
-        pickers.wohnzimmer.mitte3 = $("#dmxcolorwohnzimmer-mitte3");
-        pickers.wohnzimmer.tuer1 = $("#dmxcolorwohnzimmer-tuer1");
-        pickers.wohnzimmer.tuer2 = $("#dmxcolorwohnzimmer-tuer2");
-        pickers.wohnzimmer.tuer3 = $("#dmxcolorwohnzimmer-tuer3");
-        pickers.wohnzimmer.gang = $("#dmxcolorwohnzimmer-gang");
-        pickers.wohnzimmer.baellebad = $("#dmxcolorwohnzimmer-baellebad");
-        pickers.kitchen.master = $("#dmxcolorwohnzimmer-sink");
-        pickers.kitchen.sink = $("#dmxcolorwohnzimmer-sink");
 
-        $('.dmxinput').change(dmx_change);
-        $('.btn-fade').click(dmx_fade);
-        $('.btn-rand').click(dmx_rand);
-        $('.btn-sound').click(dmx_sound);
+        $("input["+options.roomDataAttribute+"]").change(dmx_change);
+        // $('.btn-fade').click(dmx_fade);
+        // $('.btn-rand').click(dmx_rand);
+        // $('.btn-sound').click(dmx_sound);
         
         autoc4 = _autoc4;
-    }
+    };
     
     var subscribe = function(mqtt_client) {
         mqtt_client.subscribe('dmx/+/+');
-        mqtt_client.subscribe('led/+/+');
-    }
+    };
     
     var on_message = function(message) {
-        if (!(message.destinationName.startsWith('dmx/') || message.destinationName.startsWith('led/')))
+        if (!(message.destinationName.startsWith('dmx/')))
             return;
-        var name = message.destinationName.split('/');
-        var room = name[1];
-        var picker = (pickers[room] || {})[name[2]];
-        if (!picker) { return; }
+        
+        var components = message.destinationName.split("/");
+        if (components.length<3)
+            return; //if the topic has no room or light specified
+        
         var payloadBytes = message.payloadBytes;
-        if (payloadBytes.length >= 3) {
-            var color = "#" + dec2hex(payloadBytes[0]) + dec2hex(payloadBytes[1]) + dec2hex(payloadBytes[2]);
-            // update DMX picker values
-            picker.val(color);
+        if (payloadBytes.length < 3) /** @todo change to support one byte channels */
+            return; //if the message has less than 3 bytes
+        
+        var room = components[1];
+        var light = components[2];
+        
+        //search for pickers with the right room and light attribute
+        var pickers = $("["+options.roomDataAttribute+"=\""+room+"\"]["+options.lightDataAttribute+"=\""+light+"\"]");
+        if (!pickers.length) return; //stop if none were found
 
-            var same = true;
-            for (var light in pickers[room]) {
-                if (light == "master") { continue; }
-                same = same && (pickers[room][light].val() == color);
-            }
-            if (same) {
-                pickers[room].master.val(color);
-            }
+        //set the value of all found pickers to the proper color
+        var color=autoc4_dmx.bytes_to_color(payloadBytes);
+        for(var picker of pickers){
+            picker.value=color;
         }
+        
+        update_room(room);
 
-        if (payloadBytes.length == 7) {
-            var speed = payloadBytes[4];
-            if (speed === 0) { speed = 100; }
-            $("#dmxfade" + room + " > .dmxspeed").val(speed);
-        }
-    }
+        // speedSlider = picker.getAttribute(options.speedSliderDataAttribute);
+        // if (speedSlider) {
+        //     var speed = payloadBytes[4] || 100;
+        //     document.querySelector(speedSlider).value = val;
+        // }
+    };
     
     var dmx_change = function (e) {
-        /* jshint validthis: true */
-        var dmx = $(this);
-        var topic = dmx.data("topic");
-        var color = dmx.val();
+        var color = this.value;
         var send_dmx_data;
-        if (!topic.contains("fnord")) {
-            send_dmx_data = send_dmx_data_7ch;
-        } else {
+        var channels = this.getAttribute("data-dmx-channels") || 7;
+        if (channels==1) {
+            send_dmx_data = send_dmx_data_1ch;
+        } else if (channels==3) {
             send_dmx_data = send_dmx_data_3ch;
-        }
-        if (!topic.startsWith("master/")) {
-            send_dmx_data(topic, color);
-            return;
-        }
-        topic = topic.split('/', 2)[1];
-        for (var light in pickers[topic]) {
-            if (light == "master") { continue; }
-            send_dmx_data("dmx/" + topic + "/" + light, color);
-        }
-    }
-    
-    var dmx_fade=function(e) {
-        /* jshint validthis: true */
-        var dmx = $(this);
-        var topic = dmx.data("topic");
-        var speed = parseInt(dmx.siblings(".dmxspeed").val());
-        for (var light in pickers[topic]) {
-            if (light == "master") { continue; }
-            send_dmx_fade_7ch("dmx/" + topic + "/" + light, speed);
-        }
-    }
-    
-    var dmx_rand=function(e) {
-        /* jshint validthis: true */
-        var dmx = $(this);
-        var topic = dmx.data("topic");
-        var send_dmx_data;
-        if (!topic.contains("fnord")) {
-            send_dmx_data = send_dmx_data_7ch;
         } else {
-            send_dmx_data = send_dmx_data_3ch;
+            send_dmx_data = send_dmx_data_7ch;
         }
 
-        var v = parseFloat(dmx.siblings(".dmxbright").val());
-        for (var light in pickers[topic]) {
-            if (light == "master") { continue; }
-            var rgb = autoc4_dmx.hsv_to_rgb(Math.random(), 0.8, v);
-            var rgb_s = "#" + dec2hex(rgb[0]) + dec2hex(rgb[1]) + dec2hex(rgb[2]);
-            send_dmx_data("dmx/" + topic + "/" + light, rgb_s);
+        var room = this.getAttribute(options.roomDataAttribute);
+        var light = this.getAttribute(options.lightDataAttribute);
+
+        send_dmx_data("dmx/"+room+"/"+light, color);
+        update_room(room);
+    };
+
+    /**
+     * Updates a room's masters' color
+     * @param {string} room room to update masters for
+     */
+    var update_room = function(room){
+        var value;
+
+        //check if all light's colors are equal
+        for(var picker of $("["+options.roomDataAttribute+"=\""+room+"\"]["+options.lightDataAttribute+"]")){
+            if(value===undefined){
+                //first value for comparison
+                value=picker.value;
+            }else if(value!=picker.value){
+                //terminate if another color was found
+                return;
+            }
+        }
+        //set masters' color
+        for(var picker of $("["+options.roomDataAttribute+"=\""+room+"\"]["+options.roleDataAttribute+"=master]")){
+            picker.value=value;
         }
     }
     
-    var dmx_sound=function(e) {
-        /* jshint validthis: true */
-        var dmx = $(this);
-        var topic = dmx.data("topic");
-        for (var light in pickers[topic]) {
-            if (light == "master") { continue; }
-            send_dmx_sound_7ch("dmx/" + topic + "/" + light);
-        }
-    }
+    // var dmx_fade=function(e) {
+    //     /* jshint validthis: true */
+    //     var dmx = $(this);
+    //     var topic = dmx.data("topic");
+    //     var speed = parseInt(dmx.siblings(".dmxspeed").val());
+    //     for (var light in pickers[topic]) {
+    //         if (light == "master") { continue; }
+    //         send_dmx_fade_7ch("dmx/" + topic + "/" + light, speed);
+    //     }
+    // };
+    
+    // var dmx_sound=function(e) {
+    //     /* jshint validthis: true */
+    //     var dmx = $(this);
+    //     var topic = dmx.data("topic");
+    //     for (var light in pickers[topic]) {
+    //         if (light == "master") { continue; }
+    //         send_dmx_sound_7ch("dmx/" + topic + "/" + light);
+    //     }
+    // };
+
+    // publish dmx brightness
+    var send_dmx_data_1ch=function(topic, value) {
+        var v = parseInt(value, 10);
+        var buf = new Uint8Array([v, 255]);
+        var message = new Paho.MQTT.Message(buf);
+        message.retained = true;
+        message.destinationName = topic;
+        autoc4.mqtt_client.send(message);
+    };
     
     // publish dmx rgb color + enable byte for a dmx room container
     var send_dmx_data_3ch=function(topic, value) {
@@ -161,7 +140,7 @@ var autoc4_dmx = function (){
         message.retained = true;
         message.destinationName = topic;
         autoc4.mqtt_client.send(message);
-    }
+    };
     
     var send_dmx_data_7ch=function(topic, value) {
         var r = parseInt(value.substr(1, 2), 16);
@@ -172,7 +151,7 @@ var autoc4_dmx = function (){
         message.retained = true;
         message.destinationName = topic;
         autoc4.mqtt_client.send(message);
-    }
+    };
     
     var send_dmx_sound_7ch = function (topic) {
         var buf = new Uint8Array([0, 0, 0, 0, 255, 246, 255]);
@@ -180,7 +159,7 @@ var autoc4_dmx = function (){
         message.retained = true;
         message.destinationName = topic;
         autoc4.mqtt_client.send(message);
-    }
+    };
 
     var send_dmx_fade_7ch = function (topic, speed) {
         if (speed > 255) { speed = 255; }
@@ -189,14 +168,14 @@ var autoc4_dmx = function (){
         message.retained = true;
         message.destinationName = topic;
         autoc4.mqtt_client.send(message);
-    }
+    };
     
     return {
         init:init,
         subscribe:subscribe,
         on_message:on_message
-    }
-}
+    };
+};
 
 autoc4_dmx.hsv_to_rgb = function(h, s, v) {
     var r, g, b;
@@ -217,6 +196,8 @@ autoc4_dmx.hsv_to_rgb = function(h, s, v) {
     }
 
     return [ r * 255, g * 255, b * 255 ];
+};
+
+autoc4_dmx.bytes_to_color = function(bytes){
+    return "#" + dec2hex(bytes[0]) + dec2hex(bytes[1]) + dec2hex(bytes[2]);
 }
-
-
