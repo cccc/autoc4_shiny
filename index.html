@@ -22,6 +22,7 @@
     <script type="text/javascript" src="js/autoc4_presets.js"></script>
     <script type="text/javascript" src="js/autoc4_windows.js"></script>
     <script type="text/javascript" src="js/autoc4_heartbeat.js"></script>
+    <script type="text/javascript" src="js/autoc4_shutdown.js"></script>
     <script type="text/javascript" src="js/autoc4.js"></script>
   </head>
   <body>
@@ -83,44 +84,40 @@
                 </div>
                 <div class="tab-pane" id="wohnzimmerdmx">
                   <div class="colorpicker">
-                    <label for="dmxcolorwohnzimmer-master">Master:</label>
-                    <input type="color" id="dmxcolorwohnzimmer-master" class="dmxinput" data-topic="master/wohnzimmer" />
+                    <label>Master:<input type="color" data-dmx-room="wohnzimmer" data-dmx-role="master"  /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorwohnzimmer-mitte1">Mitte 1:</label>
-                    <input type="color" id="dmxcolorwohnzimmer-mitte1" class="dmxinput" data-topic="dmx/wohnzimmer/mitte1" />
+                    <label>Mitte 1:<input type="color" data-dmx-room="wohnzimmer" data-dmx-light="mitte1" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorwohnzimmer-mitte2">Mitte 2:</label>
-                    <input type="color" id="dmxcolorwohnzimmer-mitte2" class="dmxinput" data-topic="dmx/wohnzimmer/mitte2" />
+                    <label>Mitte 2:<input type="color" data-dmx-room="wohnzimmer" data-dmx-light="mitte2" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorwohnzimmer-mitte3">Mitte 3:</label>
-                    <input type="color" id="dmxcolorwohnzimmer-mitte3" class="dmxinput" data-topic="dmx/wohnzimmer/mitte3" />
+                    <label>Mitte 3:<input type="color" data-dmx-room="wohnzimmer" data-dmx-light="mitte3" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorwohnzimmer-tuer1">Tür 1:</label>
-                    <input type="color" id="dmxcolorwohnzimmer-tuer1" class="dmxinput" data-topic="dmx/wohnzimmer/tuer1" />
+                    <label>Tür 1:<input type="color" data-dmx-room="wohnzimmer" data-dmx-light="tuer1" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorwohnzimmer-tuer2">Tür 2:</label>
-                    <input type="color" id="dmxcolorwohnzimmer-tuer2" class="dmxinput" data-topic="dmx/wohnzimmer/tuer2" />
+                    <label>Tür 2:<input type="color" data-dmx-room="wohnzimmer" data-dmx-light="tuer2" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorwohnzimmer-tuer3">Tür 3:</label>
-                    <input type="color" id="dmxcolorwohnzimmer-tuer3" class="dmxinput" data-topic="dmx/wohnzimmer/tuer3" />
+                    <label>Tür 3:<input type="color" data-dmx-room="wohnzimmer" data-dmx-light="tuer3" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorwohnzimmer-tuer3">Gang:</label>
-                    <input type="color" id="dmxcolorwohnzimmer-gang" class="dmxinput" data-topic="dmx/wohnzimmer/gang" />
+                    <label>Gang 1:<input type="color" data-dmx-room="wohnzimmer" data-dmx-light="gang" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorwohnzimmer-tuer3">Bällebad:</label>
-                    <input type="color" id="dmxcolorwohnzimmer-baellebad" class="dmxinput" data-topic="dmx/wohnzimmer/baellebad" />
+                    <label>Bällebad:<input type="color" data-dmx-room="wohnzimmer" data-dmx-light="baellebad" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorwohnzimmer-sink">Spüle:</label>
-                    <input type="color" id="dmxcolorwohnzimmer-sink" class="dmxinput" data-topic="led/kitchen/sink" />
+                    <label>Spüle:<input type="color" data-dmx-room="wohnzimmer" data-dmx-light="spuele" /></label>
+                  </div>
+                  <div class="colorpicker">
+                    <label>Tresen:<input type="color" data-dmx-room="wohnzimmer" data-dmx-light="tresen" /></label>
+                  </div>
+                  <div class="colorpicker">
+                    <label>Chaosknoten:<input type="color" data-dmx-room="wohnzimmer" data-dmx-light="chaosknoten" /></label>
                   </div>
                   <hr />
                   <div id="dmxfadewohnzimmer">
@@ -225,36 +222,28 @@
                 </div>
                 <div class="tab-pane" id="plenardmx">
                   <div class="colorpicker">
-                    <label for="dmxcolorplenar-master">Master:</label>
-                    <input type="color" id="dmxcolorplenar-master" class="dmxinput" data-topic="master/plenar" />
+                    <label>Master:<input type="color" data-dmx-room="plenar" data-dmx-role="master"  /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorplenar-vorne1">Vorne 1:</label>
-                    <input type="color" id="dmxcolorplenar-vorne1" class="dmxinput" data-topic="dmx/plenar/vorne1" />
+                    <label>Vorne 1:<input type="color" data-dmx-room="plenar" data-dmx-light="vorne1" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorplenar-vorne2">Vorne 2:</label>
-                    <input type="color" id="dmxcolorplenar-vorne2" class="dmxinput" data-topic="dmx/plenar/vorne2" />
+                      <label>Vorne 2:<input type="color" data-dmx-room="plenar" data-dmx-light="vorne2" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorplenar-vorne3">Vorne 3:</label>
-                    <input type="color" id="dmxcolorplenar-vorne3" class="dmxinput" data-topic="dmx/plenar/vorne3" />
+                      <label>Vorne 3:<input type="color" data-dmx-room="plenar" data-dmx-light="vorne3" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorplenar-hinten1">Hinten 1:</label>
-                    <input type="color" id="dmxcolorplenar-hinten1" class="dmxinput" data-topic="dmx/plenar/hinten1" />
+                      <label>Hinten 1:<input type="color" data-dmx-room="plenar" data-dmx-light="hinten1" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorplenar-hinten2">Hinten 2:</label>
-                    <input type="color" id="dmxcolorplenar-hinten2" class="dmxinput" data-topic="dmx/plenar/hinten2" />
+                      <label>Hinten 2:<input type="color" data-dmx-room="plenar" data-dmx-light="hinten2" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorplenar-hinten3">Hinten 3:</label>
-                    <input type="color" id="dmxcolorplenar-hinten3" class="dmxinput" data-topic="dmx/plenar/hinten3" />
+                      <label>Hinten 3:<input type="color" data-dmx-room="plenar" data-dmx-light="hinten3" /></label>
                   </div>
                   <div class="colorpicker">
-                    <label for="dmxcolorplenar-hinten4">Hinten 4:</label>
-                    <input type="color" id="dmxcolorplenar-hinten4" class="dmxinput" data-topic="dmx/plenar/hinten4" />
+                      <label>Hinten 4:<input type="color" data-dmx-room="plenar" data-dmx-light="hinten4" /></label>
                   </div>
                   <hr />
                   <div id="dmxfadeplenar">
@@ -286,24 +275,19 @@
               </div>
               <div class="tab-pane" id="fnorddmx">
                 <div class="colorpicker">
-                  <label for="dmxcolorfnordcenter-master">Master:</label>
-                  <input type="color" id="dmxcolorfnordcenter-master" class="dmxinput" data-topic="master/fnord" />
+                  <label>Master:<input type="color" data-dmx-room="fnord" data-dmx-role="master" /></label>
                 </div>
                 <div class="colorpicker">
-                  <label for="dmxcolorfnordcenter-sf">SCUMM Fenster:</label>
-                  <input type="color" id="dmxcolorfnordcenter-sf" class="dmxinput" data-topic="dmx/fnord/scummfenster" />
+                  <label>SCUMM Fenster:<input type="color" data-dmx-channels="3" data-dmx-room="fnord" data-dmx-light="scummfenster" /></label> 
                 </div>
                 <div class="colorpicker">
-                  <label for="dmxcolorfnordcenter-ss">SCUMM Schrank:</label>
-                  <input type="color" id="dmxcolorfnordcenter-ss" class="dmxinput" data-topic="dmx/fnord/schranklinks" />
+                  <label>SCUMM Schrank:<input type="color" data-dmx-channels="3" data-dmx-room="fnord" data-dmx-light="schranklinks" /></label>
                 </div>
                 <div class="colorpicker">
-                  <label for="dmxcolorfnordcenter-ff">Fairy Fenster:</label>
-                  <input type="color" id="dmxcolorfnordcenter-ff" class="dmxinput" data-topic="dmx/fnord/fairyfenster" />
+                  <label>Fairy Fenster:<input type="color" data-dmx-channels="3" data-dmx-room="fnord" data-dmx-light="fairyfenster" /></label>
                 </div>
                 <div class="colorpicker">
-                  <label for="dmxcolorfnordcenter-fs">Fairy Schrank:</label>
-                  <input type="color" id="dmxcolorfnordcenter-fs" class="dmxinput" data-topic="dmx/fnord/schrankrechts" />
+                  <label>Fairy Schrank:<input type="color" data-dmx-channels="3" data-dmx-room="fnord" data-dmx-light="schrankrechts" /></label>
                 </div>
                 <hr />
                 <div id="dmxbrightnessfnord">
@@ -318,21 +302,20 @@
 
           <div class="col-lg-3">
             <h2>Keller</h2>
-            
-              <ul class="nav nav-tabs mb-2">
-                <li class="nav-item"><a class="nav-link active" href="#kellernormal" data-toggle="tab">Normal</a></li>
-              </ul>
-              <div class="tab-content">
-                <div class="tab-pane lightswitch-pane show active" id="kellernormal">
-                  <button type="button" class="btn btn-light" data-topic="licht/keller/loet">Lötplatz</button>
-                  <button type="button" class="btn btn-light" data-topic="licht/keller/mitte">Mitte</button>
-                  <button type="button" class="btn btn-light" data-topic="licht/keller/vorne">Vorne</button>
-                  <button type="button" class="btn btn-light" data-topic="led/keller/werkbankkalt">Werkbank(kalt)</button>
-                  <button type="button" class="btn btn-light" data-topic="led/keller/werkbankwarm">Werkbank(warm)</button>
-                  <button type="button" class="btn btn-light" data-topic="led/keller/hintenkalt">Hinten(kalt)</button>
-                  <button type="button" class="btn btn-light" data-topic="led/keller/hintenwarm">Hinten(warm)</button>
-                </div>
-             </div>
+            <ul class="nav nav-tabs mb-2">
+              <li class="nav-item"><a class="nav-link active" href="#kellernormal" data-toggle="tab">Normal</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane lightswitch-pane show active" id="kellernormal">
+                <button type="button" class="btn btn-light" data-topic="licht/keller/loet">Lötplatz</button>
+                <button type="button" class="btn btn-light" data-topic="licht/keller/mitte">Mitte</button>
+                <button type="button" class="btn btn-light" data-topic="licht/keller/vorne">Vorne</button>
+                <button type="button" class="btn btn-light" data-topic="led/keller/werkbankkalt">Werkbank(kalt)</button>
+                <button type="button" class="btn btn-light" data-topic="led/keller/werkbankwarm">Werkbank(warm)</button>
+                <button type="button" class="btn btn-light" data-topic="led/keller/hintenkalt">Hinten(kalt)</button>
+                <button type="button" class="btn btn-light" data-topic="led/keller/hintenwarm">Hinten(warm)</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -340,12 +323,12 @@
 
       <div id="presets" class="tab-pane container">
         <div class="row">
-          <div class="col-lg-12">
+          <!--<div class="col-lg-12">
             <h2>Global</h2>
             <div class="preset-pane" data-room="global">
               <div class="preset-pane-room-marker" style="display:none"></div>
             </div>
-          </div>
+          </div>-->
           <div class="col-lg-3">
             <h2>Wohnzimmer</h2>
             <div class="preset-pane" data-room="wohnzimmer">

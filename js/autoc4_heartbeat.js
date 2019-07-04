@@ -1,7 +1,7 @@
 // Copyright (c) 2014-2016 Chaos Computer Club Cologne
 //
 // This file is MIT licensed. Please see the
-// LICENSE-MIT file in the source package for more information.
+// LICENSE file in the source package for more information.
 //
 
 /* jshint strict: global */
@@ -58,10 +58,10 @@ var autoc4_heartbeat = function(){
                     )
             );
         return ret;
-    }
+    };
     
     return {
         subscribe:subscribe,
         on_message:on_message
     };
-}
+};

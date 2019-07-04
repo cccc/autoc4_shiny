@@ -1,16 +1,8 @@
 // Copyright (c) 2014-2016 Chaos Computer Club Cologne
 //
 // This file is MIT licensed. Please see the
-// LICENSE-MIT file in the source package for more information.
+// LICENSE file in the source package for more information.
 //
-
-/* jshint strict: global */
-
-/* globals
-    Uint8Array,
-    $, Paho,
-    mqtt_client
-*/
 
 "use strict";
 
@@ -23,7 +15,7 @@ var autoc4_light = function(){
         message.retained = true;
         message.destinationName = topic;
         mqtt_client.send(message);
-    }
+    };
 
     var init = function(autoc4){
         $(".btn-light").click(function (e) {
@@ -38,7 +30,7 @@ var autoc4_light = function(){
         mqtt_client.subscribe('power/+/+');
         mqtt_client.subscribe('socket/+/+/+');
         mqtt_client.subscribe('screen/+/+');
-    }
+    };
     
     var on_message = function(message){
         if (!(message.destinationName.startsWith('licht/') || message.destinationName.startsWith('power/') || message.destinationName.startsWith('socket/') || message.destinationName.startsWith('led/') || message.destinationName.startsWith('screen/')))
@@ -50,12 +42,12 @@ var autoc4_light = function(){
             button.addClass('on');
         else
             button.removeClass('on');
-    }
+    };
     
     return {
         init:init,
         subscribe:subscribe,
         on_message:on_message,
         switch_light:switch_light
-    }
-}
+    };
+};

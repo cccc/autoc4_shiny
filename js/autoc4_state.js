@@ -1,7 +1,7 @@
 // Copyright (c) 2014-2016 Chaos Computer Club Cologne
 //
 // This file is MIT licensed. Please see the
-// LICENSE-MIT file in the source package for more information.
+// LICENSE file in the source package for more information.
 //
 
 /* jshint strict: global */
@@ -21,7 +21,7 @@ var autoc4_state = function(){
     var on_connect_failure = function(message) {
         var icon = $('#club-status .fa');
         var text = $('#club-status :last-child');
-        icon.removeClass('fa-hand-point-right fa-thumbs-down fa-thumbs-up')
+        icon.removeClass('fa-thumbs-down fa-thumbs-up')
             .addClass('fa-exclamation-circle');
         icon.css('color', '#a00');
         text.text('Disconnected');
