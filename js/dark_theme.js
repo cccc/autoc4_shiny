@@ -1,3 +1,9 @@
+// Copyright (c) 2017 Chaos Computer Club Cologne
+//
+// This file is MIT licensed. Please see the
+// LICENSE file in the source package for more information.
+//
+
 (function(window, $){
     var $body = $("body");
     var searchParams = new URLSearchParams(window.location.search);

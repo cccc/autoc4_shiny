@@ -1,7 +1,7 @@
 // Copyright (c) 2017 Chaos Computer Club Cologne
 //
 // This file is MIT licensed. Please see the
-// LICENSE-MIT file in the source package for more information.
+// LICENSE file in the source package for more information.
 //
 
 /* jshint strict: global */
@@ -62,7 +62,6 @@ var autoc4_presets=function(){
         }
         
         var marker = $("div.preset-pane[data-room=\""+room+"\"] > .preset-pane-room-marker");
-        console.log(marker);
         for (var pre of presets) {
             create_button(room, pre).insertBefore(marker);
         }
