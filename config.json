@@ -9,14 +9,14 @@
     },
     "modules": [
         {
-            "type": "shutdown",
+            "module": "shutdown",
             "options": {
                 "forceShutdownButtonSelector": "#force-shutdown",
                 "shutdownButtonSelector": "#shutdown"
             }
         },
         {
-            "type": "dmx",
+            "module": "dmx",
             "options": {
                 "colorInputSelector": "[data-dmx-role=\"dmx-input\"]",
                 "fadeInputSelector": "[data-dmx-role=\"dmx-fade\"]",
