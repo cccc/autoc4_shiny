@@ -17,26 +17,7 @@ $(function () {
             if (config.debug && config.debug.configLoaded)
                 console.log("Config loaded successfully", config);
             autoc4 = new AutoC4(
-                config,
-                [
-                    autoc4_windows(),
-                    autoc4_presets(),
-                    autoc4_state(),
-                    autoc4_light(),
-                    autoc4_dmx({
-                        "colorInputSelector": "[data-dmx-role=\"dmx-input\"]",
-                        "fadeInputSelector": "[data-dmx-role=\"dmx-fade\"]",
-                        "soundInputSelector": "[data-dmx-role=\"dmx-sound\"]",
-                        "randomizeButtonSelector": "[data-dmx-randomize]",
-                        "roomDataAttribute": "data-dmx-room",
-                        "lightDataAttribute": "data-dmx-light",
-                        "speedSliderDataAttribute": "data-dmx-speed-slider",
-                        "roleDataAttribute": "data-dmx-role"
-                    }),
-                    autoc4_heartbeat(),
-                    autoc4_shutdown(),
-                    autoc4_kitchenlight()
-                ]
+                config
             );
             update_time();
         })
@@ -47,9 +28,18 @@ $(function () {
 
 var mqtt_client;
 
-var AutoC4 = function (config, modules) {
+var AutoC4 = function (config) {
     this.config = config;
-    this.modules = modules;
+    this.modules = config.modules.map(function(m){ return AutoC4.get_module(m.module)(m.options); });
+    //temporary until all modules can be loaded via config
+    Array.prototype.push.apply(this.modules,[
+        autoc4_windows(),
+        autoc4_presets(),
+        autoc4_state(),
+        autoc4_light(),
+        autoc4_heartbeat(),
+        autoc4_kitchenlight()
+    ]);
 
     var self = this;
 
@@ -63,7 +53,7 @@ var AutoC4 = function (config, modules) {
         $('#help-display').toggle();
     });
 
-    for (var module of modules) {
+    for (var module of this.modules) {
         if (module.init) {
             try {
                 module.init(this);
@@ -166,3 +156,16 @@ var update_time = function () {
     $('#datetime').text(text);
     setTimeout(update_time, 60000 - now.getSeconds() * 1000 - now.getMilliseconds());
 };
+
+/**
+ * BEGINING OF MODULE TYPE REGISTRATION HANDLING
+ */
+
+/**The object registered module types are stored in. */
+AutoC4.__MODULES={};
+AutoC4.register_module = function (name, mod) {
+    AutoC4.__MODULES[name]=mod;
+}
+AutoC4.get_module = function (name){
+    return AutoC4.__MODULES[name];
+}
