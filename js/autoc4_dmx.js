@@ -13,7 +13,8 @@
         var init = function (_autoc4) {
 
             $("input[" + options.roomDataAttribute + "]["+options.lightDataAttribute+"]").change(color_input);
-            $("input[" + options.roomDataAttribute + "]["+options.lightDataAttribute+"]").change(color_input);
+            $("input[" + options.roomDataAttribute + "]["+options.roleDataAttribute+"=master]").change(color_input);
+            $("input[" + options.roomDataAttribute + "]["+options.roleDataAttribute+"=brightness]").change(brightness_input)
             // $('.btn-fade').click(dmx_fade);
             // $('.btn-rand').click(dmx_rand);
             // $('.btn-sound').click(dmx_sound);
@@ -75,6 +76,7 @@
         }
 
         var change_light = function (room,light,channels,color) {
+            var send_dmx_data;
             if (channels == 1) {
                 send_dmx_data = send_dmx_data_1ch;
             } else if (channels == 3) {
@@ -134,7 +136,7 @@
         // publish dmx brightness
         var send_dmx_data_1ch = function (topic, value) {
             var v = parseInt(value, 10);
-            var buf = new Uint8Array([v, 255]);
+            var buf = new Uint8Array([v]);
             var message = new Paho.MQTT.Message(buf);
             message.retained = true;
             message.destinationName = topic;
