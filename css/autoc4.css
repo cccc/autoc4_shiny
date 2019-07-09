@@ -259,6 +259,18 @@ body.dark .modal-content {
     background-color: #111;
 }
 
+body.dark .close {
+    color: #e0e0e0;
+}
+
+body.dark .modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+body.dark .modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
 .nav-tabs .nav-link:focus,
 .nav-tabs .nav-link:hover {
     border-color: #141414 #141414 #222;
@@ -269,5 +281,5 @@ body.dark .nav-tabs {
 }
 
 body.dark hr {
-    border-top: 1px solid rgba(255, 255, 255, .1)
+    border-top: 1px solid rgba(255, 255, 255, .1);
 }
