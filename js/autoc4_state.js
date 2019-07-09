@@ -13,11 +13,11 @@
 
 "use strict";
 
-var autoc4_state = function(){
+var autoc4_state = function() {
     var subscribe = function(mqtt_client) {
         mqtt_client.subscribe('club/status');
     };
-    
+
     var on_connect_failure = function(message) {
         var icon = $('#club-status .fa');
         var text = $('#club-status :last-child');
@@ -26,7 +26,7 @@ var autoc4_state = function(){
         icon.css('color', '#a00');
         text.text('Disconnected');
     }
-    
+
     var on_message = function(message) {
         if (message.destinationName != "club/status")
             return;
@@ -44,10 +44,10 @@ var autoc4_state = function(){
             text.text('Closed');
         }
     };
-    
+
     return {
-        subscribe:subscribe,
-        on_message:on_message,
-        on_connect_failure:on_connect_failure
+        subscribe: subscribe,
+        on_message: on_message,
+        on_connect_failure: on_connect_failure
     }
 }
