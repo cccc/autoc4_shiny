@@ -35,7 +35,6 @@ var AutoC4 = function(config) {
     //temporary until all modules can be loaded via config
     Array.prototype.push.apply(this.modules, [
         autoc4_windows(),
-        autoc4_presets(),
         autoc4_state(),
         autoc4_light(),
         autoc4_kitchenlight()
@@ -52,6 +51,10 @@ var AutoC4 = function(config) {
         ev.preventDefault();
         $('#help-display').toggle();
     });
+
+    $('body').on("click change input","[data-mqtt-topic]",function(){
+        self.mqtt_send_data($(this).attr("data-mqtt-topic"),$(this).attr("data-mqtt-message"));
+    })
 
     for (var module of this.modules) {
         if (module.init) {

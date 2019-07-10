@@ -23,16 +23,21 @@
                 "roleDataAttribute": "data-dmx-role",
                 "valueDataAttribute": "data-dmx-value"
             },
-            "subscribe": ["dmx/+/+"]
+            "subscribe": [
+                "dmx/+/+"
+            ]
         },
         {
             "module": "heartbeat",
-            "subscribe": ["heartbeat/#"]
+            "subscribe": [
+                "heartbeat/#"
+            ]
+        },
+        {
+            "module": "presets",
+            "subscribe": [
+                "presets/+/+"
+            ]
         }
-    ],
-    "module_locations": {
-        "dmx": "js/autoc4_dmx.js",
-        "shutdown": "js/autoc4_shutdown.js",
-        "heartbeat": "js/autoc4_heartbeat.js"
-    }
+    ]
 }
