@@ -7,13 +7,13 @@
         "disconnect": true,
         "configLoaded": true
     },
-    "modules": [{
-            "module": "shutdown",
-            "options": {
-                "forceShutdownButtonSelector": "#force-shutdown",
-                "shutdownButtonSelector": "#shutdown"
-            }
-        },
+    "interactivity":{
+        "mqttTopicDataAttibute": "data-mqtt-topic",
+        "mqttRetainedDataAttribute": "data-mqtt-retained",
+        "mqttMessageDataAttribute": "data-mqtt-message",
+        "mqttByteMessageDataAttribute": "data-mqtt-message-byte"
+    },
+    "modules": [
         {
             "module": "dmx",
             "options": {
@@ -28,16 +28,46 @@
             ]
         },
         {
+            "module": "light",
+            "options": {
+                "topicDataAttribute": "data-light-topic",
+                "onClass": "on"
+            },
+            "subscribe": [
+                "licht/+/+",
+                "led/+/+",
+                "power/+/+",
+                "socket/+/+/+",
+                "screen/+/+"
+            ]
+        },
+        {
             "module": "heartbeat",
             "subscribe": [
                 "heartbeat/#"
             ]
         },
         {
+            "module": "windows",
+            "subscribe": [
+                "fenster/+/+"
+            ]
+        },
+        {
+            "module": "state",
+            "subscribe": [
+                "club/status"
+            ]
+        },
+        {
             "module": "presets",
             "subscribe": [
-                "presets/+/+"
+                "preset/list",
+                "preset/+/list"
             ]
+        },
+        {
+            "module": "kitchenlight"
         }
     ]
 }
