@@ -3,69 +3,65 @@
 // This file is MIT licensed. Please see the
 // LICENSE file in the source package for more information.
 //
+/// <reference path="autoc4.ts" />
 
-/* jshint strict: global */
+class AutoC4Kitchenlight implements AutoC4Module {
+    private autoc4: AutoC4;
 
-/* globals
-    console, ArrayBuffer, DataView, Uint8Array,
-    $, Paho,
-    mqtt_client
-*/
+    init(autoc4: AutoC4, options: any): this {
+        this.autoc4 = autoc4;
 
-"use strict";
-
-var autoc4_kitchenlight = function (options) {
-    var init = function(autoc4) {
-        $("#klMatrixLines").on('input', function (ev) {
+        ($("#klMatrixLines") as JQuery<HTMLInputElement>).on('input', function (ev) {
             $("#klMatrixLinesOut").val(parseInt(this.value));
         });
-        $("#klConwaySpeed").on('input', function (ev) {
+        ($("#klConwaySpeed") as JQuery<HTMLInputElement>).on('input', function (ev) {
             $("#klConwaySpeedOut").val(parseInt(this.value));
         });
-        $("#klConwayGenerations").on('input', function (ev) {
+        ($("#klConwayGenerations") as JQuery<HTMLInputElement>).on('input', function (ev) {
             $("#klConwayGenerationsOut").val(parseInt(this.value));
         });
-        $("#klSelect").change(function (ev) {
+        ($("#klSelect") as JQuery<HTMLInputElement>).change(function (ev) {
             $(".klPane.active").removeClass("active");
             $("#" + this.value).addClass("active");
         });
-        $("#klSet").click(function (ev) {
+        let _self=this;
+        ($("#klSet") as JQuery<HTMLInputElement>).click(function (ev) {
             switch ($("#klSelect").val()) {
                 case "klEmpty":
-                    kl_empty();
+                    _self.kl_empty();
                     break;
                 case "klChecker":
-                    kl_checker(parseInt($("#klCheckerDelay").val()), $("#klCheckerColorA").val(), $("#klCheckerColorB").val());
+                    _self.kl_checker(parseInt($("#klCheckerDelay").val()), $("#klCheckerColorA").val(), $("#klCheckerColorB").val());
                     break;
                 case "klPacman":
-                    kl_pacman();
+                    _self.kl_pacman();
                     break;
                 case "klText":
-                    kl_text(parseInt($("#klTextDelay").val()), $("#klTextText").val());
+                    _self.kl_text(parseInt($("#klTextDelay").val()), $("#klTextText").val());
                     break;
                 case "klOpenChaos":
-                    kl_open_chaos(parseInt($("#klOCDelay").val()));
+                    _self.kl_open_chaos(parseInt($("#klOCDelay").val()));
                     break;
                 case "klMatrix":
-                    kl_matrix(parseInt($("#klMatrixLines").val()));
+                    _self.kl_matrix(parseInt($("#klMatrixLines").val()));
                     break;
                 case "klMood":
-                    kl_moodlight(parseInt($("#klMoodMode").val()));
+                    _self.kl_moodlight(parseInt($("#klMoodMode").val()));
                     break;
                 case "klSine":
-                    kl_sine();
+                    _self.kl_sine();
                     break;
                 case "klStrobe":
-                    kl_strobe();
+                    _self.kl_strobe();
                     break;
                 case "klFlood":
-                    kl_flood();
+                    _self.kl_flood();
                     break;
                 case "klClock":
-                    kl_clock();
+                    _self.kl_clock();
                     break;
                 case "klConway":
-                    kl_conway(parseInt($("#klConwaySpeed").val()), parseInt($("#klConwayGenerations").val()), $("#klConwayFill")[0].checked);
+                    _self.kl_conway(parseInt($("#klConwaySpeed").val()), parseInt($("#klConwayGenerations").val()), $("#klConwayFill")[0].checked);
                     break;
             }
         });
@@ -73,10 +69,7 @@ var autoc4_kitchenlight = function (options) {
         $("#" + $("#klSelect").val()).addClass("active");
         $(".btn-floodit").click(function (ev) {
             var i = parseInt(this.textContent) - 1;
-            var message = new Paho.MQTT.Message(new Uint8Array([i]));
-            message.retained = true;
-            message.destinationName = "kitchenlight/FloodIt/flood";
-            return mqtt_client.send(message);
+            return autoc4.sendByte("kitchenlight/FloodIt/flood",i,true);
         });
         $("#klFlood").keypress(function (ev) {
             if (ev.which < 49 || ev.which > 56)
@@ -84,24 +77,23 @@ var autoc4_kitchenlight = function (options) {
             $("#klFlood" + (ev.which - 48)).click();
             ev.preventDefault();
         });
+
+        return this;
+    }
+
+    private kl_change_screen(data) {
+        return this.autoc4.sendData("kitchenlight/change_screen",data,true);
     };
 
-    var kl_change_screen = function(data) {
-        var message = new Paho.MQTT.Message(data);
-        message.retained = true;
-        message.destinationName = "kitchenlight/change_screen";
-        return mqtt_client.send(message);
-    };
-
-    var kl_empty = function() {
+    private kl_empty() {
         var data = new ArrayBuffer(4);
         var v = new DataView(data);
         // Empty is screen 0
         v.setUint32(0, 0, true);
-        kl_change_screen(data);
+        this.kl_change_screen(data);
     };
 
-    var kl_checker = function(delay, colA, colB) {
+    private kl_checker(delay, colA, colB) {
         var data = new ArrayBuffer(20);
         var v = new DataView(data);
         // Checker is screen 1
@@ -123,20 +115,20 @@ var autoc4_kitchenlight = function (options) {
         // Color B Blue
         v.setUint16(18, parseInt(colB.substr(5, 2), 16) * 0x3ff / 0xff, true);
 
-        kl_change_screen(data);
+        this.kl_change_screen(data);
     };
 
-    var kl_matrix = function(lines) {
+    private kl_matrix(lines) {
         var data = new ArrayBuffer(8);
         var v = new DataView(data);
         // Matrix is screen 2
         v.setUint32(0, 2, true);
         // Lines
         v.setUint32(4, lines, true);
-        kl_change_screen(data);
+        this.kl_change_screen(data);
     };
 
-    var kl_moodlight = function(mode) {
+    private kl_moodlight(mode) {
         var data, v;
         if (mode === 1) { // colorwheel
             data = new ArrayBuffer(19);
@@ -153,7 +145,7 @@ var autoc4_kitchenlight = function (options) {
             v.setUint32(13, 10000, true);
             // Hue Step
             v.setUint16(17, 30, true);
-            kl_change_screen(data);
+            this.kl_change_screen(data);
         } else {
             data = new ArrayBuffer(17);
             v = new DataView(data);
@@ -167,45 +159,45 @@ var autoc4_kitchenlight = function (options) {
             v.setUint32(9, 10, true);
             // Pause
             v.setUint32(13, 10000, true);
-            kl_change_screen(data);
+            this.kl_change_screen(data);
         }
     };
 
-    var kl_open_chaos = function(delay) {
+    private kl_open_chaos(delay) {
         var data = new ArrayBuffer(8);
         var v = new DataView(data);
         // OC is screen 4
         v.setUint32(0, 4, true);
         // Delay
         v.setUint32(4, delay, true);
-        kl_change_screen(data);
+        this.kl_change_screen(data);
     };
 
-    var kl_pacman = function() {
+    private kl_pacman() {
         var data = new ArrayBuffer(4);
         var v = new DataView(data);
         // Pacman is screen 5
         v.setUint32(0, 5, true);
-        kl_change_screen(data);
+        this.kl_change_screen(data);
     };
 
-    function kl_sine() {
+    private kl_sine() {
         var data = new ArrayBuffer(4);
         var v = new DataView(data);
         // Sine is screen 6
         v.setUint32(0, 6, true);
-        kl_change_screen(data);
+        this.kl_change_screen(data);
     }
 
-    function kl_strobe() {
+    private kl_strobe() {
         var data = new ArrayBuffer(4);
         var v = new DataView(data);
         // Strobe is screen 7
         v.setUint32(0, 7, true);
-        kl_change_screen(data);
+        this.kl_change_screen(data);
     }
 
-    function kl_text(delay, text) {
+    private kl_text(delay, text) {
         var data = new ArrayBuffer(8 + text.length + 1);
         var v = new DataView(data);
         // Text is screen 8
@@ -217,26 +209,26 @@ var autoc4_kitchenlight = function (options) {
             v.setUint8(8 + i, text.charCodeAt(i) & 0xff);
         }
         v.setUint8(8 + text.length, 0);
-        kl_change_screen(data);
+        this.kl_change_screen(data);
     }
 
-    function kl_flood() {
+    private kl_flood():void {
         var data = new ArrayBuffer(4);
         var v = new DataView(data);
         // FloodIt is screen 9
         v.setUint32(0, 9, true);
-        kl_change_screen(data);
+        this.kl_change_screen(data);
     }
 
-    function kl_clock() {
+    private kl_clock():void {
         var data = new ArrayBuffer(4);
         var v = new DataView(data);
         // Clock is screen 11
         v.setUint32(0, 11, true);
-        kl_change_screen(data);
+        this.kl_change_screen(data);
     }
 
-    function kl_conway(speed, generations, fill) {
+    private kl_conway(speed, generations, fill):void {
         var data = new ArrayBuffer(16);
         var v = new DataView(data);
         // Conway is screen 12
@@ -249,12 +241,13 @@ var autoc4_kitchenlight = function (options) {
             v.setUint32(12, 1, true);
         else
             v.setUint32(12, 0, true);
-        kl_change_screen(data);
+        this.kl_change_screen(data);
     }
 
-    return {
-        init: init
-    };
-};
+    public onMessage(autoc4: AutoC4, message: Paho.MQTT.Message): void {}
+    public onConnect(autoc4: AutoC4, o: Paho.MQTT.WithInvocationContext): void { }
+    public onConnectionFailure(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void { }
 
+}
 
+AutoC4.registerModule("kitchenlight", () => new AutoC4Kitchenlight());
