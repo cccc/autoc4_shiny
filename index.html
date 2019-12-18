@@ -7,31 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="icon" href="favicon.png" sizes="16x16" type="image/png" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-autoc4.css" />
-    <link rel="stylesheet" type="text/css" href="css/autoc4.css" />
-    <link rel="stylesheet" type="text/css" href="css/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-autoc4.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/autoc4.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/dark_theme.css" />
 
-    <script type="text/javascript" src="js/compat.js"></script>
     <script type="text/javascript" src="js/mqttws31.js"></script>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/autoc4_light.js"></script>
-    <script type="text/javascript" src="js/autoc4_kitchenlight.js"></script>
-    <script type="text/javascript" src="js/autoc4_state.js"></script>
-    <script type="text/javascript" src="js/autoc4_windows.js"></script>
-    <script type="text/javascript" src="js/autoc4.js"></script>
-    <script type="text/javascript" src="js/autoc4_shutdown.js"></script>
-    <script type="text/javascript" src="js/autoc4_dmx.js"></script>
+    <script type="text/javascript" src="assets/js/autoc4/autoc4.js"></script>
+    <script type="text/javascript" src="assets/js/autoc4/light.js"></script>
+    <script type="text/javascript" src="assets/js/autoc4/color.js"></script>
+    <script type="text/javascript" src="assets/js/autoc4/dmx.js"></script>
+    <script type="text/javascript" src="assets/js/autoc4/state.js"></script>
+    <script type="text/javascript" src="assets/js/autoc4/heartbeat.js"></script>
+    <script type="text/javascript" src="assets/js/autoc4/windows.js"></script>
+    <script type="text/javascript" src="assets/js/autoc4/presets.js"></script>
+    <script type="text/javascript" src="assets/js/autoc4/kitchenlight.js"></script>
+    <!--<script type="text/javascript" src="js/autoc4_shutdown.js"></script>
     <script type="text/javascript" src="js/autoc4_heartbeat.js"></script>
-    <script type="text/javascript" src="js/autoc4_presets.js"></script>
+    <script type="text/javascript" src="js/autoc4_presets.js"></script>-->
 </head>
 
 <body>
-    <script type="text/javascript" src="js/dark_theme.js"></script>
-    <nav class="navbar navbar-dark bg-darker navbar-expand-lg fixed-top">
+    <script type="text/javascript" src="assets/js/dark_theme.js"></script>
+    <nav class="navbar navbar-dark bg-darker navbar-expand-xl fixed-top">
         <div class="container">
-            <a class="navbar-brand d-none d-sm-block" data-toggle="theme" href="#">AutoC4</a>
+            <a class="navbar-brand d-none d-sm-block" href=".">AutoC4</a>
             <ul class="nav navbar-nav mr-auto flex-row">
                 <li class="nav-item d-block"><a class="pl-2 pr-2 nav-link active" data-toggle="tab" href="#light"><i class="far fa-lightbulb"></i> Light</a></li>
                 <li class="nav-item d-block"><a class="pl-2 pr-2 nav-link" data-toggle="tab" href="#presets"><i class="fa fa-save"></i> Presets</a></li>
@@ -45,13 +48,16 @@
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="#" id="help"><i class="fa fa-question-circle"></i> Help</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" id="gate"><i class="fa fa-door-open"></i> Open Gate</a></li>
+                    <li class="theme-light nav-item"><a class="nav-link" data-toggle="theme" href="#"><i class="fa fa-moon"></i> Dark</a></li>
+                    <li class="theme-dark nav-item"><a class="nav-link" data-toggle="theme" href="#"><i class="fa fa-sun"></i> Light</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-mqtt-topic="club/gate"><i class="fa fa-door-open"></i> Open Gate</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-power-off"></i> Shutdown
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#" id="shutdown">Shutdown</a>
+                            <a class="dropdown-item" href="#" data-mqtt-topic="club/shutdown">Shutdown</a>
+                            <!--<a class="dropdown-item" href="#" data-mqtt-topic="club/shutdown" data-mqtt-message-byte="0x44">Force Shutdown</a>-->
                         </div>
                     </li>
                     <li class="nav-item"><a class="nav-link" id="club-status" href="#"><i class="fa fa-exclamation-circle" style="color:#a00"></i> <span>Disconnected</span></a></li>
@@ -75,18 +81,18 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active lightswitch-pane show" id="wohnzimmernormal">
-                            <button type="button" class="btn btn-light" data-topic="licht/wohnzimmer/tuer">Tür</button>
-                            <button type="button" class="btn btn-light" data-topic="licht/wohnzimmer/mitte">Mitte</button>
-                            <button type="button" class="btn btn-light" data-topic="licht/wohnzimmer/kueche">Küche</button>
-                            <button type="button" class="btn btn-light" data-topic="licht/wohnzimmer/gang">Gang</button>
-                            <button type="button" class="btn btn-light" data-topic="socket/wohnzimmer/screen/a">Leseleuchte</button>
-                            <button type="button" class="btn btn-light" data-topic="screen/wohnzimmer/infoscreen">Infoscreen</button>
-                            <button type="button" class="btn btn-light" data-topic="socket/wohnzimmer/screen/b">Verstärker</button>
-                            <button type="button" class="btn btn-light" data-topic="power/wohnzimmer/kitchenlight">LED-Wand</button>
+                            <button type="button" class="btn btn-light" data-light-topic="licht/wohnzimmer/tuer">Tür</button>
+                            <button type="button" class="btn btn-light" data-light-topic="licht/wohnzimmer/mitte">Mitte</button>
+                            <button type="button" class="btn btn-light" data-light-topic="licht/wohnzimmer/kueche">Küche</button>
+                            <button type="button" class="btn btn-light" data-light-topic="licht/wohnzimmer/gang">Gang</button>
+                            <button type="button" class="btn btn-light" data-light-topic="socket/wohnzimmer/screen/a">Leseleuchte</button>
+                            <button type="button" class="btn btn-light" data-light-topic="screen/wohnzimmer/infoscreen">Infoscreen</button>
+                            <button type="button" class="btn btn-light" data-light-topic="socket/wohnzimmer/screen/b">Verstärker</button>
+                            <button type="button" class="btn btn-light" data-light-topic="power/wohnzimmer/kitchenlight">LED-Wand</button>
                         </div>
                         <div class="tab-pane" id="wohnzimmerdmx">
                             <div class="colorpicker">
-                                <label>Master:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer" data-dmx-role="master"  /></label>
+                                <label>Master:<input type="color" data-dmx-role="master" data-dmx-room="wohnzimmer" /></label>
                             </div>
                             <div class="colorpicker">
                                 <label>Mitte 1:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer" data-dmx-light="mitte1" /></label>
@@ -225,14 +231,14 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane in lightswitch-pane show active" id="plenarnormal">
-                            <button type="button" class="btn btn-light" data-topic="licht/plenar/vornewand">Vorne Wand</button>
-                            <button type="button" class="btn btn-light" data-topic="licht/plenar/vornefenster">Vorne Fenster</button>
-                            <button type="button" class="btn btn-light" data-topic="licht/plenar/hintenwand">Hinten Wand</button>
-                            <button type="button" class="btn btn-light" data-topic="licht/plenar/hintenfenster">Hinten Fenster</button>
+                            <button type="button" class="btn btn-light" data-light-topic="licht/plenar/vornewand">Vorne Wand</button>
+                            <button type="button" class="btn btn-light" data-light-topic="licht/plenar/vornefenster">Vorne Fenster</button>
+                            <button type="button" class="btn btn-light" data-light-topic="licht/plenar/hintenwand">Hinten Wand</button>
+                            <button type="button" class="btn btn-light" data-light-topic="licht/plenar/hintenfenster">Hinten Fenster</button>
                         </div>
                         <div class="tab-pane" id="plenardmx">
                             <div class="colorpicker">
-                                <label>Master:<input type="color" data-dmx-role="light" data-dmx-room="plenar" data-dmx-role="master"  /></label>
+                                <label>Master:<input type="color" data-dmx-role="master" data-dmx-room="plenar" /></label>
                             </div>
                             <div class="colorpicker">
                                 <label>Vorne 1:<input type="color" data-dmx-role="light" data-dmx-room="plenar" data-dmx-light="vorne1" /></label>
@@ -296,8 +302,8 @@
                     <div class="tab-content">
 
                         <div class="tab-pane lightswitch-pane show active" id="fnordnormal">
-                            <button type="button" class="btn btn-light" data-topic="licht/fnord/links">Links</button>
-                            <button type="button" class="btn btn-light" data-topic="licht/fnord/rechts">Rechts</button>
+                            <button type="button" class="btn btn-light" data-light-topic="licht/fnord/links">Links</button>
+                            <button type="button" class="btn btn-light" data-light-topic="licht/fnord/rechts">Rechts</button>
                         </div>
 
                         <div class="tab-pane" id="fnorddmx">
@@ -338,13 +344,13 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane lightswitch-pane show active" id="kellernormal">
-                            <button type="button" class="btn btn-light" data-topic="licht/keller/loet">Lötplatz</button>
-                            <button type="button" class="btn btn-light" data-topic="licht/keller/mitte">Mitte</button>
-                            <button type="button" class="btn btn-light" data-topic="licht/keller/vorne">Vorne</button>
-                            <button type="button" class="btn btn-light" data-topic="led/keller/werkbankkalt">Werkbank(kalt)</button>
-                            <button type="button" class="btn btn-light" data-topic="led/keller/werkbankwarm">Werkbank(warm)</button>
-                            <button type="button" class="btn btn-light" data-topic="led/keller/hintenkalt">Hinten(kalt)</button>
-                            <button type="button" class="btn btn-light" data-topic="led/keller/hintenwarm">Hinten(warm)</button>
+                            <button type="button" class="btn btn-light" data-light-topic="licht/keller/loet">Lötplatz</button>
+                            <button type="button" class="btn btn-light" data-light-topic="licht/keller/mitte">Mitte</button>
+                            <button type="button" class="btn btn-light" data-light-topic="licht/keller/vorne">Vorne</button>
+                            <button type="button" class="btn btn-light" data-light-topic="led/keller/werkbankkalt">Werkbank(kalt)</button>
+                            <button type="button" class="btn btn-light" data-light-topic="led/keller/werkbankwarm">Werkbank(warm)</button>
+                            <button type="button" class="btn btn-light" data-light-topic="led/keller/hintenkalt">Hinten(kalt)</button>
+                            <button type="button" class="btn btn-light" data-light-topic="led/keller/hintenwarm">Hinten(warm)</button>
                         </div>
                     </div>
                 </div>
@@ -363,28 +369,19 @@
                 <div class="col-lg-3">
                     <h2>Wohnzimmer</h2>
                     <div class="preset-pane" data-room="wohnzimmer">
-                        <button type="button" class="btn btn-preset" data-mqtt-topic="preset/wohnzimmer/on" data-mqtt-message="">All On</button><button type="button" class="btn btn-preset" data-mqtt-topic="preset/wohnzimmer/off" data-mqtt-message="">All Off</button>
-                        <div class="preset-pane-onoff-marker" style="display:none"></div>
-                        <div class="preset-pane-room-marker" style="display:none"></div>
-                        <div class="preset-pane-global-marker" style="display:none"></div>
+                        <button type="button" class="btn btn-preset" data-mqtt-topic="preset/wohnzimmer/on" data-mqtt-message="">All On</button><button type="button" class="btn btn-preset" data-mqtt-topic="preset/wohnzimmer/off" data-mqtt-message="">All Off</button><div class="preset-pane-onoff-marker" style="display:none"></div><div class="preset-pane-room-marker" style="display:none"></div><div class="preset-pane-global-marker" style="display:none"></div>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <h2>Plenarsaal</h2>
                     <div class="preset-pane" data-room="plenar">
-                        <button type="button" class="btn btn-preset" data-mqtt-topic="preset/plenar/on" data-mqtt-message="">All On</button><button type="button" class="btn btn-preset" data-mqtt-topic="preset/plenar/off" data-mqtt-message="">All Off</button>
-                        <div class="preset-pane-onoff-marker" style="display:none"></div>
-                        <div class="preset-pane-room-marker" style="display:none"></div>
-                        <div class="preset-pane-global-marker" style="display:none"></div>
+                        <button type="button" class="btn btn-preset" data-mqtt-topic="preset/plenar/on" data-mqtt-message="">All On</button><button type="button" class="btn btn-preset" data-mqtt-topic="preset/plenar/off" data-mqtt-message="">All Off</button><div class="preset-pane-onoff-marker" style="display:none"></div><div class="preset-pane-room-marker" style="display:none"></div><div class="preset-pane-global-marker" style="display:none"></div>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <h2>Fnordcenter</h2>
                     <div class="preset-pane" data-room="fnord">
-                        <button type="button" class="btn btn-preset" data-mqtt-topic="preset/fnord/on" data-mqtt-message="">All On</button><button type="button" class="btn btn-preset" data-mqtt-topic="preset/fnord/off" data-mqtt-message="">All Off</button>
-                        <div class="preset-pane-onoff-marker" style="display:none"></div>
-                        <div class="preset-pane-room-marker" style="display:none"></div>
-                        <div class="preset-pane-global-marker" style="display:none"></div>
+                        <button type="button" class="btn btn-preset" data-mqtt-topic="preset/fnord/on" data-mqtt-message="">All On</button><button type="button" class="btn btn-preset" data-mqtt-topic="preset/fnord/off" data-mqtt-message="">All Off</button><div class="preset-pane-onoff-marker" style="display:none"></div><div class="preset-pane-room-marker" style="display:none"></div><div class="preset-pane-global-marker" style="display:none"></div>
                     </div>
                 </div>
                 <div class="col-lg-3">
