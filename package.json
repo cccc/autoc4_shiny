@@ -1,0 +1,23 @@
+{
+  "name": "autoc4-shiny",
+  "version": "1.0.0",
+  "description": "A web frontend for controlling AutoC4, the home automation system of the Chaos Computer Club Cologne.",
+  "main": " ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cccc/autoc4_shiny.git"
+  },
+  "author": "Chaos Computer Club Cologne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cccc/autoc4_shiny/issues"
+  },
+  "homepage": "https://github.com/cccc/autoc4_shiny#readme",
+  "devDependencies": {
+    "@types/jquery": "^3.3.30",
+    "@types/paho-mqtt": "^1.0.4"
+  }
+}
