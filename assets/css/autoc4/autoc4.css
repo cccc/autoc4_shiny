@@ -159,6 +159,8 @@ input[type=color] {
 .btn-poweroff {
     float: right;
     line-height: 1.2;
+    padding: 0;
+    margin: .8em;
 }
 
 body:not(.cyber) .show-cyber { display: none !important; }
