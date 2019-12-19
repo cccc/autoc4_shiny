@@ -183,19 +183,6 @@ body.cyber .navbar-dark .navbar-toggler-icon {
     border-radius: .17em;
 }
 
-.music-playing .music-btn-play,
-.music-paused .music-btn-pause,
-.music-stopped .music-btn-stop,
-.music-stopped .music-btn-play,
-.music-stopped .music-btn-pause,
-.music-stopped .music-btn-next,
-.music-stopped .music-btn-prev
-{
-    pointer-events: none;
-    opacity: .45;
-}
-
-
 .music-paused .music-show-playing,
 .music-stopped .music-show-playing,
 .music-playing .music-show-paused,
