@@ -3,6 +3,7 @@ class AutoC4DMX {
         this.options = options;
         this.autoc4 = autoc4;
         this.initColorSelection();
+        this.initPoweroff();
         this.initBrightness();
         this.initFade();
         this.initRandom();
@@ -53,6 +54,19 @@ class AutoC4DMX {
                     light = "master";
                 else
                     return;
+            }
+            self.setLightColor(room, light, channels, color);
+        });
+    }
+    initPoweroff() {
+        const self = this;
+        $("body").on("click change", `[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=poweroff]`, function () {
+            let color = Color.fromRGB({ r: 0, g: 0, b: 0 });
+            let channels = (+this.getAttribute(self.options.channelsDataAttribute)) || 7;
+            let room = this.getAttribute(self.options.roomDataAttribute);
+            let light = this.getAttribute(self.options.lightDataAttribute);
+            if (!light) {
+                light = "master";
             }
             self.setLightColor(room, light, channels, color);
         });

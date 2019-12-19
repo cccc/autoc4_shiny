@@ -1,3 +1,5 @@
+@import url("kitchenlight.css");
+
 input[type=color] {
     border: 0;
     padding: 0
@@ -9,7 +11,7 @@ input[type=color] {
     margin: 0 auto;
     padding: 0;
     padding-top: 10px;
-    background-image: url(../img/preset.png);
+    background-image: url(../../img/preset.png);
     background-position: center top;
     background-size: 50% auto;
     background-repeat: no-repeat;
@@ -34,7 +36,7 @@ input[type=color] {
 .btn-preset:active,
 .btn-preset.active,
 .open .dropdown-toggle.btn-preset {
-    background-image: url(../img/preset_hover.png);
+    background-image: url(../../img/preset_hover.png);
     color: #ffffff;
     background-color: #604EFE;
     border-color: #604EFE;
@@ -45,7 +47,7 @@ input[type=color] {
     height: 120px;
     padding: 0;
     padding-top: 10px;
-    background-image: url(../img/bulb_off.png);
+    background-image: url(../../img/bulb_off.png);
     background-position: center top;
     background-size: 50% auto;
     background-repeat: no-repeat;
@@ -69,14 +71,14 @@ input[type=color] {
 .btn-light:active,
 .btn-light.active,
 .open .dropdown-toggle.btn-light {
-    background-image: url(../img/bulb_off.png);
+    background-image: url(../../img/bulb_off.png);
     color: #ffffff;
     background-color: #d60030;
     border-color: #c2002b;
 }
 
 .btn-light.on {
-    background-image: url(../img/bulb_on.png);
+    background-image: url(../../img/bulb_on.png);
     color: #ffffff;
     background-color: #3fb618;
     border-color: #3fb618;
@@ -101,7 +103,7 @@ input[type=color] {
     height: 80px;
     padding: 0;
     padding-top: 5px;
-    background-image: url(../img/window_closed.png);
+    background-image: url(../../img/window_closed.png);
     background-position: center top;
     background-size: 75% auto;
     background-repeat: no-repeat;
@@ -121,7 +123,7 @@ input[type=color] {
 }
 
 .box-window.open {
-    background-image: url(../img/window_open.png);
+    background-image: url(../../img/window_open.png);
     color: #ffffff;
     background-color: #ff0039;
     border-color: #ff0039;
@@ -156,7 +158,7 @@ input[type=color] {
     width: 100%;
 }
 
-.colorpicker label input {
+.colorpicker label * {
     float: right;
 }
 
@@ -195,41 +197,7 @@ input[type=color] {
     margin-bottom: 5px
 }
 
-#klSelect {
-    margin-bottom: 5px
-}
-
-#klFlood1 {
-    background-color: red
-}
-
-#klFlood2 {
-    color: white;
-    background-color: green
-}
-
-#klFlood3 {
-    color: white;
-    background-color: blue
-}
-
-#klFlood4 {
-    background-color: yellow
-}
-
-#klFlood5 {
-    background-color: magenta
-}
-
-#klFlood6 {
-    background-color: cyan
-}
-
-#klFlood7 {
-    background-color: white
-}
-
-#klFlood8 {
-    color: white;
-    background-color: black
+.btn-poweroff {
+    float: right;
+    line-height: 1.2;
 }
