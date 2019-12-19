@@ -16,9 +16,6 @@ class AutoC4Heartbeat implements AutoC4Module {
     }
 
     public onMessage(autoc4: AutoC4, message: Paho.MQTT.Message): void {
-        if (!message.destinationName.startsWith('heartbeat/'))
-            return;
-        // update .box-window state
         var name = message.destinationName.substring('heartbeat/'.length);
         if (!(name in this.heartbeats)) {
             this.heartbeats[name] = this.createEntry(name);

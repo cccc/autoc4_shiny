@@ -13,9 +13,6 @@ class AutoC4Windows implements AutoC4Module {
     }
 
     public onMessage(autoc4: AutoC4, message: Paho.MQTT.Message): void {
-        if (!message.destinationName.startsWith('fenster/'))
-            return;
-            
         // update .box-window state
         let button = $('.box-window').filter('[data-topic="' + message.destinationName + '"]');
         if (button && (message.payloadBytes as Uint8Array)[0] !== 0)

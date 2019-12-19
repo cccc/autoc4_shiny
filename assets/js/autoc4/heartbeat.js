@@ -7,8 +7,6 @@ class AutoC4Heartbeat {
         return this;
     }
     onMessage(autoc4, message) {
-        if (!message.destinationName.startsWith('heartbeat/'))
-            return;
         var name = message.destinationName.substring('heartbeat/'.length);
         if (!(name in this.heartbeats)) {
             this.heartbeats[name] = this.createEntry(name);
