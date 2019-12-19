@@ -4,8 +4,6 @@ class AutoC4State {
         return this;
     }
     onMessage(autoc4, message) {
-        if (message.destinationName != "club/status")
-            return;
         let icon = $('#club-status .fa');
         let text = $('#club-status :last-child');
         if (message.payloadBytes[0]) {

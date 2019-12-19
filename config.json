@@ -1,11 +1,12 @@
 {
-    "server": "autoc4",
+    "server": "172.23.23.110",
     "port": 9000,
     "debug": {
         "message": false,
         "connect": true,
         "disconnect": true,
-        "configLoaded": true
+        "configLoaded": true,
+        "moduleLoaded": true
     },
     "interactivity":{
         "mqttTopicDataAttibute": "data-mqtt-topic",
@@ -68,6 +69,26 @@
         },
         {
             "module": "kitchenlight"
+        },
+        {
+            "module": "music",
+            "options": {
+                "roleDataAttribute": "data-music-role",
+                "topicDataAttribute": "data-music-topic",
+                "playingClass": "music-playing",
+                "pausedClass": "music-paused",
+                "stoppedClass": "music-stopped"
+            },
+            "subscribe": [
+                "mpd/+/state",
+                "mpd/+/song"
+            ]
+        },
+        {
+            "module": "cyber",
+            "subscribe": [
+                "club/cyber"
+            ]
         }
     ]
 }

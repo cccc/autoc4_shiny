@@ -1,8 +1,8 @@
-// Copyright (c) 2014-2016 Chaos Computer Club Cologne
-//
-// This file is MIT licensed. Please see the
-// LICENSE file in the source package for more information.
-//
+/**
+ * @copyright Chaos Computer Club Cologne 2014-2019
+ * @license MIT
+ */
+/// <reference path="utils.ts" />
 
 var autoc4;
 var __AUTOC4_CONFIG_LOCATION:string = __AUTOC4_CONFIG_LOCATION || "config.json";
@@ -11,7 +11,7 @@ $(function () {
     $.getJSON(__AUTOC4_CONFIG_LOCATION)
         .done(function (config) {
             if (config.debug && config.debug.configLoaded)
-                console.log("Config loaded successfully", config);
+                console.debug("Config loaded successfully", config);
             autoc4 = new AutoC4(
                 config
             );
@@ -39,6 +39,7 @@ interface AutoC4ModuleConfig {
     module: string;
     options: any;
     subscribe: string[];
+    instance: AutoC4Module;
 }
 
 interface AutoC4DebugConfig {
@@ -46,6 +47,7 @@ interface AutoC4DebugConfig {
     connect: boolean;
     disconnect: boolean;
     configLoaded: boolean;
+    moduleLoaded: boolean;
 }
 
 interface AutoC4InteractivityConfig{
@@ -79,9 +81,12 @@ class AutoC4 {
         this.client.onMessageArrived = this.onMessage.bind(this);
         this.client.onConnectionLost = this.onConnectionFailure.bind(this);
 
-        for (var moduleConfig of config.modules) {
+        for (let moduleConfig of config.modules) {
             try {
-                this.modules.push(AutoC4.moduleConfigToModule(moduleConfig).init(this, moduleConfig.options));
+                moduleConfig.instance=AutoC4.moduleConfigToModule(moduleConfig).init(this, moduleConfig.options)
+                this.modules.push(moduleConfig.instance);
+                if (this.config.debug && this.config.debug.moduleLoaded)
+                    console.debug(`Successfully loaded module of type "${moduleConfig.module}".`, moduleConfig);
             } catch (err) {
                 console.error("An error occured while initializing a module.");
                 console.error("Module: ", moduleConfig.module);
@@ -128,13 +133,14 @@ class AutoC4 {
 
     public onMessage(message: Paho.MQTT.Message) {
         if (this.config.debug.message)
-            console.info("MQTT message received:", message);
-        for (let module of this.modules) {
+            console.debug("MQTT message received:", message);
+        for (let moduleConfig of this.config.modules) {
             try {
-                module.onMessage(this, message);
+                if(moduleConfig.subscribe && moduleConfig.subscribe.some((sub)=>mqtt_match_topic(sub,message.destinationName)))
+                    moduleConfig.instance.onMessage(this, message);
             } catch (err) {
                 console.error("An error occured while processing a message.");
-                console.error("Module: ", module);
+                console.error("Module: ", moduleConfig.instance);
                 console.error(err);
             }
         }
@@ -142,7 +148,7 @@ class AutoC4 {
 
     public onConnect(o: Paho.MQTT.WithInvocationContext): void {
         if (this.config.debug && this.config.debug.connect)
-            console.info('MQTT connection successfull.', o);
+            console.debug('MQTT connection successfull.', o);
         // Once a connection has been made, make subscriptions.
         for (let moduleConfig of this.config.modules) {
             if(!moduleConfig.subscribe)
@@ -208,10 +214,6 @@ class AutoC4 {
     public static moduleConfigToModule(config: AutoC4ModuleConfig): AutoC4Module {
         return this._modules[config.module]();
     }
-}
-
-function two_digits(i:number):string {
-    return ("0" + i).slice(-2);
 }
 
 var update_time = function ():void {

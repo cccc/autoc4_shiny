@@ -4,7 +4,7 @@ $(function () {
     $.getJSON(__AUTOC4_CONFIG_LOCATION)
         .done(function (config) {
         if (config.debug && config.debug.configLoaded)
-            console.log("Config loaded successfully", config);
+            console.debug("Config loaded successfully", config);
         autoc4 = new AutoC4(config);
         update_time();
     })
@@ -20,9 +20,12 @@ class AutoC4 {
         this.client = new Paho.MQTT.Client(config.server || window.location.hostname, config.port || 9000, AutoC4.generateClientId());
         this.client.onMessageArrived = this.onMessage.bind(this);
         this.client.onConnectionLost = this.onConnectionFailure.bind(this);
-        for (var moduleConfig of config.modules) {
+        for (let moduleConfig of config.modules) {
             try {
-                this.modules.push(AutoC4.moduleConfigToModule(moduleConfig).init(this, moduleConfig.options));
+                moduleConfig.instance = AutoC4.moduleConfigToModule(moduleConfig).init(this, moduleConfig.options);
+                this.modules.push(moduleConfig.instance);
+                if (this.config.debug && this.config.debug.moduleLoaded)
+                    console.debug(`Successfully loaded module of type "${moduleConfig.module}".`, moduleConfig);
             }
             catch (err) {
                 console.error("An error occured while initializing a module.");
@@ -54,21 +57,22 @@ class AutoC4 {
     }
     onMessage(message) {
         if (this.config.debug.message)
-            console.info("MQTT message received:", message);
-        for (let module of this.modules) {
+            console.debug("MQTT message received:", message);
+        for (let moduleConfig of this.config.modules) {
             try {
-                module.onMessage(this, message);
+                if (moduleConfig.subscribe && moduleConfig.subscribe.some((sub) => mqtt_match_topic(sub, message.destinationName)))
+                    moduleConfig.instance.onMessage(this, message);
             }
             catch (err) {
                 console.error("An error occured while processing a message.");
-                console.error("Module: ", module);
+                console.error("Module: ", moduleConfig.instance);
                 console.error(err);
             }
         }
     }
     onConnect(o) {
         if (this.config.debug && this.config.debug.connect)
-            console.info('MQTT connection successfull.', o);
+            console.debug('MQTT connection successfull.', o);
         for (let moduleConfig of this.config.modules) {
             if (!moduleConfig.subscribe)
                 continue;
@@ -130,9 +134,6 @@ class AutoC4 {
     }
 }
 AutoC4._modules = {};
-function two_digits(i) {
-    return ("0" + i).slice(-2);
-}
 var update_time = function () {
     var now = new Date();
     var text = two_digits(now.getDate()) + "." + two_digits(now.getMonth() + 1) + "." + now.getFullYear() + " " + two_digits(now.getHours()) + ":" + two_digits(now.getMinutes());
