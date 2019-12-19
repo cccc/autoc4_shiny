@@ -87,7 +87,7 @@
         {
             "module": "cyber",
             "subscribe": [
-                "club/cyber"
+                "club/cyber/alert"
             ]
         }
     ]
