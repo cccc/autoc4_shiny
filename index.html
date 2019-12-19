@@ -9,7 +9,7 @@
     <link rel="icon" href="favicon.png" sizes="16x16" type="image/png" />
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-autoc4.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/autoc4.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/autoc4/autoc4.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/fontawesome/css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/dark_theme.css" />
 
@@ -25,9 +25,6 @@
     <script type="text/javascript" src="assets/js/autoc4/windows.js"></script>
     <script type="text/javascript" src="assets/js/autoc4/presets.js"></script>
     <script type="text/javascript" src="assets/js/autoc4/kitchenlight.js"></script>
-    <!--<script type="text/javascript" src="js/autoc4_shutdown.js"></script>
-    <script type="text/javascript" src="js/autoc4_heartbeat.js"></script>
-    <script type="text/javascript" src="js/autoc4_presets.js"></script>-->
 </head>
 
 <body>
@@ -51,15 +48,8 @@
                     <li class="theme-light nav-item"><a class="nav-link" data-toggle="theme" href="#"><i class="fa fa-moon"></i> Dark</a></li>
                     <li class="theme-dark nav-item"><a class="nav-link" data-toggle="theme" href="#"><i class="fa fa-sun"></i> Light</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" data-mqtt-topic="club/gate"><i class="fa fa-door-open"></i> Open Gate</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-power-off"></i> Shutdown
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#" data-mqtt-topic="club/shutdown">Shutdown</a>
-                            <!--<a class="dropdown-item" href="#" data-mqtt-topic="club/shutdown" data-mqtt-message-byte="0x44">Force Shutdown</a>-->
-                        </div>
-                    </li>
+                    
+                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal-shutdown"><i class="fa fa-power-off"></i> Shutdown</a></li>
                     <li class="nav-item"><a class="nav-link" id="club-status" href="#"><i class="fa fa-exclamation-circle" style="color:#a00"></i> <span>Disconnected</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-clock"></i> <span id="datetime">c4.2a.dead 21:42</span></a></li>
                 </ul>
@@ -73,7 +63,7 @@
             <div class="row">
 
                 <div class="col-lg-3 px-2">
-                    <h2>Wohnzimmer</h2>
+                    <h2>Wohnzimmer <a href="#" class="fa fa-power-off btn btn-poweroff" data-mqtt-topic="preset/wohnzimmer/off" data-mqtt-message=""></a></h2>
                     <ul class="nav nav-tabs mb-2">
                         <li class="nav-item"><a class="nav-link active" href="#wohnzimmernormal" data-toggle="tab">Normal</a></li>
                         <li class="nav-item"><a class="nav-link" href="#wohnzimmerdmx" data-toggle="tab">DMX</a></li>
@@ -92,7 +82,7 @@
                         </div>
                         <div class="tab-pane" id="wohnzimmerdmx">
                             <div class="colorpicker">
-                                <label>Master:<input type="color" data-dmx-role="master" data-dmx-room="wohnzimmer" /></label>
+                                <label>Master:<!--<a href="#" data-dmx-room="wohnzimmer" data-dmx-role="poweroff" class="fa fa-power-off btn btn-sm"></a>--><input type="color" data-dmx-role="master" data-dmx-room="wohnzimmer" /></label>
                             </div>
                             <div class="colorpicker">
                                 <label>Mitte 1:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer" data-dmx-light="mitte1" /></label>
@@ -224,7 +214,7 @@
                 </div>
 
                 <div class="col-lg-3 px-2">
-                    <h2>Plenarsaal</h2>
+                    <h2>Plenarsaal <a href="#" class="fa fa-power-off btn btn-poweroff" data-mqtt-topic="preset/plenar/off" data-mqtt-message=""></a></h2>
                     <ul class="nav nav-tabs mb-2">
                         <li class="nav-item"><a class="nav-link active" href="#plenarnormal" data-toggle="tab">Normal</a></li>
                         <li class="nav-item"><a class="nav-link" href="#plenardmx" data-toggle="tab">DMX</a></li>
@@ -293,7 +283,7 @@
                 </div>
 
                 <div class="col-lg-3 px-2">
-                    <h2>Fnordcenter</h2>
+                    <h2>Fnordcenter <a href="#" class="fa fa-power-off btn btn-poweroff" data-mqtt-topic="preset/fnord/off" data-mqtt-message=""></a></h2>
                     <ul class="nav nav-tabs mb-2">
                         <li class="nav-item"><a class="nav-link active" href="#fnordnormal" data-toggle="tab">Normal</a></li>
                         <li class="nav-item"><a class="nav-link" href="#fnorddmx" data-toggle="tab">DMX</a></li>
@@ -338,7 +328,7 @@
                 </div>
 
                 <div class="col-lg-3 px-2">
-                    <h2>Keller</h2>
+                    <h2><span>Keller</span><a href="#" class="fa fa-power-off btn btn-poweroff" data-mqtt-topic="preset/keller/off" data-mqtt-message=""></a></h2>
                     <ul class="nav nav-tabs mb-2">
                         <li class="nav-item"><a class="nav-link active" href="#kellernormal" data-toggle="tab">Normal</a></li>
                     </ul>
@@ -465,7 +455,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"></h5>Fade Colors</h5>
+                    <h5 class="modal-title">Fade Colors</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -497,7 +487,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"></h5>Sound Active Mode</h5>
+                    <h5 class="modal-title">Sound Active Mode</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -521,6 +511,30 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" data-dmx-role="sound" data-dmx-room="#modal-dmx-sound-room" data-dmx-value="#modal-dmx-sound-sensitivity">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-shutdown" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Shutdown</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Are you sure you want to shut down the club? This will result in many of the lamps and electrical devices being turned off.
+                    </p>
+                    <p>
+                        Before shutting down the club make sure all windows are closed and high power electrical devices as well as everything involving water isn't running.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-mqtt-topic="club/shutdown">Shutdown</button>
                 </div>
             </div>
         </div>
