@@ -70,7 +70,7 @@ class AutoC4Kitchenlight {
         return this;
     }
     kl_change_screen(data) {
-        return this.autoc4.sendData("kitchenlight/change_screen", data, true);
+        this.autoc4.sendData("kitchenlight/change_screen", data, true);
     }
     ;
     kl_empty() {
@@ -81,8 +81,8 @@ class AutoC4Kitchenlight {
     }
     ;
     kl_checker(delay, colA, colB) {
-        var data = new ArrayBuffer(20);
-        var v = new DataView(data);
+        let data = new ArrayBuffer(20);
+        let v = new DataView(data);
         v.setUint32(0, 1, true);
         v.setUint32(4, delay, true);
         v.setUint16(8, parseInt(colA.substr(1, 2), 16) * 0x3ff / 0xff, true);
@@ -95,15 +95,15 @@ class AutoC4Kitchenlight {
     }
     ;
     kl_matrix(lines) {
-        var data = new ArrayBuffer(8);
-        var v = new DataView(data);
+        let data = new ArrayBuffer(8);
+        let v = new DataView(data);
         v.setUint32(0, 2, true);
         v.setUint32(4, lines, true);
         this.kl_change_screen(data);
     }
     ;
     kl_moodlight(mode) {
-        var data, v;
+        let data, v;
         if (mode === 1) {
             data = new ArrayBuffer(19);
             v = new DataView(data);
@@ -128,8 +128,8 @@ class AutoC4Kitchenlight {
     }
     ;
     kl_open_chaos(delay) {
-        var data = new ArrayBuffer(8);
-        var v = new DataView(data);
+        let data = new ArrayBuffer(8);
+        let v = new DataView(data);
         v.setUint32(0, 4, true);
         v.setUint32(4, delay, true);
         this.kl_change_screen(data);

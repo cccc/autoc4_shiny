@@ -1,3 +1,8 @@
+/**
+ * @copyright Chaos Computer Club Cologne 2014-2019
+ * @license MIT
+ */
+
 interface RGB {
     r: number;
     g: number;

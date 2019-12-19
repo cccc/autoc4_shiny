@@ -13,9 +13,6 @@ class AutoC4State implements AutoC4Module {
     }
 
     public onMessage(autoc4: AutoC4, message: Paho.MQTT.Message): void {
-        if (message.destinationName != "club/status")
-            return;
-        
         let icon = $('#club-status .fa');
         let text = $('#club-status :last-child');
         if ((message.payloadBytes as Uint8Array)[0]) {

@@ -17,8 +17,6 @@ class AutoC4Presets {
     }
     ;
     onMessage(autoc4, message) {
-        if (!message.destinationName.startsWith("preset/"))
-            return;
         let presets;
         try {
             presets = JSON.parse(message.payloadString);
