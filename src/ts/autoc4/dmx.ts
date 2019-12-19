@@ -24,6 +24,7 @@ class AutoC4DMX implements AutoC4Module {
         this.autoc4 = autoc4;
 
         this.initColorSelection();
+        this.initPoweroff();
         this.initBrightness();
         this.initFade();
         this.initRandom();
@@ -97,6 +98,24 @@ class AutoC4DMX implements AutoC4Module {
                         return;
                 }
 
+                self.setLightColor(room, light, channels, color);
+            }
+        );
+    }
+
+    private initPoweroff(): void {
+        const self = this;
+        $("body").on(
+            "click change",
+            `[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=poweroff]`,
+            function (this: HTMLInputElement) {
+                let color = Color.fromRGB({r:0,g:0,b:0});
+                let channels = (+this.getAttribute(self.options.channelsDataAttribute)) || 7;
+                let room = this.getAttribute(self.options.roomDataAttribute);
+                let light = this.getAttribute(self.options.lightDataAttribute);
+                if (!light) {
+                    light = "master";
+                }
                 self.setLightColor(room, light, channels, color);
             }
         );
