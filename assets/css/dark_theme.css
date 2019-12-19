@@ -1,10 +1,5 @@
-body:not(.dark) .theme-dark {
-    display: none;
-}
-
-body.dark .theme-light {
-    display: none;
-}
+body:not(.dark) .theme-dark { display: none !important; }
+body.dark .theme-light { display: none !important; }
 
 body.dark {
     background-color: #111;
@@ -49,4 +44,11 @@ body.dark .nav-tabs {
 
 body.dark hr {
     border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
+body.dark .btn-transparent {
+    color: #c0c0c0;
+}
+body.dark .btn-transparent:hover {
+    color: #a2a2a2;
 }

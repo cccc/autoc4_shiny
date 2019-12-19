@@ -32,9 +32,6 @@ class AutoC4Presets implements AutoC4Module {
     };
 
     public onMessage(autoc4: AutoC4, message: Paho.MQTT.Message): void {
-        if (!message.destinationName.startsWith("preset/"))
-                return;
-
         let presets: string[];
         try {
             presets = JSON.parse(message.payloadString);

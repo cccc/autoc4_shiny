@@ -33,9 +33,7 @@ input[type=color] {
 
 .btn-preset:hover,
 .btn-preset:focus,
-.btn-preset:active,
-.btn-preset.active,
-.open .dropdown-toggle.btn-preset {
+.btn-preset:active {
     background-image: url(../../img/preset_hover.png);
     color: #ffffff;
     background-color: #604EFE;
@@ -43,7 +41,7 @@ input[type=color] {
 }
 
 .btn-light {
-    width: 120px !important;
+    width: 120px;
     height: 120px;
     padding: 0;
     padding-top: 10px;
@@ -68,9 +66,7 @@ input[type=color] {
 
 .btn-light:hover,
 .btn-light:focus,
-.btn-light:active,
-.btn-light.active,
-.open .dropdown-toggle.btn-light {
+.btn-light:active {
     background-image: url(../../img/bulb_off.png);
     color: #ffffff;
     background-color: #d60030;
@@ -86,9 +82,7 @@ input[type=color] {
 
 .btn-light.on:hover,
 .btn-light.on:focus,
-.btn-light.on:active,
-.btn-light.on.active,
-.open .dropdown-toggle.btn-light.on {
+.btn-light.on:active {
     color: #ffffff;
     background-color: #339213;
     border-color: #2c8011;
@@ -143,7 +137,7 @@ input[type=color] {
     width: 100%;
     height: 100%;
     background: #2f3bb9;
-    background-image: url('../img/panic.svg');
+    background-image: url('../../img/panic.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: 50%;
@@ -162,42 +156,52 @@ input[type=color] {
     float: right;
 }
 
-.klPane {
-    margin: 1ex;
-    display: none
-}
-
-.klPane.active {
-    display: block
-}
-
-.klPane output {
-    display: inline
-}
-
-.klPane label {
-    margin-right: 1ex
-}
-
-.btn-floodit {
-    color: black;
-    border: solid black 1px;
-    margin: .5ex
-}
-
-.btn-floodit:hover,
-.btn-floodit:active,
-.btn-floodit:focus {
-    color: inherit
-}
-
-#presets select {
-    display: block;
-    width: 100%;
-    margin-bottom: 5px
-}
-
 .btn-poweroff {
     float: right;
     line-height: 1.2;
+}
+
+body:not(.cyber) .show-cyber { display: none !important; }
+body.cyber .hide-cyber { display: none !important; }
+
+body.cyber .navbar {
+    background: repeating-linear-gradient(
+        135deg,
+        yellow,
+        yellow 32px,
+        black 32px,
+        black 64px
+    );
+    text-shadow: 
+        0px 0px 2px black,
+        0px 0px 2px black,
+        0px 0px 1px white,
+        0px 0px 1px white;
+}
+body.cyber .navbar-dark .navbar-toggler-icon {
+    background-color: rgba(0,0,0,.7);
+    border-radius: .17em;
+}
+
+.music-playing .music-btn-play,
+.music-paused .music-btn-pause,
+.music-stopped .music-btn-stop,
+.music-stopped .music-btn-play,
+.music-stopped .music-btn-pause,
+.music-stopped .music-btn-next,
+.music-stopped .music-btn-prev
+{
+    pointer-events: none;
+    opacity: .45;
+}
+
+
+.music-paused .music-show-playing,
+.music-stopped .music-show-playing,
+.music-playing .music-show-paused,
+.music-stopped .music-show-paused,
+.music-playing .music-show-stopped,
+.music-paused .music-show-stopped
+{
+    display: none;
 }

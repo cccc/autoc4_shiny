@@ -4,8 +4,6 @@ class AutoC4Windows {
         return this;
     }
     onMessage(autoc4, message) {
-        if (!message.destinationName.startsWith('fenster/'))
-            return;
         let button = $('.box-window').filter('[data-topic="' + message.destinationName + '"]');
         if (button && message.payloadBytes[0] !== 0)
             button.addClass('open');

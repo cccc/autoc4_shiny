@@ -81,11 +81,11 @@ class AutoC4Kitchenlight implements AutoC4Module {
         return this;
     }
 
-    private kl_change_screen(data) {
-        return this.autoc4.sendData("kitchenlight/change_screen",data,true);
+    private kl_change_screen(data:any):void {
+        this.autoc4.sendData("kitchenlight/change_screen",data,true);
     };
 
-    private kl_empty() {
+    private kl_empty():void {
         var data = new ArrayBuffer(4);
         var v = new DataView(data);
         // Empty is screen 0
@@ -93,9 +93,9 @@ class AutoC4Kitchenlight implements AutoC4Module {
         this.kl_change_screen(data);
     };
 
-    private kl_checker(delay, colA, colB) {
-        var data = new ArrayBuffer(20);
-        var v = new DataView(data);
+    private kl_checker(delay:number, colA:string, colB:string):void {
+        let data = new ArrayBuffer(20);
+        let v = new DataView(data);
         // Checker is screen 1
         v.setUint32(0, 1, true);
         // Delay
@@ -118,9 +118,9 @@ class AutoC4Kitchenlight implements AutoC4Module {
         this.kl_change_screen(data);
     };
 
-    private kl_matrix(lines) {
-        var data = new ArrayBuffer(8);
-        var v = new DataView(data);
+    private kl_matrix(lines:number):void {
+        let data = new ArrayBuffer(8);
+        let v = new DataView(data);
         // Matrix is screen 2
         v.setUint32(0, 2, true);
         // Lines
@@ -128,8 +128,8 @@ class AutoC4Kitchenlight implements AutoC4Module {
         this.kl_change_screen(data);
     };
 
-    private kl_moodlight(mode) {
-        var data, v;
+    private kl_moodlight(mode:number):void {
+        let data, v;
         if (mode === 1) { // colorwheel
             data = new ArrayBuffer(19);
             v = new DataView(data);
@@ -163,9 +163,9 @@ class AutoC4Kitchenlight implements AutoC4Module {
         }
     };
 
-    private kl_open_chaos(delay) {
-        var data = new ArrayBuffer(8);
-        var v = new DataView(data);
+    private kl_open_chaos(delay: number):void {
+        let data = new ArrayBuffer(8);
+        let v = new DataView(data);
         // OC is screen 4
         v.setUint32(0, 4, true);
         // Delay
@@ -173,7 +173,7 @@ class AutoC4Kitchenlight implements AutoC4Module {
         this.kl_change_screen(data);
     };
 
-    private kl_pacman() {
+    private kl_pacman():void {
         var data = new ArrayBuffer(4);
         var v = new DataView(data);
         // Pacman is screen 5
@@ -181,7 +181,7 @@ class AutoC4Kitchenlight implements AutoC4Module {
         this.kl_change_screen(data);
     };
 
-    private kl_sine() {
+    private kl_sine():void {
         var data = new ArrayBuffer(4);
         var v = new DataView(data);
         // Sine is screen 6
@@ -189,7 +189,7 @@ class AutoC4Kitchenlight implements AutoC4Module {
         this.kl_change_screen(data);
     }
 
-    private kl_strobe() {
+    private kl_strobe():void {
         var data = new ArrayBuffer(4);
         var v = new DataView(data);
         // Strobe is screen 7
@@ -197,7 +197,7 @@ class AutoC4Kitchenlight implements AutoC4Module {
         this.kl_change_screen(data);
     }
 
-    private kl_text(delay, text) {
+    private kl_text(delay:number, text:string):void {
         var data = new ArrayBuffer(8 + text.length + 1);
         var v = new DataView(data);
         // Text is screen 8
@@ -228,7 +228,7 @@ class AutoC4Kitchenlight implements AutoC4Module {
         this.kl_change_screen(data);
     }
 
-    private kl_conway(speed, generations, fill):void {
+    private kl_conway(speed:number, generations:number, fill:boolean):void {
         var data = new ArrayBuffer(16);
         var v = new DataView(data);
         // Conway is screen 12
