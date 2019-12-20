@@ -124,6 +124,10 @@ class AutoC4 {
             }
         });
 
+        $("body").on("click input change", "[data-toggle=value][data-target][data-value]", function() {
+            document.querySelectorAll<HTMLInputElement>(this.getAttribute("data-target")).forEach((e)=>e.value=e.getAttribute("data-value"));
+        });
+
         this.connect();
     }
 
