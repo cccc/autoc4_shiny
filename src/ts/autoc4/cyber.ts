@@ -3,23 +3,40 @@
  * @license MIT
  */
 /// <reference path="autoc4.ts" />
+interface AutoC4CyberOptions {
+    class:string;
+    target:string;
+    keys:number[];
+}
 
 class AutoC4Cyber implements AutoC4Module {
-    private options: AutoC4DMXOptions;
     private autoc4: AutoC4;
+    private options: AutoC4CyberOptions;
 
     init(autoc4: AutoC4, options: any): this {
-        this.options = options as AutoC4DMXOptions;
+        this.options = options as AutoC4CyberOptions;
         this.autoc4 = autoc4;
-
+        if(this.options.keys){
+            let cursor = 0;
+            document.addEventListener("keydown", (e) => {
+                cursor = (e.keyCode == this.options.keys[cursor]) ? cursor + 1 : 0;
+                if (cursor == this.options.keys.length){
+                    document.querySelectorAll<HTMLElement>(this.options.target)
+                        .forEach((e)=>e.classList.toggle(this.options.class));
+                    cursor=0;
+                }
+            });
+        }
         return this;
     }
 
     public onMessage(autoc4: AutoC4, message: Paho.MQTT.Message): void {
         if ((message.payloadBytes as Uint8Array)[0]) {
-            document.body.classList.add("cyber");
+            document.querySelectorAll<HTMLElement>(this.options.target)
+                .forEach((e)=>e.classList.add(this.options.class));
         } else {
-            document.body.classList.remove("cyber");
+            document.querySelectorAll<HTMLElement>(this.options.target)
+                .forEach((e)=>e.classList.remove(this.options.class));
         }
     }
 
