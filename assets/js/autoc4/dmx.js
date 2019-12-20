@@ -87,7 +87,7 @@ class AutoC4DMX {
     }
     initRandom() {
         const self = this;
-        $("body").on("click change", `[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=fade][${this.options.valueDataAttribute}]`, function () {
+        $("body").on("click change", `[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=random][${this.options.valueDataAttribute}]`, function () {
             let value = (+$(this.getAttribute(self.options.valueDataAttribute)).val());
             let room = $(this.getAttribute(self.options.roomDataAttribute)).val();
             for (let picker of self.getPickers(room)) {
