@@ -50,6 +50,9 @@ class AutoC4 {
                 self.sendByte(this.getAttribute(interactivity.mqttTopicDataAttibute), 0, Boolean(this.getAttribute(interactivity.mqttRetainedDataAttribute)));
             }
         });
+        $("body").on("click input change", "[data-toggle=value][data-target][data-value]", function () {
+            document.querySelectorAll(this.getAttribute("data-target")).forEach((e) => e.value = this.getAttribute("data-value"));
+        });
         this.connect();
     }
     connect() {
