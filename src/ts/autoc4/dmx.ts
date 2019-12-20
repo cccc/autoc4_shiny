@@ -144,7 +144,7 @@ class AutoC4DMX implements AutoC4Module {
         const self = this;
         $("body").on(
             "click change",
-            `[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=fade][${this.options.valueDataAttribute}]`,
+            `[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=random][${this.options.valueDataAttribute}]`,
             function (this: HTMLElement) {
                 let value = (+$(this.getAttribute(self.options.valueDataAttribute)).val());
                 let room = $(this.getAttribute(self.options.roomDataAttribute)).val() as string;
