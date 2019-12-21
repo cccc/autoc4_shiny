@@ -1,0 +1,188 @@
+@import "kitchenlight";
+@import "state";
+@import "music";
+
+input[type=color] {
+    border: 0;
+    padding: 0
+}
+
+.btn-preset {
+    width: 120px !important;
+    height: 120px;
+    margin: 0 auto;
+    padding: 0;
+    padding-top: 10px;
+    background-image: url(../../img/preset.png);
+    background-position: center top;
+    background-size: 50% auto;
+    background-repeat: no-repeat;
+    -moz-background-origin: content;
+    /* Firefox 1.0-3.6 */
+    -webkit-background-origin: content-box;
+    /* Safari, Chrome */
+    background-origin: content-box;
+    /* Firefox 4.0+ */
+    line-height: 180px;
+    color: #ffffff;
+    background-color: #2612CA;
+    border-color: #2612CA;
+    margin: 2px;
+    margin-top: 4px;
+    /*margin-left: 10px;
+    padding-left: 11px;*/
+}
+
+.btn-preset:hover,
+.btn-preset:focus,
+.btn-preset:active {
+    background-image: url(../../img/preset_hover.png);
+    color: #ffffff;
+    background-color: #604EFE;
+    border-color: #604EFE;
+}
+
+.btn-light {
+    width: 120px;
+    height: 120px;
+    padding: 0;
+    padding-top: 10px;
+    background-image: url(../../img/bulb_off.png);
+    background-position: center top;
+    background-size: 50% auto;
+    background-repeat: no-repeat;
+    -moz-background-origin: content;
+    /* Firefox 1.0-3.6 */
+    -webkit-background-origin: content-box;
+    /* Safari, Chrome */
+    background-origin: content-box;
+    /* Firefox 4.0+ */
+    font-size: 1em;
+    line-height: 180px;
+    color: #ffffff;
+    background-color: #ff0039;
+    border-color: #ff0039;
+    margin: 2px;
+    margin-top: 4px;
+}
+
+.btn-light:hover,
+.btn-light:focus,
+.btn-light:active {
+    background-image: url(../../img/bulb_off.png);
+    color: #ffffff;
+    background-color: #d60030;
+    border-color: #c2002b;
+}
+
+.btn-light.on {
+    background-image: url(../../img/bulb_on.png);
+    color: #ffffff;
+    background-color: #3fb618;
+    border-color: #3fb618;
+}
+
+.btn-light.on:hover,
+.btn-light.on:focus,
+.btn-light.on:active {
+    color: #ffffff;
+    background-color: #339213;
+    border-color: #2c8011;
+}
+
+.box-window {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    border: 3px solid transparent;
+    width: 80px !important;
+    height: 80px;
+    padding: 0;
+    padding-top: 5px;
+    background-image: url(../../img/window_closed.png);
+    background-position: center top;
+    background-size: 75% auto;
+    background-repeat: no-repeat;
+    -moz-background-origin: content;
+    /* Firefox 1.0-3.6 */
+    -webkit-background-origin: content-box;
+    /* Safari, Chrome */
+    background-origin: content-box;
+    /* Firefox 4.0+ */
+    line-height: 115px;
+    font-size: .75em;
+    color: #ffffff;
+    background-color: #555555;
+    border-color: #555555;
+    margin: 2px;
+    margin-top: 0px;
+}
+
+.box-window.open {
+    background-image: url(../../img/window_open.png);
+    color: #ffffff;
+    background-color: #ff0039;
+    border-color: #ff0039;
+}
+
+.lightswitch-pane,
+.preset-pane {
+    text-align: center;
+}
+
+#help-display {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: #2f3bb9;
+    background-image: url('../../img/panic.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+}
+
+.colorpicker {
+    display: flex;
+    justify-content: space-between;
+}
+
+.colorpicker label {
+    width: 100%;
+}
+
+.colorpicker label * {
+    float: right;
+}
+
+.btn-poweroff {
+    float: right;
+    line-height: 1.2;
+    padding: 0;
+    margin: .8em;
+}
+
+body:not(.cyber) .show-cyber { display: none !important; }
+body.cyber .hide-cyber { display: none !important; }
+
+body.cyber .navbar {
+    background: repeating-linear-gradient(
+        135deg,
+        yellow,
+        yellow 32px,
+        black 32px,
+        black 64px
+    );
+    text-shadow: 
+        0px 0px 2px black,
+        0px 0px 2px black,
+        0px 0px 1px white,
+        0px 0px 1px white;
+}
+body.cyber .navbar-dark .navbar-toggler-icon {
+    background-color: rgba(0,0,0,.7);
+    border-radius: .17em;
+}
