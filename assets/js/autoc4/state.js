@@ -6,8 +6,6 @@ class AutoC4State {
     }
     onMessage(autoc4, message) {
         let targets = document.querySelectorAll(this.options.target);
-        let icon = $('#club-status .fa');
-        let text = $('#club-status :last-child');
         if (message.payloadBytes[0]) {
             targets.forEach((e) => {
                 e.classList.remove(this.options.closedClass, this.options.disconnectedClass);
