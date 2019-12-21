@@ -1,0 +1,42 @@
+.btn-light {
+    width: 120px;
+    height: 120px;
+    padding: 0;
+    padding-top: 10px;
+    background-image: url(../../img/bulb_off.png);
+    background-position: center top;
+    background-size: 50% auto;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    font-size: 1em;
+    line-height: 180px;
+    color: #ffffff;
+    background-color: #ff0039;
+    border-color: #ff0039;
+    margin: 2px;
+    margin-top: 4px;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-image: url(../../img/bulb_off.png);
+        color: #ffffff;
+        background-color: #d60030;
+        border-color: #c2002b;
+    }
+
+    &.on {
+        background-image: url(../../img/bulb_on.png);
+        color: #ffffff;
+        background-color: #3fb618;
+        border-color: #3fb618;
+    
+        &:hover,
+        &:focus,
+        &:active {
+            color: #ffffff;
+            background-color: #339213;
+            border-color: #2c8011;
+        }
+    }
+}
