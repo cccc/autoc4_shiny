@@ -4,7 +4,12 @@
   "description": "A web frontend for controlling AutoC4, the home automation system of the Chaos Computer Club Cologne.",
   "main": " ",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run ts; npm run scss",
+    "ts": "tsc",
+    "scss": "sass ./src/scss:./assets/css",
+    "watch": "npm run watch-ts & npm run watch-scss",
+    "watch-ts": "tsc -w",
+    "watch-scss": "sass --watch"
   },
   "repository": {
     "type": "git",
@@ -18,6 +23,8 @@
   "homepage": "https://github.com/cccc/autoc4_shiny#readme",
   "devDependencies": {
     "@types/jquery": "^3.3.30",
-    "@types/paho-mqtt": "^1.0.4"
+    "@types/paho-mqtt": "^1.0.4",
+    "typescript": "^3.7.4",
+    "sass": "^1.24.0"
   }
 }
