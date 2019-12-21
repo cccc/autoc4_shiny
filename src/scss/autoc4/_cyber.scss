@@ -1,0 +1,24 @@
+body{
+    &:not(.cyber) .show-cyber { display: none !important; }
+    &.cyber{
+        .hide-cyber { display: none !important; }
+        .navbar {
+            background: repeating-linear-gradient(
+                135deg,
+                yellow,
+                yellow 32px,
+                black 32px,
+                black 64px
+            );
+            text-shadow: 
+                0px 0px 2px black,
+                0px 0px 2px black,
+                0px 0px 1px white,
+                0px 0px 1px white;
+        }
+    }
+    .navbar-dark .navbar-toggler-icon {
+        background-color: rgba(0,0,0,.7);
+        border-radius: .17em;
+    }
+}

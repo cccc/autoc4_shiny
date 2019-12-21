@@ -1,0 +1,26 @@
+.btn-preset {
+    width: 120px !important;
+    height: 120px;
+    margin: 0 auto;
+    padding: 0;
+    padding-top: 10px;
+    background-image: url(../../img/preset.png);
+    background-position: center top;
+    background-size: 50% auto;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    line-height: 180px;
+    color: #ffffff;
+    background-color: #2612CA;
+    border-color: #2612CA;
+    margin: 2px;
+    margin-top: 4px;
+    &:hover,
+    &:focus,
+    &:active {
+        background-image: url(../../img/preset_hover.png);
+        color: #ffffff;
+        background-color: #604EFE;
+        border-color: #604EFE;
+    }
+}
