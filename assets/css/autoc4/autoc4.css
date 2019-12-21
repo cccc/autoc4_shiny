@@ -1,4 +1,5 @@
 @import url("kitchenlight.css");
+@import url("state.css");
 
 input[type=color] {
     border: 0;

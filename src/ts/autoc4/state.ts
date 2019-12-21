@@ -3,39 +3,46 @@
  * @license MIT
  */
 /// <reference path="autoc4.ts" />;
+interface AutoC4StateOptions{
+    target: string;
+    openClass: string;
+    closedClass: string;
+    disconnectedClass: string;
+}
 
 class AutoC4State implements AutoC4Module {
     private autoc4: AutoC4;
+    private options: AutoC4StateOptions;
 
     public init(autoc4: AutoC4, options: any): this {
         this.autoc4=autoc4;
+        this.options=options as AutoC4StateOptions;
         return this;
     }
 
     public onMessage(autoc4: AutoC4, message: Paho.MQTT.Message): void {
+        let targets = document.querySelectorAll(this.options.target);
         let icon = $('#club-status .fa');
         let text = $('#club-status :last-child');
         if ((message.payloadBytes as Uint8Array)[0]) {
-            icon.removeClass('fa-hand-point-right fa-thumbs-down fa-exclamation-circle')
-                .addClass('fa-thumbs-up');
-            icon.css('color', '#0c0');
-            text.text('Open');
+            targets.forEach((e)=>{
+                e.classList.remove(this.options.closedClass,this.options.disconnectedClass);
+                e.classList.add(this.options.openClass);
+            });
         } else {
-            icon.removeClass('fa-hand-point-right fa-thumbs-up fa-exclamation-circle')
-                .addClass('fa-thumbs-down');
-            icon.css('color', '#c00');
-            text.text('Closed');
+            targets.forEach((e)=>{
+                e.classList.remove(this.options.openClass,this.options.disconnectedClass);
+                e.classList.add(this.options.closedClass);
+            });
         }
     }
 
     onConnect(autoc4: AutoC4, o: Paho.MQTT.WithInvocationContext): void {}
     onConnectionFailure(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void {
-        let icon = $('#club-status .fa');
-        let text = $('#club-status :last-child');
-        icon.removeClass('fa-thumbs-down fa-thumbs-up')
-            .addClass('fa-exclamation-circle');
-        icon.css('color', '#a00');
-        text.text('Disconnected');
+        document.querySelectorAll(this.options.target).forEach((e)=>{
+            e.classList.remove(this.options.openClass,this.options.openClass);
+            e.classList.add(this.options.disconnectedClass);
+        });
     }
 }
 
