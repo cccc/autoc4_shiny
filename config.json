@@ -56,6 +56,12 @@
         },
         {
             "module": "state",
+            "options": {
+                "openClass":"state-open",
+                "closedClass":"state-closed",
+                "disconnectedClass":"state-disconnected",
+                "target":"body"
+            },
             "subscribe": [
                 "club/status"
             ]
