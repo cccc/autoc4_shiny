@@ -393,14 +393,14 @@
                         <h2>Wohnzimmer</h2>
                         <div data-music-role="state" data-music-topic="mpd/baellebad/state" class="music-stopped">
                             <div>
-                                <span class="music-show-playing">&#x23f5;</span>
-                                <span class="music-show-paused">&#x23f8;</span>
-                                <span class="music-show-stopped">&#x23f9;</span>
+                                <span class="music-hide-paused music-hide-stopped">&#x23f5;</span>
+                                <span class="music-hide-playing music-hide-stopped">&#x23f8;</span>
+                                <span class="music-hide-playing music-hide-paused">&#x23f9;</span>
                                 <span data-music-role="song" data-music-topic="mpd/baellebad/song"></span>
                             </div>
                             <a href="#" class="btn btn-secondary btn-sm music-btn-prev" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="prev">&#x23ee;</a>
-                            <a href="#" class="btn btn-secondary btn-sm music-btn-play" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="play">&#x23f5;</a>
-                            <a href="#" class="btn btn-secondary btn-sm music-btn-pause" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="pause">&#x23f8;</a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-play music-hide-playing" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="play">&#x23f5;</a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-pause music-hide-paused music-hide-stopped" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="pause">&#x23f8;</a>
                             <a href="#" class="btn btn-secondary btn-sm music-btn-next" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="next">&#x23ed;</a>
                             <a href="#" class="btn btn-secondary btn-sm music-btn-stop" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="stop">&#x23f9;</a>
                         </div>
@@ -409,14 +409,14 @@
                         <h2>Plenarsaal</h2>
                         <div data-music-role="state" data-music-topic="mpd/plenar/state" class="music-stopped">
                             <div>
-                                <span class="music-show-playing">&#x23f5;</span>
-                                <span class="music-show-paused">&#x23f8;</span>
-                                <span class="music-show-stopped">&#x23f9;</span>
+                                <span class="music-hide-paused music-hide-stopped">&#x23f5;</span>
+                                <span class="music-hide-playing music-hide-stopped">&#x23f8;</span>
+                                <span class="music-hide-playing music-hide-paused">&#x23f9;</span>
                                 <span data-music-role="song" data-music-topic="mpd/plenar/song"></span>
                             </div>
                             <a href="#" class="btn btn-secondary btn-sm music-btn-prev" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="prev">&#x23ee;</a>
-                            <a href="#" class="btn btn-secondary btn-sm music-btn-play" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="play">&#x23f5;</a>
-                            <a href="#" class="btn btn-secondary btn-sm music-btn-pause" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="pause">&#x23f8;</a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-play music-hide-playing" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="play">&#x23f5;</a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-pause music-hide-paused music-hide-stopped" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="pause">&#x23f8;</a>
                             <a href="#" class="btn btn-secondary btn-sm music-btn-next" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="next">&#x23ed;</a>
                             <a href="#" class="btn btn-secondary btn-sm music-btn-stop" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="stop">&#x23f9;</a>
                         </div>
@@ -425,14 +425,14 @@
                         <h2>Fnordcenter</h2>
                         <div data-music-role="state" data-music-topic="mpd/fnord/state" class="music-stopped">
                             <div>
-                                <span class="music-show-playing">&#x23f5;</span>
-                                <span class="music-show-paused">&#x23f8;</span>
-                                <span class="music-show-stopped">&#x23f9;</span>
+                                <span class="music-hide-paused music-hide-stopped">&#x23f5;</span>
+                                <span class="music-hide-playing music-hide-stopped">&#x23f8;</span>
+                                <span class="music-hide-playing music-hide-paused">&#x23f9;</span>
                                 <span data-music-role="song" data-music-topic="mpd/fnord/song"></span>
                             </div>
                             <a href="#" class="btn btn-secondary btn-sm music-btn-prev" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="prev">&#x23ee;</a>
-                            <a href="#" class="btn btn-secondary btn-sm music-btn-play" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="play">&#x23f5;</a>
-                            <a href="#" class="btn btn-secondary btn-sm music-btn-pause" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="pause">&#x23f8;</a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-play music-hide-playing" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="play">&#x23f5;</a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-pause music-hide-paused music-hide-stopped" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="pause">&#x23f8;</a>
                             <a href="#" class="btn btn-secondary btn-sm music-btn-next" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="next">&#x23ed;</a>
                             <a href="#" class="btn btn-secondary btn-sm music-btn-stop" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="stop">&#x23f9;</a>
                         </div>
@@ -441,14 +441,14 @@
                         <h2>Keller</h2>
                         <div data-music-role="state" data-music-topic="mpd/keller/state" class="music-stopped">
                             <div>
-                                <span class="music-show-playing">&#x23f5;</span>
-                                <span class="music-show-paused">&#x23f8;</span>
-                                <span class="music-show-stopped">&#x23f9;</span>
+                                <span class="music-hide-paused music-hide-stopped">&#x23f5;</span>
+                                <span class="music-hide-playing music-hide-stopped">&#x23f8;</span>
+                                <span class="music-hide-playing music-hide-paused">&#x23f9;</span>
                                 <span data-music-role="song" data-music-topic="mpd/keller/song"></span>
                             </div>
                             <a href="#" class="btn btn-secondary btn-sm music-btn-prev" data-mqtt-topic="mpd/keller/control" data-mqtt-message="prev">&#x23ee;</a>
-                            <a href="#" class="btn btn-secondary btn-sm music-btn-play" data-mqtt-topic="mpd/keller/control" data-mqtt-message="play">&#x23f5;</a>
-                            <a href="#" class="btn btn-secondary btn-sm music-btn-pause" data-mqtt-topic="mpd/keller/control" data-mqtt-message="pause">&#x23f8;</a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-play music-hide-playing" data-mqtt-topic="mpd/keller/control" data-mqtt-message="play">&#x23f5;</a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-pause music-hide-paused music-hide-stopped" data-mqtt-topic="mpd/keller/control" data-mqtt-message="pause">&#x23f8;</a>
                             <a href="#" class="btn btn-secondary btn-sm music-btn-next" data-mqtt-topic="mpd/keller/control" data-mqtt-message="next">&#x23ed;</a>
                             <a href="#" class="btn btn-secondary btn-sm music-btn-stop" data-mqtt-topic="mpd/keller/control" data-mqtt-message="stop">&#x23f9;</a>
                         </div>

@@ -22,8 +22,7 @@ class AutoC4State implements AutoC4Module {
 
     public onMessage(autoc4: AutoC4, message: Paho.MQTT.Message): void {
         let targets = document.querySelectorAll(this.options.target);
-        let icon = $('#club-status .fa');
-        let text = $('#club-status :last-child');
+
         if ((message.payloadBytes as Uint8Array)[0]) {
             targets.forEach((e)=>{
                 e.classList.remove(this.options.closedClass,this.options.disconnectedClass);
