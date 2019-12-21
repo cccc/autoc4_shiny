@@ -1,5 +1,6 @@
 @import url("kitchenlight.css");
 @import url("state.css");
+@import url("music.css");
 
 input[type=color] {
     border: 0;
@@ -184,14 +185,4 @@ body.cyber .navbar {
 body.cyber .navbar-dark .navbar-toggler-icon {
     background-color: rgba(0,0,0,.7);
     border-radius: .17em;
-}
-
-.music-paused .music-show-playing,
-.music-stopped .music-show-playing,
-.music-playing .music-show-paused,
-.music-stopped .music-show-paused,
-.music-playing .music-show-stopped,
-.music-paused .music-show-stopped
-{
-    display: none;
 }

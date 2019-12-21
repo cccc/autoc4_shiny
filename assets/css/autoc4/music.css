@@ -1,0 +1,6 @@
+
+.music-playing .music-hide-playing,
+.music-paused .music-hide-paused,
+.music-stopped .music-hide-stopped{
+    display: none;
+}
