@@ -22,7 +22,7 @@ class AutoC4State {
     onConnect(autoc4, o) { }
     onConnectionFailure(autoc4, error) {
         document.querySelectorAll(this.options.target).forEach((e) => {
-            e.classList.remove(this.options.openClass, this.options.openClass);
+            e.classList.remove(this.options.openClass, this.options.closedClass);
             e.classList.add(this.options.disconnectedClass);
         });
     }

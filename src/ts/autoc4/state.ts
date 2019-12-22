@@ -39,7 +39,7 @@ class AutoC4State implements AutoC4Module {
     onConnect(autoc4: AutoC4, o: Paho.MQTT.WithInvocationContext): void {}
     onConnectionFailure(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void {
         document.querySelectorAll(this.options.target).forEach((e)=>{
-            e.classList.remove(this.options.openClass,this.options.openClass);
+            e.classList.remove(this.options.openClass,this.options.closedClass);
             e.classList.add(this.options.disconnectedClass);
         });
     }
