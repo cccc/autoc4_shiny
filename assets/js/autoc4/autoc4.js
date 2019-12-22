@@ -33,22 +33,9 @@ class AutoC4 {
                 console.error(err);
             }
         }
-        const self = this;
-        const interactivity = self.config.interactivity;
         $('#help').click(function (ev) {
             ev.preventDefault();
             $('#help-display').toggle();
-        });
-        $('body').on("click change input", `[${this.config.interactivity.mqttTopicDataAttibute}]`, function () {
-            if (this.hasAttribute(interactivity.mqttMessageDataAttribute)) {
-                self.sendData(this.getAttribute(interactivity.mqttTopicDataAttibute), this.getAttribute(interactivity.mqttMessageDataAttribute), Boolean(this.getAttribute(interactivity.mqttRetainedDataAttribute)));
-            }
-            else if (this.hasAttribute(interactivity.mqttByteMessageDataAttribute)) {
-                self.sendByte(this.getAttribute(interactivity.mqttTopicDataAttibute), Number(this.getAttribute(interactivity.mqttByteMessageDataAttribute)), Boolean(this.getAttribute(interactivity.mqttRetainedDataAttribute)));
-            }
-            else {
-                self.sendByte(this.getAttribute(interactivity.mqttTopicDataAttibute), 0, Boolean(this.getAttribute(interactivity.mqttRetainedDataAttribute)));
-            }
         });
         $("body").on("click input change", "[data-toggle=value][data-target][data-value]", function () {
             document.querySelectorAll(this.getAttribute("data-target")).forEach((e) => e.value = this.getAttribute("data-value"));

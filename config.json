@@ -8,13 +8,16 @@
         "configLoaded": true,
         "moduleLoaded": true
     },
-    "interactivity":{
-        "mqttTopicDataAttibute": "data-mqtt-topic",
-        "mqttRetainedDataAttribute": "data-mqtt-retained",
-        "mqttMessageDataAttribute": "data-mqtt-message",
-        "mqttByteMessageDataAttribute": "data-mqtt-message-byte"
-    },
     "modules": [
+        {
+            "module": "interactivity",
+            "options": {
+                "mqttTopicDataAttibute": "data-mqtt-topic",
+                "mqttRetainedDataAttribute": "data-mqtt-retained",
+                "mqttMessageDataAttribute": "data-mqtt-message",
+                "mqttByteMessageDataAttribute": "data-mqtt-message-byte"
+            }
+        },
         {
             "module": "dmx",
             "options": {
