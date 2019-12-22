@@ -2,7 +2,7 @@
  * @copyright Chaos Computer Club Cologne 2014-2019
  * @license MIT
  */
-/// <reference path="autoc4.ts" />;
+/// <reference path="autoc4.ts" />
 
 class AutoC4Windows implements AutoC4Module {
     private autoc4: AutoC4;

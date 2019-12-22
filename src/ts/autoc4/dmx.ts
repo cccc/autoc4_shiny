@@ -8,6 +8,7 @@
 
 interface AutoC4DMXOptions {
     roomDataAttribute: string;
+    //roles: master, light, poweroff, brightness, random, fade, sound
     roleDataAttribute: string;
     valueDataAttribute: string;
     lightDataAttribute: string;

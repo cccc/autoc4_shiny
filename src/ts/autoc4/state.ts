@@ -2,7 +2,8 @@
  * @copyright Chaos Computer Club Cologne 2014-2019
  * @license MIT
  */
-/// <reference path="autoc4.ts" />;
+/// <reference path="autoc4.ts" />
+
 interface AutoC4StateOptions{
     target: string;
     openClass: string;
