@@ -50,17 +50,9 @@ interface AutoC4DebugConfig {
     moduleLoaded: boolean;
 }
 
-interface AutoC4InteractivityConfig{
-    mqttTopicDataAttibute: string;
-    mqttRetainedDataAttribute: string;
-    mqttMessageDataAttribute: string;
-    mqttByteMessageDataAttribute: string;
-}
-
 interface AutoC4Config {
     server?: string;
     port?: number;
-    interactivity: AutoC4InteractivityConfig;
     modules: AutoC4ModuleConfig[];
     debug?: AutoC4DebugConfig;
 }
@@ -94,34 +86,9 @@ class AutoC4 {
             }
         }
 
-        const self: this = this;
-        const interactivity = self.config.interactivity;
-
         $('#help').click(function (ev) {
             ev.preventDefault();
             $('#help-display').toggle();
-        });
-
-        $('body').on("click change input", `[${this.config.interactivity.mqttTopicDataAttibute}]`, function (this:HTMLElement) {
-            if(this.hasAttribute(interactivity.mqttMessageDataAttribute)){
-                self.sendData(
-                    this.getAttribute(interactivity.mqttTopicDataAttibute),
-                    this.getAttribute(interactivity.mqttMessageDataAttribute) as string,
-                    Boolean(this.getAttribute(interactivity.mqttRetainedDataAttribute))
-                );
-            }else if(this.hasAttribute(interactivity.mqttByteMessageDataAttribute)){
-                self.sendByte(
-                    this.getAttribute(interactivity.mqttTopicDataAttibute),
-                    Number(this.getAttribute(interactivity.mqttByteMessageDataAttribute)),
-                    Boolean(this.getAttribute(interactivity.mqttRetainedDataAttribute))
-                );
-            }else{
-                self.sendByte(
-                    this.getAttribute(interactivity.mqttTopicDataAttibute),
-                    0,
-                    Boolean(this.getAttribute(interactivity.mqttRetainedDataAttribute))
-                );
-            }
         });
 
         $("body").on("click input change", "[data-toggle=value][data-target][data-value]", function() {
