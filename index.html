@@ -38,14 +38,14 @@
             <a class="navbar-brand d-none d-sm-block hide-cyber" href=".">AutoC4</a>
             <a class="navbar-brand d-none d-sm-block show-cyber" href=".">CyberC4</a>
             <ul class="nav navbar-nav mr-auto flex-row">
-                <li class="nav-item d-block"><a class="px-3 px-sm-2 nav-link active" data-toggle="tab" href="#light"><i class="far fa-lightbulb"></i><span class="d-inactive-none d-sm-inline"> Light</span></a></li>
-                <li class="nav-item d-block"><a class="px-3 px-sm-2 nav-link" data-toggle="tab" href="#presets"><i class="fa fa-save"></i><span class="d-inactive-none d-sm-inline"> Presets</span></a></li>
-                <li class="nav-item d-block"><a class="px-3 px-sm-2 nav-link" data-toggle="tab" href="#music"><i class="fa fa-music"></i><span class="d-inactive-none d-sm-inline"> Music</span></a></li>
-                <li class="nav-item d-block"><a class="px-3 px-sm-2 nav-link" data-toggle="tab" href="#status"><i class="fa fa-tachometer-alt"></i><span class="d-inactive-none d-sm-inline"> Status</span></a></li>
+                <li class="nav-item d-block"><a class="px-3 px-sm-2 nav-link active" data-toggle="tab" href="#light"><i class="far fa-lightbulb"></i><span class="d-inactive-none d-sm-inline">&nbsp;Light</span></a></li>
+                <li class="nav-item d-block"><a class="px-3 px-sm-2 nav-link" data-toggle="tab" href="#presets"><i class="fa fa-save"></i><span class="d-inactive-none d-sm-inline">&nbsp;Presets</span></a></li>
+                <li class="nav-item d-block"><a class="px-3 px-sm-2 nav-link" data-toggle="tab" href="#music"><i class="fa fa-music"></i><span class="d-inactive-none d-sm-inline">&nbsp;Music</span></a></li>
+                <li class="nav-item d-block"><a class="px-3 px-sm-2 nav-link" data-toggle="tab" href="#status"><i class="fa fa-tachometer-alt"></i><span class="d-inactive-none d-sm-inline">&nbsp;Status</span></a></li>
             </ul>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
                 <ul class="navbar-nav">
@@ -389,81 +389,81 @@
         </div>
 
         <div id="music" class="tab-pane container">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <h2>Wohnzimmer</h2>
-                        <div data-music-role="state" data-music-topic="mpd/baellebad/state" class="music-stopped">
-                            <div>
-                                <span class="music-hide-paused music-hide-stopped">&#x23f5;</span>
-                                <span class="music-hide-playing music-hide-stopped">&#x23f8;</span>
-                                <span class="music-hide-playing music-hide-paused">&#x23f9;</span>
-                                <span data-music-role="song" data-music-topic="mpd/baellebad/song"></span>
-                            </div>
-                            <div>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-prev" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="prev">&#x23ee;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-play music-hide-playing" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="play">&#x23f5;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-pause music-hide-paused music-hide-stopped" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="pause">&#x23f8;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-next" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="next">&#x23ed;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-stop" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="stop">&#x23f9;</a>
-                            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <h2>Wohnzimmer</h2>
+                    <div data-music-role="state" data-music-topic="mpd/baellebad/state" class="music-stopped">
+                        <div>
+                            <span class="music-hide-paused music-hide-stopped"><i class="fa fa-play"></i></span>
+                            <span class="music-hide-playing music-hide-stopped"><i class="fa fa-pause"></i></span>
+                            <span class="music-hide-playing music-hide-paused"><i class="fa fa-stop"></i></span>
+                            <span data-music-role="song" data-music-topic="mpd/baellebad/song"></span>
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-prev" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="prev"><i class="fa fa-fast-backward"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-play music-hide-playing" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="play"><i class="fa fa-play"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-pause music-hide-paused music-hide-stopped" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="pause"><i class="fa fa-pause"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-next" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="next"><i class="fa fa-fast-forward"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-stop" data-mqtt-topic="mpd/baellebad/control" data-mqtt-message="stop"><i class="fa fa-stop"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <h2>Plenarsaal</h2>
-                        <div data-music-role="state" data-music-topic="mpd/plenar/state" class="music-stopped">
-                            <div>
-                                <span class="music-hide-paused music-hide-stopped">&#x23f5;</span>
-                                <span class="music-hide-playing music-hide-stopped">&#x23f8;</span>
-                                <span class="music-hide-playing music-hide-paused">&#x23f9;</span>
-                                <span data-music-role="song" data-music-topic="mpd/plenar/song"></span>
-                            </div>
-                            <div>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-prev" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="prev">&#x23ee;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-play music-hide-playing" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="play">&#x23f5;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-pause music-hide-paused music-hide-stopped" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="pause">&#x23f8;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-next" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="next">&#x23ed;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-stop" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="stop">&#x23f9;</a>
-                            </div>
+                </div>
+                <div class="col-lg-3">
+                    <h2>Plenarsaal</h2>
+                    <div data-music-role="state" data-music-topic="mpd/plenar/state" class="music-stopped">
+                        <div>
+                            <span class="music-hide-paused music-hide-stopped"><i class="fa fa-play"></i></span>
+                            <span class="music-hide-playing music-hide-stopped"><i class="fa fa-pause"></i></span>
+                            <span class="music-hide-playing music-hide-paused"><i class="fa fa-stop"></i></span>
+                            <span data-music-role="song" data-music-topic="mpd/plenar/song"></span>
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-prev" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="prev"><i class="fa fa-fast-backward"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-play music-hide-playing" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="play"><i class="fa fa-play"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-pause music-hide-paused music-hide-stopped" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="pause"><i class="fa fa-pause"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-next" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="next"><i class="fa fa-fast-forward"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-stop" data-mqtt-topic="mpd/plenar/control" data-mqtt-message="stop"><i class="fa fa-stop"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <h2>Fnordcenter</h2>
-                        <div data-music-role="state" data-music-topic="mpd/fnord/state" class="music-stopped">
-                            <div>
-                                <span class="music-hide-paused music-hide-stopped">&#x23f5;</span>
-                                <span class="music-hide-playing music-hide-stopped">&#x23f8;</span>
-                                <span class="music-hide-playing music-hide-paused">&#x23f9;</span>
-                                <span data-music-role="song" data-music-topic="mpd/fnord/song"></span>
-                            </div>
-                            <div>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-prev" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="prev">&#x23ee;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-play music-hide-playing" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="play">&#x23f5;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-pause music-hide-paused music-hide-stopped" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="pause">&#x23f8;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-next" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="next">&#x23ed;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-stop" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="stop">&#x23f9;</a>
-                            </div>
+                </div>
+                <div class="col-lg-3">
+                    <h2>Fnordcenter</h2>
+                    <div data-music-role="state" data-music-topic="mpd/fnord/state" class="music-stopped">
+                        <div>
+                            <span class="music-hide-paused music-hide-stopped"><i class="fa fa-play"></i></span>
+                            <span class="music-hide-playing music-hide-stopped"><i class="fa fa-pause"></i></span>
+                            <span class="music-hide-playing music-hide-paused"><i class="fa fa-stop"></i></span>
+                            <span data-music-role="song" data-music-topic="mpd/fnord/song"></span>
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-prev" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="prev"><i class="fa fa-fast-backward"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-play music-hide-playing" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="play"><i class="fa fa-play"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-pause music-hide-paused music-hide-stopped" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="pause"><i class="fa fa-pause"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-next" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="next"><i class="fa fa-fast-forward"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-stop" data-mqtt-topic="mpd/fnord/control" data-mqtt-message="stop"><i class="fa fa-stop"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <h2>Keller</h2>
-                        <div data-music-role="state" data-music-topic="mpd/keller/state" class="music-stopped">
-                            <div>
-                                <span class="music-hide-paused music-hide-stopped">&#x23f5;</span>
-                                <span class="music-hide-playing music-hide-stopped">&#x23f8;</span>
-                                <span class="music-hide-playing music-hide-paused">&#x23f9;</span>
-                                <span data-music-role="song" data-music-topic="mpd/keller/song"></span>
-                            </div>
-                            <div>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-prev" data-mqtt-topic="mpd/keller/control" data-mqtt-message="prev">&#x23ee;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-play music-hide-playing" data-mqtt-topic="mpd/keller/control" data-mqtt-message="play">&#x23f5;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-pause music-hide-paused music-hide-stopped" data-mqtt-topic="mpd/keller/control" data-mqtt-message="pause">&#x23f8;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-next" data-mqtt-topic="mpd/keller/control" data-mqtt-message="next">&#x23ed;</a>
-                                <a href="#" class="btn btn-secondary btn-sm music-btn-stop" data-mqtt-topic="mpd/keller/control" data-mqtt-message="stop">&#x23f9;</a>
-                            </div>
+                </div>
+                <div class="col-lg-3">
+                    <h2>Keller</h2>
+                    <div data-music-role="state" data-music-topic="mpd/keller/state" class="music-stopped">
+                        <div>
+                            <span class="music-hide-paused music-hide-stopped"><i class="fa fa-play"></i></span>
+                            <span class="music-hide-playing music-hide-stopped"><i class="fa fa-pause"></i></span>
+                            <span class="music-hide-playing music-hide-paused"><i class="fa fa-stop"></i></span>
+                            <span data-music-role="song" data-music-topic="mpd/keller/song"></span>
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-prev" data-mqtt-topic="mpd/keller/control" data-mqtt-message="prev"><i class="fa fa-fast-backward"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-play music-hide-playing" data-mqtt-topic="mpd/keller/control" data-mqtt-message="play"><i class="fa fa-play"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-pause music-hide-paused music-hide-stopped" data-mqtt-topic="mpd/keller/control" data-mqtt-message="pause"><i class="fa fa-pause"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-next" data-mqtt-topic="mpd/keller/control" data-mqtt-message="next"><i class="fa fa-fast-forward"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm music-btn-stop" data-mqtt-topic="mpd/keller/control" data-mqtt-message="stop"><i class="fa fa-stop"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
         <div id="status" class="tab-pane container">
             <div class="row">
