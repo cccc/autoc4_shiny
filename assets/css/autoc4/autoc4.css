@@ -149,7 +149,7 @@ body.cyber .navbar {
   background: repeating-linear-gradient(135deg, yellow, yellow 32px, black 32px, black 64px);
   text-shadow: 0px 0px 2px black, 0px 0px 2px black, 0px 0px 1px white, 0px 0px 1px white;
 }
-body .navbar-dark .navbar-toggler-icon {
+body.cyber .navbar-dark .navbar-toggler {
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 0.17em;
 }
@@ -157,6 +157,10 @@ body .navbar-dark .navbar-toggler-icon {
 input[type=color] {
   border: 0;
   padding: 0;
+}
+
+:not(.active) > .d-inactive-none {
+  display: none;
 }
 
 .box-window {
