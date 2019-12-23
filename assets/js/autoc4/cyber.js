@@ -29,4 +29,5 @@ class AutoC4Cyber {
     onConnectionFailure(autoc4, error) { }
 }
 AutoC4.registerModule("cyber", () => new AutoC4Cyber());
+
 //# sourceMappingURL=cyber.js.map

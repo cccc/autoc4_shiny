@@ -29,4 +29,5 @@ class AutoC4Music {
     onConnectionFailure(autoc4, error) { }
 }
 AutoC4.registerModule("music", () => new AutoC4Music());
+
 //# sourceMappingURL=music.js.map

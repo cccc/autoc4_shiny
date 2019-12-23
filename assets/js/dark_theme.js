@@ -26,4 +26,5 @@
         });
     });
 })(window, jQuery);
+
 //# sourceMappingURL=dark_theme.js.map

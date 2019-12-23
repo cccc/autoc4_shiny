@@ -22,4 +22,5 @@ class AutoC4Light {
     onConnectionFailure(autoc4, error) { }
 }
 AutoC4.registerModule("light", () => new AutoC4Light());
+
 //# sourceMappingURL=light.js.map
