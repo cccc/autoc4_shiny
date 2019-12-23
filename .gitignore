@@ -1,4 +1,5 @@
 node_modules/
+release/
 *.map.js
 *.js.map
 *.css.map
