@@ -9,11 +9,14 @@ const gulp = require("gulp"),
       cssnano = require("gulp-cssnano"),
       del = require("del");
 
-const js_src = "./src/ts/**/*.ts"
-const js_dest = "./assets/js"
+const js_src = "./src/ts/**/*.ts";
+const js_dest = "./dist/js";
 
-const css_src = "./src/scss/**/*.scss"
-const css_dest = "./assets/css"
+const css_src = "./src/scss/**/*.scss";
+const css_dest = "./dist/css";
+
+const static_src = ["./src/**/*.*","!"+js_src,"!"+css_src];
+const static_dest = "./dist";
 
 const tsProject = ts.createProject('tsconfig.json');
 
@@ -53,12 +56,21 @@ gulp.task("build:css",function(cb){
     );
 });
 
-gulp.task("build",gulp.parallel("build:js","build:css"));
+gulp.task("copy:static",function(cb){
+    pipeline(
+        gulp.src(static_src),
+        gulp.dest(static_dest),
+        cb
+    )
+});
+
+gulp.task("build",gulp.parallel("copy:static","build:js","build:css"));
 
 gulp.task("clean:js",() => del(js_dest));
 gulp.task("clean:css",() => del(css_dest));
+gulp.task("clean:all",() => del(static_dest));
 
-gulp.task("clean",gulp.parallel("clean:js","clean:css"));
+gulp.task("clean",gulp.parallel("clean:all"));
 
 gulp.task("watch:js",()=>gulp.watch(js_src, gulp.task("build:js")));
 gulp.task("watch:css",()=>gulp.watch(css_src, gulp.task("build:css")));
