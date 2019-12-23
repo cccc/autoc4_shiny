@@ -14,4 +14,5 @@ class AutoC4Windows {
     onConnectionFailure(autoc4, error) { }
 }
 AutoC4.registerModule("windows", () => new AutoC4Windows());
+
 //# sourceMappingURL=windows.js.map

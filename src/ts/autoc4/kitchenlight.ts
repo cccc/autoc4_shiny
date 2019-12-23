@@ -31,22 +31,22 @@ class AutoC4Kitchenlight implements AutoC4Module {
                     _self.kl_empty();
                     break;
                 case "klChecker":
-                    _self.kl_checker(parseInt($("#klCheckerDelay").val()), $("#klCheckerColorA").val(), $("#klCheckerColorB").val());
+                    _self.kl_checker(parseInt($("#klCheckerDelay").val() as string), $("#klCheckerColorA").val() as string, $("#klCheckerColorB").val() as string);
                     break;
                 case "klPacman":
                     _self.kl_pacman();
                     break;
                 case "klText":
-                    _self.kl_text(parseInt($1("#klTextDelay").val()), $("#klTextText").val());
+                    _self.kl_text(parseInt($("#klTextDelay").val() as string), $("#klTextText").val() as string);
                     break;
                 case "klOpenChaos":
-                    _self.kl_open_chaos(parseInt($("#klOCDelay").val()));
+                    _self.kl_open_chaos(parseInt($("#klOCDelay").val() as string));
                     break;
                 case "klMatrix":
-                    _self.kl_matrix(parseInt($("#klMatrixLines").val()));
+                    _self.kl_matrix(parseInt($("#klMatrixLines").val() as string));
                     break;
                 case "klMood":
-                    _self.kl_moodlight(parseInt($("#klMoodMode").val()));
+                    _self.kl_moodlight(parseInt($("#klMoodMode").val() as string));
                     break;
                 case "klSine":
                     _self.kl_sine();
@@ -61,7 +61,7 @@ class AutoC4Kitchenlight implements AutoC4Module {
                     _self.kl_clock();
                     break;
                 case "klConway":
-                    _self.kl_conway(parseInt($("#klConwaySpeed").val()), parseInt($("#klConwayGenerations").val()), $("#klConwayFill")[0].checked);
+                    _self.kl_conway(parseInt($("#klConwaySpeed").val() as string), parseInt($("#klConwayGenerations").val() as string), $<HTMLInputElement>("#klConwayFill")[0].checked);
                     break;
             }
         });

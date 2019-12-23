@@ -150,4 +150,5 @@ class Color {
         return ret;
     }
 }
+
 //# sourceMappingURL=color.js.map

@@ -21,4 +21,5 @@ class AutoC4Interactivity {
     onConnectionFailure(autoc4, error) { }
 }
 AutoC4.registerModule("interactivity", () => new AutoC4Interactivity());
+
 //# sourceMappingURL=interactivity.js.map
