@@ -4,6 +4,7 @@
  */
 /// <reference path="autoc4.ts" />
 
+/** @todo button templates */
 interface AutoC4LightOptions {
     topicDataAttribute: string;
     onClass: string;

@@ -1,4 +1,8 @@
 /**
+ * @description A simple module for defining data attributes for elements
+ * such that when there is any user interaction with the element an MQTT
+ * message is sent.
+ * @author Necro
  * @copyright Chaos Computer Club Cologne 2014-2019
  * @license MIT
  */
