@@ -1,4 +1,7 @@
 /**
+ * @description A module that allows controlling DMX/RGB lights
+ * controlled through AutoC4. It supports 3/4 and 7 channel
+ * DMX lights.
  * @copyright Chaos Computer Club Cologne 2014-2019
  * @license MIT
  * @requires color
@@ -210,6 +213,7 @@ class AutoC4DMX implements AutoC4Module {
     }
 
     public sendLightData(room: string, light: string, data: Uint8Array): void {
+        /** @todo drop the dmx/ part and make this dynamic */
         this.autoc4.sendData("dmx/" + room + "/" + light, data, true);
         this.updateMasterForRoom(room);
     }

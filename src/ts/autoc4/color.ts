@@ -1,4 +1,6 @@
 /**
+ * @description A simple module defining a utility class for simple RGB/HSV color conversion
+ * @author Necro
  * @copyright Chaos Computer Club Cologne 2014-2019
  * @license MIT
  */

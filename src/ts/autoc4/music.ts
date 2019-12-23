@@ -1,4 +1,6 @@
 /**
+ * @description A simple module to add support for MPD bridge states
+ * @author Necro
  * @copyright Chaos Computer Club Cologne 2014-2019
  * @license MIT
  */

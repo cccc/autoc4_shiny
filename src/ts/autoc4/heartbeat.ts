@@ -1,4 +1,9 @@
 /**
+ * @description This module looks for the actication of a range of topics and adds them
+ * into a list monitoring the activation/deactivation and displaying the current state.
+ * This primarily used for monitoring the state of infrastructure(running/dead) that is
+ * part of AutoC4.
+ * @author Necro
  * @copyright Chaos Computer Club Cologne 2014-2019
  * @license MIT
  */
@@ -6,6 +11,7 @@
 
 type HeartbeatEntry = {element:JQuery<HTMLElement>,state_icon:JQuery<HTMLElement>};
 
+/** @todo entry element templates */
 class AutoC4Heartbeat implements AutoC4Module {
     private autoc4: AutoC4;
     private heartbeats: {[key:string]:HeartbeatEntry} = {}; 
