@@ -1,13 +1,26 @@
 (function (window, $) {
     let $body = $("body");
+    let searchParams = new URLSearchParams(window.location.search);
+    const LSKEY = "DARK_THEME_ENABLED";
     try {
+        if (searchParams.get('dark') != null) {
+            localStorage.setItem(LSKEY, "true");
+            $body.addClass("dark");
+        }
+        else if (searchParams.get('light') != null) {
+            localStorage.setItem(LSKEY, "false");
+            $body.removeClass("dark");
+        }
         if (localStorage.getItem("DARK_THEME_ENABLED") === "true")
             $body.addClass("dark");
+        else
+            $body.removeClass("dark");
     }
     catch (_a) {
-        let searchParams = new URLSearchParams(window.location.search);
         if (searchParams.get('dark') != null)
             $body.addClass("dark");
+        else
+            $body.removeClass("dark");
     }
     $(function () {
         $body.on("click", "[data-toggle=theme]", function () {
@@ -16,11 +29,14 @@
                 $body.toggleClass("dark");
             }
             catch (_a) {
-                let searchParams = new URLSearchParams(window.location.search);
-                if ($body.hasClass("dark"))
+                if ($body.hasClass("dark")) {
                     searchParams.delete("dark");
-                else
+                    searchParams.set("light", "");
+                }
+                else {
+                    searchParams.delete("light");
                     searchParams.set("dark", "");
+                }
                 window.location.search = searchParams.toString();
             }
         });

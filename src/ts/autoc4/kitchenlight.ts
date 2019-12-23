@@ -1,8 +1,8 @@
-// Copyright (c) 2014-2016 Chaos Computer Club Cologne
-//
-// This file is MIT licensed. Please see the
-// LICENSE file in the source package for more information.
-//
+/**
+ * @description The code below is cursed. Look at it at your own risk.
+ * @copyright Chaos Computer Club Cologne 2014-2019
+ * @license MIT
+ */
 /// <reference path="autoc4.ts" />
 
 class AutoC4Kitchenlight implements AutoC4Module {

@@ -1,4 +1,10 @@
 /**
+ * @description A joke module which activates the cyber mode when
+ * a certain key sequence is pressed or a certain topic gets activated.
+ * This is primarily intended to react to the Konami Code and the cyber
+ * alert topic but can in theory add any class to any element upon
+ * activation of any topic. 
+ * @author Necro
  * @copyright Chaos Computer Club Cologne 2014-2019
  * @license MIT
  */
