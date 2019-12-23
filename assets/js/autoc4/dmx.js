@@ -155,4 +155,5 @@ class AutoC4DMX {
     onConnectionFailure(autoc4, error) { }
 }
 AutoC4.registerModule("dmx", () => new AutoC4DMX());
+
 //# sourceMappingURL=dmx.js.map

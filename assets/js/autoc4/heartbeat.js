@@ -41,4 +41,5 @@ class AutoC4Heartbeat {
     onConnectionFailure(autoc4, error) { }
 }
 AutoC4.registerModule("heartbeat", () => new AutoC4Heartbeat());
+
 //# sourceMappingURL=heartbeat.js.map

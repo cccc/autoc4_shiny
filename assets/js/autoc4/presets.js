@@ -46,4 +46,5 @@ class AutoC4Presets {
     onConnectionFailure(autoc4, error) { }
 }
 AutoC4.registerModule("presets", () => new AutoC4Presets());
+
 //# sourceMappingURL=presets.js.map

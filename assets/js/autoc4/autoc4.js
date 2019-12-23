@@ -97,22 +97,22 @@ class AutoC4 {
         }
     }
     sendData(topic, data, retained = false) {
-        var message = new Paho.MQTT.Message(data);
+        let message = new Paho.MQTT.Message(data);
         message.destinationName = topic;
         message.retained = retained;
         this.client.send(message);
     }
     sendByte(topic, data, retained = false) {
-        var buf = new Uint8Array(data === undefined ? [0] : [data]);
-        var message = new Paho.MQTT.Message(buf);
+        let buf = new Uint8Array(data === undefined ? [0] : [data]);
+        let message = new Paho.MQTT.Message(buf);
         message.destinationName = topic;
         message.retained = retained;
         this.client.send(message);
     }
     static generateClientId() {
         return 'c4sw_yxxxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0;
-            var v = (c == 'x') ? r : (r & 0x3 | 0x8);
+            let r = Math.random() * 16 | 0;
+            let v = (c == 'x') ? r : (r & 0x3 | 0x8);
             return v.toString(16);
         });
     }
@@ -130,4 +130,5 @@ var update_time = function () {
     $('#datetime').text(text);
     setTimeout(update_time, 60000 - now.getSeconds() * 1000 - now.getMilliseconds());
 };
+
 //# sourceMappingURL=autoc4.js.map

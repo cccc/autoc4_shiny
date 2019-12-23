@@ -1,6 +1,7 @@
 /**
  * @copyright Chaos Computer Club Cologne 2014-2019
  * @license MIT
+ * @requires color
  */
 /// <reference path="color.ts" />
 /// <reference path="autoc4.ts" />
