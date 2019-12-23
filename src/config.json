@@ -1,0 +1,108 @@
+{
+    "server": "172.23.23.110",
+    "port": 9000,
+    "debug": {
+        "message": false,
+        "connect": true,
+        "disconnect": true,
+        "configLoaded": true,
+        "moduleLoaded": true
+    },
+    "modules": [
+        {
+            "module": "interactivity",
+            "options": {
+                "mqttTopicDataAttibute": "data-mqtt-topic",
+                "mqttRetainedDataAttribute": "data-mqtt-retained",
+                "mqttMessageDataAttribute": "data-mqtt-message",
+                "mqttByteMessageDataAttribute": "data-mqtt-message-byte"
+            }
+        },
+        {
+            "module": "dmx",
+            "options": {
+                "roomDataAttribute": "data-dmx-room",
+                "channelsDataAttribute": "data-dmx-channels",
+                "lightDataAttribute": "data-dmx-light",
+                "roleDataAttribute": "data-dmx-role",
+                "valueDataAttribute": "data-dmx-value"
+            },
+            "subscribe": [
+                "dmx/+/+"
+            ]
+        },
+        {
+            "module": "light",
+            "options": {
+                "topicDataAttribute": "data-light-topic",
+                "onClass": "on"
+            },
+            "subscribe": [
+                "licht/+/+",
+                "led/+/+",
+                "power/+/+",
+                "socket/+/+/+",
+                "screen/+/+"
+            ]
+        },
+        {
+            "module": "heartbeat",
+            "subscribe": [
+                "heartbeat/#"
+            ]
+        },
+        {
+            "module": "windows",
+            "subscribe": [
+                "fenster/+/+"
+            ]
+        },
+        {
+            "module": "state",
+            "options": {
+                "openClass":"state-open",
+                "closedClass":"state-closed",
+                "disconnectedClass":"state-disconnected",
+                "target":"body"
+            },
+            "subscribe": [
+                "club/status"
+            ]
+        },
+        {
+            "module": "presets",
+            "subscribe": [
+                "preset/list",
+                "preset/+/list"
+            ]
+        },
+        {
+            "module": "kitchenlight"
+        },
+        {
+            "module": "music",
+            "options": {
+                "roleDataAttribute": "data-music-role",
+                "topicDataAttribute": "data-music-topic",
+                "playingClass": "music-playing",
+                "pausedClass": "music-paused",
+                "stoppedClass": "music-stopped"
+            },
+            "subscribe": [
+                "mpd/+/state",
+                "mpd/+/song"
+            ]
+        },
+        {
+            "module": "cyber",
+            "options": {
+                "class":"cyber",
+                "target":"body",
+                "keys": [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]
+            },
+            "subscribe": [
+                "club/cyber/alert"
+            ]
+        }
+    ]
+}
