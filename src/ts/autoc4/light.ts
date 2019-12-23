@@ -1,4 +1,5 @@
 /**
+ * @description A module to provide simple toggle buttons for topics
  * @copyright Chaos Computer Club Cologne 2014-2019
  * @license MIT
  */
