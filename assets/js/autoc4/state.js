@@ -28,4 +28,5 @@ class AutoC4State {
     }
 }
 AutoC4.registerModule("state", () => new AutoC4State());
+
 //# sourceMappingURL=state.js.map

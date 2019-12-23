@@ -27,7 +27,7 @@ class AutoC4Kitchenlight {
                     _self.kl_pacman();
                     break;
                 case "klText":
-                    _self.kl_text(parseInt($1("#klTextDelay").val()), $("#klTextText").val());
+                    _self.kl_text(parseInt($("#klTextDelay").val()), $("#klTextText").val());
                     break;
                 case "klOpenChaos":
                     _self.kl_open_chaos(parseInt($("#klOCDelay").val()));
@@ -194,4 +194,5 @@ class AutoC4Kitchenlight {
     onConnectionFailure(autoc4, error) { }
 }
 AutoC4.registerModule("kitchenlight", () => new AutoC4Kitchenlight());
+
 //# sourceMappingURL=kitchenlight.js.map
