@@ -28,6 +28,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-terser": "^1.2.0",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-zip": "^5.0.1",
     "sass": "^1.24.0",
     "typescript": "^3.7.4"
   },
