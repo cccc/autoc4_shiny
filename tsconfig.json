@@ -8,10 +8,10 @@
         "preserveConstEnums": true,
         "sourceMap": true,
         "rootDir": "./src/ts",
-        "outDir": "./assets/js"
+        "outDir": "dist/assets/js"
     },
     "include": [
-        "src/**/*"
+        "src/ts/*"
     ],
     "exclude": [
         "node_modules",
