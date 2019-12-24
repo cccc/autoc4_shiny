@@ -74,9 +74,14 @@ gulp.task("copy:static",function(cb){
 gulp.task("build",gulp.parallel("copy:static","build:js","build:css"));
 
 gulp.task("zip",function(cb){
+    let date=new Date();
+    let date_string=`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}_${date.getHours()}-${date.getMinutes()}`
+
     pipeline(
         gulp.src(release_src),
         zip("latest.zip"),
+        gulp.dest(release_dest),
+        rename(date_string+".zip"),
         gulp.dest(release_dest),
         cb
     )
