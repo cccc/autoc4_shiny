@@ -1,0 +1,30 @@
+name: Node CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install, build, and test
+      run: |
+        npm ci
+        npm run build
+        npm run release
+      env:
+        CI: true
+        GH_TOKEN_PUBLISH: ${{ secrets.GH_TOKEN_PUBLISH }}
+        GH_REPO_OWNER: ${{ secrets.GH_REPO_OWNER }}
+        GH_REPO_NAME: ${{ secrets.GH_REPO_NAME }}
+        
