@@ -32,7 +32,7 @@
     "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-zip": "^5.0.1",
     "publish-release": "^1.6.1",
-    "sass": "^1.24.0",
+    "sass": "^1.24.3",
     "typescript": "^3.7.4"
   }
 }
