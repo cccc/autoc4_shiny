@@ -123,7 +123,8 @@ gulp.task("clean",gulp.parallel("clean:dist"));
 
 gulp.task("watch:js",()=>gulp.watch(js_src, gulp.task("build:js")));
 gulp.task("watch:css",()=>gulp.watch(css_src, gulp.task("build:css")));
+gulp.task("watch:static",()=>gulp.watch(static_src, gulp.task("copy:static")));
 
-gulp.task("watch",gulp.parallel("watch:js","watch:css"));
+gulp.task("watch",gulp.parallel("watch:js", "watch:css", "watch:static"));
 
-gulp.task("default",gulp.series("clean","build"))
+gulp.task("default",gulp.series("clean", "build"))
