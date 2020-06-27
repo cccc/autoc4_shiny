@@ -1,9 +1,9 @@
 /**
- * @copyright Chaos Computer Club Cologne 2014-2019
+ * @copyright Chaos Computer Club Cologne 2014-2020
  * @license MIT
  */
 
-function mqtt_match_topic(subscription:string, topic:string):boolean{
+export function mqtt_match_topic(subscription:string, topic:string): boolean{
     let subscription_levels=subscription.split("/");
     let topic_levels=topic.split("/");
     for(let i=0;i<subscription_levels.length;i++){
@@ -17,6 +17,13 @@ function mqtt_match_topic(subscription:string, topic:string):boolean{
     return subscription_levels.length===topic_levels.length;    
 }
 
-function two_digits(i:number):string {
+export function two_digits(i:number):string {
     return ("0" + i).slice(-2);
+}
+
+export function generateUUID(): string {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
 }

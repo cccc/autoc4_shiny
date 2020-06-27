@@ -1,23 +1,23 @@
 /**
  * @description A simple module defining a utility class for simple RGB/HSV color conversion
  * @author Necro
- * @copyright Chaos Computer Club Cologne 2014-2019
+ * @copyright Chaos Computer Club Cologne 2019-2020
  * @license MIT
  */
 
-interface RGB {
+export interface RGB {
     r: number;
     g: number;
     b: number;
 }
 
-interface HSV {
+export interface HSV {
     h: number;
     s: number;
     v: number;
 }
 
-class Color implements RGB, HSV {
+export default class Color implements RGB, HSV {
     private constructor() {
         this.rgb = { r: 0, g: 0, b: 0 };
     }

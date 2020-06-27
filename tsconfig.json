@@ -2,7 +2,7 @@
     "compileOnSave": true,
     "compilerOptions": {
         "target": "es6",
-        "module": "none",
+        "module": "esnext",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
