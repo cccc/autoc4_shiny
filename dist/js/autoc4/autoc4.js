@@ -1,3 +1,4 @@
+import { mqtt_match_topic, two_digits, generateUUID } from "./utils.js";
 var autoc4;
 var __AUTOC4_CONFIG_LOCATION = __AUTOC4_CONFIG_LOCATION || "config.json";
 $(function () {
@@ -12,35 +13,36 @@ $(function () {
         console.error("Couldn't load config.json", e, f);
     });
 });
-var mqtt_client;
-class AutoC4 {
+export class AutoC4 {
     constructor(config) {
         this.modules = [];
+        this._moduleTypes = {};
         this.config = config;
-        this.client = new Paho.MQTT.Client(config.server || window.location.hostname, config.port || 9000, AutoC4.generateClientId());
+        this.client = new Paho.MQTT.Client(config.server || window.location.hostname, config.port || 9000, (config.clientIdPrefix || "shiny_") + generateUUID());
         this.client.onMessageArrived = this.onMessage.bind(this);
         this.client.onConnectionLost = this.onConnectionFailure.bind(this);
-        for (let moduleConfig of config.modules) {
+        Promise.all(config.plugins.map(plugin => import(plugin)))
+            .then(exprts => {
+            exprts.forEach(exp => exp.default(this));
+            this.loadModules();
+            this.connect();
+        })
+            .catch(error => console.error(error));
+    }
+    loadModules() {
+        for (const moduleConfig of this.config.modules) {
             try {
-                moduleConfig.instance = AutoC4.moduleConfigToModule(moduleConfig).init(this, moduleConfig.options);
+                moduleConfig.instance = this.moduleConfigToModule(moduleConfig).init(this, moduleConfig.options);
                 this.modules.push(moduleConfig.instance);
                 if (this.config.debug && this.config.debug.moduleLoaded)
-                    console.debug(`Successfully loaded module of type "${moduleConfig.module}".`, moduleConfig);
+                    console.debug(`Successfully initialized module of type "${moduleConfig.type}".`, moduleConfig);
             }
             catch (err) {
                 console.error("An error occured while initializing a module.");
-                console.error("Module: ", moduleConfig.module);
+                console.error("Module Type: ", moduleConfig.type);
                 console.error(err);
             }
         }
-        $('#help').click(function (ev) {
-            ev.preventDefault();
-            $('#help-display').toggle();
-        });
-        $("body").on("click input change", "[data-toggle=value][data-target][data-value]", function () {
-            document.querySelectorAll(this.getAttribute("data-target")).forEach((e) => e.value = this.getAttribute("data-value"));
-        });
-        this.connect();
     }
     connect() {
         this.client.connect({ onSuccess: this.onConnect.bind(this), onFailure: this.client.onConnectionLost, mqttVersion: 3 });
@@ -101,34 +103,32 @@ class AutoC4 {
         message.destinationName = topic;
         message.retained = retained;
         this.client.send(message);
+        if (this.config.debug && this.config.debug.sentMessage)
+            console.debug('Sent MQTT Message:', message);
     }
     sendByte(topic, data, retained = false) {
-        let buf = new Uint8Array(data === undefined ? [0] : [data]);
-        let message = new Paho.MQTT.Message(buf);
-        message.destinationName = topic;
-        message.retained = retained;
-        this.client.send(message);
+        this.sendData(topic, new Uint8Array(data === undefined ? [0] : [data]), retained);
     }
-    static generateClientId() {
-        return 'c4sw_yxxxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            let r = Math.random() * 16 | 0;
-            let v = (c == 'x') ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
+    registerModule(type, factory) {
+        this._moduleTypes[type] = factory;
     }
-    static registerModule(name, factory) {
-        this._modules[name] = factory;
-    }
-    static moduleConfigToModule(config) {
-        return this._modules[config.module]();
+    moduleConfigToModule(config) {
+        if (config.type in this._moduleTypes)
+            return this._moduleTypes[config.type]();
+        else
+            throw new Error(`Unknown module type: ${config.type}`);
     }
 }
-AutoC4._modules = {};
 var update_time = function () {
     var now = new Date();
     var text = two_digits(now.getDate()) + "." + two_digits(now.getMonth() + 1) + "." + now.getFullYear() + " " + two_digits(now.getHours()) + ":" + two_digits(now.getMinutes());
     $('#datetime').text(text);
     setTimeout(update_time, 60000 - now.getSeconds() * 1000 - now.getMilliseconds());
 };
-
-//# sourceMappingURL=autoc4.js.map
+$('#help').click(function (ev) {
+    ev.preventDefault();
+    $('#help-display').toggle();
+});
+$("body").on("click input change", "[data-toggle=value][data-target][data-value]", function () {
+    document.querySelectorAll(this.getAttribute("data-target")).forEach((e) => e.value = this.getAttribute("data-value"));
+});
