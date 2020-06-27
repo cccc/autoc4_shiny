@@ -1,16 +1,31 @@
 {
     "server": "172.23.23.110",
     "port": 9000,
+    "clientIdPrefix": "shiny_",
     "debug": {
         "message": false,
         "connect": true,
         "disconnect": true,
         "configLoaded": true,
-        "moduleLoaded": true
+        "moduleLoaded": true,
+        "sentMessage": true
     },
+    "plugins": [
+        "./plugins/interactivity.min.js",
+        "./plugins/light.min.js",
+        "./plugins/dmx.min.js",
+        "./plugins/state.min.js",
+        "./plugins/heartbeat.min.js",
+        "./plugins/windows.min.js",
+        "./plugins/presets.min.js",
+        "./plugins/kitchenlight.min.js",
+        "./plugins/music.min.js",
+        "./plugins/notify.min.js",
+        "./plugins/cyber.min.js"
+    ],
     "modules": [
         {
-            "module": "interactivity",
+            "type": "interactivity",
             "options": {
                 "mqttTopicDataAttibute": "data-mqtt-topic",
                 "mqttRetainedDataAttribute": "data-mqtt-retained",
@@ -19,7 +34,7 @@
             }
         },
         {
-            "module": "dmx",
+            "type": "dmx",
             "options": {
                 "roomDataAttribute": "data-dmx-room",
                 "channelsDataAttribute": "data-dmx-channels",
@@ -32,7 +47,7 @@
             ]
         },
         {
-            "module": "light",
+            "type": "light",
             "options": {
                 "topicDataAttribute": "data-light-topic",
                 "onClass": "on"
@@ -46,19 +61,19 @@
             ]
         },
         {
-            "module": "heartbeat",
+            "type": "heartbeat",
             "subscribe": [
                 "heartbeat/#"
             ]
         },
         {
-            "module": "windows",
+            "type": "windows",
             "subscribe": [
                 "fenster/+/+"
             ]
         },
         {
-            "module": "state",
+            "type": "state",
             "options": {
                 "openClass":"state-open",
                 "closedClass":"state-closed",
@@ -70,17 +85,17 @@
             ]
         },
         {
-            "module": "presets",
+            "type": "presets",
             "subscribe": [
                 "preset/list",
                 "preset/+/list"
             ]
         },
         {
-            "module": "kitchenlight"
+            "type": "kitchenlight"
         },
         {
-            "module": "music",
+            "type": "music",
             "options": {
                 "roleDataAttribute": "data-music-role",
                 "topicDataAttribute": "data-music-topic",
@@ -94,7 +109,25 @@
             ]
         },
         {
-            "module": "cyber",
+            "type": "notify",
+            "options": {
+                "textTemplate":"Shutdown was initiated."
+            },
+            "subscribe": [
+                "club/shutdown"
+            ]
+        },
+        {
+            "type": "notify",
+            "options": {
+                "textTemplate":"Gate was opened."
+            },
+            "subscribe": [
+                "club/gate"
+            ]
+        },
+        {
+            "type": "cyber",
             "options": {
                 "class":"cyber",
                 "target":"body",

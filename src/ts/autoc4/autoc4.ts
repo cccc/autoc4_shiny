@@ -1,9 +1,9 @@
 /**
- * @copyright Chaos Computer Club Cologne 2014-2019
+ * @copyright Chaos Computer Club Cologne 2014-2020
  * @license MIT
  * @requires utils
  */
-/// <reference path="utils.ts" />
+import {mqtt_match_topic, two_digits, generateUUID} from "./utils.js";
 
 var autoc4;
 var __AUTOC4_CONFIG_LOCATION:string = __AUTOC4_CONFIG_LOCATION || "config.json";
@@ -23,42 +23,43 @@ $(function () {
         });
 });
 
-var mqtt_client;
-
-interface AutoC4Module {
+export interface AutoC4Module {
     init(autoc4: AutoC4, options: any): this;
     onMessage(autoc4: AutoC4, message: Paho.MQTT.Message): void;
     onConnect(autoc4: AutoC4, o: Paho.MQTT.WithInvocationContext): void;
     onConnectionFailure(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void;
 }
 
-interface AutoC4ModuleFactory {
+export interface AutoC4ModuleFactory {
     (): AutoC4Module;
 }
 
-interface AutoC4ModuleConfig {
-    module: string;
+export interface AutoC4ModuleConfig {
+    type: string;
     options: any;
     subscribe: string[];
     instance: AutoC4Module;
 }
 
-interface AutoC4DebugConfig {
+export interface AutoC4DebugConfig {
     message: boolean;
     connect: boolean;
     disconnect: boolean;
     configLoaded: boolean;
     moduleLoaded: boolean;
+    sentMessage: boolean;
 }
 
-interface AutoC4Config {
+export interface AutoC4Config {
     server?: string;
     port?: number;
+    clientIdPrefix?: string;
+    plugins: string[];
     modules: AutoC4ModuleConfig[];
     debug?: AutoC4DebugConfig;
 }
 
-class AutoC4 {
+export class AutoC4 {
     private config: AutoC4Config;
     private readonly modules: AutoC4Module[] = [];
     public readonly client: Paho.MQTT.Client;
@@ -69,34 +70,33 @@ class AutoC4 {
         this.client = new Paho.MQTT.Client(
             config.server || window.location.hostname,
             config.port || 9000,
-            AutoC4.generateClientId()
+            (config.clientIdPrefix || "shiny_") + generateUUID()
         );
         this.client.onMessageArrived = this.onMessage.bind(this);
         this.client.onConnectionLost = this.onConnectionFailure.bind(this);
 
-        for (let moduleConfig of config.modules) {
+        Promise.all(config.plugins.map(plugin => import(plugin)))
+            .then( exprts => {
+                exprts.forEach(exp => exp.default(this));
+                this.loadModules()
+                this.connect();
+            })
+            .catch( error => console.error(error) );
+    }
+
+    public loadModules():void{
+        for (const moduleConfig of this.config.modules) {
             try {
-                moduleConfig.instance=AutoC4.moduleConfigToModule(moduleConfig).init(this, moduleConfig.options)
+                moduleConfig.instance = this.moduleConfigToModule(moduleConfig).init(this, moduleConfig.options)
                 this.modules.push(moduleConfig.instance);
                 if (this.config.debug && this.config.debug.moduleLoaded)
-                    console.debug(`Successfully loaded module of type "${moduleConfig.module}".`, moduleConfig);
+                    console.debug(`Successfully initialized module of type "${moduleConfig.type}".`, moduleConfig);
             } catch (err) {
                 console.error("An error occured while initializing a module.");
-                console.error("Module: ", moduleConfig.module);
+                console.error("Module Type: ", moduleConfig.type);
                 console.error(err);
             }
         }
-
-        $('#help').click(function (ev) {
-            ev.preventDefault();
-            $('#help-display').toggle();
-        });
-
-        $("body").on("click input change", "[data-toggle=value][data-target][data-value]", function() {
-            document.querySelectorAll<HTMLInputElement>(this.getAttribute("data-target")).forEach((e)=>e.value=this.getAttribute("data-value"));
-        });
-
-        this.connect();
     }
 
     public connect():void{
@@ -157,34 +157,27 @@ class AutoC4 {
         }
     }
 
-    public sendData(topic: string, data: string|Uint8Array, retained:boolean = false): void {
+    public sendData(topic: string, data: string|Uint8Array, retained: boolean = false): void {
         let message = new Paho.MQTT.Message(data);
         message.destinationName = topic;
         message.retained = retained;
         this.client.send(message);
+        if (this.config.debug && this.config.debug.sentMessage)
+            console.debug('Sent MQTT Message:', message);
     }
-    public sendByte(topic: string, data: number, retained:boolean = false): void {
-        let buf = new Uint8Array(data===undefined ? [0] : [data]);
-        let message = new Paho.MQTT.Message(buf);
-        message.destinationName = topic;
-        message.retained = retained;
-        this.client.send(message);
+    public sendByte(topic: string, data: number, retained: boolean = false): void {
+        this.sendData(topic, new Uint8Array(data===undefined ? [0] : [data]), retained);
     }
 
-    public static generateClientId(): string {
-        return 'c4sw_yxxxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            let r = Math.random() * 16 | 0;
-            let v = (c == 'x') ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
+    private _moduleTypes: {[type: string]:AutoC4ModuleFactory} = {};
+    public registerModule(type: string, factory: AutoC4ModuleFactory): void {
+        this._moduleTypes[type]=factory;
     }
-
-    private static _modules: {[name: string]:AutoC4ModuleFactory} = {};
-    public static registerModule(name: string, factory: AutoC4ModuleFactory): void {
-        this._modules[name]=factory;
-    }
-    public static moduleConfigToModule(config: AutoC4ModuleConfig): AutoC4Module {
-        return this._modules[config.module]();
+    public moduleConfigToModule(config: AutoC4ModuleConfig): AutoC4Module {
+        if(config.type in this._moduleTypes)
+            return this._moduleTypes[config.type]();
+        else
+            throw new Error(`Unknown module type: ${config.type}`);
     }
 }
 
@@ -194,3 +187,12 @@ var update_time = function ():void {
     $('#datetime').text(text);
     setTimeout(update_time, 60000 - now.getSeconds() * 1000 - now.getMilliseconds());
 };
+
+$('#help').click(function (ev) {
+    ev.preventDefault();
+    $('#help-display').toggle();
+});
+
+$("body").on("click input change", "[data-toggle=value][data-target][data-value]", function() {
+    document.querySelectorAll<HTMLInputElement>(this.getAttribute("data-target")).forEach((e)=>e.value=this.getAttribute("data-value"));
+});
