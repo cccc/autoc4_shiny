@@ -55,4 +55,6 @@ class AutoC4Notify {
     onConnect(autoc4, o) { }
     onConnectionFailure(autoc4, error) { }
 }
-export default (autoc4) => autoc4.registerModule("notify", () => new AutoC4Notify());
+export default (autoc4) => autoc4.registerModuleType("notify", () => new AutoC4Notify());
+
+//# sourceMappingURL=notify.js.map

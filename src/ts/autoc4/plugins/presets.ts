@@ -64,4 +64,4 @@ class AutoC4Presets implements AutoC4Module {
     onConnectionFailure(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void {}
 }
 
-export default (autoc4: AutoC4) => autoc4.registerModule("presets", () => new AutoC4Presets());
+export default (autoc4: AutoC4) => autoc4.registerModuleType("presets", () => new AutoC4Presets());

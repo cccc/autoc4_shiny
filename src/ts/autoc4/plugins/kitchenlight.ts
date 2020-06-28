@@ -250,4 +250,4 @@ class AutoC4Kitchenlight implements AutoC4Module {
 
 }
 
-export default (autoc4: AutoC4) => autoc4.registerModule("kitchenlight", () => new AutoC4Kitchenlight());
+export default (autoc4: AutoC4) => autoc4.registerModuleType("kitchenlight", () => new AutoC4Kitchenlight());

@@ -155,4 +155,6 @@ class AutoC4DMX {
     onConnect(autoc4, o) { }
     onConnectionFailure(autoc4, error) { }
 }
-export default (autoc4) => autoc4.registerModule("dmx", () => new AutoC4DMX());
+export default (autoc4) => autoc4.registerModuleType("dmx", () => new AutoC4DMX());
+
+//# sourceMappingURL=dmx.js.map

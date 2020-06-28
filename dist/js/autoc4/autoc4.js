@@ -1,4 +1,4 @@
-import { mqtt_match_topic, two_digits, generateUUID } from "./utils.js";
+import { mqtt_match_topic, generateUUID } from "./utils.js";
 var autoc4;
 var __AUTOC4_CONFIG_LOCATION = __AUTOC4_CONFIG_LOCATION || "config.json";
 $(function () {
@@ -7,7 +7,6 @@ $(function () {
         if (config.debug && config.debug.configLoaded)
             console.debug("Config loaded successfully", config);
         autoc4 = new AutoC4(config);
-        update_time();
     })
         .fail(function (e, f) {
         console.error("Couldn't load config.json", e, f);
@@ -109,7 +108,7 @@ export class AutoC4 {
     sendByte(topic, data, retained = false) {
         this.sendData(topic, new Uint8Array(data === undefined ? [0] : [data]), retained);
     }
-    registerModule(type, factory) {
+    registerModuleType(type, factory) {
         this._moduleTypes[type] = factory;
     }
     moduleConfigToModule(config) {
@@ -119,16 +118,5 @@ export class AutoC4 {
             throw new Error(`Unknown module type: ${config.type}`);
     }
 }
-var update_time = function () {
-    var now = new Date();
-    var text = two_digits(now.getDate()) + "." + two_digits(now.getMonth() + 1) + "." + now.getFullYear() + " " + two_digits(now.getHours()) + ":" + two_digits(now.getMinutes());
-    $('#datetime').text(text);
-    setTimeout(update_time, 60000 - now.getSeconds() * 1000 - now.getMilliseconds());
-};
-$('#help').click(function (ev) {
-    ev.preventDefault();
-    $('#help-display').toggle();
-});
-$("body").on("click input change", "[data-toggle=value][data-target][data-value]", function () {
-    document.querySelectorAll(this.getAttribute("data-target")).forEach((e) => e.value = this.getAttribute("data-value"));
-});
+
+//# sourceMappingURL=autoc4.js.map

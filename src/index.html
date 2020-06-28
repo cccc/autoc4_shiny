@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>AutoC4</title>
+    <title>AutoC4 - Shiny</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -17,6 +17,7 @@
     <script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
 
+    <script type="module" src="js/extra_toggles.min.js"></script>
     <script type="module" src="js/autoc4/autoc4.min.js"></script>
 </head>
 
@@ -38,7 +39,7 @@
 
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#" id="help"><i class="fa fa-question-circle"></i> Help</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="display" href="#help"><i class="fa fa-question-circle"></i> Help</a></li>
                     <li class="theme-light nav-item"><a class="nav-link" data-toggle="theme" href="?dark"><i class="fa fa-moon"></i> Dark</a></li>
                     <li class="theme-dark nav-item"><a class="nav-link" data-toggle="theme" href="?light"><i class="fa fa-sun"></i> Light</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" data-mqtt-topic="club/gate"><i class="fa fa-door-open"></i> Open Gate</a></li>
@@ -49,7 +50,7 @@
                     <li class="nav-item"><a class="nav-link show-state-disconnected" href="#"><i class="fa fa-exclamation-circle" style="color:#a00"></i> <span>Disconnected</span></a></li>
                     <li class="nav-item"><a class="nav-link show-state-open" href="#"><i class="fa fa-thumbs-up" style="color:#0c0"></i> <span>Open</span></a></li>
                     <li class="nav-item"><a class="nav-link show-state-closed" href="#"><i class="fa fa-thumbs-down" style="color:#c00"></i> <span>Closed</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-clock"></i> <span id="datetime">c4.2a.dead 21:42</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-clock"></i> <span data-time data-time-template="dd.MM.yyyy HH:mm">c4.2a.dead 23:42</span></a></li>
                 </ul>
             </div>
         </div>
@@ -621,7 +622,7 @@
             </div>
         </div>
     </div>
-    <div id="help-display"></div>
+    <div id="help"></div>
 </body>
 
 </html>
