@@ -56,4 +56,4 @@ class AutoC4Interactivity implements AutoC4Module {
     onConnectionFailure(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void {}
 }
 
-export default (autoc4: AutoC4) => autoc4.registerModule("interactivity", () => new AutoC4Interactivity());
+export default (autoc4: AutoC4) => autoc4.registerModuleType("interactivity", () => new AutoC4Interactivity());

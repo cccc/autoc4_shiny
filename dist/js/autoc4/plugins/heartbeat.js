@@ -40,4 +40,6 @@ class AutoC4Heartbeat {
     onConnect(autoc4, o) { }
     onConnectionFailure(autoc4, error) { }
 }
-export default (autoc4) => autoc4.registerModule("heartbeat", () => new AutoC4Heartbeat());
+export default (autoc4) => autoc4.registerModuleType("heartbeat", () => new AutoC4Heartbeat());
+
+//# sourceMappingURL=heartbeat.js.map

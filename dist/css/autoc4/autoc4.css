@@ -198,7 +198,7 @@ input[type=color] {
 .preset-pane {
   text-align: center; }
 
-#help-display {
+#help {
   display: none;
   position: absolute;
   top: 0;

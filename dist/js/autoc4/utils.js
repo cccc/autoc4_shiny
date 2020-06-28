@@ -20,3 +20,20 @@ export function generateUUID() {
         return v.toString(16);
     });
 }
+export function simpleDateFormat(template, date) {
+    return template
+        .replace(/yyyy/, date.getFullYear().toString())
+        .replace(/yy/, (date.getFullYear() % 100).toString())
+        .replace(/MM/, two_digits(date.getMonth() + 1))
+        .replace(/M/, (date.getMonth() + 1).toString())
+        .replace(/dd/, two_digits(date.getDate()))
+        .replace(/d/, date.getDate().toString())
+        .replace(/HH/, two_digits(date.getHours()))
+        .replace(/H/, date.getHours().toString())
+        .replace(/mm/, two_digits(date.getMinutes()))
+        .replace(/m/, date.getMinutes().toString())
+        .replace(/ss/, two_digits(date.getSeconds()))
+        .replace(/s/, date.getSeconds().toString());
+}
+
+//# sourceMappingURL=utils.js.map

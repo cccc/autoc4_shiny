@@ -47,4 +47,4 @@ class AutoC4Light implements AutoC4Module {
     onConnectionFailure(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void {}
 }
 
-export default (autoc4: AutoC4) => autoc4.registerModule("light", () => new AutoC4Light());
+export default (autoc4: AutoC4) => autoc4.registerModuleType("light", () => new AutoC4Light());

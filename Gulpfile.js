@@ -14,8 +14,7 @@ const gulp = require("gulp"),
       postcss = require("gulp-postcss"),
         cssnano = require("cssnano"),
       //release
-      zip = require("gulp-zip"),
-      publish = require("publish-release");
+      zip = require("gulp-zip");
 
 const publishing_token_variable = "GH_TOKEN_PUBLISH",
       publishing_repo_owner_variable = "GH_REPO_OWNER",
@@ -101,14 +100,15 @@ gulp.task("zip",function(cb){
 
 gulp.task("publish",function(cb){
     const package = require("./package.json");
-    publish({
+    /*publish({
         token: env[publishing_token_variable],
         owner: env[publishing_repo_owner_variable],
         repo: env[publishing_repo_name_variable],
         tag: `v${require("./package.json").version}`,
         name: `${package.name} v${package.version}`,
         assets: [`${release_dest}/v${require("./package.json").version}.zip`],
-      }, cb)
+      }, cb)*/
+    throw Error("Not implemented!");
 })
 
 gulp.task("release",gulp.series("zip","publish"))

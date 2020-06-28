@@ -46,4 +46,4 @@ class AutoC4State implements AutoC4Module {
     }
 }
 
-export default (autoc4: AutoC4) => autoc4.registerModule("state", () => new AutoC4State());
+export default (autoc4: AutoC4) => autoc4.registerModuleType("state", () => new AutoC4State());
