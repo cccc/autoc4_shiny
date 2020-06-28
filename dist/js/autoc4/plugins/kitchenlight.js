@@ -193,4 +193,6 @@ class AutoC4Kitchenlight {
     onConnect(autoc4, o) { }
     onConnectionFailure(autoc4, error) { }
 }
-export default (autoc4) => autoc4.registerModule("kitchenlight", () => new AutoC4Kitchenlight());
+export default (autoc4) => autoc4.registerModuleType("kitchenlight", () => new AutoC4Kitchenlight());
+
+//# sourceMappingURL=kitchenlight.js.map

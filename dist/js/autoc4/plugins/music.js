@@ -28,4 +28,6 @@ class AutoC4Music {
     onConnect(autoc4, o) { }
     onConnectionFailure(autoc4, error) { }
 }
-export default (autoc4) => autoc4.registerModule("music", () => new AutoC4Music());
+export default (autoc4) => autoc4.registerModuleType("music", () => new AutoC4Music());
+
+//# sourceMappingURL=music.js.map

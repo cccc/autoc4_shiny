@@ -63,4 +63,4 @@ class AutoC4Heartbeat implements AutoC4Module {
     onConnectionFailure(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void {}
 }
 
-export default (autoc4: AutoC4) => autoc4.registerModule("heartbeat", () => new AutoC4Heartbeat());
+export default (autoc4: AutoC4) => autoc4.registerModuleType("heartbeat", () => new AutoC4Heartbeat());

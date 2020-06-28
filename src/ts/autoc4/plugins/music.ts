@@ -49,4 +49,4 @@ class AutoC4Music implements AutoC4Module {
     onConnectionFailure(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void {}
 }
 
-export default (autoc4: AutoC4) => autoc4.registerModule("music", () => new AutoC4Music());
+export default (autoc4: AutoC4) => autoc4.registerModuleType("music", () => new AutoC4Music());

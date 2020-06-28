@@ -239,4 +239,4 @@ class AutoC4DMX implements AutoC4Module {
 
 }
 
-export default (autoc4: AutoC4) => autoc4.registerModule("dmx", () => new AutoC4DMX());
+export default (autoc4: AutoC4) => autoc4.registerModuleType("dmx", () => new AutoC4DMX());

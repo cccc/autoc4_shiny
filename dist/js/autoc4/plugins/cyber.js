@@ -28,4 +28,6 @@ class AutoC4Cyber {
     onConnect(autoc4, o) { }
     onConnectionFailure(autoc4, error) { }
 }
-export default (autoc4) => autoc4.registerModule("cyber", () => new AutoC4Cyber());
+export default (autoc4) => autoc4.registerModuleType("cyber", () => new AutoC4Cyber());
+
+//# sourceMappingURL=cyber.js.map

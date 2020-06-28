@@ -93,4 +93,4 @@ class AutoC4Notify implements AutoC4Module {
     onConnectionFailure(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void {}
 }
 
-export default (autoc4: AutoC4) => autoc4.registerModule("notify", () => new AutoC4Notify());
+export default (autoc4: AutoC4) => autoc4.registerModuleType("notify", () => new AutoC4Notify());

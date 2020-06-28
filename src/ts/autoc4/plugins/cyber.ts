@@ -51,4 +51,4 @@ class AutoC4Cyber implements AutoC4Module {
     onConnectionFailure(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void {}
 }
 
-export default (autoc4: AutoC4) => autoc4.registerModule("cyber", () => new AutoC4Cyber());
+export default (autoc4: AutoC4) => autoc4.registerModuleType("cyber", () => new AutoC4Cyber());

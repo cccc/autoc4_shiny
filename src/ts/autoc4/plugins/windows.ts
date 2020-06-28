@@ -25,4 +25,4 @@ class AutoC4Windows implements AutoC4Module {
     onConnectionFailure(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void {}
 }
 
-export default (autoc4: AutoC4) => autoc4.registerModule("windows", () => new AutoC4Windows());
+export default (autoc4: AutoC4) => autoc4.registerModuleType("windows", () => new AutoC4Windows());
