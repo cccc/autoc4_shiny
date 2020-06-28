@@ -21,4 +21,6 @@ class AutoC4Light {
     onConnect(autoc4, o) { }
     onConnectionFailure(autoc4, error) { }
 }
-export default (autoc4) => autoc4.registerModule("light", () => new AutoC4Light());
+export default (autoc4) => autoc4.registerModuleType("light", () => new AutoC4Light());
+
+//# sourceMappingURL=light.js.map

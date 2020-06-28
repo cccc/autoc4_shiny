@@ -3,7 +3,7 @@
  * @license MIT
  * @requires utils
  */
-import {mqtt_match_topic, two_digits, generateUUID} from "./utils.js";
+import {mqtt_match_topic, two_digits, generateUUID, simpleDateFormat} from "./utils.js";
 
 var autoc4;
 var __AUTOC4_CONFIG_LOCATION:string = __AUTOC4_CONFIG_LOCATION || "config.json";
@@ -16,7 +16,6 @@ $(function () {
             autoc4 = new AutoC4(
                 config
             );
-            update_time();
         })
         .fail(function (e, f) {
             console.error("Couldn't load config.json", e, f);
@@ -130,6 +129,7 @@ export class AutoC4 {
             }
         }
 
+        //call onConnect handler for all modules
         for (let module of this.modules) {
             try {
                 module.onConnect(this, o);
@@ -170,7 +170,7 @@ export class AutoC4 {
     }
 
     private _moduleTypes: {[type: string]:AutoC4ModuleFactory} = {};
-    public registerModule(type: string, factory: AutoC4ModuleFactory): void {
+    public registerModuleType(type: string, factory: AutoC4ModuleFactory): void {
         this._moduleTypes[type]=factory;
     }
     public moduleConfigToModule(config: AutoC4ModuleConfig): AutoC4Module {
@@ -180,19 +180,3 @@ export class AutoC4 {
             throw new Error(`Unknown module type: ${config.type}`);
     }
 }
-
-var update_time = function ():void {
-    var now = new Date();
-    var text = two_digits(now.getDate()) + "." + two_digits(now.getMonth() + 1) + "." + now.getFullYear() + " " + two_digits(now.getHours()) + ":" + two_digits(now.getMinutes());
-    $('#datetime').text(text);
-    setTimeout(update_time, 60000 - now.getSeconds() * 1000 - now.getMilliseconds());
-};
-
-$('#help').click(function (ev) {
-    ev.preventDefault();
-    $('#help-display').toggle();
-});
-
-$("body").on("click input change", "[data-toggle=value][data-target][data-value]", function() {
-    document.querySelectorAll<HTMLInputElement>(this.getAttribute("data-target")).forEach((e)=>e.value=this.getAttribute("data-value"));
-});

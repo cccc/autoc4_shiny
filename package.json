@@ -1,6 +1,6 @@
 {
   "name": "autoc4-shiny",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A web frontend for controlling AutoC4, the home automation system of the Chaos Computer Club Cologne.",
   "main": " ",
   "scripts": {

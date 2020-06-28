@@ -21,4 +21,6 @@ class AutoC4Interactivity {
     onConnect(autoc4, o) { }
     onConnectionFailure(autoc4, error) { }
 }
-export default (autoc4) => autoc4.registerModule("interactivity", () => new AutoC4Interactivity());
+export default (autoc4) => autoc4.registerModuleType("interactivity", () => new AutoC4Interactivity());
+
+//# sourceMappingURL=interactivity.js.map

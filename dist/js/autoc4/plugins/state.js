@@ -27,4 +27,6 @@ class AutoC4State {
         });
     }
 }
-export default (autoc4) => autoc4.registerModule("state", () => new AutoC4State());
+export default (autoc4) => autoc4.registerModuleType("state", () => new AutoC4State());
+
+//# sourceMappingURL=state.js.map

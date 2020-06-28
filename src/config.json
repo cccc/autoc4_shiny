@@ -127,6 +127,16 @@
             ]
         },
         {
+            "type": "time",
+            "options": {
+                "targetSelector": "[data-time]",
+                "templateDataAttribute": "[data-time-template]"
+            },
+            "subscribe": [
+                "time"
+            ]
+        },
+        {
             "type": "cyber",
             "options": {
                 "class":"cyber",
