@@ -20,13 +20,25 @@ export class AutoC4 {
         this.client = new Paho.MQTT.Client(config.server || window.location.hostname, config.port || 9000, (config.clientIdPrefix || "shiny_") + generateUUID());
         this.client.onMessageArrived = this.onMessage.bind(this);
         this.client.onConnectionLost = this.onConnectionFailure.bind(this);
-        Promise.all(config.plugins.map(plugin => import(plugin)))
+        this.loadPlugins()
             .then(exprts => {
             exprts.forEach(exp => exp.default(this));
             this.loadModules();
             this.connect();
         })
-            .catch(error => console.error(error));
+            .catch(error => console.error("Failed to load plugins.", error));
+    }
+    loadPlugins() {
+        return Promise.all(this.config.plugins.map(plugin => import(plugin)
+            .then((obj) => {
+            if (this.config.debug && this.config.debug.pluginLoaded)
+                console.debug(`Successfully loaded plugin: ${plugin}`, obj);
+            return new Promise((resolve, reject) => resolve(obj));
+        })
+            .catch((err) => {
+            console.error(`Failed to load plugin: ${plugin}`, err);
+            return new Promise((resolve, reject) => reject(err));
+        })));
     }
     loadModules() {
         for (const moduleConfig of this.config.modules) {

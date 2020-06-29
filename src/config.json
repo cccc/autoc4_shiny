@@ -7,6 +7,7 @@
         "connect": true,
         "disconnect": true,
         "configLoaded": true,
+        "pluginLoaded": true,
         "moduleLoaded": true,
         "sentMessage": true
     },
@@ -21,6 +22,7 @@
         "./plugins/kitchenlight.min.js",
         "./plugins/music.min.js",
         "./plugins/notify.min.js",
+        "./plugins/time.min.js",
         "./plugins/cyber.min.js"
     ],
     "modules": [
