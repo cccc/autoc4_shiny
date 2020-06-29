@@ -12,11 +12,9 @@ interface AutoC4StateOptions{
 }
 
 class AutoC4State implements AutoC4Module {
-    private autoc4: AutoC4;
     private options: AutoC4StateOptions;
 
     public init(autoc4: AutoC4, options: any): this {
-        this.autoc4=autoc4;
         this.options=options as AutoC4StateOptions;
         return this;
     }
