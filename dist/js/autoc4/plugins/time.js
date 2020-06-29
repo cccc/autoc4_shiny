@@ -1,7 +1,6 @@
 import { simpleDateFormat } from '../utils.js';
 class AutoC4Time {
     init(autoc4, options) {
-        this.autoc4 = autoc4;
         this.options = options;
         return this;
     }
