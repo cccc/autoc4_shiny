@@ -11,11 +11,9 @@ interface AutoC4TimeOptions{
 }
 
 class AutoC4Time implements AutoC4Module {
-    private autoc4: AutoC4;
     private options: AutoC4TimeOptions;
 
     public init(autoc4: AutoC4, options: any): this {
-        this.autoc4=autoc4;
         this.options=options as AutoC4TimeOptions;
         return this;
     }
