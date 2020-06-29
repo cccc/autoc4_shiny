@@ -45,6 +45,7 @@ export interface AutoC4DebugConfig {
     connect: boolean;
     disconnect: boolean;
     configLoaded: boolean;
+    pluginLoaded: boolean;
     moduleLoaded: boolean;
     sentMessage: boolean;
 }
@@ -74,13 +75,30 @@ export class AutoC4 {
         this.client.onMessageArrived = this.onMessage.bind(this);
         this.client.onConnectionLost = this.onConnectionFailure.bind(this);
 
-        Promise.all(config.plugins.map(plugin => import(plugin)))
-            .then( exprts => {
+        this.loadPlugins()
+            .then(exprts => {
                 exprts.forEach(exp => exp.default(this));
                 this.loadModules()
                 this.connect();
             })
-            .catch( error => console.error(error) );
+            .catch( error => console.error("Failed to load plugins.", error) );
+    }
+
+    public loadPlugins(): Promise<any[]> {
+        return Promise.all(
+            this.config.plugins.map(
+                plugin => import(plugin)
+                    .then((obj: any) : Promise<any> => {
+                        if (this.config.debug && this.config.debug.pluginLoaded)
+                            console.debug(`Successfully loaded plugin: ${plugin}`, obj);
+                        return new Promise((resolve,reject)=>resolve(obj));
+                    })
+                    .catch((err: any) : Promise<any> => {
+                        console.error(`Failed to load plugin: ${plugin}`, err);
+                        return new Promise((resolve,reject)=>reject(err));
+                    })
+            )
+        );
     }
 
     public loadModules():void{
