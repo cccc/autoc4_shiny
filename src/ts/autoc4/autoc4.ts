@@ -3,7 +3,7 @@
  * @license MIT
  * @requires utils
  */
-import {mqtt_match_topic, two_digits, generateUUID, simpleDateFormat} from "./utils.js";
+import {mqtt_match_topic, generateUUID} from "./utils.js";
 
 var autoc4;
 var __AUTOC4_CONFIG_LOCATION:string = __AUTOC4_CONFIG_LOCATION || "config.json";
@@ -84,18 +84,18 @@ export class AutoC4 {
             .catch( error => console.error("Failed to load plugins.", error) );
     }
 
-    public loadPlugins(): Promise<any[]> {
-        return Promise.all(
+    public async loadPlugins(): Promise<any[]> {
+        return await Promise.all(
             this.config.plugins.map(
-                plugin => import(plugin)
-                    .then((obj: any) : Promise<any> => {
+                async (plugin) => import(plugin)
+                    .then(async (obj: any) : Promise<any> => {
                         if (this.config.debug && this.config.debug.pluginLoaded)
                             console.debug(`Successfully loaded plugin: ${plugin}`, obj);
-                        return new Promise((resolve,reject)=>resolve(obj));
+                        return obj;
                     })
-                    .catch((err: any) : Promise<any> => {
+                    .catch(async (err: any) : Promise<any> => {
                         console.error(`Failed to load plugin: ${plugin}`, err);
-                        return new Promise((resolve,reject)=>reject(err));
+                        throw err;
                     })
             )
         );
@@ -116,7 +116,7 @@ export class AutoC4 {
         }
     }
 
-    public connect():void{
+    public connect(): void {
         this.client.connect({ onSuccess: this.onConnect.bind(this), onFailure: this.client.onConnectionLost, mqttVersion: 3 });
     }
 

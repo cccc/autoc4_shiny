@@ -17,8 +17,8 @@
     <script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
 
-    <script type="module" src="js/extra_toggles.min.js"></script>
-    <script type="module" src="js/autoc4/autoc4.min.js"></script>
+    <script type="module" src="js/extra_toggles.min.js" async defer></script>
+    <script type="module" src="js/autoc4/autoc4.min.js" async defer></script>
 </head>
 
 <body class="dark state-disconnected">
@@ -273,17 +273,58 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="plenarbeamer">
-                            <button type="button" class="btn btn-danger btn-sm" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0"><i class="fa fa-power-off"></i></button>
-                            <button type="button" class="btn btn-primary btn-sm" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">3D</button>
-                            <button type="button" class="btn btn-secondary btn-sm" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Hide</button>
-                            <br />
-                            <button type="button" class="btn btn-secondary btn-sm" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Aspect Ratio</button>
-                            <button type="button" class="btn btn-secondary btn-sm" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Resync</button>
-                            <button type="button" class="btn btn-secondary btn-sm" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Source</button>
-                            <br />
-                            <button type="button" class="btn btn-secondary btn-sm" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Zoom</button>
-                            <button type="button" class="btn btn-secondary btn-sm" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Mute</button>
-                            <button type="button" class="btn btn-info btn-sm" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">e</button>
+                            <table class="w-100">
+                                <tr>
+                                    <td><button type="button" class="btn btn-danger btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0"><i class="fa fa-power-off"></i></button></td>
+                                    <td><button type="button" class="btn btn-primary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">3D</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Hide</button></td>
+                                </tr>
+                                <tr>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Asp Ratio</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Resync</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Source</button></td>
+                                </tr>
+                                <tr>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Zoom</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Mute</button></td>
+                                    <td><button type="button" class="btn btn-info btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">e</button></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Up</button></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Left</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Menu</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Right</button></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">Down</button></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <table class="w-100">
+                                <tr>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">1</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">2</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">3</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">PgUp</button></td>
+                                </tr>
+                                <tr>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">4</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">5</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">6</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">PgDn</button></td>
+                                </tr>
+                                <tr>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">7</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">8</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">9</button></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/beamer" data-mqtt-message-byte="0">0</button></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>

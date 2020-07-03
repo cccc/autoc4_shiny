@@ -132,7 +132,8 @@
             "type": "time",
             "options": {
                 "targetSelector": "[data-time]",
-                "templateDataAttribute": "[data-time-template]"
+                "templateDataAttribute": "data-time-template",
+                "defaultToCurrentTime": true
             },
             "subscribe": [
                 "time"
