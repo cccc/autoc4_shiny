@@ -1,3 +1,12 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { mqtt_match_topic, generateUUID } from "./utils.js";
 var autoc4;
 var __AUTOC4_CONFIG_LOCATION = __AUTOC4_CONFIG_LOCATION || "config.json";
@@ -29,16 +38,20 @@ export class AutoC4 {
             .catch(error => console.error("Failed to load plugins.", error));
     }
     loadPlugins() {
-        return Promise.all(this.config.plugins.map(plugin => import(plugin)
-            .then((obj) => {
-            if (this.config.debug && this.config.debug.pluginLoaded)
-                console.debug(`Successfully loaded plugin: ${plugin}`, obj);
-            return new Promise((resolve, reject) => resolve(obj));
-        })
-            .catch((err) => {
-            console.error(`Failed to load plugin: ${plugin}`, err);
-            return new Promise((resolve, reject) => reject(err));
-        })));
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield Promise.all(this.config.plugins.map((plugin) => __awaiter(this, void 0, void 0, function* () {
+                return import(plugin)
+                    .then((obj) => __awaiter(this, void 0, void 0, function* () {
+                    if (this.config.debug && this.config.debug.pluginLoaded)
+                        console.debug(`Successfully loaded plugin: ${plugin}`, obj);
+                    return obj;
+                }))
+                    .catch((err) => __awaiter(this, void 0, void 0, function* () {
+                    console.error(`Failed to load plugin: ${plugin}`, err);
+                    throw err;
+                }));
+            })));
+        });
     }
     loadModules() {
         for (const moduleConfig of this.config.modules) {
