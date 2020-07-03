@@ -5,7 +5,7 @@
  * alert topic but can in theory add any class to any element upon
  * activation of any topic. 
  * @author Necro
- * @copyright Chaos Computer Club Cologne 2014-2020
+ * @copyright Chaos Computer Club Cologne 2019-2020
  * @license MIT
  */
 import {AutoC4, AutoC4Module} from '../autoc4.js';
