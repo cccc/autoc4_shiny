@@ -8,6 +8,7 @@ import { simpleDateFormat } from '../utils.js';
 interface AutoC4TimeOptions{
     targetSelector: string;
     templateDataAttribute: string;
+    defaultToCurrentTime?: boolean;
 }
 
 class AutoC4Time implements AutoC4Module {
@@ -15,6 +16,10 @@ class AutoC4Time implements AutoC4Module {
 
     public init(autoc4: AutoC4, options: any): this {
         this.options=options as AutoC4TimeOptions;
+
+        if(this.options.defaultToCurrentTime){
+            this.setTime(new Date());
+        }
         return this;
     }
 
@@ -23,15 +28,11 @@ class AutoC4Time implements AutoC4Module {
             console.warn(`Received invalid time payload on topic "${message.destinationName}".`);
             return;
         }
-
-        const targets = document.querySelectorAll(this.options.targetSelector);
-        if(targets.length === 0)
-            return;
-
+        
         const bytes = message.payloadBytes as Uint8Array;
         const now = new Date();
         //f*cking hell this incoming data format is broken
-        const date = new Date(
+        const time = new Date(
             (now.getFullYear() - now.getFullYear()%100) + bytes[7], //year
             bytes[5]-1, //month
             bytes[6], //day
@@ -40,8 +41,13 @@ class AutoC4Time implements AutoC4Module {
             bytes[2] //second
         );
 
+        this.setTime(time);
+    }
+
+    public setTime(time: Date){
+        const targets = document.querySelectorAll(this.options.targetSelector);
         for (const target of targets){
-            target.textContent = simpleDateFormat(target.getAttribute(this.options.templateDataAttribute)||"yyyy-MM-ddZhh-mm-ss", date);
+            target.textContent = simpleDateFormat(target.getAttribute(this.options.templateDataAttribute)||"yyyy-MM-ddZHH-mm-ss", time);
         }
     }
 
