@@ -1,16 +1,12 @@
-### Hi there 👋
+## My activities
 
-<!--
-**QbDesu/QbDesu** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+* Web Developer
+  * since vite came around I also actually like it again
+* some application development 
+* one of the [media.ccc.de](https://media.ccc.de/) admins
+* part of the [FrOSCon](https://froscon.org/) organizing team
+* [CCC](https://www.ccc.de/en/) and [CCC Cologne](https://koeln.ccc.de/) member
+* some activities in the [C3VOC](https://c3voc.de/)
+* "Linux Developer" at [B1 Systems GmbH](https://www.b1-systems.de/)
+  * that's what I have to put in my email footer because we use Linux for everything, I guess
+  * I really mostly do web dev at work
