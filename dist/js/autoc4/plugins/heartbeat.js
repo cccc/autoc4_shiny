@@ -3,43 +3,25 @@ class AutoC4Heartbeat {
         this.heartbeats = {};
     }
     init(autoc4, options) {
-        this.autoc4 = autoc4;
-        return this;
+        return this.autoc4 = autoc4, this;
     }
     onMessage(autoc4, message) {
-        var name = message.destinationName.substring('heartbeat/'.length);
-        if (!(name in this.heartbeats)) {
-            this.heartbeats[name] = this.createEntry(name);
-            $("#infrastructure-table").append(this.heartbeats[name].element);
-        }
-        if (!message.payloadBytes.length) {
-            this.heartbeats[name].element.remove();
-            delete this.heartbeats[name];
-        }
-        if (message.payloadBytes[0])
-            this.heartbeats[name].state_icon.addClass('fa-thumbs-up').removeClass('fa-thumbs-down');
-        else
-            this.heartbeats[name].state_icon.addClass('fa-thumbs-down').removeClass('fa-thumbs-up');
+        var name = message.destinationName.substring("heartbeat/".length);
+        name in this.heartbeats || (this.heartbeats[name] = this.createEntry(name), $("#infrastructure-table").append(this.heartbeats[name].element)), 
+        message.payloadBytes.length || (this.heartbeats[name].element.remove(), delete this.heartbeats[name]), 
+        message.payloadBytes[0] ? this.heartbeats[name].state_icon.addClass("fa-thumbs-up").removeClass("fa-thumbs-down") : this.heartbeats[name].state_icon.addClass("fa-thumbs-down").removeClass("fa-thumbs-up");
     }
     createEntry(name) {
         let entry = {
-            element: $("<tr>")
-                .append($("<td>")
-                .addClass("heartbeat-name")
-                .text(name)),
-            state_icon: $("<i>")
-                .addClass("heartbeat-state-icon fa")
-                .attr("data-heartbeat-name", name)
+            element: $("<tr>").append($("<td>").addClass("heartbeat-name").text(name)),
+            state_icon: $("<i>").addClass("heartbeat-state-icon fa").attr("data-heartbeat-name", name)
         };
-        entry.element.append($("<td>")
-            .addClass("heartbeat-state")
-            .append(entry.state_icon));
-        return entry;
+        return entry.element.append($("<td>").addClass("heartbeat-state").append(entry.state_icon)), 
+        entry;
     }
-    ;
-    onConnect(autoc4, o) { }
-    onConnectionFailure(autoc4, error) { }
+    onConnect(autoc4, o) {}
+    onConnectionFailure(autoc4, error) {}
 }
-export default (autoc4) => autoc4.registerModuleType("heartbeat", () => new AutoC4Heartbeat());
 
+export default autoc4 => autoc4.registerModuleType("heartbeat", (() => new AutoC4Heartbeat));
 //# sourceMappingURL=heartbeat.js.map

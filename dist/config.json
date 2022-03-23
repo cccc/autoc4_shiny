@@ -12,18 +12,18 @@
         "sentMessage": true
     },
     "plugins": [
-        "./plugins/interactivity.min.js",
-        "./plugins/light.min.js",
-        "./plugins/dmx.min.js",
-        "./plugins/state.min.js",
-        "./plugins/heartbeat.min.js",
-        "./plugins/windows.min.js",
-        "./plugins/presets.min.js",
-        "./plugins/kitchenlight.min.js",
-        "./plugins/music.min.js",
-        "./plugins/notify.min.js",
-        "./plugins/time.min.js",
-        "./plugins/cyber.min.js"
+        "./plugins/interactivity.js",
+        "./plugins/light.js",
+        "./plugins/dmx.js",
+        "./plugins/state.js",
+        "./plugins/heartbeat.js",
+        "./plugins/windows.js",
+        "./plugins/presets.js",
+        "./plugins/kitchenlight.js",
+        "./plugins/music.js",
+        "./plugins/notify.js",
+        "./plugins/time.js",
+        "./plugins/cyber.js"
     ],
     "modules": [
         {

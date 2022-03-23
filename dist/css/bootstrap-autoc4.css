@@ -1,32 +1,38 @@
 @font-face {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-style: normal;
   font-weight: 400;
   src: local("Open Sans"), local("OpenSans"), url(../fonts/OpenSans.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; }
-
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
 body {
   font-size: 15px;
-  font-family: "Open Sans",Calibri,Candara,Arial,sans-serif; }
+  font-family: "Open Sans", Calibri, Candara, Arial, sans-serif;
+}
 
 .bg-darker {
-  background-color: #222 !important; }
+  background-color: #222 !important;
+}
 
 .bg-black {
-  background-color: #000 !important; }
+  background-color: #000 !important;
+}
 
 .btn {
-  border-radius: 0px; }
+  border-radius: 0px;
+}
 
 .nav.nav-tabs .nav-item .nav-link {
-  border-radius: 0px; }
+  border-radius: 0px;
+}
 
 .navbar {
   margin-bottom: 1em;
-  min-height: 50px; }
+  min-height: 50px;
+}
 
 h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 1rem;
-  margin-bottom: .5rem; }
-
+  margin-bottom: 0.5rem;
+}
 /*# sourceMappingURL=bootstrap-autoc4.css.map */
