@@ -5,7 +5,7 @@
   "main": " ",
   "scripts": {
     "build": "gulp build",
-    "release": "gulp release"
+    "clean": "gulp clean"
   },
   "repository": {
     "type": "git",
@@ -18,20 +18,17 @@
   },
   "homepage": "https://github.com/cccc/autoc4_shiny#readme",
   "devDependencies": {
-    "@types/jquery": "^3.5.0",
-    "@types/paho-mqtt": "^1.0.4",
-    "cssnano": "^4.1.10",
-    "del": "^5.1.0",
+    "@types/jquery": "^3.5.14",
+    "@types/node": "^17.0.22",
+    "@types/paho-mqtt": "^1.0.6",
+    "del": "^6.0.0",
     "gulp": "^4.0.2",
-    "gulp-filter": "^6.0.0",
-    "gulp-postcss": "^8.0.0",
-    "gulp-rename": "^2.0.0",
-    "gulp-sass": "^4.0.2",
-    "gulp-sourcemaps": "^2.6.5",
-    "gulp-terser": "^1.2.0",
+    "gulp-filter": "^7.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser": "^2.1.0",
     "gulp-typescript": "^6.0.0-alpha.1",
-    "gulp-zip": "^5.0.1",
-    "sass": "^1.26.9",
-    "typescript": "^3.9.5"
+    "sass": "^1.49.9",
+    "typescript": "^4.6.2"
   }
 }
