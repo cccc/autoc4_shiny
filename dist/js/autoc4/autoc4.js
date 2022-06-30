@@ -32,7 +32,7 @@ var __AUTOC4_CONFIG_LOCATION = __AUTOC4_CONFIG_LOCATION || "config.json";
 $((function() {
     $.getJSON(__AUTOC4_CONFIG_LOCATION).done((function(config) {
         config.debug && config.debug.configLoaded && console.debug("Config loaded successfully", config), 
-        autoc4 = new AutoC4(config);
+        autoc4 = new AutoC4(config), window.autoc4 = autoc4;
     })).fail((function(e, f) {
         console.error("Couldn't load config.json", e, f);
     }));

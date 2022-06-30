@@ -7,6 +7,9 @@ import {mqtt_match_topic, generateUUID} from "./utils.js";
 
 var autoc4;
 var __AUTOC4_CONFIG_LOCATION:string = __AUTOC4_CONFIG_LOCATION || "config.json";
+declare global {
+    var autoc4: AutoC4;
+}
 
 $(function () {
     $.getJSON(__AUTOC4_CONFIG_LOCATION)
@@ -16,6 +19,7 @@ $(function () {
             autoc4 = new AutoC4(
                 config
             );
+            window.autoc4 = autoc4;
         })
         .fail(function (e, f) {
             console.error("Couldn't load config.json", e, f);

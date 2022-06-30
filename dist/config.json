@@ -1,5 +1,5 @@
 {
-    "server": "172.23.23.110",
+    "server": "autoc4.labor.koeln.ccc.de",
     "port": 9000,
     "clientIdPrefix": "shiny_",
     "debug": {
