@@ -10,7 +10,28 @@
 
 (function(window, $){
     let $body = $("body");
+    let prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
     const LSKEY = "DARK_THEME_ENABLED";
+
+    function useMediaQuery(initial: boolean) {
+        if (prefersDark.matches) {
+            $body.addClass("dark");
+            $body.removeClass("light");
+        } else if(window.matchMedia("(prefers-color-scheme: light)").matches) {
+            $body.addClass("light");
+            $body.removeClass("dark");
+        }
+
+        if (initial) {
+            prefersDark.addEventListener('change', updateMediaQuery);
+        }
+    }
+
+    function unuseMediaQuery() {
+        prefersDark.removeEventListener('change', updateMediaQuery);
+    }
+
+    let updateMediaQuery = useMediaQuery.bind(null, false);
 
     try{
     
@@ -42,27 +63,11 @@
 
         } else {
             //Media Query
-
-            if(window.matchMedia("(prefers-color-scheme: dark)").matches) {
-                $body.addClass("dark");
-                $body.removeClass("light");
-            } else if(window.matchMedia("(prefers-color-scheme: light)").matches) {
-                $body.addClass("light");
-                $body.removeClass("dark");
-            }
-
+            useMediaQuery(true);
         }
     } catch {
         //Fallback to media query
-
-        if(window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            $body.addClass("dark");
-            $body.removeClass("light");
-        } else if(window.matchMedia("(prefers-color-scheme: light)").matches) {
-            $body.addClass("light");
-            $body.removeClass("dark");
-        }
-
+        useMediaQuery(true);
     }
         
     $(function(){
@@ -75,6 +80,7 @@
                 localStorage.setItem("DARK_THEME_ENABLED",localStorage.getItem("DARK_THEME_ENABLED")==="true"?"false":"true");
                 $body.toggleClass("dark");
                 $body.toggleClass("light");
+                unuseMediaQuery();
             } catch {
                 let searchParams = new URLSearchParams(window.location.search);
 
