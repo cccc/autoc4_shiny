@@ -2,6 +2,10 @@
 
 This is the control panel used by the CCC Cologne, for its home automation.
 
+## Requirements
+
+- NodeJS 18 or newer
+
 ## Planned changes
 
 * Make more stuff configurable via config.json
