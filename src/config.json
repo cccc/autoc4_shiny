@@ -58,6 +58,7 @@
                 "licht/+/+",
                 "led/+/+",
                 "power/+/+",
+                "relais/+/+",
                 "socket/+/+/+",
                 "screen/+/+"
             ]
