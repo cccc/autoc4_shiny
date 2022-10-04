@@ -42,7 +42,9 @@
                     <li class="nav-item"><a class="nav-link" data-toggle="display" href="#help"><i class="fa fa-question-circle"></i> Help</a></li>
                     <li class="theme-light nav-item"><a class="nav-link" data-toggle="theme" href="?dark"><i class="fa fa-moon"></i> Dark</a></li>
                     <li class="theme-dark nav-item"><a class="nav-link" data-toggle="theme" href="?light"><i class="fa fa-sun"></i> Light</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" data-mqtt-topic="club/gate"><i class="fa fa-door-open"></i> Open Gate</a></li>
+                    <!--
+                        <li class="nav-item"><a class="nav-link" href="#" data-mqtt-topic="club/gate"><i class="fa fa-door-open"></i> Open Gate</a></li>
+                    -->
                     
                     <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal-shutdown">
                         <span data-toggle="collapse" data-target="#navbarSupportedContent"><i class="fa fa-power-off"></i> Shutdown</span>
@@ -74,10 +76,8 @@
                             <button type="button" class="btn btn-light" data-light-topic="licht/wohnzimmer/mitte">Mitte</button>
                             <button type="button" class="btn btn-light" data-light-topic="licht/wohnzimmer/kueche">Küche</button>
                             <button type="button" class="btn btn-light" data-light-topic="licht/wohnzimmer/gang">Gang</button>
-                            <button type="button" class="btn btn-light" data-light-topic="socket/wohnzimmer/screen/a">Leseleuchte</button>
-                            <button type="button" class="btn btn-light" data-light-topic="screen/wohnzimmer/infoscreen">Infoscreen</button>
-                            <button type="button" class="btn btn-light" data-light-topic="socket/wohnzimmer/screen/b">Verstärker</button>
-                            <button type="button" class="btn btn-light" data-light-topic="power/wohnzimmer/kitchenlight">LED-Wand</button>
+                            <button type="button" class="btn btn-power" data-light-topic="screen/wohnzimmer/infoscreen">Infoscreen</button>
+                            <button type="button" class="btn btn-power" data-light-topic="power/wohnzimmer/kitchenlight">LED-Wand</button>
                         </div>
                         <div class="tab-pane" id="wohnzimmerdmx">
                             <div class="colorpicker">
@@ -225,6 +225,7 @@
                             <button type="button" class="btn btn-light" data-light-topic="licht/plenar/vornefenster">Vorne Fenster</button>
                             <button type="button" class="btn btn-light" data-light-topic="licht/plenar/hintenwand">Hinten Wand</button>
                             <button type="button" class="btn btn-light" data-light-topic="licht/plenar/hintenfenster">Hinten Fenster</button>
+                            <button type="button" class="btn btn-power" data-light-topic="relais/plenar/amp">Verstärker</button>
                         </div>
                         <div class="tab-pane" id="plenardmx">
                             <div class="colorpicker">
