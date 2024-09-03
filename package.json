@@ -1,34 +1,23 @@
 {
-  "name": "autoc4-shiny",
-  "version": "1.1.0",
-  "description": "A web frontend for controlling AutoC4, the home automation system of the Chaos Computer Club Cologne.",
-  "main": " ",
-  "scripts": {
-    "build": "gulp build",
-    "clean": "gulp clean"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cccc/autoc4_shiny.git"
-  },
-  "author": "Chaos Computer Club Cologne",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cccc/autoc4_shiny/issues"
-  },
-  "homepage": "https://github.com/cccc/autoc4_shiny#readme",
-  "devDependencies": {
-    "@types/jquery": "^3.5.14",
-    "@types/node": "^18.8.2",
-    "@types/paho-mqtt": "^1.0.6",
-    "del": "^6.0.0",
-    "gulp": "^4.0.2",
-    "gulp-filter": "^7.0.0",
-    "gulp-sass": "^5.1.0",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-terser": "^2.1.0",
-    "gulp-typescript": "^6.0.0-alpha.1",
-    "sass": "^1.55.0",
-    "typescript": "^4.8.4"
-  }
+	"name": "autoc4-shiny",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview"
+	},
+	"devDependencies": {
+		"@types/jquery": "^3.5.30",
+		"@types/paho-mqtt": "^1.0.10",
+		"@types/toastify-js": "^1.12.3",
+		"sass-embedded": "^1.77.8",
+		"typescript": "^5.5.3",
+		"vite": "^5.4.1",
+		"vite-plugin-html-inject": "^1.1.2"
+	},
+	"dependencies": {
+		"toastify-js": "^1.12.0"
+	}
 }

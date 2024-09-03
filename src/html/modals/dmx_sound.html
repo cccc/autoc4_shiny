@@ -1,0 +1,35 @@
+<div class="modal" id="modal-dmx-sound" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sound Active Mode</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label for="modal-dmx-sound-room" class="col-sm-2 col-form-label">Room:</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control" id="modal-dmx-sound-room"
+                                value="wohnzimmer" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="modal-dmx-sound-sensitivity" class="col-sm-2 col-form-label">Sensitivity:</label>
+                        <div class="col-sm-10">
+                            <input type="range" class="form-control" id="modal-dmx-sound-sensitivity" min="0" max="255"
+                                step="1" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dmx-role="sound"
+                    data-dmx-room="#modal-dmx-sound-room" data-dmx-value="#modal-dmx-sound-sensitivity">Apply</button>
+            </div>
+        </div>
+    </div>
+</div>

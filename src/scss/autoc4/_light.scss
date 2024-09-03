@@ -3,7 +3,7 @@
     height: 120px;
     padding: 0;
     padding-top: 10px;
-    background-image: url(../../img/bulb_off.png);
+    background-image: url(/img/bulb_off.png);
     background-position: center top;
     background-size: 50% auto;
     background-repeat: no-repeat;
@@ -19,14 +19,14 @@
     &:hover,
     &:focus,
     &:active {
-        background-image: url(../../img/bulb_off.png);
+        background-image: url(/img/bulb_off.png);
         color: #ffffff;
         background-color: #d60030;
         border-color: #c2002b;
     }
 
     &.on {
-        background-image: url(../../img/bulb_on.png);
+        background-image: url(/img/bulb_on.png);
         color: #ffffff;
         background-color: #3fb618;
         border-color: #3fb618;
@@ -46,7 +46,7 @@
     height: 120px;
     padding: 0;
     padding-top: 10px;
-    background-image: url(../../img/power_off.png);
+    background-image: url(/img/power_off.png);
     background-position: center top;
     background-size: 60% auto;
     background-repeat: no-repeat;
@@ -68,7 +68,7 @@
     }
 
     &.on {
-        background-image: url(../../img/power_on.png);
+        background-image: url(/img/power_on.png);
         color: #ffffff;
         background-color: #3fb618;
         border-color: #3fb618;

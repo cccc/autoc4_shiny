@@ -3,7 +3,6 @@
 @import "state";
 @import "music";
 @import "kitchenlight";
-@import "notify";
 @import "cyber";
 
 input[type=color] {
@@ -24,7 +23,7 @@ input[type=color] {
     height: 80px;
     padding: 0;
     padding-top: 5px;
-    background-image: url(../../img/window_closed.png);
+    background-image: url(/img/window_closed.png);
     background-position: center top;
     background-size: 75% auto;
     background-repeat: no-repeat;
@@ -44,7 +43,7 @@ input[type=color] {
 }
 
 .box-window.open {
-    background-image: url(../../img/window_open.png);
+    background-image: url(/img/window_open.png);
     color: #ffffff;
     background-color: #ff0039;
     border-color: #ff0039;
@@ -56,7 +55,6 @@ input[type=color] {
 }
 
 #help {
-    display: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -64,7 +62,7 @@ input[type=color] {
     width: 100%;
     height: 100%;
     background: #2f3bb9;
-    background-image: url('../../img/panic.svg');
+    background-image: url(/img/panic.svg);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: 50%;
@@ -85,7 +83,6 @@ input[type=color] {
 
 .btn-poweroff {
     float: right;
-    line-height: 1.2;
     padding: 0;
     margin: .8em;
 }
