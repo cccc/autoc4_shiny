@@ -31,161 +31,24 @@
                         <label>Master:<!--<a href="#" data-dmx-room="wohnzimmer" data-dmx-role="poweroff" class="fa fa-power-off btn btn-sm"></a>--><input
                                 type="color" data-dmx-role="master" data-dmx-room="wohnzimmer" /></label>
                     </div>
-                    <div class="colorpicker">
-                        <label>Mitte 1:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer"
-                                data-dmx-light="mitte1" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Mitte 2:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer"
-                                data-dmx-light="mitte2" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Mitte 3:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer"
-                                data-dmx-light="mitte3" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Tür 1:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer"
-                                data-dmx-light="tuer1" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Tür 2:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer"
-                                data-dmx-light="tuer2" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Tür 3:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer"
-                                data-dmx-light="tuer3" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Gang 1:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer"
-                                data-dmx-light="gang" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Bällebad:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer"
-                                data-dmx-light="baellebad" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Spüle:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer"
-                                data-dmx-light="spuele" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Tresen:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer"
-                                data-dmx-light="tresen" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Chaosknoten:<input type="color" data-dmx-role="light" data-dmx-room="wohnzimmer"
-                                data-dmx-light="chaosknoten" /></label>
-                    </div>
 
+                    <load src="src/html/light/ColorPicker.html" label="Mitte 1" room="wohnzimmer" light="mitte1" />
+                    <load src="src/html/light/ColorPicker.html" label="Mitte 2" room="wohnzimmer" light="mitte2" />
+                    <load src="src/html/light/ColorPicker.html" label="Mitte 3" room="wohnzimmer" light="mitte3" />
+                    <load src="src/html/light/ColorPicker.html" label="Tür 1" room="wohnzimmer" light="tuer1" />
+                    <load src="src/html/light/ColorPicker.html" label="Tür 2" room="wohnzimmer" light="tuer2" />
+                    <load src="src/html/light/ColorPicker.html" label="Tür 3" room="wohnzimmer" light="tuer3" />
+                    <load src="src/html/light/ColorPicker.html" label="Gang" room="wohnzimmer" light="gang" />
+                    <load src="src/html/light/ColorPicker.html" label="Bällebad" room="wohnzimmer" light="baellebad" />
+                    <load src="src/html/light/ColorPicker.html" label="Spüle" room="spuele" light="gang" />
+                    <load src="src/html/light/ColorPicker.html" label="Tresen" room="wohnzimmer" light="tresen" />
+                    <load src="src/html/light/ColorPicker.html" label="Chaosknoten" room="chaosknoten" light="gang" />
                     <hr />
-                    <div>
-                        Brightness:
-                        <div>
-                            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="wohnzimmer"
-                                data-dmx-role="brightness" data-dmx-value="0.75">-25%</button>
-                            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="wohnzimmer"
-                                data-dmx-role="brightness" data-dmx-value="0.85">-15%</button>
-                            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="wohnzimmer"
-                                data-dmx-role="brightness" data-dmx-value="1.15">+15%</button>
-                            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="wohnzimmer"
-                                data-dmx-role="brightness" data-dmx-value="1.25">+25%</button>
-                        </div>
-                    </div>
-
+                    <load src="src/html/light/BrightnessControls.html" room="wohnzimmer" />
                     <hr />
-                    <div>
-                        Effects:
-                        <div>
-                            <span data-toggle="value" data-value="wohnzimmer"
-                                data-target="#modal-dmx-randomize-room"><button type="button"
-                                    class="btn btn-primary btn-sm" data-dmx-room="wohnzimmer" data-toggle="modal"
-                                    data-target="#modal-dmx-randomize">Random</button></span>
-                            <span data-toggle="value" data-value="wohnzimmer"
-                                data-target="#modal-dmx-sound-room"><button type="button" class="btn btn-primary btn-sm"
-                                    data-dmx-room="wohnzimmer" data-toggle="modal" data-target="#modal-dmx-sound">Sound
-                                    Active</button></span>
-                            <span data-toggle="value" data-value="wohnzimmer" data-target="#modal-dmx-fade-room"><button
-                                    type="button" class="btn btn-primary btn-sm" data-dmx-room="wohnzimmer"
-                                    data-toggle="modal" data-target="#modal-dmx-fade">Fade</button></span>
-                        </div>
-                    </div>
+                    <load src="src/html/light/EffectsControls.html" room="wohnzimmer" />
                 </div>
-                <div class="tab-pane" id="kitchenlight">
-                    <select id="klSelect">
-                        <option value="klEmpty">Leer</option>
-                        <option value="klChecker">Schachbrett</option>
-                        <!-- Delay (500) + FarbeA (#ffffff) + FarbeB (#000000) -->
-                        <option value="klOpenChaos">OpenChaos</option> <!-- Delay (1000) -->
-                        <option value="klPacman">Pacman</option>
-                        <!--<option value="klStrobe">Strobo</option>-->
-                        <option value="klText">Text</option> <!-- Delay (250) + Text ("Hello World!\0") -->
-                        <option value="klSine">Sinus</option>
-                        <option value="klMood">Moodlight</option>
-                        <!-- Mode (8-bit, 0=onecolor, 1=colorwheel, 2=random) + step + delay + (color, pause + hue_step (int16_t), pause)  -->
-                        <option value="klMatrix">Matrix</option> <!-- Maximaler Pixel Count (< 32) -->
-                        <option value="klFlood">FloodIt!</option> <!-- Farbzahl (8-bit) -->
-                        <option value="klClock">Uhr</option>
-                        <option value="klConway">Conway</option>
-                        <!-- Anzahl Generationen pro Sekunde + Maximale Anzahl von Generationen -->
-                    </select><br />
-                    <div id="klEmpty" class="klPane active"></div>
-                    <div id="klChecker" class="klPane">
-                        <label for="klCheckerDelay">Delay:</label>
-                        <input type="range" min="0" max="5000" id="klCheckerDelay" /><br />
-                        <div class="colorpicker">
-                            <label for="klCheckerColorA">Farbe A:</label>
-                            <input type="color" id="klCheckerColorA" />
-                        </div>
-                        <div class="colorpicker">
-                            <label for="klCheckerColorB">Farbe B:</label>
-                            <input type="color" id="klCheckerColorB" />
-                        </div>
-                    </div>
-                    <div id="klOpenChaos" class="klPane">
-                        <label for="klOCDelay">Delay:</label>
-                        <input type="range" min="300" max="4000" id="klOCDelay" />
-                    </div>
-                    <div id="klPacman" class="klPane"></div>
-                    <div id="klStrobe" class="klPane"></div>
-                    <div id="klText" class="klPane">
-                        <label for="klTextDelay">Delay:</label>
-                        <input type="range" min="20" max="1000" id="klTextDelay" /><br />
-                        <label for="klTextText">Text:</label><input type="text" id="klTextText" />
-                    </div>
-                    <div id="klSine" class="klPane"></div>
-                    <div id="klMood" class="klPane">
-                        <select id="klMoodMode">
-                            <option value="1">Colorwheel</option>
-                            <option value="2">Random</option>
-                        </select>
-                    </div>
-                    <div id="klMatrix" class="klPane">
-                        <label for="klMatrixLines">Linien (<output for="klMatrixLines"
-                                id="klMatrixLinesOut">XX</output>):</label>
-                        <input type="range" min="1" max="32" id="klMatrixLines" /><br />
-                    </div>
-                    <div id="klFlood" class="klPane">
-                        <button type="button" class="btn btn-floodit" id="klFlood1">1</button>
-                        <button type="button" class="btn btn-floodit" id="klFlood2">2</button>
-                        <button type="button" class="btn btn-floodit" id="klFlood3">3</button>
-                        <button type="button" class="btn btn-floodit" id="klFlood4">4</button>
-                        <br />
-                        <button type="button" class="btn btn-floodit" id="klFlood5">5</button>
-                        <button type="button" class="btn btn-floodit" id="klFlood6">6</button>
-                        <button type="button" class="btn btn-floodit" id="klFlood7">7</button>
-                        <button type="button" class="btn btn-floodit" id="klFlood8">8</button>
-                    </div>
-                    <div id="klConway" class="klPane">
-                        <label for="klConwaySpeed">Generationen/s (<output for="klConwaySpeed"
-                                id="klConwaySpeedOut">XX</output>):</label>
-                        <input type="range" min="1" max="19" id="klConwaySpeed" /><br />
-                        <label for="klConwayGenerations">Wechseln nach (<output for="klConwayGenerations"
-                                id="klConwayGenerationsOut">XX</output>):</label>
-                        <input type="range" min="1" max="500" id="klConwayGenerations" /><br />
-                        <label for="klConwayFill">Füllen </label>
-                        <input type="checkbox" id="klConwayFill" /><br />
-                    </div>
-                    <button type="button" class="btn btn-primary" id="klSet">Set</button>
-                </div>
+                <load src="src/html/light/kitchenlight.html" />
             </div>
         </div>
 
@@ -213,228 +76,20 @@
                     <div class="colorpicker">
                         <label>Master:<input type="color" data-dmx-role="master" data-dmx-room="plenar" /></label>
                     </div>
-                    <div class="colorpicker">
-                        <label>Vorne 1:<input type="color" data-dmx-role="light" data-dmx-room="plenar"
-                                data-dmx-light="vorne1" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Vorne 2:<input type="color" data-dmx-role="light" data-dmx-room="plenar"
-                                data-dmx-light="vorne2" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Vorne 3:<input type="color" data-dmx-role="light" data-dmx-room="plenar"
-                                data-dmx-light="vorne3" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Hinten 1:<input type="color" data-dmx-role="light" data-dmx-room="plenar"
-                                data-dmx-light="hinten1" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Hinten 2:<input type="color" data-dmx-role="light" data-dmx-room="plenar"
-                                data-dmx-light="hinten2" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Hinten 3:<input type="color" data-dmx-role="light" data-dmx-room="plenar"
-                                data-dmx-light="hinten3" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Hinten 4:<input type="color" data-dmx-role="light" data-dmx-room="plenar"
-                                data-dmx-light="hinten4" /></label>
-                    </div>
+                    <load src="src/html/light/ColorPicker.html" label="Vorne 1" room="plenar" light="vorne1" />
+                    <load src="src/html/light/ColorPicker.html" label="Vorne 1" room="plenar" light="vorne1" />
+                    <load src="src/html/light/ColorPicker.html" label="Vorne 1" room="plenar" light="vorne1" />
+                    <load src="src/html/light/ColorPicker.html" label="Hinten 1" room="plenar" light="hinten1" />
+                    <load src="src/html/light/ColorPicker.html" label="Hinten 2" room="plenar" light="hinten2" />
+                    <load src="src/html/light/ColorPicker.html" label="Hinten 3" room="plenar" light="hinten3" />
+                    <load src="src/html/light/ColorPicker.html" label="Hinten 4" room="plenar" light="hinten4" />
                     <hr />
-                    <div>
-                        Brightness:
-                        <div>
-                            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="plenar"
-                                data-dmx-role="brightness" data-dmx-value="0.75">-25%</button>
-                            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="plenar"
-                                data-dmx-role="brightness" data-dmx-value="0.85">-15%</button>
-                            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="plenar"
-                                data-dmx-role="brightness" data-dmx-value="1.15">+15%</button>
-                            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="plenar"
-                                data-dmx-role="brightness" data-dmx-value="1.25">+25%</button>
-                        </div>
-                    </div>
-
+                    <load src="src/html/light/BrightnessControls.html" room="plenar" />
                     <hr />
-                    <div>
-                        Effects:
-                        <div>
-                            <span data-toggle="value" data-value="plenar"
-                                data-target="#modal-dmx-randomize-room"><button type="button"
-                                    class="btn btn-primary btn-sm" data-dmx-room="plenar" data-toggle="modal"
-                                    data-target="#modal-dmx-randomize">Random</button></span>
-                            <span data-toggle="value" data-value="plenar" data-target="#modal-dmx-sound-room"><button
-                                    type="button" class="btn btn-primary btn-sm" data-dmx-room="plenar"
-                                    data-toggle="modal" data-target="#modal-dmx-sound">Sound Active</button></span>
-                            <span data-toggle="value" data-value="plenar" data-target="#modal-dmx-fade-room"><button
-                                    type="button" class="btn btn-primary btn-sm" data-dmx-room="plenar"
-                                    data-toggle="modal" data-target="#modal-dmx-fade">Fade</button></span>
-                        </div>
-                    </div>
+                    <load src="src/html/light/EffectsControls.html" room="plenar" />
                 </div>
                 <div class="tab-pane" id="plenarbeamer">
-                    <table class="w-100">
-                        <tr>
-                            <td><button type="button" class="btn btn-danger btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8E11E}'><i
-                                        class="fa fa-power-off"></i></button></td>
-                            <td><button type="button" class="btn btn-primary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C851AE}'>3D</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8F10E}'>Hide</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C806F9}'>Asp
-                                    Ratio</button></td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8B14E}'>Resync</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C831CE}'>Source</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8D12E}'>Zoom</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C88679}'>Mute</button>
-                            </td>
-                            <td><button type="button" class="btn btn-info btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C801FE}'>e</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C841BE}'>Up</button>
-                            </td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8C13E}'>Left</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C821DE}'>Menu</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8817E}'>Right</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8A15E}'>Down</button>
-                            </td>
-                            <td></td>
-                        </tr>
-                    </table>
-                    <table class="w-100">
-                        <tr>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C85AA5}'>1</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8DA25}'>2</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C83AC5}'>3</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8BA45}'>PgUp</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8A659}'>4</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C86699}'>5</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8E619}'>6</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C87986}'>PgDn</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C87A85}'>7</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C852AD}'>8</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8D22D}'>9</button>
-                            </td>
-                            <td><button type="button" class="btn btn-secondary btn-sm w-100"
-                                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8FA05}'>0</button>
-                            </td>
-                        </tr>
-                    </table>
-                    <h3>Matrix:</h3>
-                    <p>
-                        <label>Beamer:</label>
-                        <button type="button" class="btn btn-secondary btn-sm"
-                            data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                            data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x00FF7887}'>1</button>
-                        <button type="button" class="btn btn-secondary btn-sm"
-                            data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                            data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x00FF50AF}'>2</button>
-                        <button type="button" class="btn btn-secondary btn-sm"
-                            data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                            data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x00FF08F7}'>3</button>
-                        <button type="button" class="btn btn-secondary btn-sm"
-                            data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                            data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x00FFF00F}'>4</button>
-                    </p>
-                    <p>
-                        <label>Encoder:</label>
-                        <button type="button" class="btn btn-secondary btn-sm"
-                            data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                            data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x00FFD827}'>1</button>
-                        <button type="button" class="btn btn-secondary btn-sm"
-                            data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                            data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x00FF40BF}'>2</button>
-                        <button type="button" class="btn btn-secondary btn-sm"
-                            data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                            data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x00FF48B7}'>3</button>
-                        <button type="button" class="btn btn-secondary btn-sm"
-                            data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                            data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x00FF708F}'>4</button>
-                    </p>
+                    <load src="src/html/light/beamer.html" />
                 </div>
             </div>
         </div>
@@ -478,21 +133,8 @@
                         <label>Fairy Schrank:<input type="color" data-dmx-role="light" data-dmx-channels="3"
                                 data-dmx-room="fnord" data-dmx-light="schrankrechts" /></label>
                     </div>
-
                     <hr />
-                    <div>
-                        Brightness:
-                        <div>
-                            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="fnord"
-                                data-dmx-role="brightness" data-dmx-value="0.75">-25%</button>
-                            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="fnord"
-                                data-dmx-role="brightness" data-dmx-value="0.85">-15%</button>
-                            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="fnord"
-                                data-dmx-role="brightness" data-dmx-value="1.15">+15%</button>
-                            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="fnord"
-                                data-dmx-role="brightness" data-dmx-value="1.25">+25%</button>
-                        </div>
-                    </div>
+                    <load src="src/html/light/BrightnessControls.html" room="fnord" />
                 </div>
             </div>
         </div>

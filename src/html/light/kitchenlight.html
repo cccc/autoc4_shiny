@@ -1,0 +1,76 @@
+<div class="tab-pane" id="kitchenlight">
+    <select id="klSelect">
+        <option value="klEmpty">Leer</option>
+        <option value="klChecker">Schachbrett</option>
+        <!-- Delay (500) + FarbeA (#ffffff) + FarbeB (#000000) -->
+        <option value="klOpenChaos">OpenChaos</option> <!-- Delay (1000) -->
+        <option value="klPacman">Pacman</option>
+        <!--<option value="klStrobe">Strobo</option>-->
+        <option value="klText">Text</option> <!-- Delay (250) + Text ("Hello World!\0") -->
+        <option value="klSine">Sinus</option>
+        <option value="klMood">Moodlight</option>
+        <!-- Mode (8-bit, 0=onecolor, 1=colorwheel, 2=random) + step + delay + (color, pause + hue_step (int16_t), pause)  -->
+        <option value="klMatrix">Matrix</option> <!-- Maximaler Pixel Count (< 32) -->
+        <option value="klFlood">FloodIt!</option> <!-- Farbzahl (8-bit) -->
+        <option value="klClock">Uhr</option>
+        <option value="klConway">Conway</option>
+        <!-- Anzahl Generationen pro Sekunde + Maximale Anzahl von Generationen -->
+    </select><br />
+    <div id="klEmpty" class="klPane active"></div>
+    <div id="klChecker" class="klPane">
+        <label for="klCheckerDelay">Delay:</label>
+        <input type="range" min="0" max="5000" id="klCheckerDelay" /><br />
+        <div class="colorpicker">
+            <label for="klCheckerColorA">Farbe A:</label>
+            <input type="color" id="klCheckerColorA" />
+        </div>
+        <div class="colorpicker">
+            <label for="klCheckerColorB">Farbe B:</label>
+            <input type="color" id="klCheckerColorB" />
+        </div>
+    </div>
+    <div id="klOpenChaos" class="klPane">
+        <label for="klOCDelay">Delay:</label>
+        <input type="range" min="300" max="4000" id="klOCDelay" />
+    </div>
+    <div id="klPacman" class="klPane"></div>
+    <div id="klStrobe" class="klPane"></div>
+    <div id="klText" class="klPane">
+        <label for="klTextDelay">Delay:</label>
+        <input type="range" min="20" max="1000" id="klTextDelay" /><br />
+        <label for="klTextText">Text:</label><input type="text" id="klTextText" />
+    </div>
+    <div id="klSine" class="klPane"></div>
+    <div id="klMood" class="klPane">
+        <select id="klMoodMode">
+            <option value="1">Colorwheel</option>
+            <option value="2">Random</option>
+        </select>
+    </div>
+    <div id="klMatrix" class="klPane">
+        <label for="klMatrixLines">Linien (<output for="klMatrixLines" id="klMatrixLinesOut">XX</output>):</label>
+        <input type="range" min="1" max="32" id="klMatrixLines" /><br />
+    </div>
+    <div id="klFlood" class="klPane">
+        <button type="button" class="btn btn-floodit" id="klFlood1">1</button>
+        <button type="button" class="btn btn-floodit" id="klFlood2">2</button>
+        <button type="button" class="btn btn-floodit" id="klFlood3">3</button>
+        <button type="button" class="btn btn-floodit" id="klFlood4">4</button>
+        <br />
+        <button type="button" class="btn btn-floodit" id="klFlood5">5</button>
+        <button type="button" class="btn btn-floodit" id="klFlood6">6</button>
+        <button type="button" class="btn btn-floodit" id="klFlood7">7</button>
+        <button type="button" class="btn btn-floodit" id="klFlood8">8</button>
+    </div>
+    <div id="klConway" class="klPane">
+        <label for="klConwaySpeed">Generationen/s (<output for="klConwaySpeed"
+                id="klConwaySpeedOut">XX</output>):</label>
+        <input type="range" min="1" max="19" id="klConwaySpeed" /><br />
+        <label for="klConwayGenerations">Wechseln nach (<output for="klConwayGenerations"
+                id="klConwayGenerationsOut">XX</output>):</label>
+        <input type="range" min="1" max="500" id="klConwayGenerations" /><br />
+        <label for="klConwayFill">Füllen </label>
+        <input type="checkbox" id="klConwayFill" /><br />
+    </div>
+    <button type="button" class="btn btn-primary" id="klSet">Set</button>
+</div>

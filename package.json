@@ -9,6 +9,7 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "1.8.3",
 		"@types/jquery": "^3.5.30",
 		"@types/paho-mqtt": "^1.0.10",
 		"@types/toastify-js": "^1.12.3",

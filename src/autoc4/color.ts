@@ -21,7 +21,7 @@ export default class Color implements RGB, HSV {
 	private constructor() {
 		this.rgb = { r: 0, g: 0, b: 0 };
 	}
-	private _h: number;
+	private _h = 0;
 	public get h(): number {
 		return this._h;
 	}
@@ -30,7 +30,7 @@ export default class Color implements RGB, HSV {
 		this.updateRGB();
 	}
 
-	private _s: number;
+	private _s = 0;
 	public get s(): number {
 		return this._s;
 	}
@@ -39,7 +39,7 @@ export default class Color implements RGB, HSV {
 		this.updateRGB();
 	}
 
-	private _v: number;
+	private _v = 0;
 	public get v(): number {
 		return this._v;
 	}
@@ -58,7 +58,7 @@ export default class Color implements RGB, HSV {
 		this.updateRGB();
 	}
 
-	private _r: number;
+	private _r = 0;
 	public get r(): number {
 		return this._r;
 	}
@@ -67,7 +67,7 @@ export default class Color implements RGB, HSV {
 		this.updateHSV();
 	}
 
-	private _g: number;
+	private _g = 0;
 	public get g(): number {
 		return this._g;
 	}
@@ -76,7 +76,7 @@ export default class Color implements RGB, HSV {
 		this.updateHSV();
 	}
 
-	private _b: number;
+	private _b = 0;
 	public get b(): number {
 		return this._b;
 	}
@@ -116,10 +116,8 @@ export default class Color implements RGB, HSV {
 		const max = Math.max(r, g, b);
 		const min = Math.min(r, g, b);
 		const d = max - min;
-		let h: number;
-		const s = max === 0 ? 0 : d / max;
-		const v = max / 255;
 
+		let h = 0;
 		switch (max) {
 			case min:
 				h = 0;
@@ -138,6 +136,9 @@ export default class Color implements RGB, HSV {
 				break;
 		}
 
+		const s = max === 0 ? 0 : d / max;
+		const v = max / 255;
+
 		return {
 			h: h,
 			s: s,
@@ -146,40 +147,51 @@ export default class Color implements RGB, HSV {
 	}
 
 	public static HSVtoRGB(hsv: HSV): RGB {
-		let r: number;
-		let g: number;
-		let b: number;
 		let i: number;
-		let f: number;
-		let p: number;
-		let q: number;
-		let t: number;
+
 		const h = hsv.h;
 		const s = hsv.s;
 		const v = hsv.v;
 		i = Math.floor(h * 6);
-		f = h * 6 - i;
-		p = v * (1 - s);
-		q = v * (1 - f * s);
-		t = v * (1 - (1 - f) * s);
+
+		const f = h * 6 - i;
+		const p = v * (1 - s);
+		const q = v * (1 - f * s);
+		const t = v * (1 - (1 - f) * s);
+
+		let r = 0;
+		let g = 0;
+		let b = 0;
 		switch (i % 6) {
 			case 0:
-				(r = v), (g = t), (b = p);
+				r = v;
+				g = t;
+				b = p;
 				break;
 			case 1:
-				(r = q), (g = v), (b = p);
+				r = q;
+				g = v;
+				b = p;
 				break;
 			case 2:
-				(r = p), (g = v), (b = t);
+				r = p;
+				g = v;
+				b = t;
 				break;
 			case 3:
-				(r = p), (g = q), (b = v);
+				r = p;
+				g = q;
+				b = v;
 				break;
 			case 4:
-				(r = t), (g = p), (b = v);
+				r = t;
+				g = p;
+				b = v;
 				break;
 			case 5:
-				(r = v), (g = p), (b = q);
+				r = v;
+				g = p;
+				b = q;
 				break;
 		}
 
