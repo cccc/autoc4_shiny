@@ -68,17 +68,25 @@ class Module implements AutoC4Module {
 	 * @param {string} room room to update masters for
 	 */
 	public updateMasterForRoom(room: string): void {
-		let value: string;
+		let value: string | undefined;
 
 		//check if all light's colors are equal
 		for (const picker of this.getPickers(room)) {
 			if (value === undefined) {
 				//first value for comparison
 				value = (picker as HTMLInputElement).value;
-			} else if (value != picker.value) {
+			} else if (value !== picker.value) {
 				//set color to black and break if another color was found
 				value = "#000000";
+				// and break the loop because we cannot have a uniform color anymore
+				break;
 			}
+		}
+		if (value === undefined) {
+			console.warn(
+				`module/dmx: No color found for room "${room}". Could not update master picker.`,
+			);
+			value ??= "#000000";
 		}
 		//set color for master picker
 		for (const picker of this.getPickers(room, "master")) {
@@ -93,9 +101,10 @@ class Module implements AutoC4Module {
 			`[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=light],[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=master]`,
 			function (this: HTMLInputElement) {
 				const color = Color.fromHexString(this.value);
-				const channels =
-					+this.getAttribute(self.options.channelsDataAttribute) || 7;
-				const room = this.getAttribute(self.options.roomDataAttribute);
+				const channels = +(
+					this.getAttribute(self.options.channelsDataAttribute) ?? 7
+				);
+				const room = this.getAttribute(self.options.roomDataAttribute)!;
 				let light = this.getAttribute(self.options.lightDataAttribute);
 				if (!light) {
 					if (this.getAttribute(self.options.roleDataAttribute) === "master")
@@ -115,9 +124,10 @@ class Module implements AutoC4Module {
 			`[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=poweroff]`,
 			function (this: HTMLInputElement) {
 				const color = Color.fromRGB({ r: 0, g: 0, b: 0 });
-				const channels =
-					+this.getAttribute(self.options.channelsDataAttribute) || 7;
-				const room = this.getAttribute(self.options.roomDataAttribute);
+				const channels = +(
+					this.getAttribute(self.options.channelsDataAttribute) ?? 7
+				);
+				const room = this.getAttribute(self.options.roomDataAttribute)!;
 				let light = this.getAttribute(self.options.lightDataAttribute);
 				if (!light) {
 					light = "master";
@@ -133,13 +143,26 @@ class Module implements AutoC4Module {
 			"click change",
 			`[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=brightness][${this.options.valueDataAttribute}]`,
 			function (this: HTMLElement) {
-				const value = +this.getAttribute(self.options.valueDataAttribute);
-				const room = this.getAttribute(self.options.roomDataAttribute);
+				const value = +this.getAttribute(self.options.valueDataAttribute)!;
+				const room = this.getAttribute(self.options.roomDataAttribute)!;
 
 				for (const picker of self.getPickers(room)) {
-					const channels =
-						+picker.getAttribute(self.options.channelsDataAttribute) || 7;
+					const channels = +(
+						picker.getAttribute(self.options.channelsDataAttribute) ?? 7
+					);
+
 					const light = picker.getAttribute(self.options.lightDataAttribute);
+					if (!light) {
+						// this shouldn't happen, but we'll check anyway
+						// because the part that ensures that is in another method
+						// and it keeps the type checker happy
+						console.warn(
+							`module/dmx: Color picker is missing "${self.options.lightDataAttribute}" attribute.`,
+							picker,
+						);
+						continue;
+					}
+
 					const color = Color.fromHexString(picker.value);
 					color.v = Math.min(Math.max(0, color.v * value), 1);
 					self.setLightColor(room, light, channels, color);
@@ -154,17 +177,35 @@ class Module implements AutoC4Module {
 			"click change",
 			`[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=random][${this.options.valueDataAttribute}]`,
 			function (this: HTMLElement) {
-				const value = +$(
-					this.getAttribute(self.options.valueDataAttribute),
-				).val();
+				const value = Number(
+					$(this.getAttribute(self.options.valueDataAttribute)!).val(),
+				);
 				const room = $(
-					this.getAttribute(self.options.roomDataAttribute),
-				).val() as string;
+					this.getAttribute(self.options.roomDataAttribute)!,
+				).val();
+
+				if (typeof room !== "string") {
+					console.error("module/dmx: Room for random could not be determined.");
+					return;
+				}
 
 				for (const picker of self.getPickers(room)) {
-					const channels =
-						+picker.getAttribute(self.options.channelsDataAttribute) || 7;
+					const channels = +(
+						picker.getAttribute(self.options.channelsDataAttribute) ?? 7
+					);
+
 					const light = picker.getAttribute(self.options.lightDataAttribute);
+					if (!light) {
+						// this shouldn't happen, but we'll check anyway
+						// because the part that ensures that is in another method
+						// and it keeps the type checker happy
+						console.warn(
+							`module/dmx: Color picker is missing "${self.options.lightDataAttribute}" attribute.`,
+							picker,
+						);
+						continue;
+					}
+
 					const color = Color.fromHSV({ h: Math.random(), s: 1, v: value });
 					self.setLightColor(room, light, channels, color);
 				}
@@ -178,18 +219,36 @@ class Module implements AutoC4Module {
 			"click change",
 			`[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=fade][${this.options.valueDataAttribute}]`,
 			function (this: HTMLElement) {
-				const value = +$(
-					this.getAttribute(self.options.valueDataAttribute),
-				).val();
+				const value = Number(
+					$(this.getAttribute(self.options.valueDataAttribute)!).val(),
+				);
 				const room = $(
-					this.getAttribute(self.options.roomDataAttribute),
-				).val() as string;
+					this.getAttribute(self.options.roomDataAttribute)!,
+				).val();
+
+				if (typeof room !== "string") {
+					console.error("module/dmx: Room for fade could not be determined.");
+					return;
+				}
 
 				for (const picker of self.getPickers(room)) {
-					const channels =
-						+picker.getAttribute(self.options.channelsDataAttribute) || 7;
-					if (channels != 7) continue;
+					const channels = +(
+						picker.getAttribute(self.options.channelsDataAttribute) ?? 7
+					);
+					if (channels !== 7) continue;
+
 					const light = picker.getAttribute(self.options.lightDataAttribute);
+					if (!light) {
+						// this shouldn't happen, but we'll check anyway
+						// because the part that ensures that is in another method
+						// and it keeps the type checker happy
+						console.warn(
+							`module/dmx: Color picker is missing "${self.options.lightDataAttribute}" attribute.`,
+							picker,
+						);
+						continue;
+					}
+
 					self.sendLightData(
 						room,
 						light,
@@ -206,18 +265,36 @@ class Module implements AutoC4Module {
 			"click change",
 			`[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=sound][${this.options.valueDataAttribute}]`,
 			function (this: HTMLElement) {
-				const value = +$(
-					this.getAttribute(self.options.valueDataAttribute),
-				).val();
+				const value = Number(
+					$(this.getAttribute(self.options.valueDataAttribute)!).val(),
+				);
 				const room = $(
-					this.getAttribute(self.options.roomDataAttribute),
-				).val() as string;
+					this.getAttribute(self.options.roomDataAttribute)!,
+				).val();
+
+				if (typeof room !== "string") {
+					console.error("module/dmx: Room for sound could not be determined.");
+					return;
+				}
 
 				for (const picker of self.getPickers(room)) {
-					const channels =
-						+picker.getAttribute(self.options.channelsDataAttribute) || 7;
-					if (channels != 7) continue;
+					const channels = +(
+						picker.getAttribute(self.options.channelsDataAttribute) ?? 7
+					);
+					if (channels !== 7) continue;
+
 					const light = picker.getAttribute(self.options.lightDataAttribute);
+
+					if (!light) {
+						// this shouldn't happen, but we'll check anyway
+						// because the part that ensures that is in another method
+						// and it keeps the type checker happy
+						console.warn(
+							`module/dmx: Color picker is missing "${self.options.lightDataAttribute}" attribute.`,
+							picker,
+						);
+						continue;
+					}
 					self.sendLightData(
 						room,
 						light,
@@ -234,7 +311,7 @@ class Module implements AutoC4Module {
 		channels: number,
 		color: Color,
 	): void {
-		if (channels == 3) {
+		if (channels === 3) {
 			this.sendLightData(
 				room,
 				light,

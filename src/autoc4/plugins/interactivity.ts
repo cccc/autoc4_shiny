@@ -41,7 +41,7 @@ class Module implements AutoC4Module {
 				if (this.hasAttribute(self.options.mqttMessageDataAttribute)) {
 					self.autoc4.sendData(
 						mqttTopic,
-						this.getAttribute(self.options.mqttMessageDataAttribute) as string,
+						this.getAttribute(self.options.mqttMessageDataAttribute)!,
 						mqttRetained,
 					);
 				} else if (

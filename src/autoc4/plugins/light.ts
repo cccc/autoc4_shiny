@@ -28,7 +28,7 @@ class Module implements AutoC4Module {
 			`[${this.options.topicDataAttribute}]`,
 			function (this: HTMLElement) {
 				self.autoc4.sendByte(
-					this.getAttribute(self.options.topicDataAttribute) as string,
+					this.getAttribute(self.options.topicDataAttribute)!,
 					this.classList.contains(self.options.onClass) ? 0 : 1,
 					true,
 				);
