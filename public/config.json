@@ -3,7 +3,7 @@
 	"port": 9000,
 	"clientIdPrefix": "shiny_",
 	"debug": {
-		"message": false,
+		"message": true,
 		"connect": true,
 		"disconnect": true,
 		"configLoaded": true,
@@ -125,6 +125,10 @@
 				"target": ".admin-only",
 				"keys": [72, 85, 78, 84, 69, 82, 50]
 			}
+		},
+		{
+			"type": "atem",
+			"subscribe": ["atem/+/input-properties", "atem/#"]
 		}
 	]
 }

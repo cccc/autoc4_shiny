@@ -7,12 +7,13 @@ import type { AutoC4, AutoC4Module } from "../autoc4";
 class Module implements AutoC4Module {
 	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
 		// update .box-window state
-		const button = $(".box-window").filter(
-			`[data-topic="${message.destinationName}"]`,
-		);
-		if (button && (message.payloadBytes as Uint8Array)[0] !== 0)
-			button.addClass("open");
-		else button.removeClass("open");
+		for (const item of document.querySelectorAll(
+			`.box-window[data-topic="${message.destinationName}"]`,
+		)) {
+			if ((message.payloadBytes as Uint8Array)[0] !== 0)
+				item.classList.add("open");
+			else item.classList.remove("open");
+		}
 	}
 }
 export default function AutoC4Windows(

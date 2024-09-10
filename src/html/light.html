@@ -1,14 +1,14 @@
-<div id="light" class="tab-pane container active">
+<div id="light" class="tab-pane show active">
     <div class="row">
 
         <div class="col-lg-3 px-2">
             <h2>Wohnzimmer <a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff"
                     data-mqtt-topic="preset/wohnzimmer/off" data-mqtt-message=""></a></h2>
             <ul class="nav nav-tabs mb-2">
-                <li class="nav-item"><a class="nav-link active" href="#wohnzimmernormal" data-toggle="tab">Normal</a>
+                <li class="nav-item"><a class="nav-link active" href="#wohnzimmernormal" data-bs-toggle="tab">Normal</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#wohnzimmerdmx" data-toggle="tab">DMX</a></li>
-                <li class="nav-item"><a class="nav-link" href="#kitchenlight" data-toggle="tab">KL</a></li>
+                <li class="nav-item"><a class="nav-link" href="#wohnzimmerdmx" data-bs-toggle="tab">DMX</a></li>
+                <li class="nav-item"><a class="nav-link" href="#kitchenlight" data-bs-toggle="tab">KL</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active lightswitch-pane show" id="wohnzimmernormal">
@@ -56,9 +56,10 @@
             <h2>Plenarsaal <a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff"
                     data-mqtt-topic="preset/plenar/off" data-mqtt-message=""></a></h2>
             <ul class="nav nav-tabs mb-2">
-                <li class="nav-item"><a class="nav-link active" href="#plenarnormal" data-toggle="tab">Normal</a></li>
-                <li class="nav-item"><a class="nav-link" href="#plenardmx" data-toggle="tab">DMX</a></li>
-                <li class="nav-item"><a class="nav-link" href="#plenarbeamer" data-toggle="tab">Beamer</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#plenarnormal" data-bs-toggle="tab">Normal</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#plenardmx" data-bs-toggle="tab">DMX</a></li>
+                <li class="nav-item"><a class="nav-link" href="#plenarmedia" data-bs-toggle="tab">Media</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane in lightswitch-pane show active" id="plenarnormal">
@@ -71,14 +72,15 @@
                     <button type="button" class="btn btn-light" data-light-topic="licht/plenar/hintenfenster">Hinten
                         Fenster</button>
                     <button type="button" class="btn btn-power" data-light-topic="relais/plenar/amp">Verstärker</button>
+                    <button type="button" class="btn btn-power" data-light-topic="relais/plenar/dmx">RGB + Atem</button>
                 </div>
                 <div class="tab-pane" id="plenardmx">
                     <div class="colorpicker">
                         <label>Master:<input type="color" data-dmx-role="master" data-dmx-room="plenar" /></label>
                     </div>
                     <load src="src/html/light/ColorPicker.html" label="Vorne 1" room="plenar" light="vorne1" />
-                    <load src="src/html/light/ColorPicker.html" label="Vorne 1" room="plenar" light="vorne1" />
-                    <load src="src/html/light/ColorPicker.html" label="Vorne 1" room="plenar" light="vorne1" />
+                    <load src="src/html/light/ColorPicker.html" label="Vorne 2" room="plenar" light="vorne2" />
+                    <load src="src/html/light/ColorPicker.html" label="Vorne 3" room="plenar" light="vorne3" />
                     <load src="src/html/light/ColorPicker.html" label="Hinten 1" room="plenar" light="hinten1" />
                     <load src="src/html/light/ColorPicker.html" label="Hinten 2" room="plenar" light="hinten2" />
                     <load src="src/html/light/ColorPicker.html" label="Hinten 3" room="plenar" light="hinten3" />
@@ -88,8 +90,9 @@
                     <hr />
                     <load src="src/html/light/EffectsControls.html" room="plenar" />
                 </div>
-                <div class="tab-pane" id="plenarbeamer">
+                <div class="tab-pane" id="plenarmedia">
                     <load src="src/html/light/beamer.html" />
+                    <load src="src/html/light/atem.html" />
                 </div>
             </div>
         </div>
@@ -98,9 +101,9 @@
             <h2>Fnordcenter <a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff"
                     data-mqtt-topic="preset/fnord/off" data-mqtt-message=""></a></h2>
             <ul class="nav nav-tabs mb-2">
-                <li class="nav-item"><a class="nav-link active" href="#fnordnormal" data-toggle="tab">Normal</a>
+                <li class="nav-item"><a class="nav-link active" href="#fnordnormal" data-bs-toggle="tab">Normal</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#fnorddmx" data-toggle="tab">DMX</a></li>
+                <li class="nav-item"><a class="nav-link" href="#fnorddmx" data-bs-toggle="tab">DMX</a></li>
             </ul>
 
             <div class="tab-content">
@@ -140,10 +143,11 @@
         </div>
 
         <div class="col-lg-3 px-2">
-            <h2><span>Keller</span><a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff"
+            <h2>Keller <a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff"
                     data-mqtt-topic="preset/keller/off" data-mqtt-message=""></a></h2>
             <ul class="nav nav-tabs mb-2">
-                <li class="nav-item"><a class="nav-link active" href="#kellernormal" data-toggle="tab">Normal</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#kellernormal" data-bs-toggle="tab">Normal</a>
+                </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane lightswitch-pane show active" id="kellernormal">

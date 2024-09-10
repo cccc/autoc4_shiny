@@ -3,6 +3,7 @@
  * @license MIT
  */
 import type { AutoC4, AutoC4Module } from "../autoc4";
+import { createHTMLElement } from "../utils";
 
 /** @todo button templates */
 interface AutoC4PresetOptions {
@@ -11,24 +12,20 @@ interface AutoC4PresetOptions {
 }
 
 class Module implements AutoC4Module {
-	public constructor(autoc4: AutoC4, options: AutoC4PresetOptions) {
-		$("body").on("click", `[${options.topicDataAttribute}]`, function () {
-			const $this = $(this);
-			autoc4.sendData(
-				$this.attr(`[${options.topicDataAttribute}]`) as string,
-				$this.attr("data-preset-message") || "",
-			);
-		});
-	}
+	public constructor(_autoc4: AutoC4, _options: AutoC4PresetOptions) {}
 
-	private create_button(room: string, preset: string): JQuery<HTMLElement> {
-		return $("<button>", {
-			type: "button",
-			class: "btn btn-preset",
-			"data-preset-topic":
-				room === "global" ? "preset/set" : `preset/${room}/set`,
-			"data-preset-message": preset,
-		}).text(preset);
+	private create_button(room: string, preset: string): HTMLElement {
+		return createHTMLElement(
+			"button",
+			{
+				type: "button",
+				className: "btn btn-preset",
+				"data-mqtt-topic":
+					room === "global" ? "preset/set" : `preset/${room}/set`,
+				"data-mqtt-message": preset,
+			},
+			preset,
+		);
 	}
 
 	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
@@ -56,7 +53,10 @@ class Module implements AutoC4Module {
 				}
 				const r = element.getAttribute("data-room") as string;
 				for (const pre of presets) {
-					this.create_button(r, pre).insertBefore(marker);
+					marker.insertAdjacentElement(
+						"beforebegin",
+						this.create_button(r, pre),
+					);
 				}
 			}
 		}
@@ -69,7 +69,10 @@ class Module implements AutoC4Module {
 			return;
 		}
 		for (const pre of presets) {
-			this.create_button(room, pre).insertBefore(marker);
+			marker.insertAdjacentElement(
+				"beforebegin",
+				this.create_button(room, pre),
+			);
 		}
 	}
 

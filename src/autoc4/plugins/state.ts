@@ -22,29 +22,29 @@ class Module implements AutoC4Module {
 		const targets = document.querySelectorAll(this.options.target);
 
 		if ((message.payloadBytes as Uint8Array)[0]) {
-			targets.forEach((e) => {
+			for (const e of targets) {
 				e.classList.remove(
 					this.options.closedClass,
 					this.options.disconnectedClass,
 				);
 				e.classList.add(this.options.openClass);
-			});
+			}
 		} else {
-			targets.forEach((e) => {
+			for (const e of targets) {
 				e.classList.remove(
 					this.options.openClass,
 					this.options.disconnectedClass,
 				);
 				e.classList.add(this.options.closedClass);
-			});
+			}
 		}
 	}
 
 	onConnectionFailure(_autoc4: AutoC4, _error: Paho.MQTT.MQTTError): void {
-		document.querySelectorAll(this.options.target).forEach((e) => {
+		for (const e of document.querySelectorAll(this.options.target)) {
 			e.classList.remove(this.options.openClass, this.options.closedClass);
 			e.classList.add(this.options.disconnectedClass);
-		});
+		}
 	}
 }
 

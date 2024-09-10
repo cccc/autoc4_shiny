@@ -43,3 +43,43 @@ export function simpleDateFormat(template: string, date: Date): string {
 		.replace(/ss/, two_digits(date.getSeconds()))
 		.replace(/s/, date.getSeconds().toString());
 }
+
+type NodeChild = Node | string | number;
+type NodeChildren = (NodeChild | NodeChildren | null)[];
+
+function applyChildren(node: HTMLElement, children: NodeChildren) {
+	for (const child of children.filter((c) => c || c === 0)) {
+		if (Array.isArray(child)) applyChildren(node, child);
+		else node.append(child as string | Node);
+	}
+}
+
+/**
+ * Creates a new HTML element in a similar way to React.createElement.
+ * @param tag The tag name of the element to create
+ * @param attrs The attributes to set on the element
+ * @param children The children to append to the element
+ * @returns A new HTML element with the given tag name and attributes
+ */
+export function createHTMLElement(
+	tag: string,
+	attrs?: null | { [key: string]: any },
+	...children: NodeChildren
+): HTMLElement {
+	const element = document.createElement(tag);
+	if (attrs) {
+		const noDataAttrs = Object.entries(attrs).filter(
+			([k]) => !k.startsWith("data-"),
+		);
+		Object.assign(element, Object.fromEntries(noDataAttrs));
+
+		const dataAttrs = Object.entries(attrs).filter(([k]) =>
+			k.startsWith("data-"),
+		);
+		for (const dataAttr of dataAttrs) {
+			element.setAttribute(dataAttr[0], dataAttr[1]);
+		}
+	}
+	applyChildren(element, children);
+	return element;
+}

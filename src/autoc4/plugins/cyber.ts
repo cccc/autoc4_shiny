@@ -19,8 +19,8 @@ interface AutoC4CyberOptions {
 class Module implements AutoC4Module {
 	private options: AutoC4CyberOptions;
 
-	constructor(_autoc4: AutoC4, options: any) {
-		this.options = options as AutoC4CyberOptions;
+	constructor(_autoc4: AutoC4, options: AutoC4CyberOptions) {
+		this.options = options;
 		if (this.options.keys) {
 			let cursor = 0;
 			document.addEventListener("keydown", (e) => {
@@ -55,5 +55,5 @@ export default function AutoC4Cyber(
 	autoc4: AutoC4,
 	options: any,
 ): AutoC4Module {
-	return new Module(autoc4, options);
+	return new Module(autoc4, options as AutoC4CyberOptions);
 }
