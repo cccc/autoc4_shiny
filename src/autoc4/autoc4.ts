@@ -3,6 +3,7 @@
  * @license MIT
  * @requires utils
  */
+import AutoC4Atem from "./plugins/atem.js";
 import AutoC4Cyber from "./plugins/cyber.js";
 import AutoC4DMX from "./plugins/dmx.js";
 import AutoC4Heartbeat from "./plugins/heartbeat.js";
@@ -103,6 +104,7 @@ export class AutoC4 {
 		this.registerModuleType("notify", AutoC4Notify);
 		this.registerModuleType("time", AutoC4Time);
 		this.registerModuleType("cyber", AutoC4Cyber);
+		this.registerModuleType("atem", AutoC4Atem);
 
 		this.loadModules();
 		this.connect();
@@ -135,8 +137,18 @@ export class AutoC4 {
 	}
 
 	public onMessage(message: Paho.MQTT.Message) {
-		if (this.config.debug?.message)
-			console.debug("MQTT message received:", message);
+		if (this.config.debug?.message) {
+			let messageContent;
+			try {
+				messageContent = message.payloadString;
+			} catch {
+				messageContent = message.payloadBytes;
+			}
+			console.debug(
+				`MQTT message received [${message.destinationName}]:`,
+				messageContent,
+			);
+		}
 		for (const moduleConfig of this.config.modules) {
 			try {
 				if (

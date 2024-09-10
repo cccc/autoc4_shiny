@@ -7,58 +7,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="icon" href="favicon.png" sizes="16x16" type="image/png" />
-  <link rel="stylesheet" type="text/css" href="./lib/bootstrap/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="./lib/fontawesome/css/all.min.css" />
 
   <script type="text/javascript" src="./lib/mqttws31.js"></script>
   <script type="text/javascript" src="./lib/jquery-3.7.1.min.js"></script>
-  <script type="text/javascript" src="./lib/bootstrap/bootstrap.min.js"></script>
 
-  <script type="module" crossorigin src="./assets/index-B22Lw62o.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DUX4ERw0.css">
+  <script type="module" crossorigin src="./assets/index-BxDOmKuh.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CGz0E77D.css">
 </head>
 
 <body class="dark state-disconnected">
-  <nav class="navbar navbar-dark bg-darker navbar-expand-xl fixed-top">
+  <nav class="navbar navbar-dark navbar-expand-xl border-bottom border-dark bg-darker mb-3">
     <div class="container">
         <a class="navbar-brand d-none d-sm-block hide-cyber" href=".">AutoC4</a>
         <a class="navbar-brand d-none d-sm-block show-cyber" href=".">CyberC4</a>
-        <ul class="nav navbar-nav mr-auto flex-row">
-            <li class="nav-item d-block"><a class="px-3 px-sm-2 nav-link active" data-toggle="tab" href="#light"><i
-                        class="far fa-lightbulb"></i><span class="d-inactive-none d-sm-inline">&nbsp;Light</span></a>
+        <ul class="nav navbar-nav mr-auto flex-row flex-grow-1">
+            <li class="nav-item d-block">
+                <a class="px-3 px-sm-2 nav-link active" data-bs-toggle="tab" href="#light">
+                    <i class="far fa-lightbulb"></i>
+                    <span class="d-inactive-none d-sm-inline">&nbsp;Light</span>
+                </a>
             </li>
-            <li class="nav-item d-block"><a class="px-3 px-sm-2 nav-link" data-toggle="tab" href="#presets"><i
-                        class="fa fa-save"></i><span class="d-inactive-none d-sm-inline">&nbsp;Presets</span></a>
+            <li class="nav-item d-block">
+                <a class="px-3 px-sm-2 nav-link" data-bs-toggle="tab" href="#presets">
+                    <i class="fa fa-save"></i>
+                    <span class="d-inactive-none d-sm-inline">&nbsp;Presets</span>
+                </a>
             </li>
-            <li class="nav-item d-block"><a class="px-3 px-sm-2 nav-link" data-toggle="tab" href="#music"><i
-                        class="fa fa-music"></i><span class="d-inactive-none d-sm-inline">&nbsp;Music</span></a>
+            <li class="nav-item d-block">
+                <a class="px-3 px-sm-2 nav-link" data-bs-toggle="tab" href="#music">
+                    <i class="fa fa-music"></i>
+                    <span class="d-inactive-none d-sm-inline">&nbsp;Music</span>
+                </a>
             </li>
-            <li class="nav-item d-block"><a class="px-3 px-sm-2 nav-link" data-toggle="tab" href="#status"><i
-                        class="fa fa-tachometer-alt"></i><span
-                        class="d-inactive-none d-sm-inline">&nbsp;Status</span></a></li>
+            <li class="nav-item d-block">
+                <a class="px-3 px-sm-2 nav-link" data-bs-toggle="tab" href="#status">
+                    <i class="fa fa-tachometer-alt"></i>
+                    <span class="d-inactive-none d-sm-inline">&nbsp;Status</span>
+                </a>
+            </li>
         </ul>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" data-toggle="display" href="#help"><i
-                            class="fa fa-question-circle"></i> Help</a></li>
-                <li class="theme-light nav-item"><a class="nav-link" data-toggle="theme" href="?dark"><i
-                            class="fa fa-moon"></i> Dark</a></li>
-                <li class="theme-dark nav-item"><a class="nav-link" data-toggle="theme" href="?light"><i
-                            class="fa fa-sun"></i> Light</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="display" href="#help">
+                        <i class="fa fa-question-circle"></i> Help
+                    </a>
+                </li>
+                <li class="theme-light nav-item">
+                    <a class="nav-link" data-toggle="theme" href="?dark">
+                        <i class="fa fa-moon"></i> Dark
+                    </a>
+                </li>
+                <li class="theme-dark nav-item">
+                    <a class="nav-link" data-toggle="theme" href="?light">
+                        <i class="fa fa-sun"></i>
+                        Light
+                    </a>
+                </li>
                 <!--
-                        <li class="nav-item"><a class="nav-link" href="#" data-mqtt-topic="club/gate"><i class="fa fa-door-open"></i> Open Gate</a></li>
-                    -->
+                    <li class="nav-item"><a class="nav-link" href="#" data-mqtt-topic="club/gate"><i class="fa fa-door-open"></i> Open Gate</a></li>
+                -->
 
-                <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal-shutdown">
-                        <span data-toggle="collapse" data-target="#navbarSupportedContent"><i
-                                class="fa fa-power-off"></i>
-                            Shutdown</span>
-                    </a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modal-shutdown">
+                        <span data-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                            <i class="fa fa-power-off"></i>
+                            Shutdown
+                        </span>
+                    </a>
+                </li>
                 <li class="nav-item"><a class="nav-link show-state-disconnected" href="#"><i
                             class="fa fa-exclamation-circle" style="color:#a00"></i> <span>Disconnected</span></a>
                 </li>
@@ -72,18 +94,19 @@
         </div>
     </div>
 </nav>
-  <div class="tab-content mx-auto" style="margin-top:50px">
-    <div id="light" class="tab-pane container active">
+  <div class="mx-auto">
+    <div class="tab-content container">
+      <div id="light" class="tab-pane show active">
     <div class="row">
 
         <div class="col-lg-3 px-2">
             <h2>Wohnzimmer <a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff"
                     data-mqtt-topic="preset/wohnzimmer/off" data-mqtt-message=""></a></h2>
             <ul class="nav nav-tabs mb-2">
-                <li class="nav-item"><a class="nav-link active" href="#wohnzimmernormal" data-toggle="tab">Normal</a>
+                <li class="nav-item"><a class="nav-link active" href="#wohnzimmernormal" data-bs-toggle="tab">Normal</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#wohnzimmerdmx" data-toggle="tab">DMX</a></li>
-                <li class="nav-item"><a class="nav-link" href="#kitchenlight" data-toggle="tab">KL</a></li>
+                <li class="nav-item"><a class="nav-link" href="#wohnzimmerdmx" data-bs-toggle="tab">DMX</a></li>
+                <li class="nav-item"><a class="nav-link" href="#kitchenlight" data-bs-toggle="tab">KL</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active lightswitch-pane show" id="wohnzimmernormal">
@@ -169,15 +192,18 @@
                     <div>
     Effects:
     <div>
-        <span data-toggle="value" data-value="wohnzimmer" data-target="#modal-dmx-randomize-room"><button type="button"
-                class="btn btn-primary btn-sm" data-dmx-room="wohnzimmer" data-toggle="modal"
-                data-target="#modal-dmx-randomize">Random</button></span>
-        <span data-toggle="value" data-value="wohnzimmer" data-target="#modal-dmx-sound-room"><button type="button"
-                class="btn btn-primary btn-sm" data-dmx-room="wohnzimmer" data-toggle="modal"
-                data-target="#modal-dmx-sound">Sound Active</button></span>
-        <span data-toggle="value" data-value="wohnzimmer" data-target="#modal-dmx-fade-room"><button type="button"
-                class="btn btn-primary btn-sm" data-dmx-room="wohnzimmer" data-toggle="modal"
-                data-target="#modal-dmx-fade">Fade</button></span>
+        <span data-toggle="value" data-value="wohnzimmer" data-target="#modal-dmx-randomize-room">
+            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="wohnzimmer" data-bs-toggle="modal"
+                data-bs-target="#modal-dmx-randomize">Random</button>
+        </span>
+        <span data-toggle="value" data-value="wohnzimmer" data-target="#modal-dmx-sound-room">
+            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="wohnzimmer" data-bs-toggle="modal"
+                data-bs-target="#modal-dmx-sound">Sound Active</button>
+        </span>
+        <span data-toggle="value" data-value="wohnzimmer" data-target="#modal-dmx-fade-room">
+            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="wohnzimmer" data-bs-toggle="modal"
+                data-bs-target="#modal-dmx-fade">Fade</button>
+        </span>
     </div>
 </div>
                 </div>
@@ -264,9 +290,10 @@
             <h2>Plenarsaal <a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff"
                     data-mqtt-topic="preset/plenar/off" data-mqtt-message=""></a></h2>
             <ul class="nav nav-tabs mb-2">
-                <li class="nav-item"><a class="nav-link active" href="#plenarnormal" data-toggle="tab">Normal</a></li>
-                <li class="nav-item"><a class="nav-link" href="#plenardmx" data-toggle="tab">DMX</a></li>
-                <li class="nav-item"><a class="nav-link" href="#plenarbeamer" data-toggle="tab">Beamer</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#plenarnormal" data-bs-toggle="tab">Normal</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#plenardmx" data-bs-toggle="tab">DMX</a></li>
+                <li class="nav-item"><a class="nav-link" href="#plenarmedia" data-bs-toggle="tab">Media</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane in lightswitch-pane show active" id="plenarnormal">
@@ -279,6 +306,7 @@
                     <button type="button" class="btn btn-light" data-light-topic="licht/plenar/hintenfenster">Hinten
                         Fenster</button>
                     <button type="button" class="btn btn-power" data-light-topic="relais/plenar/amp">Verstärker</button>
+                    <button type="button" class="btn btn-power" data-light-topic="relais/plenar/dmx">RGB + Atem</button>
                 </div>
                 <div class="tab-pane" id="plenardmx">
                     <div class="colorpicker">
@@ -289,12 +317,12 @@
             data-dmx-light="vorne1" /></label>
 </div>
                     <div class="colorpicker">
-    <label>Vorne 1:<input type="color" data-dmx-role="light" data-dmx-room="plenar"
-            data-dmx-light="vorne1" /></label>
+    <label>Vorne 2:<input type="color" data-dmx-role="light" data-dmx-room="plenar"
+            data-dmx-light="vorne2" /></label>
 </div>
                     <div class="colorpicker">
-    <label>Vorne 1:<input type="color" data-dmx-role="light" data-dmx-room="plenar"
-            data-dmx-light="vorne1" /></label>
+    <label>Vorne 3:<input type="color" data-dmx-role="light" data-dmx-room="plenar"
+            data-dmx-light="vorne3" /></label>
 </div>
                     <div class="colorpicker">
     <label>Hinten 1:<input type="color" data-dmx-role="light" data-dmx-room="plenar"
@@ -330,123 +358,162 @@
                     <div>
     Effects:
     <div>
-        <span data-toggle="value" data-value="plenar" data-target="#modal-dmx-randomize-room"><button type="button"
-                class="btn btn-primary btn-sm" data-dmx-room="plenar" data-toggle="modal"
-                data-target="#modal-dmx-randomize">Random</button></span>
-        <span data-toggle="value" data-value="plenar" data-target="#modal-dmx-sound-room"><button type="button"
-                class="btn btn-primary btn-sm" data-dmx-room="plenar" data-toggle="modal"
-                data-target="#modal-dmx-sound">Sound Active</button></span>
-        <span data-toggle="value" data-value="plenar" data-target="#modal-dmx-fade-room"><button type="button"
-                class="btn btn-primary btn-sm" data-dmx-room="plenar" data-toggle="modal"
-                data-target="#modal-dmx-fade">Fade</button></span>
+        <span data-toggle="value" data-value="plenar" data-target="#modal-dmx-randomize-room">
+            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="plenar" data-bs-toggle="modal"
+                data-bs-target="#modal-dmx-randomize">Random</button>
+        </span>
+        <span data-toggle="value" data-value="plenar" data-target="#modal-dmx-sound-room">
+            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="plenar" data-bs-toggle="modal"
+                data-bs-target="#modal-dmx-sound">Sound Active</button>
+        </span>
+        <span data-toggle="value" data-value="plenar" data-target="#modal-dmx-fade-room">
+            <button type="button" class="btn btn-primary btn-sm" data-dmx-room="plenar" data-bs-toggle="modal"
+                data-bs-target="#modal-dmx-fade">Fade</button>
+        </span>
     </div>
 </div>
                 </div>
-                <div class="tab-pane" id="plenarbeamer">
-                    <table class="w-100">
-    <tr>
-        <td><button type="button" class="btn btn-danger btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8E11E}'><i
-                    class="fa fa-power-off"></i></button></td>
-        <td><button type="button" class="btn btn-primary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C851AE}'>3D</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8F10E}'>Hide</button>
-        </td>
-    </tr>
-    <tr>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C806F9}'>Asp
-                Ratio</button></td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8B14E}'>Resync</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C831CE}'>Source</button>
-        </td>
-    </tr>
-    <tr>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8D12E}'>Zoom</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C88679}'>Mute</button>
-        </td>
-        <td><button type="button" class="btn btn-info btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C801FE}'>e</button>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C841BE}'>Up</button>
-        </td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8C13E}'>Left</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C821DE}'>Menu</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8817E}'>Right</button>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8A15E}'>Down</button>
-        </td>
-        <td></td>
-    </tr>
-</table>
-<table class="w-100">
-    <tr>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C85AA5}'>1</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8DA25}'>2</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C83AC5}'>3</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8BA45}'>PgUp</button>
-        </td>
-    </tr>
-    <tr>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8A659}'>4</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C86699}'>5</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8E619}'>6</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C87986}'>PgDn</button>
-        </td>
-    </tr>
-    <tr>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C87A85}'>7</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C852AD}'>8</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8D22D}'>9</button>
-        </td>
-        <td><button type="button" class="btn btn-secondary btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
-                data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8FA05}'>0</button>
-        </td>
-    </tr>
-</table>
+                <div class="tab-pane" id="plenarmedia">
+                    <div class="mb-2">
+    <h5>Beamer</h5>
+    <table class="w-100">
+        <tr>
+            <td><button type="button" class="btn btn-danger btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8E11E}'><i
+                        class="fa fa-power-off"></i></button></td>
+            <td><button type="button" class="btn btn-primary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C851AE}'>3D</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8F10E}'>Hide</button>
+            </td>
+        </tr>
+        <tr>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C806F9}'>Asp
+                    Ratio</button></td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8B14E}'>Resync</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C831CE}'>Source</button>
+            </td>
+        </tr>
+        <tr>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8D12E}'>Zoom</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C88679}'>Mute</button>
+            </td>
+            <td><button type="button" class="btn btn-info btn-sm w-100" data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C801FE}'>e</button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C841BE}'>Up</button>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8C13E}'>Left</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C821DE}'>Menu</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8817E}'>Right</button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8A15E}'>Down</button>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <table class="w-100">
+        <tr>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C85AA5}'>1</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8DA25}'>2</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C83AC5}'>3</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8BA45}'>PgUp</button>
+            </td>
+        </tr>
+        <tr>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8A659}'>4</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C86699}'>5</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8E619}'>6</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C87986}'>PgDn</button>
+            </td>
+        </tr>
+        <tr>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C87A85}'>7</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C852AD}'>8</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8D22D}'>9</button>
+            </td>
+            <td><button type="button" class="btn btn-secondary btn-sm w-100"
+                    data-mqtt-topic="remote/plenar/ir/cmnd/IRsend"
+                    data-mqtt-message='{"protocol": "NEC", "bits": 32, "data": 0x10C8FA05}'>0</button>
+            </td>
+        </tr>
+    </table>
+</div>
+                    <div class="atem-status-offline" data-atem-status="atem/plenarsaal">
+    <h5>Atem</h5>
+    Sources:
+    <div class="flex flex-row flex-wrap gap-1" data-atem-sources="atem/plenarsaal">
+    </div>
+    Outputs:
+    <div class="flex flex-row flex-wrap gap-1" data-atem-outputs="atem/plenarsaal">
+    </div>
+</div>
                 </div>
             </div>
         </div>
@@ -455,9 +522,9 @@
             <h2>Fnordcenter <a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff"
                     data-mqtt-topic="preset/fnord/off" data-mqtt-message=""></a></h2>
             <ul class="nav nav-tabs mb-2">
-                <li class="nav-item"><a class="nav-link active" href="#fnordnormal" data-toggle="tab">Normal</a>
+                <li class="nav-item"><a class="nav-link active" href="#fnordnormal" data-bs-toggle="tab">Normal</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#fnorddmx" data-toggle="tab">DMX</a></li>
+                <li class="nav-item"><a class="nav-link" href="#fnorddmx" data-bs-toggle="tab">DMX</a></li>
             </ul>
 
             <div class="tab-content">
@@ -509,10 +576,11 @@
         </div>
 
         <div class="col-lg-3 px-2">
-            <h2><span>Keller</span><a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff"
+            <h2>Keller <a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff"
                     data-mqtt-topic="preset/keller/off" data-mqtt-message=""></a></h2>
             <ul class="nav nav-tabs mb-2">
-                <li class="nav-item"><a class="nav-link active" href="#kellernormal" data-toggle="tab">Normal</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#kellernormal" data-bs-toggle="tab">Normal</a>
+                </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane lightswitch-pane show active" id="kellernormal">
@@ -533,12 +601,12 @@
     </div>
 
 </div>
-    <div id="presets" class="tab-pane container">
+      <div id="presets" class="tab-pane">
     <div class="row">
         <!--<div class="col-lg-12">
           <h2>Global</h2>
           <div class="preset-pane" data-room="global">
-            <div class="preset-pane-room-marker" style="display:none"></div>
+            <div class="preset-pane-room-marker d-none"></div>
           </div>
         </div>-->
         <div class="col-lg-3">
@@ -546,49 +614,53 @@
             <div class="preset-pane" data-room="wohnzimmer">
                 <button type="button" class="btn btn-preset" data-mqtt-topic="preset/wohnzimmer/on"
                     data-mqtt-message="">All
-                    On</button><button type="button" class="btn btn-preset" data-mqtt-topic="preset/wohnzimmer/off"
+                    On</button>
+                <button type="button" class="btn btn-preset" data-mqtt-topic="preset/wohnzimmer/off"
                     data-mqtt-message="">All Off</button>
-                <div class="preset-pane-onoff-marker" style="display:none"></div>
-                <div class="preset-pane-room-marker" style="display:none"></div>
-                <div class="preset-pane-global-marker" style="display:none"></div>
+                <div class="preset-pane-onoff-marker d-none"></div>
+                <div class="preset-pane-room-marker d-none"></div>
+                <div class="preset-pane-global-marker d-none"></div>
             </div>
         </div>
         <div class="col-lg-3">
             <h2>Plenarsaal</h2>
             <div class="preset-pane" data-room="plenar">
                 <button type="button" class="btn btn-preset" data-mqtt-topic="preset/plenar/on" data-mqtt-message="">All
-                    On</button><button type="button" class="btn btn-preset" data-mqtt-topic="preset/plenar/off"
+                    On</button>
+                <button type="button" class="btn btn-preset" data-mqtt-topic="preset/plenar/off"
                     data-mqtt-message="">All Off</button>
-                <div class="preset-pane-onoff-marker" style="display:none"></div>
-                <div class="preset-pane-room-marker" style="display:none"></div>
-                <div class="preset-pane-global-marker" style="display:none"></div>
+                <div class="preset-pane-onoff-marker d-none"></div>
+                <div class="preset-pane-room-marker d-none"></div>
+                <div class="preset-pane-global-marker d-none"></div>
             </div>
         </div>
         <div class="col-lg-3">
             <h2>Fnordcenter</h2>
             <div class="preset-pane" data-room="fnord">
                 <button type="button" class="btn btn-preset" data-mqtt-topic="preset/fnord/on" data-mqtt-message="">All
-                    On</button><button type="button" class="btn btn-preset" data-mqtt-topic="preset/fnord/off"
-                    data-mqtt-message="">All Off</button>
-                <div class="preset-pane-onoff-marker" style="display:none"></div>
-                <div class="preset-pane-room-marker" style="display:none"></div>
-                <div class="preset-pane-global-marker" style="display:none"></div>
+                    On</button>
+                <button type="button" class="btn btn-preset" data-mqtt-topic="preset/fnord/off" data-mqtt-message="">All
+                    Off</button>
+                <div class="preset-pane-onoff-marker d-none"></div>
+                <div class="preset-pane-room-marker d-none"></div>
+                <div class="preset-pane-global-marker d-none"></div>
             </div>
         </div>
         <div class="col-lg-3">
             <h2>Keller</h2>
             <div class="preset-pane" data-room="keller">
                 <button type="button" class="btn btn-preset" data-mqtt-topic="preset/keller/on" data-mqtt-message="">All
-                    On</button><button type="button" class="btn btn-preset" data-mqtt-topic="preset/keller/off"
+                    On</button>
+                <button type="button" class="btn btn-preset" data-mqtt-topic="preset/keller/off"
                     data-mqtt-message="">All Off</button>
-                <div class="preset-pane-onoff-marker" style="display:none"></div>
-                <div class="preset-pane-room-marker" style="display:none"></div>
-                <div class="preset-pane-global-marker" style="display:none"></div>
+                <div class="preset-pane-onoff-marker d-none"></div>
+                <div class="preset-pane-room-marker d-none"></div>
+                <div class="preset-pane-global-marker d-none"></div>
             </div>
         </div>
     </div>
 </div>
-    <div id="music" class="tab-pane container">
+      <div id="music" class="tab-pane">
     <div class="row">
         <div class="col-lg-3">
             <h2>Wohnzimmer</h2>
@@ -685,7 +757,7 @@
         </div>
     </div>
 </div>
-    <div id="status" class="tab-pane container">
+      <div id="status" class="tab-pane">
     <div class="row">
         <div class="col-sm-6 col-md-8 col-lg-9">
             <h3>Fenster</h3>
@@ -711,20 +783,22 @@
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
             <h3>Infrastructure</h3>
-            <table id="infrastructure-table" class="table table-striped">
+            <table class="table table-hover table-striped">
+                <tbody id="infrastructure-table">
+
+                </tbody>
             </table>
         </div>
     </div>
 </div>
+    </div>
   </div>
   <div class="modal" id="modal-dmx-randomize" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Randomize Colors</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form>
@@ -737,15 +811,15 @@
                     </div>
                     <div class="form-group row">
                         <label for="modal-dmx-randomize-brightness" class="col-sm-2 col-form-label">Brightness:</label>
-                        <div class="col-sm-10">
-                            <input type="range" class="form-control" id="modal-dmx-randomize-brightness" min="0" max="1"
+                        <div class="col-sm-10 d-flex align-items-center">
+                            <input type="range" class="form-range" id="modal-dmx-randomize-brightness" min="0" max="1"
                                 step="0.01" />
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" data-dmx-role="random"
                     data-dmx-room="#modal-dmx-randomize-room"
                     data-dmx-value="#modal-dmx-randomize-brightness">Apply</button>
@@ -758,9 +832,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Fade Colors</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form>
@@ -773,15 +845,15 @@
                     </div>
                     <div class="form-group row">
                         <label for="modal-dmx-fade-speed" class="col-sm-2 col-form-label">Speed:</label>
-                        <div class="col-sm-10">
-                            <input type="range" class="form-control" id="modal-dmx-fade-speed" min="0" max="255"
+                        <div class="col-sm-10 d-flex align-items-center">
+                            <input type="range" class="form-range" id="modal-dmx-fade-speed" min="0" max="255"
                                 step="1" />
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" data-dmx-role="fade" data-dmx-room="#modal-dmx-fade-room"
                     data-dmx-value="#modal-dmx-randomize-speed">Apply</button>
             </div>
@@ -793,9 +865,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Sound Active Mode</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form>
@@ -808,15 +878,15 @@
                     </div>
                     <div class="form-group row">
                         <label for="modal-dmx-sound-sensitivity" class="col-sm-2 col-form-label">Sensitivity:</label>
-                        <div class="col-sm-10">
-                            <input type="range" class="form-control" id="modal-dmx-sound-sensitivity" min="0" max="255"
+                        <div class="col-sm-10 d-flex align-items-center">
+                            <input type="range" class="form-range" id="modal-dmx-sound-sensitivity" min="0" max="255"
                                 step="1" />
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" data-dmx-role="sound"
                     data-dmx-room="#modal-dmx-sound-room" data-dmx-value="#modal-dmx-sound-sensitivity">Apply</button>
             </div>
@@ -828,9 +898,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Shutdown</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>
@@ -843,14 +911,14 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" data-mqtt-topic="club/shutdown"><i
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-mqtt-topic="club/shutdown"><i
                         class="fa fa-power-off"></i> Shutdown</button>
             </div>
         </div>
     </div>
 </div>
-  <div id="help" class="d-none"></div>
+  <a data-toggle="display" href="#help" id="help" class="d-none"></a>
 </body>
 
 </html>

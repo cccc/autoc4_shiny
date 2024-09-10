@@ -8,11 +8,9 @@
  * @license MIT
  */
 import type { AutoC4, AutoC4Module } from "../autoc4";
+import { createHTMLElement } from "../utils";
 
-type HeartbeatEntry = {
-	element: JQuery<HTMLElement>;
-	state_icon: JQuery<HTMLElement>;
-};
+type HeartbeatEntry = HTMLElement;
 
 /** @todo entry element templates */
 class Module implements AutoC4Module {
@@ -22,36 +20,47 @@ class Module implements AutoC4Module {
 		const name = message.destinationName.substring("heartbeat/".length);
 		if (!(name in this.heartbeats)) {
 			this.heartbeats[name] = this.createEntry(name);
-			$("#infrastructure-table").append(this.heartbeats[name].element);
+			document
+				.querySelector("#infrastructure-table")
+				?.append(this.heartbeats[name]);
 		}
+
+		const entry = this.heartbeats[name];
 		if (!(message.payloadBytes as Uint8Array).length) {
-			this.heartbeats[name].element.remove();
+			entry.remove();
 			delete this.heartbeats[name];
 		}
 
 		if ((message.payloadBytes as Uint8Array)[0])
-			this.heartbeats[name].state_icon
-				.addClass("fa-thumbs-up")
-				.removeClass("fa-thumbs-down");
+			entry.classList.replace(
+				"heartbeat-entry-offline",
+				"heartbeat-entry-online",
+			);
 		else
-			this.heartbeats[name].state_icon
-				.addClass("fa-thumbs-down")
-				.removeClass("fa-thumbs-up");
+			entry.classList.replace(
+				"heartbeat-entry-online",
+				"heartbeat-entry-offline",
+			);
 	}
 
 	public createEntry(name: string): HeartbeatEntry {
-		const entry = {
-			element: $("<tr>").append(
-				$("<td>").addClass("heartbeat-name").text(name),
+		return createHTMLElement(
+			"tr",
+			{ className: "heartbeat-entry heartbeat-entry-online" },
+			createHTMLElement("td", { className: "heartbeat-name" }, name),
+			createHTMLElement(
+				"td",
+				{ className: "heartbeat-state" },
+				createHTMLElement("i", {
+					className:
+						"heartbeat-state-icon heartbeat-state-icon-online fa fa-thumbs-up",
+				}),
+				createHTMLElement("i", {
+					className:
+						"heartbeat-state-icon heartbeat-state-icon-offline fa fa-thumbs-down",
+				}),
 			),
-			state_icon: $("<i>")
-				.addClass("heartbeat-state-icon fa")
-				.attr("data-heartbeat-name", name),
-		};
-		entry.element.append(
-			$("<td>").addClass("heartbeat-state").append(entry.state_icon),
 		);
-		return entry;
 	}
 }
 

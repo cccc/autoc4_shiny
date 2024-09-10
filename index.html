@@ -7,32 +7,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="icon" href="favicon.png" sizes="16x16" type="image/png" />
-  <link rel="stylesheet" type="text/css" href="/lib/bootstrap/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="/lib/fontawesome/css/all.min.css" />
-  <link rel="stylesheet" type="text/css" href="src/scss/bootstrap-autoc4.scss" />
   <link rel="stylesheet" type="text/css" href="src/scss/autoc4/autoc4.scss" />
-  <link rel="stylesheet" type="text/css" href="src/scss/dark_theme.scss" />
+  <link rel="stylesheet" type="text/css" href="src/css/index.css" />
 
   <script type="text/javascript" src="/lib/mqttws31.js"></script>
   <script type="text/javascript" src="/lib/jquery-3.7.1.min.js"></script>
-  <script type="text/javascript" src="/lib/bootstrap/bootstrap.min.js"></script>
 
   <script type="module" src="src/main.ts"></script>
 </head>
 
 <body class="dark state-disconnected">
   <load src="src/html/navbar.html" />
-  <div class="tab-content mx-auto" style="margin-top:50px">
-    <load src="src/html/light.html" />
-    <load src="src/html/presets.html" />
-    <load src="src/html/music.html" />
-    <load src="src/html/status.html" />
+  <div class="mx-auto">
+    <div class="tab-content container">
+      <load src="src/html/light.html" />
+      <load src="src/html/presets.html" />
+      <load src="src/html/music.html" />
+      <load src="src/html/status.html" />
+    </div>
   </div>
   <load src="src/html/modals/dmx_randomize.html" />
   <load src="src/html/modals/dmx_fade.html" />
   <load src="src/html/modals/dmx_sound.html" />
   <load src="src/html/modals/shutdown.html" />
-  <div id="help" class="d-none"></div>
+  <a data-toggle="display" href="#help" id="help" class="d-none"></a>
 </body>
 
 </html>

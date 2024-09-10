@@ -96,7 +96,7 @@ class Module implements AutoC4Module {
 
 	private initColorSelection(): void {
 		const self = this;
-		$("body").on(
+		$(document.body).on(
 			"change",
 			`[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=light],[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=master]`,
 			function (this: HTMLInputElement) {
@@ -139,7 +139,7 @@ class Module implements AutoC4Module {
 
 	private initBrightness(): void {
 		const self = this;
-		$("body").on(
+		$(document.body).on(
 			"click change",
 			`[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=brightness][${this.options.valueDataAttribute}]`,
 			function (this: HTMLElement) {
@@ -173,7 +173,7 @@ class Module implements AutoC4Module {
 
 	private initRandom(): void {
 		const self = this;
-		$("body").on(
+		$(document.body).on(
 			"click change",
 			`[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=random][${this.options.valueDataAttribute}]`,
 			function (this: HTMLElement) {
@@ -215,7 +215,7 @@ class Module implements AutoC4Module {
 
 	private initFade(): void {
 		const self = this;
-		$("body").on(
+		$(document.body).on(
 			"click change",
 			`[${this.options.roomDataAttribute}][${this.options.roleDataAttribute}=fade][${this.options.valueDataAttribute}]`,
 			function (this: HTMLElement) {
