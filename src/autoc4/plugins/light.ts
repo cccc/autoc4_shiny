@@ -75,7 +75,7 @@ class Module implements AutoC4Module {
 		}
 		class PowerButton extends BaseLightButton {
 			get templateClassName(): string {
-				return "btn btn-light";
+				return "btn btn-power";
 			}
 			get autoc4(): AutoC4 {
 				return autoc4;

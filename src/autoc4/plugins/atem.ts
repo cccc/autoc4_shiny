@@ -77,7 +77,7 @@ class Module implements AutoC4Module {
 										"button",
 										{
 											className:
-												"btn btn-sm btn-secondary atem-button atem-button-source",
+												"btn btn-secondary btn-atem atem-button atem-button-source",
 											title: v.name,
 											onclick: (e: Event) => {
 												e.preventDefault();
@@ -114,7 +114,7 @@ class Module implements AutoC4Module {
 										"button",
 										{
 											className:
-												"btn btn-sm btn-secondary atem-button atem-button-output",
+												"btn btn-secondary btn-atem atem-button atem-button-output",
 											title: v.name,
 											onclick: (e: Event) => {
 												e.preventDefault();
