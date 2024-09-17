@@ -1,0 +1,8 @@
+.atem-status-offline {
+  opacity: 0.5;
+}
+
+.btn-atem {
+  width: 4em;
+  aspect-ratio: 1/1;
+}

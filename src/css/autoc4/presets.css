@@ -1,0 +1,31 @@
+.btn.btn-preset {
+  width: 120px !important;
+  height: 120px;
+  aspect-ratio: 1/1;
+  margin: 0 auto;
+  padding: 0;
+  padding-top: 10px;
+  background-image: url(/img/preset.png);
+  background-position: center top;
+  background-size: 50% auto;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  line-height: 180px;
+  color: #ffffff;
+  background-color: #2612ca;
+  border-color: #2612ca;
+  margin: 2px;
+  margin-top: 4px;
+  &:hover,
+  &:focus,
+  &:active {
+    background-image: url(/img/preset_hover.png);
+    color: #ffffff;
+    background-color: #604efe;
+    border-color: #604efe;
+  }
+}
+
+.preset-pane {
+  text-align: center;
+}

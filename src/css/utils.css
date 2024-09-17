@@ -1,0 +1,10 @@
+:not(.active) > .d-inactive-none {
+  display: none;
+}
+
+.bg-darker {
+  background-color: #222 !important;
+}
+.bg-black {
+  background-color: #000 !important;
+}
