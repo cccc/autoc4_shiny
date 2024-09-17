@@ -87,6 +87,7 @@ export function registerRGBW(autoc4: AutoC4, lampManager: LampManager): void {
 			};
 			picker.addEventListener("input", () => {
 				const color = Color.fromHexString(picker.value);
+				lamp.setColor(color);
 				lamp.sendColor(color);
 			});
 
@@ -100,6 +101,7 @@ export function registerRGBW(autoc4: AutoC4, lampManager: LampManager): void {
 			whitePicker.addEventListener("input", () => {
 				const white = Number.parseInt(whitePicker.value);
 				lamp.setWhite(white);
+				lamp.sendWhite(white);
 			});
 
 			const lamp = new RGBWLamp(

@@ -64,9 +64,6 @@ class Module implements AutoC4Module {
 	}
 }
 
-export default function AutoC4Heartbeat(
-	_autoc4: AutoC4,
-	_options: any,
-): AutoC4Module {
+export default function AutoC4Heartbeat(): AutoC4Module {
 	return new Module();
 }
