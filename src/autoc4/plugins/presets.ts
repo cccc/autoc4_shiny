@@ -5,27 +5,29 @@
 import type { AutoC4, AutoC4Module } from "../autoc4";
 import { createHTMLElement } from "../utils";
 
-/** @todo button templates */
-interface AutoC4PresetOptions {
-	topicDataAttribute: string;
-	onClass: string;
+class PresetButton extends HTMLElement {
+	connectedCallback() {
+		const room = this.getAttribute("room");
+		const preset = this.getAttribute("preset")!;
+
+		this.innerHTML = `
+			<button type="button" class="btn btn-preset" data-mqtt-topic="${room === "global" ? "preset/set" : `preset/${room}/set`}" data-mqtt-message="${preset}">
+				${preset}
+			</button>
+		`;
+	}
 }
 
 class Module implements AutoC4Module {
-	public constructor(_autoc4: AutoC4, _options: AutoC4PresetOptions) {}
+	public constructor() {
+		globalThis.customElements.define("preset-button", PresetButton);
+	}
 
 	private create_button(room: string, preset: string): HTMLElement {
-		return createHTMLElement(
-			"button",
-			{
-				type: "button",
-				className: "btn btn-preset",
-				"data-mqtt-topic":
-					room === "global" ? "preset/set" : `preset/${room}/set`,
-				"data-mqtt-message": preset,
-			},
+		return createHTMLElement("preset-button", {
+			room,
 			preset,
-		);
+		});
 	}
 
 	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
@@ -77,13 +79,10 @@ class Module implements AutoC4Module {
 	}
 
 	onConnect(_autoc4: AutoC4, _o: Paho.MQTT.WithInvocationContext): void {
-		$("div.preset-pane[data-room] > [data-preset-topic]").remove();
+		//$("div.preset-pane[data-room] > preset-button").remove();
 	}
 }
 
-export default function AutoC4Presets(
-	autoc4: AutoC4,
-	options: any,
-): AutoC4Module {
-	return new Module(autoc4, options as AutoC4PresetOptions);
+export default function AutoC4Presets(): AutoC4Module {
+	return new Module();
 }

@@ -14,37 +14,22 @@
 	"modules": [
 		{
 			"type": "interactivity",
-			"options": {
-				"mqttTopicDataAttibute": "data-mqtt-topic",
-				"mqttRetainedDataAttribute": "data-mqtt-retained",
-				"mqttMessageDataAttribute": "data-mqtt-message",
-				"mqttByteMessageDataAttribute": "data-mqtt-message-byte"
-			}
+			"subscribe": ["club/status/message"]
 		},
 		{
 			"type": "dmx",
-			"options": {
-				"roomDataAttribute": "data-dmx-room",
-				"channelsDataAttribute": "data-dmx-channels",
-				"lightDataAttribute": "data-dmx-light",
-				"roleDataAttribute": "data-dmx-role",
-				"valueDataAttribute": "data-dmx-value"
-			},
 			"subscribe": ["dmx/+/+"]
 		},
 		{
 			"type": "light",
-			"options": {
-				"topicDataAttribute": "data-light-topic",
-				"onClass": "on"
-			},
 			"subscribe": [
 				"licht/+/+",
 				"led/+/+",
 				"power/+/+",
 				"relais/+/+",
 				"socket/+/+/+",
-				"screen/+/+"
+				"screen/+/+",
+				"club/status"
 			]
 		},
 		{
@@ -67,9 +52,6 @@
 		},
 		{
 			"type": "presets",
-			"options": {
-				"topicDataAttribute": "data-preset-topic"
-			},
 			"subscribe": ["preset/list", "preset/+/list"]
 		},
 		{
@@ -129,6 +111,10 @@
 		{
 			"type": "atem",
 			"subscribe": ["atem/+/input-properties", "atem/#"]
+		},
+		{
+			"type": "reload",
+			"subscribe": ["interface/shiny/reload"]
 		}
 	]
 }
