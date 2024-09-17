@@ -1,6 +1,26 @@
-.heartbeat-entry-online .heartbeat-state-icon-offline {
-    display: none
-}
-.heartbeat-entry-offline .heartbeat-state-icon-online {
-    display: none
+.heartbeat-table {
+  width: 100%;
+  .heartbeat-table-body {
+    td {
+      padding: 0.5em;
+    }
+    .heartbeat-entry-online {
+      background-color: rgba(0, 160, 0, 0.8);
+      &:nth-of-type(even) {
+        background-color: rgba(0, 160, 0, 0.7);
+      }
+      .heartbeat-state-icon-offline {
+        display: none;
+      }
+    }
+    .heartbeat-entry-offline {
+      background-color: rgba(255, 0, 0, 0.8);
+      &:nth-of-type(even) {
+        background-color: rgba(255, 0, 0, 0.7);
+      }
+      .heartbeat-state-icon-online {
+        display: none;
+      }
+    }
+  }
 }
