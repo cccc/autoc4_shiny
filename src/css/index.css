@@ -3,5 +3,7 @@
 @import "fontawesome-free/css/fontawesome.css";
 @import "fontawesome-free/css/regular.css";
 @import "fontawesome-free/css/solid.css";
-@import "bootstrap-autoc4.css";
-@import "dark_theme.css";
+@import "./bootstrap-autoc4.css";
+@import "./dark_theme.css";
+@import "./autoc4/dmx.css";
+@import "./autoc4/light.css";

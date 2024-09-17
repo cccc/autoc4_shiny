@@ -202,6 +202,20 @@ export default class Color implements RGB, HSV {
 		};
 	}
 
+	/** Simple comparison by RGB values */
+	public equals(other: Color): boolean {
+		return (
+			this.rgb.r === other.rgb.r &&
+			this.rgb.g === other.rgb.g &&
+			this.rgb.b === other.rgb.b
+		);
+	}
+
+	private static numberToHexString(num: number, digits = 2): string {
+		let ret: string = num.toString(16);
+		ret = "0".repeat(digits - ret.length) + ret;
+		return ret;
+	}
 	public toHexString(): string {
 		return `#${Color.numberToHexString(this._r)}${Color.numberToHexString(this._g)}${Color.numberToHexString(this._b)}`;
 	}
@@ -226,9 +240,11 @@ export default class Color implements RGB, HSV {
 		return ret;
 	}
 
-	private static numberToHexString(num: number, digits = 2): string {
-		let ret: string = num.toString(16);
-		ret = "0".repeat(digits - ret.length) + ret;
-		return ret;
+	public static randomColor(value: number): Color {
+		return Color.fromHSV({ h: Math.random(), s: 1, v: value });
+	}
+
+	public static get BLACK(): Color {
+		return Color.fromRGB({ r: 0, g: 0, b: 0 });
 	}
 }

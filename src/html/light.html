@@ -12,41 +12,35 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active lightswitch-pane show" id="wohnzimmernormal">
-                    <button type="button" class="btn btn-light" data-light-topic="licht/wohnzimmer/tuer">Tür</button>
-                    <button type="button" class="btn btn-light" data-light-topic="licht/wohnzimmer/mitte">Mitte</button>
-                    <button type="button" class="btn btn-light"
-                        data-light-topic="licht/wohnzimmer/kueche">Küche</button>
-                    <button type="button" class="btn btn-light" data-light-topic="licht/wohnzimmer/gang">Gang</button>
-                    <button type="button" class="btn btn-power"
-                        data-light-topic="screen/wohnzimmer/infoscreen">Infoscreen</button>
-                    <button type="button" class="btn btn-power"
-                        data-light-topic="power/wohnzimmer/kitchenlight">LED-Wand</button>
-                    <button type="button" class="btn btn-light"
-                        data-light-topic="licht/wohnzimmer/stehlampen">Stehlampen</button>
-                    <button type="button" class="btn btn-light"
-                        data-light-topic="licht/wohnzimmer/wandlampe">Wandlampe</button>
+                    <light-button topic="licht/wohnzimmer/tuer">Tür</light-button>
+                    <light-button topic="licht/wohnzimmer/mitte">Mitte</light-button>
+                    <light-button topic="licht/wohnzimmer/kueche">Küche</light-button>
+                    <light-button topic="licht/wohnzimmer/gang">Gang</light-button>
+                    <power-button topic="screen/wohnzimmer/infoscreen">Infoscreen</power-button>
+                    <power-button topic="power/wohnzimmer/kitchenlight">LED-Wand</power-button>
+                    <light-button topic="licht/wohnzimmer/stehlampen">Stehlampen</light-button>
+                    <light-button topic="licht/wohnzimmer/wandlampe">Wandlampe</light-button>
                 </div>
                 <div class="tab-pane" id="wohnzimmerdmx">
-                    <div class="colorpicker">
-                        <label>Master:<!--<a href="#" data-dmx-room="wohnzimmer" data-dmx-role="poweroff" class="fa fa-power-off btn btn-sm"></a>--><input
-                                type="color" data-dmx-role="master" data-dmx-room="wohnzimmer" /></label>
-                    </div>
-
-                    <load src="src/html/light/ColorPicker.html" label="Mitte 1" room="wohnzimmer" light="mitte1" />
-                    <load src="src/html/light/ColorPicker.html" label="Mitte 2" room="wohnzimmer" light="mitte2" />
-                    <load src="src/html/light/ColorPicker.html" label="Mitte 3" room="wohnzimmer" light="mitte3" />
-                    <load src="src/html/light/ColorPicker.html" label="Tür 1" room="wohnzimmer" light="tuer1" />
-                    <load src="src/html/light/ColorPicker.html" label="Tür 2" room="wohnzimmer" light="tuer2" />
-                    <load src="src/html/light/ColorPicker.html" label="Tür 3" room="wohnzimmer" light="tuer3" />
-                    <load src="src/html/light/ColorPicker.html" label="Gang" room="wohnzimmer" light="gang" />
-                    <load src="src/html/light/ColorPicker.html" label="Bällebad" room="wohnzimmer" light="baellebad" />
-                    <load src="src/html/light/ColorPicker.html" label="Spüle" room="spuele" light="gang" />
-                    <load src="src/html/light/ColorPicker.html" label="Tresen" room="wohnzimmer" light="tresen" />
-                    <load src="src/html/light/ColorPicker.html" label="Chaosknoten" room="chaosknoten" light="gang" />
+                    <dmx-master label="Master" room="wohnzimmer" topic="dmx/wohnzimmer/master"></dmx-master>
+                    <dmx7ch-lamp label="Mitte 1" room="wohnzimmer" topic="dmx/wohnzimmer/mitte1" /></dmx7ch-lamp>
+                    <dmx7ch-lamp label="Mitte 2" room="wohnzimmer" topic="dmx/wohnzimmer/mitte2" /></dmx7ch-lamp>
+                    <dmx7ch-lamp label="Mitte 3" room="wohnzimmer" topic="dmx/wohnzimmer/mitte3" /></dmx7ch-lamp>
+                    <dmx7ch-lamp label="Tür 1" room="wohnzimmer" topic="dmx/wohnzimmer/tuer1" /></dmx7ch-lamp>
+                    <dmx7ch-lamp label="Tür 2" room="wohnzimmer" topic="dmx/wohnzimmer/tuer2" /></dmx7ch-lamp>
+                    <dmx7ch-lamp label="Tür 3" room="wohnzimmer" topic="dmx/wohnzimmer/tuer3" /></dmx7ch-lamp>
+                    <dmx7ch-lamp label="Gang" room="wohnzimmer" topic="dmx/wohnzimmer/gang" /></dmx7ch-lamp>
+                    <dmx7ch-lamp label="Bällebad" room="wohnzimmer" topic="dmx/wohnzimmer/baellebad" /></dmx7ch-lamp>
+                    <rgb-lamp label="Chaosknoten" room="wohnzimmer" topic="dmx/wohnzimmer/chaosknoten" /></rgb-lamp>
                     <hr />
                     <load src="src/html/light/BrightnessControls.html" room="wohnzimmer" />
                     <hr />
                     <load src="src/html/light/EffectsControls.html" room="wohnzimmer" />
+                    <hr />
+                    <rgbw-lamp label="Tresen" room="kueche" topic="dmx/wohnzimmer/tresen" /></rgbw-lamp>
+                    <rgbw-lamp label="Tresen oben" room="kueche" topic="dmx/wohnzimmer/tresen2" /></rgbw-lamp>
+                    <rgbw-lamp label="Spüle" room="kueche" topic="dmx/wohnzimmer/spuele" /></rgbw-lamp>
+                    <rgb-lamp label="Spüle oben" room="kueche" topic="rgb/wohnzimmer/spuele2" /></rgb-lamp>
                 </div>
                 <load src="src/html/light/kitchenlight.html" />
             </div>
@@ -63,28 +57,22 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane in lightswitch-pane show active" id="plenarnormal">
-                    <button type="button" class="btn btn-light" data-light-topic="licht/plenar/vornewand">Vorne
-                        Wand</button>
-                    <button type="button" class="btn btn-light" data-light-topic="licht/plenar/vornefenster">Vorne
-                        Fenster</button>
-                    <button type="button" class="btn btn-light" data-light-topic="licht/plenar/hintenwand">Hinten
-                        Wand</button>
-                    <button type="button" class="btn btn-light" data-light-topic="licht/plenar/hintenfenster">Hinten
-                        Fenster</button>
-                    <button type="button" class="btn btn-power" data-light-topic="relais/plenar/amp">Verstärker</button>
-                    <button type="button" class="btn btn-power" data-light-topic="relais/plenar/dmx">RGB + Atem</button>
+                    <light-button topic="licht/plenar/vornewand">Vorne Wand</light-button>
+                    <light-button topic="licht/plenar/vornefenster">Vorne Fenster</light-button>
+                    <light-button topic="licht/plenar/hintenwand">Hinten Wand</light-button>
+                    <light-button topic="licht/plenar/hintenfenster">Hinten Fenster</light-button>
+                    <power-button topic="relais/plenar/amp">Verstärker</power-button>
+                    <power-button topic="relais/plenar/dmx">RGB + Atem</power-button>
                 </div>
                 <div class="tab-pane" id="plenardmx">
-                    <div class="colorpicker">
-                        <label>Master:<input type="color" data-dmx-role="master" data-dmx-room="plenar" /></label>
-                    </div>
-                    <load src="src/html/light/ColorPicker.html" label="Vorne 1" room="plenar" light="vorne1" />
-                    <load src="src/html/light/ColorPicker.html" label="Vorne 2" room="plenar" light="vorne2" />
-                    <load src="src/html/light/ColorPicker.html" label="Vorne 3" room="plenar" light="vorne3" />
-                    <load src="src/html/light/ColorPicker.html" label="Hinten 1" room="plenar" light="hinten1" />
-                    <load src="src/html/light/ColorPicker.html" label="Hinten 2" room="plenar" light="hinten2" />
-                    <load src="src/html/light/ColorPicker.html" label="Hinten 3" room="plenar" light="hinten3" />
-                    <load src="src/html/light/ColorPicker.html" label="Hinten 4" room="plenar" light="hinten4" />
+                    <dmx-master label="Master" room="plenar" topic="dmx/plenar/master"></dmx-master>
+                    <dmx7ch-lamp label="Vorne 1" room="plenar" topic="dmx/plenar/vorne1" /></dmx7ch-lamp>
+                    <dmx7ch-lamp label="Vorne 2" room="plenar" topic="dmx/plenar/vorne2" /></dmx7ch-lamp>
+                    <dmx7ch-lamp label="Vorne 3" room="plenar" topic="dmx/plenar/vorne3" /></dmx7ch-lamp>
+                    <dmx7ch-lamp label="Hinten 1" room="plenar" topic="dmx/plenar/hinten1" /></dmx7ch-lamp>
+                    <dmx7ch-lamp label="Hinten 2" room="plenar" topic="dmx/plenar/hinten2" /></dmx7ch-lamp>
+                    <dmx7ch-lamp label="Hinten 3" room="plenar" topic="dmx/plenar/hinten3" /></dmx7ch-lamp>
+                    <dmx7ch-lamp label="Hinten 4" room="plenar" topic="dmx/plenar/hinten4" /></dmx7ch-lamp>
                     <hr />
                     <load src="src/html/light/BrightnessControls.html" room="plenar" />
                     <hr />
@@ -109,33 +97,17 @@
             <div class="tab-content">
 
                 <div class="tab-pane lightswitch-pane show active" id="fnordnormal">
-                    <button type="button" class="btn btn-light" data-light-topic="licht/fnord/links">Links</button>
-                    <button type="button" class="btn btn-light" data-light-topic="licht/fnord/rechts">Rechts</button>
-                    <button type="button" class="btn btn-power"
-                        data-light-topic="relais/fnord/audio">Lautsprecher</button>
+                    <light-button topic="licht/fnord/links">Links</light-button>
+                    <light-button topic="licht/fnord/rechts">Rechts</light-button>
+                    <power-button topic="relais/fnord/audio">Lautsprecher</power-button>
                 </div>
 
                 <div class="tab-pane" id="fnorddmx">
-                    <div class="colorpicker">
-                        <label>Master:<input type="color" data-dmx-channels="3" data-dmx-room="fnord"
-                                data-dmx-role="master" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>SCUMM Fenster:<input type="color" data-dmx-role="light" data-dmx-channels="3"
-                                data-dmx-room="fnord" data-dmx-light="scummfenster" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>SCUMM Schrank:<input type="color" data-dmx-role="light" data-dmx-channels="3"
-                                data-dmx-room="fnord" data-dmx-light="schranklinks" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Fairy Fenster:<input type="color" data-dmx-role="light" data-dmx-channels="3"
-                                data-dmx-room="fnord" data-dmx-light="fairyfenster" /></label>
-                    </div>
-                    <div class="colorpicker">
-                        <label>Fairy Schrank:<input type="color" data-dmx-role="light" data-dmx-channels="3"
-                                data-dmx-room="fnord" data-dmx-light="schrankrechts" /></label>
-                    </div>
+                    <dmx-master label="Master" room="fnord" topic="dmx/fnord/master"></dmx-master>
+                    <dmx4ch-lamp label="Schrank links" room="fnord" topic="dmx/fnord/schranklinks" /></dmx4ch-lamp>
+                    <dmx4ch-lamp label="Schrank rechts" room="fnord" topic="dmx/fnord/schrankrechts" /></dmx4ch-lamp>
+                    <dmx4ch-lamp label="Fairy Fenster" room="fnord" topic="dmx/fnord/fairyfenster" /></dmx4ch-lamp>
+                    <dmx4ch-lamp label="SCUMM Fenster" room="fnord" topic="dmx/fnord/scummfenster" /></dmx4ch-lamp>
                     <hr />
                     <load src="src/html/light/BrightnessControls.html" room="fnord" />
                 </div>
@@ -151,17 +123,13 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane lightswitch-pane show active" id="kellernormal">
-                    <button type="button" class="btn btn-light" data-light-topic="licht/keller/vorne">Vorne</button>
-                    <button type="button" class="btn btn-light" data-light-topic="licht/keller/mitte">Mitte</button>
-                    <button type="button" class="btn btn-light"
-                        data-light-topic="led/keller/werkbankkalt">Werkbank(kalt)</button>
-                    <button type="button" class="btn btn-light"
-                        data-light-topic="led/keller/werkbankwarm">Werkbank(warm)</button>
-                    <button type="button" class="btn btn-light"
-                        data-light-topic="led/keller/hintenkalt">Hinten(kalt)</button>
-                    <button type="button" class="btn btn-light"
-                        data-light-topic="led/keller/hintenwarm">Hinten(warm)</button>
-                    <button type="button" class="btn btn-light" data-light-topic="licht/keller/loet">Lötplatz</button>
+                    <light-button topic="licht/keller/vorne">Vorne</light-button>
+                    <light-button topic="licht/keller/mitte">Mitte</light-button>
+                    <light-button topic="led/keller/werkbankkalt">Werkbank(kalt)</light-button>
+                    <light-button topic="led/keller/werkbankwarm">Werkbank(warm)</light-button>
+                    <light-button topic="led/keller/hintenkalt">Hinten(kalt)</light-button>
+                    <light-button topic="led/keller/hintenwarm">Hinten(warm)</light-button>
+                    <light-button topic="licht/keller/loet">Lötplatz</light-button>
                 </div>
             </div>
         </div>

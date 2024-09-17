@@ -67,16 +67,17 @@ export function createHTMLElement(
 	...children: NodeChildren
 ): HTMLElement {
 	const element = document.createElement(tag);
+	if (customElements.get(tag)) {
+		customElements.upgrade(element);
+	}
 	if (attrs) {
-		const noDataAttrs = Object.entries(attrs).filter(
-			([k]) => !k.startsWith("data-"),
-		);
-		Object.assign(element, Object.fromEntries(noDataAttrs));
+		const props = Object.entries(attrs).filter(([k]) => k in element);
+		Object.assign(element, Object.fromEntries(props));
 
-		const dataAttrs = Object.entries(attrs).filter(([k]) =>
-			k.startsWith("data-"),
+		const onlyAttributes = Object.entries(attrs).filter(
+			([k]) => !(k in element),
 		);
-		for (const dataAttr of dataAttrs) {
+		for (const dataAttr of onlyAttributes) {
 			element.setAttribute(dataAttr[0], dataAttr[1]);
 		}
 	}

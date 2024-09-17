@@ -8,64 +8,63 @@
  */
 import type { AutoC4, AutoC4Module } from "../autoc4";
 
-interface AutoC4InteractivityConfig {
-	mqttTopicDataAttibute: string;
-	mqttRetainedDataAttribute: string;
-	mqttMessageDataAttribute: string;
-	mqttByteMessageDataAttribute: string;
-}
-
 // @ts-ignore: Weak type here because it doesn't implement any methods of AutoC4Module
 class Module implements AutoC4Module {
-	private autoc4: AutoC4;
-	private options: AutoC4InteractivityConfig;
-
-	constructor(autoc4: AutoC4, options: AutoC4InteractivityConfig) {
-		this.options = options;
-		this.autoc4 = autoc4;
-
-		const self = this;
-		$("body").on(
+	constructor(autoc4: AutoC4) {
+		$(document.body).on(
 			"click change input",
-			`[${this.options.mqttTopicDataAttibute}]`,
+			"[data-mqtt-topic]",
 			function (this: HTMLElement, event) {
 				event.preventDefault();
 
-				const mqttTopic = this.getAttribute(self.options.mqttTopicDataAttibute);
+				const mqttTopic = this.getAttribute("data-mqtt-topic");
 				if (!mqttTopic) return;
 
-				const mqttRetained = Boolean(
-					this.getAttribute(self.options.mqttRetainedDataAttribute),
-				);
+				const mqttRetained = this.hasAttribute("data-mqtt-retained");
 
-				if (this.hasAttribute(self.options.mqttMessageDataAttribute)) {
-					self.autoc4.sendData(
+				if (this.hasAttribute("data-mqtt-message")) {
+					autoc4.sendData(
 						mqttTopic,
-						this.getAttribute(self.options.mqttMessageDataAttribute)!,
+						this.getAttribute("data-mqtt-message")!,
 						mqttRetained,
 					);
-				} else if (
-					this.hasAttribute(self.options.mqttByteMessageDataAttribute)
-				) {
-					self.autoc4.sendByte(
+				} else if (this.hasAttribute("data-mqtt-message-byte")) {
+					autoc4.sendByte(
 						mqttTopic,
-						Number(
-							this.getAttribute(self.options.mqttByteMessageDataAttribute),
-						),
+						Number(this.getAttribute("data-mqtt-message-byte")),
 						mqttRetained,
 					);
 				} else {
-					self.autoc4.sendByte(mqttTopic, 0, mqttRetained);
+					autoc4.sendByte(mqttTopic, 0, mqttRetained);
+				}
+			},
+		);
+		$(document.body).on(
+			"submit",
+			"[data-mqtt-form]",
+			function (this: HTMLFormElement, event) {
+				event.preventDefault();
+				const formData = new FormData(this);
+				const mqttRetained = this.hasAttribute("data-mqtt-retained");
+				for (const [key, value] of formData.entries()) {
+					autoc4.sendData(key, value.toString(), mqttRetained);
 				}
 			},
 		);
 	}
+	onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
+		console.log(
+			"Got value message:",
+			message.destinationName,
+			message.payloadString,
+		);
+		$(`[data-mqtt-value="${message.destinationName}"]`).val(
+			message.payloadString,
+		);
+	}
 }
 
-export default function AutoC4Interactivity(
-	autoc4: AutoC4,
-	options: any,
-): AutoC4Module {
+export default function AutoC4Interactivity(autoc4: AutoC4): AutoC4Module {
 	// @ts-ignore: Weak type here because it doesn't implement any methods of AutoC4Module
-	return new Module(autoc4, options as AutoC4InteractivityConfig);
+	return new Module(autoc4);
 }

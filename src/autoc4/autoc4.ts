@@ -5,7 +5,7 @@
  */
 import AutoC4Atem from "./plugins/atem.js";
 import AutoC4Cyber from "./plugins/cyber.js";
-import AutoC4DMX from "./plugins/dmx.js";
+import AutoC4DMX from "./plugins/dmx";
 import AutoC4Heartbeat from "./plugins/heartbeat.js";
 import AutoC4Interactivity from "./plugins/interactivity.js";
 import AutoC4Kitchenlight from "./plugins/kitchenlight.js";
@@ -13,6 +13,7 @@ import AutoC4Light from "./plugins/light.js";
 import AutoC4Music from "./plugins/music.js";
 import AutoC4Notify from "./plugins/notify.js";
 import AutoC4Presets from "./plugins/presets.js";
+import AutoC4Reload from "./plugins/reload.js";
 import AutoC4State from "./plugins/state.js";
 import AutoC4Time from "./plugins/time.js";
 import AutoC4Windows from "./plugins/windows.js";
@@ -71,6 +72,14 @@ export interface AutoC4Module {
 	onConnectionFailure?(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void;
 }
 
+function debugMQTTMessageContent(message: Paho.MQTT.Message) {
+	try {
+		return { message: message.payloadString };
+	} catch {
+		return message.payloadBytes;
+	}
+}
+
 export type AutoC4ModuleFactory = (
 	AutoC4: AutoC4,
 	options: any,
@@ -105,6 +114,7 @@ export class AutoC4 {
 		this.registerModuleType("time", AutoC4Time);
 		this.registerModuleType("cyber", AutoC4Cyber);
 		this.registerModuleType("atem", AutoC4Atem);
+		this.registerModuleType("reload", AutoC4Reload);
 
 		this.loadModules();
 		this.connect();
@@ -138,15 +148,9 @@ export class AutoC4 {
 
 	public onMessage(message: Paho.MQTT.Message) {
 		if (this.config.debug?.message) {
-			let messageContent;
-			try {
-				messageContent = message.payloadString;
-			} catch {
-				messageContent = message.payloadBytes;
-			}
 			console.debug(
 				`MQTT message received [${message.destinationName}]:`,
-				messageContent,
+				debugMQTTMessageContent(message),
 			);
 		}
 		for (const moduleConfig of this.config.modules) {
@@ -219,8 +223,12 @@ export class AutoC4 {
 		message.destinationName = topic;
 		message.retained = retained;
 		this.client.send(message);
-		if (this.config.debug?.sentMessage)
-			console.debug("Sent MQTT Message:", message);
+		if (this.config.debug?.sentMessage) {
+			console.debug(
+				`MQTT message sent [${message.destinationName}]:`,
+				debugMQTTMessageContent(message),
+			);
+		}
 	}
 	public sendByte(topic: string, data: number, retained = false): void {
 		this.sendData(
