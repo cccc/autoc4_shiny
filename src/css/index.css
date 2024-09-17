@@ -3,7 +3,18 @@
 @import "fontawesome-free/css/fontawesome.css";
 @import "fontawesome-free/css/regular.css";
 @import "fontawesome-free/css/solid.css";
+
 @import "./bootstrap-autoc4.css";
 @import "./dark_theme.css";
+@import "./utils.css";
+
+@import "./autoc4/atem.css";
+@import "./autoc4/cyber.css";
 @import "./autoc4/dmx.css";
 @import "./autoc4/light.css";
+@import "./autoc4/kitchenlight.css";
+@import "./autoc4/heartbeat.css";
+@import "./autoc4/music.css";
+@import "./autoc4/presets.css";
+@import "./autoc4/state.css";
+@import "./autoc4/windows.css";

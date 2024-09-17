@@ -1,0 +1,34 @@
+.box-window {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border: 3px solid transparent;
+  width: 80px !important;
+  height: 80px;
+  padding: 0;
+  padding-top: 5px;
+  background-image: url(/img/window_closed.png);
+  background-position: center top;
+  background-size: 75% auto;
+  background-repeat: no-repeat;
+  -moz-background-origin: content;
+  /* Firefox 1.0-3.6 */
+  -webkit-background-origin: content-box;
+  /* Safari, Chrome */
+  background-origin: content-box;
+  /* Firefox 4.0+ */
+  line-height: 115px;
+  font-size: 0.75em;
+  color: #ffffff;
+  background-color: #555555;
+  border-color: #555555;
+  margin: 2px;
+  margin-top: 0px;
+
+  &.open {
+    background-image: url(/img/window_open.png);
+    color: #ffffff;
+    background-color: #ff0039;
+    border-color: #ff0039;
+  }
+}

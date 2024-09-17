@@ -1,5 +1,5 @@
 body:not(.state-open) .show-state-open,
 body:not(.state-closed) .show-state-closed,
 body:not(.state-disconnected) .show-state-disconnected {
-    display: none;
+  display: none;
 }
