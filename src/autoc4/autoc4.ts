@@ -3,7 +3,7 @@
  * @license MIT
  * @requires utils
  */
-import AutoC4Atem from "./plugins/atem.js";
+import AutoC4Atem from "./plugins/atem/index.js";
 import AutoC4Cyber from "./plugins/cyber.js";
 import AutoC4DMX from "./plugins/dmx";
 import AutoC4Heartbeat from "./plugins/heartbeat.js";
