@@ -8,18 +8,20 @@
  * @copyright Chaos Computer Club Cologne 2019-2020
  * @license MIT
  */
-import type { AutoC4, AutoC4Module } from "../autoc4";
-import { createHTMLElement } from "../utils";
+import EventEmitter from "eventemitter3";
+import type { AutoC4, AutoC4Module } from "../../autoc4";
+import { createHTMLElement } from "../../utils";
+import registerOutputButton from "./OutputButton";
+import registerSourceButton from "./SourceButton";
+import type { AtemSourceDescription } from "./util";
 
-type AtemSource = {
-	index: number;
-	port_type: number;
-	short_name: string;
-	name: string;
-};
+class Module extends EventEmitter implements AutoC4Module {
+	constructor(autoc4: AutoC4) {
+		super();
 
-class Module implements AutoC4Module {
-	constructor(_autoc4: AutoC4, _options: any) {}
+		registerSourceButton(autoc4, this);
+		registerOutputButton(autoc4, this);
+	}
 
 	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
 		const atem = message.destinationName.split("/").slice(0, -1).join("/");
@@ -69,36 +71,19 @@ class Module implements AutoC4Module {
 						outputsContainer?.replaceChildren();
 					}
 
-					for (const v of Object.values(messageData) as AtemSource[]) {
+					for (const v of Object.values(
+						messageData,
+					) as AtemSourceDescription[]) {
 						if ([0, 1, 2, 3, 4].includes(v.port_type)) {
 							for (const sourcesContainer of sourcesContainers) {
 								sourcesContainer.append(
 									createHTMLElement(
-										"button",
+										"atem-source",
 										{
-											className:
-												"btn btn-secondary btn-atem atem-button atem-button-source",
-											title: v.name,
-											onclick: (e: Event) => {
-												e.preventDefault();
-												autoc4.sendData(
-													`${atem}/set/program-input`,
-													JSON.stringify({
-														index: 0,
-														source: v.index,
-													}),
-												);
-											},
-											oncontextmenu: (e: Event) => {
-												e.preventDefault();
-												autoc4.sendData(
-													`${atem}/set/preview-input`,
-													JSON.stringify({
-														index: 0,
-														source: v.index,
-													}),
-												);
-											},
+											name: v.name,
+											"short-name": v.short_name,
+											topic: atem,
+											source: v.index,
 										},
 										v.short_name,
 									),
@@ -111,21 +96,12 @@ class Module implements AutoC4Module {
 							for (const outputContainer of outputsContainers) {
 								outputContainer.append(
 									createHTMLElement(
-										"button",
+										"atem-output",
 										{
-											className:
-												"btn btn-secondary btn-atem atem-button atem-button-output",
-											title: v.name,
-											onclick: (e: Event) => {
-												e.preventDefault();
-												autoc4.sendData(
-													`${atem}/set/aux-source`,
-													JSON.stringify({
-														index: 0,
-														source: v.index,
-													}),
-												);
-											},
+											name: v.name,
+											"short-name": v.short_name,
+											topic: atem,
+											source: v.index,
 										},
 										v.short_name,
 									),
@@ -135,10 +111,19 @@ class Module implements AutoC4Module {
 					}
 				}
 				break;
+			case "program-bus-input":
+				this.emit("program-bus-input", messageData);
+				break;
+			case "preview-bus-input":
+				this.emit("preview-bus-input", messageData);
+				break;
+			case "aux-output-source":
+				this.emit("aux-output-source", messageData);
+				break;
 		}
 	}
 }
 
-export default function AutoC4Atem(autoc4: AutoC4, options: any): AutoC4Module {
-	return new Module(autoc4, options);
+export default function AutoC4Atem(autoc4: AutoC4): AutoC4Module {
+	return new Module(autoc4);
 }
