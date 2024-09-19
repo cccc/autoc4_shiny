@@ -7,9 +7,9 @@
   height: 80px;
   padding: 0;
   padding-top: 5px;
-  background-image: url(/img/window_closed.png);
+  background-image: url(/img/window_closed.svg);
   background-position: center top;
-  background-size: 75% auto;
+  background-size: 60% auto;
   background-repeat: no-repeat;
   -moz-background-origin: content;
   /* Firefox 1.0-3.6 */
@@ -26,7 +26,7 @@
   margin-top: 0px;
 
   &.open {
-    background-image: url(/img/window_open.png);
+    background-image: url(/img/window_open.svg);
     color: #ffffff;
     background-color: #ff0039;
     border-color: #ff0039;
