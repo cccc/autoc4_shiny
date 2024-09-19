@@ -1,0 +1,19 @@
+<div class="col-lg-3 px-2">
+    <h2>Keller <a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff" data-mqtt-topic="preset/keller/off"
+            data-mqtt-message=""></a></h2>
+    <ul class="nav nav-tabs mb-2">
+        <li class="nav-item"><a class="nav-link active" href="#kellernormal" data-bs-toggle="tab">Normal</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane lightswitch-pane show active" id="kellernormal">
+            <light-button topic="licht/keller/vorne">Vorne</light-button>
+            <light-button topic="licht/keller/mitte">Mitte</light-button>
+            <light-button topic="led/keller/werkbankkalt">Werkbank(kalt)</light-button>
+            <light-button topic="led/keller/werkbankwarm">Werkbank(warm)</light-button>
+            <light-button topic="led/keller/hintenkalt">Hinten(kalt)</light-button>
+            <light-button topic="led/keller/hintenwarm">Hinten(warm)</light-button>
+            <light-button topic="licht/keller/loet">Lötplatz</light-button>
+        </div>
+    </div>
+</div>
