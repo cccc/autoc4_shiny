@@ -74,7 +74,10 @@ export interface AutoC4Module {
 
 function debugMQTTMessageContent(message: Paho.MQTT.Message) {
 	try {
-		return { message: message.payloadString };
+		const payloadString = message.payloadString;
+		if (["\u0000", "\u0001"].some((s) => payloadString.includes(s)))
+			return message.payloadBytes;
+		return { message: payloadString };
 	} catch {
 		return message.payloadBytes;
 	}

@@ -18,7 +18,6 @@ export default function registerDMXMaster(
             `;
 
 			const picker = this.querySelector("input") as HTMLInputElement;
-			console.log("picker", picker);
 			picker.addEventListener("input", () => {
 				const color = Color.fromHexString(picker.value);
 				autoc4.sendData(topic, new Uint8Array([color.r, color.g, color.b]));
@@ -27,7 +26,6 @@ export default function registerDMXMaster(
 				const color = Color.fromHexString(picker.value);
 				autoc4.sendData(topic, new Uint8Array([color.r, color.g, color.b]));
 			});
-			console.log("picker event added", picker);
 
 			eventEmitter.on("master-update", this.updateMaster, this);
 		}

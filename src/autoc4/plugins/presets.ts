@@ -79,7 +79,7 @@ class Module implements AutoC4Module {
 	}
 
 	onConnect(_autoc4: AutoC4, _o: Paho.MQTT.WithInvocationContext): void {
-		//$("div.preset-pane[data-room] > preset-button").remove();
+		$("preset-button").remove();
 	}
 }
 
