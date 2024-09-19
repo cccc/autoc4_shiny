@@ -1,13 +1,9 @@
 <div>
     Brightness:
     <div>
-        <button type="button" class="btn btn-primary btn-sm" data-dmx-room="{=$room}" data-dmx-role="brightness"
-            data-dmx-value="0.75">-25%</button>
-        <button type="button" class="btn btn-primary btn-sm" data-dmx-room="{=$room}" data-dmx-role="brightness"
-            data-dmx-value="0.85">-15%</button>
-        <button type="button" class="btn btn-primary btn-sm" data-dmx-room="{=$room}" data-dmx-role="brightness"
-            data-dmx-value="1.15">+15%</button>
-        <button type="button" class="btn btn-primary btn-sm" data-dmx-room="{=$room}" data-dmx-role="brightness"
-            data-dmx-value="1.25">+25%</button>
+        <brightness-button data-dmx-room="{=$room}" value="0.75">-25%</brightness-button>
+        <brightness-button data-dmx-room="{=$room}" value="0.85">-15%</brightness-button>
+        <brightness-button data-dmx-room="{=$room}" value="1.15">+15%</brightness-button>
+        <brightness-button data-dmx-room="{=$room}" value="1.25">+25%</brightness-button>
     </div>
 </div>

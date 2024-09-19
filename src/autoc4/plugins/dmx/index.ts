@@ -8,6 +8,7 @@
  */
 import EventEmitter from "eventemitter3";
 import type { AutoC4, AutoC4Module } from "../../autoc4.js";
+import registerBrightnessButton from "./BrightnessButton.js";
 import { registerDMX4Ch } from "./DMX4ChannelLamp.js";
 import { registerDMX7Ch } from "./DMX7ChannelLamp.js";
 import registerDMXMaster from "./DMXMaster.js";
@@ -21,14 +22,16 @@ class Module extends EventEmitter implements AutoC4Module {
 	constructor(autoc4: AutoC4) {
 		super();
 
+		registerDMXMaster(autoc4, this.lampManager, this);
+
 		registerDMX4Ch(autoc4, this.lampManager);
 		registerDMX7Ch(autoc4, this.lampManager);
 		registerRGB(autoc4, this.lampManager);
 		registerRGBW(autoc4, this.lampManager);
-		registerDMXMaster(autoc4, this.lampManager, this);
+
+		registerBrightnessButton(this.lampManager);
 
 		this.initPoweroff();
-		this.initBrightness();
 		this.initFade();
 		this.initRandom();
 		this.initSound();
@@ -56,22 +59,6 @@ class Module extends EventEmitter implements AutoC4Module {
 
 				for (const lamp of self.lampManager.getRoom(room)) {
 					lamp.poweroff();
-				}
-			},
-		);
-	}
-
-	private initBrightness(): void {
-		const self = this;
-		$(document.body).on(
-			"click change",
-			"[data-dmx-room][data-dmx-role=brightness][data-dmx-value]",
-			function (this: HTMLElement) {
-				const value = +this.getAttribute("data-dmx-value")!;
-				const room = this.getAttribute("data-dmx-room")!;
-
-				for (const lamp of self.lampManager.getRoom(room)) {
-					lamp.brightness(value);
 				}
 			},
 		);
