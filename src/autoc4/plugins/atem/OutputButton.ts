@@ -1,51 +1,40 @@
 import type EventEmitter from "eventemitter3";
 import type { AutoC4 } from "../../autoc4";
+import AtemButton from "./AtemButton";
 import { type AtemChangeSourceMessage, getSourceFromMessage } from "./util";
 
 export default function registerOutputButton(
 	autoc4: AutoC4,
 	eventEmitter: EventEmitter,
 ): void {
-	class AtemSource extends HTMLElement {
+	class AtemOutput extends AtemButton {
+		_onClick() {
+			autoc4.sendData(
+				`${this.topic}/set/aux-source`,
+				JSON.stringify({
+					index: 0,
+					source: this.source,
+				}),
+			);
+		}
+		_onContextMenu() {}
+
 		connectedCallback() {
-			const name = this.getAttribute("name");
-			const shortName = this.getAttribute("short-name");
-			this.innerHTML = `
-                <button class="btn btn-secondary btn-atem" title="${name}">
-                    ${shortName}
-                </button>
-            `;
-
-			const topic = this.getAttribute("topic")!;
-			const source = this.getAttribute("source")!;
-
-			const button = this.querySelector("button")!;
-			button.addEventListener("click", (event) => {
-				event.preventDefault();
-				autoc4.sendData(
-					`${topic}/set/aux-source`,
-					JSON.stringify({
-						index: 0,
-						source,
-					}),
-				);
-			});
+			super.connectedCallback();
 			eventEmitter.on("aux-output-source", this.onAuxOutputSource, this);
 		}
 
-		onDisconnected() {
+		disconnectedCallback() {
+			super.disconnectedCallback();
 			eventEmitter.off("aux-output-source", this.onAuxOutputSource, this);
 		}
 
 		onAuxOutputSource(message: AtemChangeSourceMessage): void {
 			const source = getSourceFromMessage(message, 0);
-
-			const button = this.querySelector("button")!;
-			button.classList.toggle(
-				"btn-atem-aux-output",
-				source === Number.parseInt(this.getAttribute("source")!),
-			);
+			this.isPrimaryActive = source === this.source;
 		}
+
+		static styles = AtemButton.styles;
 	}
-	globalThis.customElements.define("atem-output", AtemSource);
+	globalThis.customElements.define("atem-output", AtemOutput);
 }

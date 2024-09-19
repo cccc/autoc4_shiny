@@ -23,6 +23,7 @@
 		"bootstrap": "^5.3.3",
 		"eventemitter3": "^5.0.1",
 		"fontawesome-free": "^1.0.4",
+		"lit": "^3.2.0",
 		"toastify-js": "^1.12.0"
 	}
 }
