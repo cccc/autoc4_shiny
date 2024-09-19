@@ -1,0 +1,28 @@
+<div class="col-lg-3 px-2">
+    <h2>Fnordcenter <a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff"
+            data-mqtt-topic="preset/fnord/off" data-mqtt-message=""></a></h2>
+    <ul class="nav nav-tabs mb-2">
+        <li class="nav-item"><a class="nav-link active" href="#fnordnormal" data-bs-toggle="tab">Normal</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#fnorddmx" data-bs-toggle="tab">DMX</a></li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div class="tab-pane lightswitch-pane show active" id="fnordnormal">
+            <light-button topic="licht/fnord/links">Links</light-button>
+            <light-button topic="licht/fnord/rechts">Rechts</light-button>
+            <power-button topic="relais/fnord/audio">Lautsprecher</power-button>
+        </div>
+
+        <div class="tab-pane" id="fnorddmx">
+            <dmx-master label="Master" room="fnord" topic="dmx/fnord/master"></dmx-master>
+            <dmx4ch-lamp label="Schrank links" room="fnord" topic="dmx/fnord/schranklinks" /></dmx4ch-lamp>
+            <dmx4ch-lamp label="Schrank rechts" room="fnord" topic="dmx/fnord/schrankrechts" /></dmx4ch-lamp>
+            <dmx4ch-lamp label="Fairy Fenster" room="fnord" topic="dmx/fnord/fairyfenster" /></dmx4ch-lamp>
+            <dmx4ch-lamp label="SCUMM Fenster" room="fnord" topic="dmx/fnord/scummfenster" /></dmx4ch-lamp>
+            <hr />
+            <load src="src/html/light/BrightnessControls.html" room="fnord" />
+        </div>
+    </div>
+</div>

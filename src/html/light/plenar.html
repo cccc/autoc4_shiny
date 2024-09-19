@@ -1,0 +1,38 @@
+<div class="col-lg-3 px-2">
+    <h2>Plenarsaal <a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff"
+            data-mqtt-topic="preset/plenar/off" data-mqtt-message=""></a></h2>
+    <ul class="nav nav-tabs mb-2">
+        <li class="nav-item"><a class="nav-link active" href="#plenarnormal" data-bs-toggle="tab">Normal</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#plenardmx" data-bs-toggle="tab">DMX</a></li>
+        <li class="nav-item"><a class="nav-link" href="#plenarmedia" data-bs-toggle="tab">Media</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane in lightswitch-pane show active" id="plenarnormal">
+            <light-button topic="licht/plenar/vornewand">Vorne Wand</light-button>
+            <light-button topic="licht/plenar/vornefenster">Vorne Fenster</light-button>
+            <light-button topic="licht/plenar/hintenwand">Hinten Wand</light-button>
+            <light-button topic="licht/plenar/hintenfenster">Hinten Fenster</light-button>
+            <power-button topic="relais/plenar/amp">Verstärker</power-button>
+            <power-button topic="relais/plenar/dmx">RGB + Atem</power-button>
+        </div>
+        <div class="tab-pane" id="plenardmx">
+            <dmx-master label="Master" room="plenar" topic="dmx/plenar/master"></dmx-master>
+            <dmx7ch-lamp label="Vorne 1" room="plenar" topic="dmx/plenar/vorne1" /></dmx7ch-lamp>
+            <dmx7ch-lamp label="Vorne 2" room="plenar" topic="dmx/plenar/vorne2" /></dmx7ch-lamp>
+            <dmx7ch-lamp label="Vorne 3" room="plenar" topic="dmx/plenar/vorne3" /></dmx7ch-lamp>
+            <dmx7ch-lamp label="Hinten 1" room="plenar" topic="dmx/plenar/hinten1" /></dmx7ch-lamp>
+            <dmx7ch-lamp label="Hinten 2" room="plenar" topic="dmx/plenar/hinten2" /></dmx7ch-lamp>
+            <dmx7ch-lamp label="Hinten 3" room="plenar" topic="dmx/plenar/hinten3" /></dmx7ch-lamp>
+            <dmx7ch-lamp label="Hinten 4" room="plenar" topic="dmx/plenar/hinten4" /></dmx7ch-lamp>
+            <hr />
+            <load src="src/html/light/BrightnessControls.html" room="plenar" />
+            <hr />
+            <load src="src/html/light/EffectsControls.html" room="plenar" />
+        </div>
+        <div class="tab-pane" id="plenarmedia">
+            <load src="src/html/light/plenar/beamer.html" />
+            <load src="src/html/light/plenar/atem.html" />
+        </div>
+    </div>
+</div>
