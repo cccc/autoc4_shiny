@@ -9,7 +9,7 @@ import AutoC4DMX from "./plugins/dmx";
 import AutoC4Heartbeat from "./plugins/heartbeat.js";
 import AutoC4Interactivity from "./plugins/interactivity.js";
 import AutoC4Kitchenlight from "./plugins/kitchenlight.js";
-import AutoC4Light from "./plugins/light.js";
+import AutoC4Light from "./plugins/light";
 import AutoC4Music from "./plugins/music.js";
 import AutoC4Notify from "./plugins/notify.js";
 import AutoC4Presets from "./plugins/presets.js";
