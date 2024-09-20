@@ -37,7 +37,7 @@ class Module extends EventEmitter implements AutoC4Module {
 		this.initSound();
 	}
 
-	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
+	public onMessage(_autoc4: AutoC4, message: Paho.Message): void {
 		for (const lamp of this.lampManager.getLamps()) {
 			if (lamp.canReceiveMessage(message)) {
 				lamp.receiveMessage(message);

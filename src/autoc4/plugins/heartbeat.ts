@@ -16,7 +16,7 @@ type HeartbeatEntry = HTMLElement;
 class Module implements AutoC4Module {
 	private heartbeats: { [key: string]: HeartbeatEntry } = {};
 
-	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
+	public onMessage(_autoc4: AutoC4, message: Paho.Message): void {
 		const name = message.destinationName.substring("heartbeat/".length);
 		if (!(name in this.heartbeats)) {
 			this.heartbeats[name] = this.createEntry(name);

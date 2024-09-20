@@ -18,7 +18,7 @@ class Module implements AutoC4Module {
 		this.options = options as AutoC4StateOptions;
 	}
 
-	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
+	public onMessage(_autoc4: AutoC4, message: Paho.Message): void {
 		const targets = document.querySelectorAll(this.options.target);
 
 		if ((message.payloadBytes as Uint8Array)[0]) {
@@ -40,7 +40,7 @@ class Module implements AutoC4Module {
 		}
 	}
 
-	onConnectionFailure(_autoc4: AutoC4, _error: Paho.MQTT.MQTTError): void {
+	onConnectionFailure(_autoc4: AutoC4, _error: Paho.MQTTError): void {
 		for (const e of document.querySelectorAll(this.options.target)) {
 			e.classList.remove(this.options.openClass, this.options.closedClass);
 			e.classList.add(this.options.disconnectedClass);

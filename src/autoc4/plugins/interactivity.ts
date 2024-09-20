@@ -52,7 +52,7 @@ class Module implements AutoC4Module {
 			},
 		);
 	}
-	onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
+	onMessage(_autoc4: AutoC4, message: Paho.Message): void {
 		$(`[data-mqtt-value="${message.destinationName}"]`).val(
 			message.payloadString,
 		);

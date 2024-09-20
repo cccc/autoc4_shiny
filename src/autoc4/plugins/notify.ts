@@ -23,7 +23,7 @@ class Module implements AutoC4Module {
 		this.options = options;
 	}
 
-	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
+	public onMessage(_autoc4: AutoC4, message: Paho.Message): void {
 		const payload = message.payloadString;
 
 		let textContent = this.options.textTemplate;

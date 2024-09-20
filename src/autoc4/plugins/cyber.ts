@@ -42,7 +42,7 @@ class Module implements AutoC4Module {
 		}
 	}
 
-	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
+	public onMessage(_autoc4: AutoC4, message: Paho.Message): void {
 		if ((message.payloadBytes as Uint8Array)[0]) {
 			this.toggle(true);
 		} else {

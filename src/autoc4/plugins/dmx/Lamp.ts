@@ -2,8 +2,8 @@ import type { AutoC4 } from "../../autoc4";
 import Color from "../../color";
 
 export default interface Lamp {
-	canReceiveMessage(message: Paho.MQTT.Message): boolean;
-	receiveMessage(message: Paho.MQTT.Message): void;
+	canReceiveMessage(message: Paho.Message): boolean;
+	receiveMessage(message: Paho.Message): void;
 	isIncludedInMasterCalculation(): boolean;
 	getColorForMasterCalculation(): Color;
 	poweroff(): void;
@@ -21,11 +21,11 @@ export abstract class BaseLamp implements Lamp {
 		this.topic = topic;
 	}
 
-	public canReceiveMessage(message: Paho.MQTT.Message): boolean {
+	public canReceiveMessage(message: Paho.Message): boolean {
 		return message.destinationName === this.topic;
 	}
 
-	abstract receiveMessage(message: Paho.MQTT.Message): void;
+	abstract receiveMessage(message: Paho.Message): void;
 	abstract isIncludedInMasterCalculation(): boolean;
 	abstract getColorForMasterCalculation(): Color;
 	abstract poweroff(): void;
@@ -63,7 +63,7 @@ export abstract class BaseRGBLamp extends BaseLamp {
 		return this.getColor();
 	}
 
-	abstract receiveMessage(message: Paho.MQTT.Message): void;
+	abstract receiveMessage(message: Paho.Message): void;
 	abstract sendColor(color: Color): void;
 	abstract poweroff(): void;
 

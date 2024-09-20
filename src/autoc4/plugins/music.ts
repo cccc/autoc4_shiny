@@ -21,7 +21,7 @@ class Module implements AutoC4Module {
 		this.options = options;
 	}
 
-	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
+	public onMessage(_autoc4: AutoC4, message: Paho.Message): void {
 		let elements = document.querySelectorAll<HTMLElement>(
 			`[${this.options.roleDataAttribute}=state][${this.options.topicDataAttribute}="${message.destinationName}"]`,
 		);

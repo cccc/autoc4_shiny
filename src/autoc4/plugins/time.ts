@@ -22,7 +22,7 @@ class Module implements AutoC4Module {
 		}
 	}
 
-	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
+	public onMessage(_autoc4: AutoC4, message: Paho.Message): void {
 		if (message.payloadBytes.byteLength < 7) {
 			console.warn(
 				`Received invalid time payload on topic "${message.destinationName}".`,

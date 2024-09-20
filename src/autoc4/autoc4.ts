@@ -1,8 +1,8 @@
 /**
- * @copyright Chaos Computer Club Cologne 2014-2020
+ * @copyright Chaos Computer Club Cologne 2014-2024
  * @license MIT
- * @requires utils
  */
+
 import AutoC4Atem from "./plugins/atem/index.js";
 import AutoC4Cyber from "./plugins/cyber.js";
 import AutoC4DMX from "./plugins/dmx";
@@ -67,12 +67,12 @@ $(() => {
 });
 
 export interface AutoC4Module {
-	onMessage?(autoc4: AutoC4, message: Paho.MQTT.Message): void;
-	onConnect?(autoc4: AutoC4, o: Paho.MQTT.WithInvocationContext): void;
-	onConnectionFailure?(autoc4: AutoC4, error: Paho.MQTT.MQTTError): void;
+	onMessage?(autoc4: AutoC4, message: Paho.Message): void;
+	onConnect?(autoc4: AutoC4, o: Paho.WithInvocationContext): void;
+	onConnectionFailure?(autoc4: AutoC4, error: Paho.MQTTError): void;
 }
 
-function debugMQTTMessageContent(message: Paho.MQTT.Message) {
+function debugMQTTMessageContent(message: Paho.Message) {
 	try {
 		const payloadString = message.payloadString;
 		if (["\u0000", "\u0001"].some((s) => payloadString.includes(s)))
@@ -91,12 +91,12 @@ export type AutoC4ModuleFactory = (
 export class AutoC4 {
 	private config: AutoC4Config;
 	private readonly modules: AutoC4Module[] = [];
-	public readonly client: Paho.MQTT.Client;
+	public readonly client: Paho.Client;
 
 	public constructor(config: AutoC4Config) {
 		this.config = config;
 
-		this.client = new Paho.MQTT.Client(
+		this.client = new Paho.Client(
 			config.server || window.location.hostname,
 			config.port || 9000,
 			(config.clientIdPrefix || "shiny_") + generateUUID(),
@@ -149,7 +149,7 @@ export class AutoC4 {
 		});
 	}
 
-	public onMessage(message: Paho.MQTT.Message) {
+	public onMessage(message: Paho.Message) {
 		if (this.config.debug?.message) {
 			console.debug(
 				`MQTT message received [${message.destinationName}]:`,
@@ -172,7 +172,7 @@ export class AutoC4 {
 		}
 	}
 
-	public onConnect(o: Paho.MQTT.WithInvocationContext): void {
+	public onConnect(o: Paho.WithInvocationContext): void {
 		if (this.config.debug?.connect)
 			console.debug("MQTT connection successfull.", o);
 		// Once a connection has been made, make subscriptions.
@@ -195,7 +195,7 @@ export class AutoC4 {
 		}
 	}
 
-	public onConnectionFailure(e: Paho.MQTT.MQTTError): void {
+	public onConnectionFailure(e: Paho.MQTTError): void {
 		if (this.config.debug?.disconnect)
 			console.warn("MQTT connection failure, retrying in 5 seconds..", e);
 		setTimeout(
@@ -222,7 +222,7 @@ export class AutoC4 {
 		data: string | Uint8Array,
 		retained = false,
 	): void {
-		const message = new Paho.MQTT.Message(data);
+		const message = new Paho.Message(data);
 		message.destinationName = topic;
 		message.retained = retained;
 		this.client.send(message);
