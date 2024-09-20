@@ -85,7 +85,7 @@ class Module implements AutoC4Module {
 		globalThis.customElements.define("power-button", PowerButton);
 	}
 
-	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
+	public onMessage(_autoc4: AutoC4, message: Paho.Message): void {
 		// update .btn-light state
 		const buttons = document.querySelectorAll<BaseLightButton>(
 			"light-button, power-button",

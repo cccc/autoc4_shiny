@@ -5,7 +5,7 @@
 import type { AutoC4, AutoC4Module } from "../autoc4";
 
 class Module implements AutoC4Module {
-	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
+	public onMessage(_autoc4: AutoC4, message: Paho.Message): void {
 		// update .box-window state
 		for (const item of document.querySelectorAll(
 			`.box-window[data-topic="${message.destinationName}"]`,
@@ -16,9 +16,6 @@ class Module implements AutoC4Module {
 		}
 	}
 }
-export default function AutoC4Windows(
-	_autoc4: AutoC4,
-	_options: any,
-): AutoC4Module {
+export default function AutoC4Windows(): AutoC4Module {
 	return new Module();
 }

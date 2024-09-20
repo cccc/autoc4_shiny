@@ -23,7 +23,7 @@ class Module extends EventEmitter implements AutoC4Module {
 		registerOutputButton(autoc4, this);
 	}
 
-	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
+	public onMessage(_autoc4: AutoC4, message: Paho.Message): void {
 		const atem = message.destinationName.split("/").slice(0, -1).join("/");
 		const type = message.destinationName.split("/").at(-1);
 		const messageData = JSON.parse(message.payloadString);

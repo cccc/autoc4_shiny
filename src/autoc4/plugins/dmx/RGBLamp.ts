@@ -4,7 +4,7 @@ import { BaseRGBLamp } from "./Lamp";
 import type LampManager from "./LampManager";
 
 export default class RGBLamp extends BaseRGBLamp {
-	receiveMessage(message: Paho.MQTT.Message): void {
+	receiveMessage(message: Paho.Message): void {
 		const payloadBytes = message.payloadBytes as Uint8Array;
 		if (payloadBytes.length < 3) return; //if the message has less than 3 bytes
 		this.setColor(

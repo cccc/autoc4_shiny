@@ -20,7 +20,7 @@ export default class RGBWLamp extends BaseRGBLamp {
 		this.setWhite = setWhite;
 	}
 
-	receiveMessage(message: Paho.MQTT.Message): void {
+	receiveMessage(message: Paho.Message): void {
 		const payloadBytes = message.payloadBytes as Uint8Array;
 		if (payloadBytes.length < 4) return; //if the message has less than 4 bytes
 		this.setColor(

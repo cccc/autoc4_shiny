@@ -30,7 +30,7 @@ class Module implements AutoC4Module {
 		});
 	}
 
-	public onMessage(_autoc4: AutoC4, message: Paho.MQTT.Message): void {
+	public onMessage(_autoc4: AutoC4, message: Paho.Message): void {
 		let presets: string[];
 		try {
 			presets = JSON.parse(message.payloadString);
@@ -78,7 +78,7 @@ class Module implements AutoC4Module {
 		}
 	}
 
-	onConnect(_autoc4: AutoC4, _o: Paho.MQTT.WithInvocationContext): void {
+	onConnect(_autoc4: AutoC4, _o: Paho.WithInvocationContext): void {
 		$("preset-button").remove();
 	}
 }
