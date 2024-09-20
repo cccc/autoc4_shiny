@@ -1,29 +1,11 @@
+import { button, buttonSecondary } from "@/styles/button";
 import { LitElement, css, html } from "lit";
 import { property, state } from "lit/decorators.js";
 
 const styles = css`
 button {
-  cursor: pointer;
-
   width: 4em;
   aspect-ratio: 1/1;
-  color: #fff;
-
-  background-color: #6c757d;
-  border: 1px solid #6c757d;
-  border-radius: 0.25rem;
-  box-shadow: none;
-
-  &:hover {
-    background-color: #5c636a;
-    border-color: #565e64;
-  }
-  
-  &:active {
-    background-color: #565e64;
-    border-color: #4e555b;
-  }
-
   &.primary-active:not(.secondary-active) {
     background-color: rgba(0, 160, 0, 0.8);
     border-color: rgba(0, 160, 0, 0.8);
@@ -89,7 +71,7 @@ export default abstract class AtemButton extends LitElement {
     `;
 	}
 
-	static styles = styles;
+	static styles = [button, buttonSecondary, styles];
 
 	abstract _onClick(): void;
 	abstract _onContextMenu(): void;
