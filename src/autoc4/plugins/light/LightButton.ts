@@ -1,9 +1,14 @@
 import type EventEmitter from "eventemitter3";
-import { LitElement, css, html } from "lit";
+import { LitElement, css, html, unsafeCSS } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import type { AutoC4 } from "@/autoc4/autoc4";
 import { button } from "@/styles/button";
+
+import bulb_off from "./bulb_off.png";
+import bulb_on from "./bulb_on.png";
+import power_off from "./power_off.png";
+import power_on from "./power_on.png";
 
 const styles = css`
 button {
@@ -12,7 +17,7 @@ button {
     aspect-ratio: 1/1;
     padding: 0;
     padding-top: 10px;
-    background-image: url(/img/bulb_off.png);
+    background-image: url(${unsafeCSS(bulb_off)});
     background-position: center top;
     background-size: 50% auto;
     background-repeat: no-repeat;
@@ -34,7 +39,7 @@ button {
     }
 
     &.on {
-        background-image: url(/img/bulb_on.png);
+        background-image: url(${unsafeCSS(bulb_on)});
         color: #ffffff;
         background-color: #3fb618;
         border-color: #3fb618;
@@ -49,11 +54,11 @@ button {
     }
 
     &.power {
-        background-image: url(/img/power_off.png);
+        background-image: url(${unsafeCSS(power_off)});
         background-size: 70% auto;
 
         &.on {
-            background-image: url(/img/power_on.png);
+            background-image: url(${unsafeCSS(power_on)});
         }
     }
 }
