@@ -1,74 +1,12 @@
-import { button, buttonPrimary } from "@/styles/button";
-/**
- * @copyright Chaos Computer Club Cologne 2014-2020
- * @license MIT
- */
-import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
-import type { AutoC4, AutoC4Module } from "../autoc4";
-import { createHTMLElement } from "../utils";
-
-const styles = css`
-	button {
-		width: 120px !important;
-		height: 120px;
-		aspect-ratio: 1/1;
-		margin: 0 auto;
-		padding: 0;
-		padding-top: 10px;
-		background-image: url(/img/preset.png);
-		background-position: center top;
-		background-size: 50% auto;
-		background-repeat: no-repeat;
-		background-origin: content-box;
-		line-height: 180px;
-		color: #ffffff;
-		background-color: #2612ca;
-		border-color: #2612ca;
-		margin: 2px;
-		margin-top: 4px;
-		
-		&:hover,
-		&:focus,
-		&:active {
-			background-image: url(/img/preset_hover.png);
-			color: #ffffff;
-			background-color: #604efe;
-			border-color: #604efe;
-		}
-	}
-`;
-
-@customElement("preset-button")
-class PresetButton extends LitElement {
-	@property({ attribute: "room" })
-	room = "";
-	@property({ attribute: "preset" })
-	preset = "";
-
-	render() {
-		return html`
-			<button @click=${this._onClick}>
-				${this.preset}
-			</button>
-		`;
-	}
-
-	_onClick() {
-		PresetButton.autoc4.sendData(
-			this.room === "global" ? "preset/set" : `preset/${this.room}/set`,
-			this.preset,
-		);
-	}
-
-	static styles = [button, buttonPrimary, styles];
-
-	static autoc4: AutoC4;
-}
+import type { AutoC4, AutoC4Module } from "../../autoc4";
+import { createHTMLElement } from "../../utils";
+import OnOffPresetButton from "./OnOffPresetButton";
+import PresetButton from "./PresetButton";
 
 class Module implements AutoC4Module {
 	public constructor(autoc4: AutoC4) {
 		PresetButton.autoc4 = autoc4;
+		OnOffPresetButton.autoc4 = autoc4;
 	}
 
 	private create_button(room: string, preset: string): HTMLElement {

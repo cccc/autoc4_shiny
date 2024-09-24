@@ -13,7 +13,7 @@ import AutoC4Kitchenlight from "./plugins/kitchenlight.js";
 import AutoC4Light from "./plugins/light";
 import AutoC4Music from "./plugins/music.js";
 import AutoC4Notify from "./plugins/notify.js";
-import AutoC4Presets from "./plugins/presets.js";
+import AutoC4Presets from "./plugins/presets/index.js";
 import AutoC4Reload from "./plugins/reload.js";
 import AutoC4State from "./plugins/state.js";
 import AutoC4Time from "./plugins/time.js";
