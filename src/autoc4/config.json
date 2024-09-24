@@ -6,7 +6,6 @@
 		"message": true,
 		"connect": true,
 		"disconnect": true,
-		"configLoaded": true,
 		"pluginLoaded": true,
 		"moduleLoaded": true,
 		"sentMessage": true
