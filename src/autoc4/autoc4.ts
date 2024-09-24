@@ -3,6 +3,7 @@
  * @license MIT
  */
 
+import config from "./config.json" with { type: "json" };
 import AutoC4Atem from "./plugins/atem/index.js";
 import AutoC4Cyber from "./plugins/cyber.js";
 import AutoC4DMX from "./plugins/dmx";
@@ -47,24 +48,6 @@ export interface AutoC4Config {
 	modules: AutoC4ModuleConfig[];
 	debug?: AutoC4DebugConfig;
 }
-
-$(() => {
-	fetch(import.meta.env.VITE_AUTOC4_CONFIG_LOCATION, {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-		},
-	})
-		.then((response) => response.json() as Promise<AutoC4Config>)
-		.then((config) => {
-			if (config.debug?.configLoaded)
-				console.debug("Config loaded successfully", config);
-			globalThis.autoc4 = new AutoC4(config);
-		})
-		.catch((e) => {
-			console.error("Couldn't load config.json", e);
-		});
-});
 
 export interface AutoC4Module {
 	onMessage?(autoc4: AutoC4, message: Paho.Message): void;
@@ -251,3 +234,5 @@ export class AutoC4 {
 		throw new Error(`Unknown module type: ${config.type}`);
 	}
 }
+
+globalThis.autoc4 = new AutoC4(config as AutoC4Config);
