@@ -11,8 +11,8 @@
   <script type="text/javascript" src="./lib/paho-mqtt.min.js"></script>
   <script type="text/javascript" src="./lib/jquery-3.7.1.min.js"></script>
 
-  <script type="module" crossorigin src="./assets/index-CNtdxWdd.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-CDQTVYXh.css">
+  <script type="module" crossorigin src="./assets/index-DkwrC256.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-C3S9M3b4.css">
 </head>
 
 <body class="dark state-disconnected">
@@ -534,11 +534,8 @@
         <div class="col-lg-3">
             <h2>Wohnzimmer</h2>
             <div class="preset-pane" data-room="wohnzimmer">
-                <button type="button" class="btn btn-preset" data-mqtt-topic="preset/wohnzimmer/on"
-                    data-mqtt-message="">All
-                    On</button>
-                <button type="button" class="btn btn-preset" data-mqtt-topic="preset/wohnzimmer/off"
-                    data-mqtt-message="">All Off</button>
+                <onoff-preset-button topic="preset/wohnzimmer/on">All On</onoff-preset-button>
+                <onoff-preset-button topic="preset/wohnzimmer/off">All Off</onoff-preset-button>
                 <div class="preset-pane-onoff-marker d-none"></div>
                 <div class="preset-pane-room-marker d-none"></div>
                 <div class="preset-pane-global-marker d-none"></div>
@@ -547,10 +544,8 @@
         <div class="col-lg-3">
             <h2>Plenarsaal</h2>
             <div class="preset-pane" data-room="plenar">
-                <button type="button" class="btn btn-preset" data-mqtt-topic="preset/plenar/on" data-mqtt-message="">All
-                    On</button>
-                <button type="button" class="btn btn-preset" data-mqtt-topic="preset/plenar/off"
-                    data-mqtt-message="">All Off</button>
+                <onoff-preset-button topic="preset/plenar/on">All On</onoff-preset-button>
+                <onoff-preset-button topic="preset/plenar/off">All Off</onoff-preset-button>
                 <div class="preset-pane-onoff-marker d-none"></div>
                 <div class="preset-pane-room-marker d-none"></div>
                 <div class="preset-pane-global-marker d-none"></div>
@@ -559,10 +554,8 @@
         <div class="col-lg-3">
             <h2>Fnordcenter</h2>
             <div class="preset-pane" data-room="fnord">
-                <button type="button" class="btn btn-preset" data-mqtt-topic="preset/fnord/on" data-mqtt-message="">All
-                    On</button>
-                <button type="button" class="btn btn-preset" data-mqtt-topic="preset/fnord/off" data-mqtt-message="">All
-                    Off</button>
+                <onoff-preset-button topic="preset/fnord/on">All On</onoff-preset-button>
+                <onoff-preset-button topic="preset/fnord/off">All Off</onoff-preset-button>
                 <div class="preset-pane-onoff-marker d-none"></div>
                 <div class="preset-pane-room-marker d-none"></div>
                 <div class="preset-pane-global-marker d-none"></div>
@@ -571,10 +564,8 @@
         <div class="col-lg-3">
             <h2>Keller</h2>
             <div class="preset-pane" data-room="keller">
-                <button type="button" class="btn btn-preset" data-mqtt-topic="preset/keller/on" data-mqtt-message="">All
-                    On</button>
-                <button type="button" class="btn btn-preset" data-mqtt-topic="preset/keller/off"
-                    data-mqtt-message="">All Off</button>
+                <onoff-preset-button topic="preset/keller/on">All On</onoff-preset-button>
+                <onoff-preset-button topic="preset/keller/off">All Off</onoff-preset-button>
                 <div class="preset-pane-onoff-marker d-none"></div>
                 <div class="preset-pane-room-marker d-none"></div>
                 <div class="preset-pane-global-marker d-none"></div>
