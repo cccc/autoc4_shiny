@@ -1,10 +1,7 @@
 import { button, buttonPrimary, buttonSmall } from "@/styles/button";
-import { LitElement, css, html } from "lit";
+import { LitElement, html } from "lit";
 import { property } from "lit/decorators.js";
 import type LampManager from "./LampManager";
-
-/*
- */
 
 export default function registerBrightnessButton(
 	lampManager: LampManager,

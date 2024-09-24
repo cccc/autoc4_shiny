@@ -8,11 +8,11 @@
 
   <link rel="icon" href="favicon.png" sizes="16x16" type="image/png" />
 
-  <script type="text/javascript" src="./lib/mqttws31.js"></script>
+  <script type="text/javascript" src="/node_modules/paho-mqtt/paho-mqtt.js"></script>
   <script type="text/javascript" src="./lib/jquery-3.7.1.min.js"></script>
 
-  <script type="module" crossorigin src="./assets/index-COmWqJg-.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DC7juyqE.css">
+  <script type="module" crossorigin src="./assets/index-JY9foLVg.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CDQTVYXh.css">
 </head>
 
 <body class="dark state-disconnected">
@@ -137,8 +137,8 @@
             <light-button topic="licht/wohnzimmer/mitte">Mitte</light-button>
             <light-button topic="licht/wohnzimmer/kueche">Küche</light-button>
             <light-button topic="licht/wohnzimmer/gang">Gang</light-button>
-            <power-button topic="screen/wohnzimmer/infoscreen">Infoscreen</power-button>
-            <power-button topic="power/wohnzimmer/kitchenlight">LED-Wand</power-button>
+            <light-button variant="power" topic="screen/wohnzimmer/infoscreen">Infoscreen</light-button>
+            <light-button variant="power" topic="power/wohnzimmer/kitchenlight">LED-Wand</light-button>
             <light-button topic="licht/wohnzimmer/stehlampen">Stehlampen</light-button>
             <light-button topic="licht/wohnzimmer/wandlampe">Wandlampe</light-button>
         </div>
@@ -280,8 +280,8 @@
             <light-button topic="licht/plenar/vornefenster">Vorne Fenster</light-button>
             <light-button topic="licht/plenar/hintenwand">Hinten Wand</light-button>
             <light-button topic="licht/plenar/hintenfenster">Hinten Fenster</light-button>
-            <power-button topic="relais/plenar/amp">Verstärker</power-button>
-            <power-button topic="relais/plenar/dmx">RGB + Atem</power-button>
+            <light-button variant="power" topic="relais/plenar/amp">Verstärker</light-button>
+            <light-button variant="power" topic="relais/plenar/dmx">RGB + Atem</light-button>
         </div>
         <div class="tab-pane" id="plenardmx">
             <dmx-master label="Master" room="plenar" topic="dmx/plenar/master"></dmx-master>
@@ -479,7 +479,8 @@
         <div class="tab-pane lightswitch-pane show active" id="fnordnormal">
             <light-button topic="licht/fnord/links">Links</light-button>
             <light-button topic="licht/fnord/rechts">Rechts</light-button>
-            <power-button topic="relais/fnord/audio">Lautsprecher</power-button>
+            <light-button variant="power" topic="relais/fnord/audio">Lautsprecher</light-button>
+            <light-button variant="power" topic="relais/fnord/dmx">DMX</light-button>
         </div>
 
         <div class="tab-pane" id="fnorddmx">

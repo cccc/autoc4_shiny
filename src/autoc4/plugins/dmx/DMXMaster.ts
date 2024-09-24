@@ -1,45 +1,42 @@
 import type EventEmitter from "eventemitter3";
+import { property } from "lit/decorators.js";
 import type { AutoC4 } from "../../autoc4";
 import Color from "../../color";
 import type LampManager from "./LampManager";
+import RGBInput from "./RGBInput";
 
 export default function registerDMXMaster(
 	autoc4: AutoC4,
 	lampManager: LampManager,
 	eventEmitter: EventEmitter,
 ): void {
-	class MasterElement extends HTMLElement {
+	class MasterElement extends RGBInput {
+		@property({ attribute: "room" })
+		room = "";
+		@property({ attribute: "topic" })
+		topic = "";
+
 		connectedCallback(): void {
-			const label = this.getAttribute("label") || "Master";
-			const topic = this.getAttribute("topic")!;
-
-			this.innerHTML = `
-                <label><span>${label}:</span><input type="color" /></label>
-            `;
-
-			const picker = this.querySelector("input") as HTMLInputElement;
-			picker.addEventListener("input", () => {
-				const color = Color.fromHexString(picker.value);
-				autoc4.sendData(topic, new Uint8Array([color.r, color.g, color.b]));
-			});
-			picker.addEventListener("", () => {
-				const color = Color.fromHexString(picker.value);
-				autoc4.sendData(topic, new Uint8Array([color.r, color.g, color.b]));
-			});
-
+			super.connectedCallback();
 			eventEmitter.on("master-update", this.updateMaster, this);
 		}
-
 		disconnectedCallback(): void {
+			super.disconnectedCallback();
 			eventEmitter.off("master-update", this.updateMaster, this);
 		}
 
+		_onInput(event: InputEvent) {
+			super._onInput(event);
+			const color = Color.fromHexString(this.value);
+			autoc4.sendData(this.topic, new Uint8Array([color.r, color.g, color.b]));
+		}
+
 		setColor(color: Color | null): void {
-			this.querySelector("input")!.value = color?.toHexString() || "#000001";
+			this.value = color?.toHexString() || "#000001";
 		}
 
 		updateMaster(room: string): void {
-			if (room !== this.getAttribute("room")) return;
+			if (room !== this.room) return;
 
 			let value: Color | undefined;
 			//check if all light's colors are equal
@@ -59,11 +56,13 @@ export default function registerDMXMaster(
 				console.warn(
 					`module/dmx: No color found for room "${room}". Could not update master picker.`,
 				);
-				this.setColor(Color.BLACK);
+				this.setColor(null);
 				return;
 			}
 			this.setColor(value);
 		}
+
+		static styles = RGBInput.styles;
 	}
 	globalThis.customElements.define("dmx-master", MasterElement);
 }

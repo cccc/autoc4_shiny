@@ -202,6 +202,10 @@ export default class Color implements RGB, HSV {
 		};
 	}
 
+	public copy(): Color {
+		return Color.fromRGB(this.rgb);
+	}
+
 	/** Simple comparison by RGB values */
 	public equals(other: Color): boolean {
 		return (

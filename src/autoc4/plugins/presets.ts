@@ -1,26 +1,74 @@
+import { button, buttonPrimary } from "@/styles/button";
 /**
  * @copyright Chaos Computer Club Cologne 2014-2020
  * @license MIT
  */
+import { LitElement, css, html } from "lit";
+import { customElement, property } from "lit/decorators.js";
 import type { AutoC4, AutoC4Module } from "../autoc4";
 import { createHTMLElement } from "../utils";
 
-class PresetButton extends HTMLElement {
-	connectedCallback() {
-		const room = this.getAttribute("room");
-		const preset = this.getAttribute("preset")!;
+const styles = css`
+	button {
+		width: 120px !important;
+		height: 120px;
+		aspect-ratio: 1/1;
+		margin: 0 auto;
+		padding: 0;
+		padding-top: 10px;
+		background-image: url(/img/preset.png);
+		background-position: center top;
+		background-size: 50% auto;
+		background-repeat: no-repeat;
+		background-origin: content-box;
+		line-height: 180px;
+		color: #ffffff;
+		background-color: #2612ca;
+		border-color: #2612ca;
+		margin: 2px;
+		margin-top: 4px;
+		
+		&:hover,
+		&:focus,
+		&:active {
+			background-image: url(/img/preset_hover.png);
+			color: #ffffff;
+			background-color: #604efe;
+			border-color: #604efe;
+		}
+	}
+`;
 
-		this.innerHTML = `
-			<button type="button" class="btn btn-preset" data-mqtt-topic="${room === "global" ? "preset/set" : `preset/${room}/set`}" data-mqtt-message="${preset}">
-				${preset}
+@customElement("preset-button")
+class PresetButton extends LitElement {
+	@property({ attribute: "room" })
+	room = "";
+	@property({ attribute: "preset" })
+	preset = "";
+
+	render() {
+		return html`
+			<button @click=${this._onClick}>
+				${this.preset}
 			</button>
 		`;
 	}
+
+	_onClick() {
+		PresetButton.autoc4.sendData(
+			this.room === "global" ? "preset/set" : `preset/${this.room}/set`,
+			this.preset,
+		);
+	}
+
+	static styles = [button, buttonPrimary, styles];
+
+	static autoc4: AutoC4;
 }
 
 class Module implements AutoC4Module {
-	public constructor() {
-		globalThis.customElements.define("preset-button", PresetButton);
+	public constructor(autoc4: AutoC4) {
+		PresetButton.autoc4 = autoc4;
 	}
 
 	private create_button(room: string, preset: string): HTMLElement {
@@ -83,6 +131,6 @@ class Module implements AutoC4Module {
 	}
 }
 
-export default function AutoC4Presets(): AutoC4Module {
-	return new Module();
+export default function AutoC4Presets(autoc4: AutoC4): AutoC4Module {
+	return new Module(autoc4);
 }

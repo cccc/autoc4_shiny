@@ -1,119 +1,69 @@
+import { html } from "lit";
+import { state } from "lit/decorators.js";
 import type { AutoC4 } from "../../autoc4";
 import Color from "../../color";
-import { BaseRGBLamp } from "./Lamp";
 import type LampManager from "./LampManager";
+import { RGBInputLamp } from "./RGBInput";
 
-export default class RGBWLamp extends BaseRGBLamp {
-	getWhite: () => number;
-	setWhite: (white: number) => void;
+export function registerRGBW(autoc4: AutoC4, lampManager: LampManager): void {
+	class LampElement extends RGBInputLamp {
+		@state()
+		white = 0;
 
-	constructor(
-		autoc4: AutoC4,
-		topic: string,
-		getColor: () => Color,
-		setColor: (color: Color) => void,
-		getWhite: () => number,
-		setWhite: (white: number) => void,
-	) {
-		super(autoc4, topic, getColor, setColor);
-		this.getWhite = getWhite;
-		this.setWhite = setWhite;
-	}
+		connectedCallback(): void {
+			super.connectedCallback();
+			lampManager.addLamp(this.room, this);
+		}
 
-	receiveMessage(message: Paho.Message): void {
-		const payloadBytes = message.payloadBytes as Uint8Array;
-		if (payloadBytes.length < 4) return; //if the message has less than 4 bytes
-		this.setColor(
-			Color.fromRGB({
+		disconnectedCallback(): void {
+			super.disconnectedCallback();
+			lampManager.removeLamp(this.room, this);
+		}
+
+		receiveMessage(message: Paho.Message): void {
+			const payloadBytes = message.payloadBytes as Uint8Array;
+			if (payloadBytes.length < 3) return;
+			this.color = Color.fromRGB({
 				r: payloadBytes[0],
 				g: payloadBytes[1],
 				b: payloadBytes[2],
-			}),
-		);
-		this.setWhite(payloadBytes[3]);
-	}
-
-	sendColor(color: Color): void {
-		this.autoc4.sendData(
-			this.topic,
-			new Uint8Array([color.r, color.g, color.b, this.getWhite()]),
-			true,
-		);
-	}
-
-	sendWhite(white: number): void {
-		const color = this.getColor();
-		this.autoc4.sendData(
-			this.topic,
-			new Uint8Array([color.r, color.g, color.b, white]),
-			true,
-		);
-	}
-
-	poweroff(): void {
-		this.autoc4.sendData(this.topic, new Uint8Array([0, 0, 0, 0]), true);
-	}
-
-	public brightness(factor: number): void {
-		const color = this.getColor();
-		color.v = Math.min(Math.max(0, color.v * factor), 1);
-		this.sendColor(color);
-		// TODO: maybe also affect white channel
-	}
-	public randomize(brightness: number): void {
-		this.sendColor(Color.randomColor(brightness));
-	}
-}
-
-export function registerRGBW(autoc4: AutoC4, lampManager: LampManager): void {
-	class LampElement extends HTMLElement {
-		connectedCallback(): void {
-			this.innerHTML = `
-                <label>
-					<span>${this.getAttribute("label")}:</span>
-					<div>
-						<input type="color" />
-					</div>
-					<input type="range" min="0" max="255" step="1" value="0" />
-				</label>
-            `;
-
-			const picker = this.querySelector(
-				"input[type=color]",
-			) as HTMLInputElement;
-			const getColor = (): Color => Color.fromHexString(picker.value);
-			const setColor = (color: Color) => {
-				picker.value = color.toHexString();
-			};
-			picker.addEventListener("input", () => {
-				const color = Color.fromHexString(picker.value);
-				lamp.setColor(color);
-				lamp.sendColor(color);
 			});
+			if (payloadBytes.length < 4) this.white = 0;
+			else this.white = payloadBytes[3];
+		}
 
-			const whitePicker = this.querySelector(
-				"input[type=range]",
-			) as HTMLInputElement;
-			const getWhite = (): number => Number.parseInt(whitePicker.value);
-			const setWhite = (white: number) => {
-				whitePicker.value = white.toString();
-			};
-			whitePicker.addEventListener("input", () => {
-				const white = Number.parseInt(whitePicker.value);
-				lamp.setWhite(white);
-				lamp.sendWhite(white);
-			});
+		poweroff(): void {
+			autoc4.sendData(this.topic, new Uint8Array([0, 0, 0, 0]), true);
+		}
 
-			const lamp = new RGBWLamp(
-				autoc4,
-				this.getAttribute("topic")!,
-				getColor,
-				setColor,
-				getWhite,
-				setWhite,
+		render() {
+			const original = super.render();
+			return html`
+				${original}
+				<input @input=${this._onWhiteInput} .value=${this.white} type="range" min="0" max="255" step="1" value="0" />
+			`;
+		}
+
+		_onWhiteInput(event: Event) {
+			const value = (event.target as HTMLInputElement).value;
+			this.white = Number.parseInt(value);
+			this.sendWhite(this.white);
+		}
+
+		sendColor(color: Color): void {
+			autoc4.sendData(
+				this.topic,
+				new Uint8Array([color.r, color.g, color.b, this.white]),
+				true,
 			);
+		}
 
-			lampManager.addLamp(this.getAttribute("room")!, lamp);
+		sendWhite(white: number): void {
+			autoc4.sendData(
+				this.topic,
+				new Uint8Array([this.color.r, this.color.g, this.color.b, white]),
+				true,
+			);
 		}
 	}
 	globalThis.customElements.define("rgbw-lamp", LampElement);
