@@ -100,7 +100,10 @@ export default class LightButton extends LitElement {
 	private onLampUpdate({
 		topic,
 		isOn,
-	}: { topic: string; isOn: boolean }): void {
+	}: {
+		topic: string;
+		isOn: boolean;
+	}): void {
 		if (topic !== this.topic) return;
 		this.isOn = isOn;
 	}
