@@ -11,8 +11,8 @@
   <script type="text/javascript" src="./lib/paho-mqtt.min.js"></script>
   <script type="text/javascript" src="./lib/jquery-3.7.1.min.js"></script>
 
-  <script type="module" crossorigin src="./assets/index-srYeSXZD.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-CawgqLC7.css">
+  <script type="module" crossorigin src="./assets/index-CwglSOE5.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-dy3gjjbP.css">
 </head>
 
 <body class="dark state-disconnected">
@@ -75,9 +75,6 @@
                         Light
                     </a>
                 </li>
-                <!--
-                    <li class="nav-item"><a class="nav-link" href="#" data-mqtt-topic="club/gate"><i class="fa fa-door-open"></i> Open Gate</a></li>
-                -->
 
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modal-shutdown">
@@ -94,13 +91,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link show-state-open" href="#">
+                    <a class="nav-link state-display show-state-open" href="#">
                         <i class="fa fa-thumbs-up" style="color:#0c0"></i>
                         Open
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link show-state-closed" href="#">
+                    <a class="nav-link state-display show-state-closed" href="#">
                         <i class="fa fa-thumbs-down" style="color:#c00"></i>
                         <span>Closed</span>
                     </a>
@@ -700,16 +695,28 @@
 </div>
       <div id="admin" class="tab-pane admin-only d-none">
     <h3>Admin</h3>
-    <light-button topic="club/status">Club Status</light-button>
-    <form data-mqtt-form data-mqtt-retained>
-        <div class="input-group">
-            <input name="club/status/message" data-mqtt-value="club/status/message" placeholder="Club Status Message"
-                type="text" class="form-control" />
-            <button type="submit" class="btn btn-primary">Set</button>
-            <button data-mqtt-topic="club/status/message" data-mqtt-message="" data-mqtt-retained
-                class="btn btn-danger">Reset</button>
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-9">
+            <light-button topic="club/status">Club Status</light-button>
+            <form data-mqtt-form data-mqtt-retained>
+                <div class="input-group">
+                    <input name="club/status/message" data-mqtt-value="club/status/message"
+                        placeholder="Club Status Message" type="text" class="form-control" />
+                    <button type="submit" class="btn btn-primary">Set</button>
+                    <button data-mqtt-topic="club/status/message" data-mqtt-message="" data-mqtt-retained
+                        class="btn btn-danger">Reset</button>
+                </div>
+            </form>
         </div>
-    </form>
+        <div class="col-sm-6 col-md-4 col-lg-3 vstack gap-2">
+            <button data-mqtt-topic="club/gate" class="btn btn-lg btn-success">
+                <i class="fa fa-door-open"></i> Open Gate
+            </button>
+            <button data-mqtt-topic="club/gate" data-mqtt-message-byte="0x44" class="btn btn-lg btn-danger">
+                <i class="fa fa-power-off"></i> Force Shutdown
+            </button>
+        </div>
+    </div>
 </div>
     </div>
   </div>
