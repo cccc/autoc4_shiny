@@ -3,7 +3,7 @@
 	"port": 9000,
 	"clientIdPrefix": "shiny_",
 	"debug": {
-		"message": true,
+		"message": false,
 		"connect": true,
 		"disconnect": true,
 		"pluginLoaded": true,
@@ -104,7 +104,10 @@
 			"options": {
 				"class": "d-none",
 				"target": ".admin-only",
-				"keys": [72, 85, 78, 84, 69, 82, 50]
+				"keys": [72, 85, 78, 84, 69, 82, 50],
+                "clickTriggerSelector": ".state-display",
+                "clickTimeout": 2000,
+                "clickCount": 5
 			}
 		},
 		{
