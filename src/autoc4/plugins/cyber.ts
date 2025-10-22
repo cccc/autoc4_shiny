@@ -13,29 +13,14 @@ import type { AutoC4, AutoC4Module } from "../autoc4";
 interface AutoC4CyberOptions {
     class: string;
     target: string;
-    keys?: number[];
-    clickTriggerSelector?: string;
-    clickCount?: number;
-    clickTimeout?: number;
+    keys: number[];
 }
 
 class Module implements AutoC4Module {
     private options: AutoC4CyberOptions;
-    private clickCounter: number = 0;
-    private lastClick: number = 0;
 
     constructor(_autoc4: AutoC4, options: AutoC4CyberOptions) {
         this.options = options;
-
-        if (options.clickTriggerSelector) {
-            // register delegated event listener
-            document.body.addEventListener("click", (e) => {
-                const target = e.target as HTMLElement;
-                if (target.closest(options.clickTriggerSelector!)) {
-                    this.handleClick();
-                }
-            });
-        }
 
         if (this.options.keys) {
             let cursor = 0;
@@ -46,19 +31,6 @@ class Module implements AutoC4Module {
                     cursor = 0;
                 }
             });
-        }
-    }
-
-    public handleClick(): void {
-        if (Date.now() - this.lastClick > this.options.clickTimeout!)
-            this.clickCounter = 0;
-
-        this.clickCounter++;
-        this.lastClick = Date.now();
-
-        if (this.clickCounter >= this.options.clickCount!) {
-            this.toggle();
-            this.clickCounter = 0;
         }
     }
 

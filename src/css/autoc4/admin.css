@@ -1,0 +1,3 @@
+body:not(.admin) .admin-only {
+    display: none !important;
+}
