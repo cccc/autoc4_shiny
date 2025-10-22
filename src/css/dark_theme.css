@@ -1,9 +1,22 @@
-body:not(.dark) .theme-dark { display: none !important; }
-body.dark .theme-light { display: none !important; }
+body:not(.dark) .theme-dark {
+    display: none !important;
+}
+body.dark .theme-light {
+    display: none !important;
+}
 
 body.dark {
     background-color: #111;
-    color: #e0e0e0;
+    --bs-body-color: #e0e0e0;
+    --bs-secondary-color: #9e9e9e;
+    --bs-body-bg: #111;
+    --bs-border-color: #222;
+    --bs-border-color-translucent: rgba(255, 255, 255, 0.175);
+
+    .btn-close {
+        /* Invert close button color in dark mode, svg for the close icon unfortunately uses hard coded black color */
+        filter: invert(1);
+    }
 }
 
 body.dark .table {
@@ -26,24 +39,16 @@ body.dark .close {
 }
 
 body.dark .modal-header {
-    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 body.dark .modal-footer {
-    border-top: 1px solid rgba(255, 255, 255, .1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nav-tabs .nav-link:focus,
 .nav-tabs .nav-link:hover {
     border-color: #141414 #141414 #222;
-}
-
-body.dark .nav-tabs {
-    border-bottom: 1px solid #222;
-}
-
-body.dark hr {
-    border-top: 1px solid rgba(255, 255, 255, .1);
 }
 
 body.dark .btn-transparent {
