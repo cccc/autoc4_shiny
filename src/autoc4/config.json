@@ -100,11 +100,11 @@
 			"subscribe": ["club/cyber/alert"]
 		},
 		{
-			"type": "cyber",
+			"type": "admin",
 			"options": {
-				"class": "d-none",
-				"target": ".admin-only",
-				"keys": [72, 85, 78, 84, 69, 82, 50],
+				"class": "admin",
+				"target": "body",
+                "localStorageKey": "autoc4:admin:enabled",
                 "clickTriggerSelector": ".state-display",
                 "clickTimeout": 2000,
                 "clickCount": 5

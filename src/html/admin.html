@@ -1,19 +1,24 @@
-<div id="admin" class="tab-pane admin-only d-none">
+<div id="admin" class="tab-pane admin-only">
     <h3>Admin</h3>
-    <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-9">
-            <light-button topic="club/status">Club Status</light-button>
-            <form data-mqtt-form data-mqtt-retained>
-                <div class="input-group">
-                    <input name="club/status/message" data-mqtt-value="club/status/message"
-                        placeholder="Club Status Message" type="text" class="form-control" />
-                    <button type="submit" class="btn btn-primary">Set</button>
-                    <button data-mqtt-topic="club/status/message" data-mqtt-message="" data-mqtt-retained
-                        class="btn btn-danger">Reset</button>
+    <div class="row g-2">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Club Staus</h5>
+                    <light-button topic="club/status">Club Status</light-button>
+                    <form data-mqtt-form data-mqtt-retained>
+                        <div class="input-group">
+                            <input name="club/status/message" data-mqtt-value="club/status/message"
+                                placeholder="Club Status Message" type="text" class="form-control" />
+                            <button type="submit" class="btn btn-primary">Set</button>
+                            <button data-mqtt-topic="club/status/message" data-mqtt-message="" data-mqtt-retained
+                                class="btn btn-danger">Reset</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
-        <div class="col-sm-6 col-md-4 col-lg-3 vstack gap-2">
+        <div class="col-sm-6 vstack gap-2">
             <button data-mqtt-topic="club/gate" class="btn btn-lg btn-success">
                 <i class="fa fa-door-open"></i> Open Gate
             </button>
