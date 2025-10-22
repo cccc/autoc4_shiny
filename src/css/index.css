@@ -3,6 +3,7 @@
 @import "fontawesome-free/css/fontawesome.css";
 @import "fontawesome-free/css/regular.css";
 @import "fontawesome-free/css/solid.css";
+@import "@fontsource/open-sans/latin-400.css";
 
 @import "./bootstrap-autoc4.css";
 @import "./dark_theme.css";
