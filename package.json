@@ -20,6 +20,7 @@
         "vite-plugin-html-inject": "^1.1.2"
     },
     "dependencies": {
+        "@fontsource/open-sans": "^5.2.7",
         "bootstrap": "5.3.8",
         "eventemitter3": "5.0.1",
         "fontawesome-free": "1.0.4",
