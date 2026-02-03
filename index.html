@@ -2,35 +2,34 @@
 <html>
 
 <head>
-  <title>AutoC4 - Shiny</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AutoC4 - Shiny</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="icon" href="favicon.png" sizes="16x16" type="image/png" />
-  <link rel="stylesheet" type="text/css" href="src/css/index.css" />
+    <link rel="icon" href="favicon.png" sizes="16x16" type="image/png" />
+    <link rel="stylesheet" type="text/css" href="src/css/index.css" />
 
-  <script type="text/javascript" src="/lib/paho-mqtt.min.js"></script>
-  <script type="text/javascript" src="/lib/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/lib/paho-mqtt.min.js"></script>
 
-  <script type="module" src="src/main.ts"></script>
+    <script type="module" src="src/main.ts"></script>
 </head>
 
 <body class="dark state-disconnected">
-  <load src="src/html/navbar.html" />
-  <div class="mx-auto">
-    <div class="tab-content container">
-      <load src="src/html/light.html" />
-      <load src="src/html/presets.html" />
-      <load src="src/html/music.html" />
-      <load src="src/html/status.html" />
-      <load src="src/html/admin.html" />
+    <load src="src/html/navbar.html" />
+    <div class="mx-auto">
+        <div class="tab-content container">
+            <load src="src/html/light.html" />
+            <load src="src/html/presets.html" />
+            <load src="src/html/music.html" />
+            <load src="src/html/status.html" />
+            <load src="src/html/admin.html" />
+        </div>
     </div>
-  </div>
-  <load src="src/html/modals/dmx_randomize.html" />
-  <load src="src/html/modals/dmx_fade.html" />
-  <load src="src/html/modals/dmx_sound.html" />
-  <load src="src/html/modals/shutdown.html" />
-  <a data-toggle="display" href="#help" id="help" class="d-none"></a>
+    <load src="src/html/modals/dmx_randomize.html" />
+    <load src="src/html/modals/dmx_fade.html" />
+    <load src="src/html/modals/dmx_sound.html" />
+    <load src="src/html/modals/shutdown.html" />
+    <a data-toggle="display" href="#help" id="help" class="d-none"></a>
 </body>
 
 </html>

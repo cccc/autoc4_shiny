@@ -11,50 +11,50 @@
 import type { AutoC4, AutoC4Module } from "../autoc4";
 
 interface AutoC4CyberOptions {
-    class: string;
-    target: string;
-    keys: number[];
+	class: string;
+	target: string;
+	keys: number[];
 }
 
 class Module implements AutoC4Module {
-    private options: AutoC4CyberOptions;
+	private options: AutoC4CyberOptions;
 
-    constructor(_autoc4: AutoC4, options: AutoC4CyberOptions) {
-        this.options = options;
+	constructor(_autoc4: AutoC4, options: AutoC4CyberOptions) {
+		this.options = options;
 
-        if (this.options.keys) {
-            let cursor = 0;
-            document.addEventListener("keydown", (e) => {
-                cursor = e.keyCode === options.keys![cursor] ? cursor + 1 : 0;
-                if (cursor === options.keys!.length) {
-                    this.toggle();
-                    cursor = 0;
-                }
-            });
-        }
-    }
+		if (this.options.keys) {
+			let cursor = 0;
+			document.addEventListener("keydown", (e) => {
+				cursor = e.keyCode === options.keys![cursor] ? cursor + 1 : 0;
+				if (cursor === options.keys!.length) {
+					this.toggle();
+					cursor = 0;
+				}
+			});
+		}
+	}
 
-    public toggle(force?: boolean): void {
-        const elements = document.querySelectorAll<HTMLElement>(
-            this.options.target
-        );
-        for (const e of elements) {
-            e.classList.toggle(this.options.class, force);
-        }
-    }
+	public toggle(force?: boolean): void {
+		const elements = document.querySelectorAll<HTMLElement>(
+			this.options.target,
+		);
+		for (const e of elements) {
+			e.classList.toggle(this.options.class, force);
+		}
+	}
 
-    public onMessage(_autoc4: AutoC4, message: Paho.Message): void {
-        if ((message.payloadBytes as Uint8Array)[0]) {
-            this.toggle(true);
-        } else {
-            this.toggle(false);
-        }
-    }
+	public onMessage(_autoc4: AutoC4, message: Paho.Message): void {
+		if ((message.payloadBytes as Uint8Array)[0]) {
+			this.toggle(true);
+		} else {
+			this.toggle(false);
+		}
+	}
 }
 
 export default function AutoC4Cyber(
-    autoc4: AutoC4,
-    options: any
+	autoc4: AutoC4,
+	options: any,
 ): AutoC4Module {
-    return new Module(autoc4, options as AutoC4CyberOptions);
+	return new Module(autoc4, options as AutoC4CyberOptions);
 }

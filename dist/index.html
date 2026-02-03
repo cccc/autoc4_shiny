@@ -2,21 +2,20 @@
 <html>
 
 <head>
-  <title>AutoC4 - Shiny</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AutoC4 - Shiny</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="icon" href="favicon.png" sizes="16x16" type="image/png" />
+    <link rel="icon" href="favicon.png" sizes="16x16" type="image/png" />
 
-  <script type="text/javascript" src="./lib/paho-mqtt.min.js"></script>
-  <script type="text/javascript" src="./lib/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="./lib/paho-mqtt.min.js"></script>
 
-  <script type="module" crossorigin src="./assets/index-CwglSOE5.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-dy3gjjbP.css">
+  <script type="module" crossorigin src="./assets/index-D0PjarVF.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BHaUyZsy.css">
 </head>
 
 <body class="dark state-disconnected">
-  <nav class="navbar navbar-dark navbar-expand-xl border-bottom border-dark bg-darker mb-3">
+    <nav class="navbar navbar-dark navbar-expand-xl border-bottom border-dark bg-darker mb-3">
     <div class="container">
         <a class="navbar-brand d-none d-sm-block hide-cyber" href=".">AutoC4</a>
         <a class="navbar-brand d-none d-sm-block show-cyber" href=".">CyberC4</a>
@@ -45,7 +44,7 @@
                     <span class="d-inactive-none d-sm-inline">&nbsp;Status</span>
                 </a>
             </li>
-            <li class="nav-item admin-only d-none">
+            <li class="nav-item admin-only">
                 <a class="px-3 px-sm-2 nav-link" data-bs-toggle="tab" href="#admin">
                     <i class="fa fa-lock"></i>
                     <span class="d-inactive-none d-sm-inline">&nbsp;Admin</span>
@@ -85,12 +84,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link show-state-disconnected" href="#">
+                    <a class="nav-link state-display show-state-disconnected" href="#">
                         <i class="fa fa-exclamation-circle" style="color:#a00"></i>
                         Disconnected
                     </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link state-display show-state-open" href="#">
                         <i class="fa fa-thumbs-up" style="color:#0c0"></i>
                         Open
@@ -113,9 +110,9 @@
         </div>
     </div>
 </nav>
-  <div class="mx-auto">
-    <div class="tab-content container">
-      <div id="light" class="tab-pane show active">
+    <div class="mx-auto">
+        <div class="tab-content container">
+            <div id="light" class="tab-pane show active">
     <div class="row">
         <div class="col-lg-3 px-2">
     <h2>Wohnzimmer <a href="#" class="fa fa-power-off btn btn-transparent btn-poweroff"
@@ -518,7 +515,7 @@
 </div>
     </div>
 </div>
-      <div id="presets" class="tab-pane">
+            <div id="presets" class="tab-pane">
     <div class="row">
         <!--<div class="col-lg-12">
           <h2>Global</h2>
@@ -568,7 +565,7 @@
         </div>
     </div>
 </div>
-      <div id="music" class="tab-pane">
+            <div id="music" class="tab-pane">
     <div class="row">
         <div class="col-lg-3">
             <h2>Wohnzimmer</h2>
@@ -665,7 +662,7 @@
         </div>
     </div>
 </div>
-      <div id="status" class="tab-pane">
+            <div id="status" class="tab-pane">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-lg-9">
             <h3>Fenster</h3>
@@ -693,22 +690,27 @@
         </div>
     </div>
 </div>
-      <div id="admin" class="tab-pane admin-only d-none">
+            <div id="admin" class="tab-pane admin-only">
     <h3>Admin</h3>
-    <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-9">
-            <light-button topic="club/status">Club Status</light-button>
-            <form data-mqtt-form data-mqtt-retained>
-                <div class="input-group">
-                    <input name="club/status/message" data-mqtt-value="club/status/message"
-                        placeholder="Club Status Message" type="text" class="form-control" />
-                    <button type="submit" class="btn btn-primary">Set</button>
-                    <button data-mqtt-topic="club/status/message" data-mqtt-message="" data-mqtt-retained
-                        class="btn btn-danger">Reset</button>
+    <div class="row g-2">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Club Staus</h5>
+                    <light-button topic="club/status">Club Status</light-button>
+                    <form data-mqtt-form data-mqtt-retained>
+                        <div class="input-group">
+                            <input name="club/status/message" data-mqtt-value="club/status/message"
+                                placeholder="Club Status Message" type="text" class="form-control" />
+                            <button type="submit" class="btn btn-primary">Set</button>
+                            <button data-mqtt-topic="club/status/message" data-mqtt-message="" data-mqtt-retained
+                                class="btn btn-danger">Reset</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
-        <div class="col-sm-6 col-md-4 col-lg-3 vstack gap-2">
+        <div class="col-sm-6 vstack gap-2">
             <button data-mqtt-topic="club/gate" class="btn btn-lg btn-success">
                 <i class="fa fa-door-open"></i> Open Gate
             </button>
@@ -718,9 +720,9 @@
         </div>
     </div>
 </div>
+        </div>
     </div>
-  </div>
-  <div class="modal" id="modal-dmx-randomize" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal" id="modal-dmx-randomize" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -754,7 +756,7 @@
         </div>
     </div>
 </div>
-  <div class="modal" id="modal-dmx-fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal" id="modal-dmx-fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -787,7 +789,7 @@
         </div>
     </div>
 </div>
-  <div class="modal" id="modal-dmx-sound" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal" id="modal-dmx-sound" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -820,7 +822,7 @@
         </div>
     </div>
 </div>
-  <div class="modal" id="modal-shutdown" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal" id="modal-shutdown" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -845,7 +847,7 @@
         </div>
     </div>
 </div>
-  <a data-toggle="display" href="#help" id="help" class="d-none"></a>
+    <a data-toggle="display" href="#help" id="help" class="d-none"></a>
 </body>
 
 </html>
