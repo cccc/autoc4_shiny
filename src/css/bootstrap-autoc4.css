@@ -1,15 +1,15 @@
 body {
-  font-size: 15px;
-  font-family: "Open Sans", Calibri, Candara, Arial, sans-serif;
+    font-size: 15px;
+    font-family: "Open Sans", Calibri, Candara, Arial, sans-serif;
 }
 
 .nav.nav-tabs .nav-item .nav-link {
-  border-radius: 0px;
+    border-radius: 0px;
 }
 
 .navbar {
-  margin-bottom: 1em;
-  min-height: 50px;
+    margin-bottom: 1em;
+    min-height: 50px;
 }
 
 h1,
@@ -18,11 +18,11 @@ h2,
 .h2,
 h3,
 .h3 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 input[type="color"] {
-  border: 0;
-  padding: 0;
+    border: 0;
+    padding: 0;
 }
