@@ -26,6 +26,7 @@
 				"led/+/+",
 				"power/+/+",
 				"relais/+/+",
+				"tasmota/+/+/POWER",
 				"socket/+/+/+",
 				"screen/+/+",
 				"club/status"
