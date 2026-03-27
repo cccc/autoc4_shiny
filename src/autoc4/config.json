@@ -116,6 +116,10 @@
 			"subscribe": ["atem/+/input-properties", "atem/#"]
 		},
 		{
+			"type": "aten",
+			"subscribe": ["aten/+/connection", "aten/+/state"]
+		},
+		{
 			"type": "reload",
 			"subscribe": ["interface/shiny/reload"]
 		}
