@@ -112,10 +112,6 @@
 			}
 		},
 		{
-			"type": "atem",
-			"subscribe": ["atem/+/input-properties", "atem/#"]
-		},
-		{
 			"type": "aten",
 			"subscribe": ["aten/+/connection", "aten/+/state"]
 		},
