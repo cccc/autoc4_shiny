@@ -7,6 +7,7 @@ import config from "./config.json" with { type: "json" };
 import AutoC4Admin from "./plugins/admin.js";
 import AutoC4Aten from "./plugins/aten/index.js";
 // import AutoC4Atem from "./plugins/atem/index.js";
+import AutoC4Busleiste from "./plugins/busleiste/index.js";
 import AutoC4Cyber from "./plugins/cyber.js";
 import AutoC4DMX from "./plugins/dmx";
 import AutoC4Heartbeat from "./plugins/heartbeat.js";
@@ -103,6 +104,7 @@ export class AutoC4 {
 		this.registerModuleType("cyber", AutoC4Cyber);
 		// this.registerModuleType("atem", AutoC4Atem);
 		this.registerModuleType("aten", AutoC4Aten);
+		this.registerModuleType("busleiste", AutoC4Busleiste);
 		this.registerModuleType("reload", AutoC4Reload);
 		this.registerModuleType("admin", AutoC4Admin);
 

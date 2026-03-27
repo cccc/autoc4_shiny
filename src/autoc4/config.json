@@ -116,6 +116,15 @@
 			"subscribe": ["aten/+/connection", "aten/+/state"]
 		},
 		{
+			"type": "busleiste",
+			"subscribe": [
+				"busleiste/modules",
+				"busleiste/modules/+/enabled",
+				"busleiste/active_module",
+				"busleiste/active_interrupt"
+			]
+		},
+		{
 			"type": "reload",
 			"subscribe": ["interface/shiny/reload"]
 		}
